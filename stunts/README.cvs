@@ -1,0 +1,90 @@
+This file briefly explains how to build the CVS version of the source
+code and how to use the CVS and the build system. This file is
+intentionally not included in EXTRA_DIST in Makefile.am because it
+does not go into the distribution.
+
+The build system (autotools, Makefiles, etc) is maintained by
+
+	Florian Winter <fw@graphics.cs.uni-sb.de>
+
+If you have any problems, please contact me!
+
+
+QUICK START:
+
+Run the following commands to build everything after a fresh CVS checkout:
+
+	make -f Makefile.cvs
+	./configure
+	make
+
+If this doesn't work, or if you want to know why it works, read the
+detailed instructions below.
+
+
+STEP 1: First Build
+
+If you have a fresh CVS checkout, you must first create a configure
+script which will in turn create all the Makefiles. Then you can
+compile the code as usual by running make. The first thing you have to
+do is
+
+	make -f Makefile.cvs
+
+This should normally just work, provided that you have the following
+tools installed:
+
+	- automake (version 1.4)
+	- autoconf (version 2.59)
+	- libtool  (version 1.5.6)
+
+If you have these tools, and the above command does NOT work, please
+contact me immediately! These tools are available under every Linux
+distributions and under Win32 with cygwin. If you try to build for any
+other system, you are on your own...
+
+If you did anything stupid (i.e. anything that this README file did
+not say you should do, or if something strange seems to be wrong), you
+can delete all files created by the above command by running
+
+	make maintainer-clean
+
+If this doesn't help, please make a new CVS checkout.
+
+
+STEP 2: Configuration
+
+The above step creates a configure script that will build all the
+makefiles.  Normally you have to run the configure script only
+once. Then the created makefiles will do everything automatically. The
+only exception is if you added a new directory. In this case, go back
+to STEP 1.
+
+To build the makefiles, run the following command:
+
+	./configure
+
+This will produce a lot of outputs. The configure script will check
+for required external libraries and other tools needed to build the
+code. If it succeeds, it will create makefiles.
+
+
+STEP 3: Using the build system
+
+After the configure script has completed successfully, you can build
+the source code by running
+
+	make
+
+The following build targets are also available:
+
+	make clean		(remove all files created by make)
+	make distclean		(remove all files created by configure
+				 and make)
+	make maintainer-clean	(remove all files created by
+				 Makefile.cvs, configure and make)
+	make dist		(Create a distribution tarball)
+	make install		(Install the project in /usr/local)
+
+For more information, read the documentation of automake, autoconf and
+libtool.

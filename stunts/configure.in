@@ -1,0 +1,39 @@
+# Process this file with autoconf to produce configure
+
+#
+# Initialization
+#
+
+# Initialize automake
+AC_INIT(configure.in)
+
+# Create a config header
+AM_CONFIG_HEADER(config.h)
+
+# Initialize automake
+AM_INIT_AUTOMAKE(stunts, 0.1)
+
+
+#
+# Checks for Programs
+#
+
+# Set language to C++
+AC_LANG_CPLUSPLUS
+
+# Check for C++ compiler
+AC_PROG_CXX
+
+# Check for libtool
+AM_PROG_LIBTOOL
+
+
+#
+# Output
+#
+
+# Add all Makefiles here
+AC_OUTPUT([
+Makefile
+src/Makefile
+])
