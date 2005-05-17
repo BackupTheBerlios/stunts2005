@@ -29,6 +29,14 @@ AM_PROG_LIBTOOL
 
 
 #
+# Checks for Libraries
+#
+
+# Check for nrEngine
+AX_CHECK_NRENGINE
+
+
+#
 # Output
 #
 
