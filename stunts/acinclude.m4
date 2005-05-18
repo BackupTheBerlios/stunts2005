@@ -878,3 +878,54 @@ AC_DEFUN([RS_BOOST_SERIALIZATION],
     LIBS="$OLD_LIBS"
     AC_LANG_RESTORE
 ])
+
+#
+# Synopsis
+#
+# AX_CHECK_OGRE
+# 
+# Version
+# 
+# 1.6     0.5.58   :   fw
+# 
+# Author
+# 
+# Braden McDaniel <fw@graphics.cs.uni-sb.de> 
+#  copyright: (C) 2003 Florian Winter
+#  license: GNU GPL 
+# 
+# Description
+# 
+# Check for Ogre
+#
+AC_DEFUN([AX_CHECK_OGRE],
+[
+  OGRE_CPPFLAGS="-DGCC_3_1 -DEXT_HASH"
+  ax_save_CPPFLAGS="${CPPFLAGS}"
+  CPPFLAGS="${OGRE_CPPFLAGS} ${CPPFLAGS}"
+
+  AC_CACHE_CHECK([for OGRE library], [ax_cv_check_ogre_libogre],
+  [ax_cv_check_ogre_libogre="no"
+  ax_save_LIBS="${LIBS}"
+  LIBS="-lOgreMain"
+    AC_TRY_LINK([
+# include <OGRE/Ogre.h>
+  ],
+    [Ogre::Root* root = new Ogre::Root()],
+    [ax_cv_check_ogre_libogre="$LIBS"; break])
+
+  LIBS=${ax_save_LIBS}
+  ])
+  CPPFLAGS="${ax_save_CPPFLAGS}"
+
+  if test "X${ax_cv_check_ogre_libogre}" = "Xno"; then
+    no_ogre="yes"
+    OGRE_CFLAGS=""
+    OGRE_LIBS=""
+  else
+    OGRE_LIBS="${ax_cv_check_ogre_libogre} ${OGRE_LIBS}"
+  fi
+
+AC_SUBST([OGRE_CPPFLAGS])
+AC_SUBST([OGRE_LIBS])
+])dnl
