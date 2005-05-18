@@ -42,6 +42,10 @@ AX_CHECK_NRENGINE
 # Check for ODE
 AX_CHECK_ODE
 
+# Check for BOOST and its components
+RS_BOOST([1.32.0],[],[AC_MSG_ERROR([Package requires the Boost C++ 
+                        libraries!])]) 
+RS_BOOST_SERIALIZATION
 
 #
 # Output
