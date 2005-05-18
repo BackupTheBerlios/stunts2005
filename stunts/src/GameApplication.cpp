@@ -25,9 +25,20 @@
 
 #include "GameApplication.hpp"
 
-int main() {
-  stunts::GameApplication app;
+namespace stunts {
   
-  app.initialize();
-  app.run();
+  GameApplication::GameApplication()
+    : __root(0)
+  {}
+  
+  GameApplication::~GameApplication() {
+    delete __root;
+  }
+  
+  void GameApplication::run() {
+  }
+  
+  void GameApplication::initialize() {
+  }
+  
 }

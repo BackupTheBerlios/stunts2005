@@ -23,11 +23,37 @@
  */
 
 
-#include "GameApplication.hpp"
+#ifndef _STUNTS_GAME_APPLICATION_HPP_
+#define _STUNTS_GAME_APPLICATION_HPP_
 
-int main() {
-  stunts::GameApplication app;
+#include <OGRE/Ogre.h>
+
+namespace stunts {
   
-  app.initialize();
-  app.run();
+  /** The main application of the game.
+   */
+  class GameApplication {
+  public:
+    /** Construct a new %GameApplication.
+     */
+    GameApplication();
+    
+    /** Destructor.
+     */
+    virtual ~GameApplication();
+    
+    /** Run the application.
+     */
+    virtual void run();
+    
+    /** Initialize the application.
+     */
+    virtual void initialize();
+    
+  private:
+    Ogre::Root* __root;
+  };
+  
 }
+
+#endif
