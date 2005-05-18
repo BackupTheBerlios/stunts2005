@@ -10,3 +10,6 @@ configure
 libtool
 stamp-h
 stamp-h.in
+config.guess
+config.sub
+ltmain.sh
