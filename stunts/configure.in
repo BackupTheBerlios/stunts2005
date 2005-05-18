@@ -32,8 +32,15 @@ AM_PROG_LIBTOOL
 # Checks for Libraries
 #
 
+# Check for OpenGL
+AX_CHECK_GL
+AX_CHECK_GLU
+
 # Check for nrEngine
 AX_CHECK_NRENGINE
+
+# Check for ODE
+AX_CHECK_ODE
 
 
 #
