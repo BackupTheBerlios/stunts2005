@@ -850,7 +850,8 @@ AC_DEFUN([RS_BOOST_SERIALIZATION],
   OLD_CPPFLAGS="$CPPFLAGS"
   CPPFLAGS="$BOOST_CPPFLAGS"
   OLD_LIBS="$LIBS"
-  LIBS="-lboost_serialization-$boost_libsuff_r"
+  #LIBS="-lboost_serialization-$boost_libsuff_r"
+  LIBS="-lboost_serialization"
     AC_TRY_COMPILE(
 	    [ 
 		#include <boost/serialization/export.hpp> 
