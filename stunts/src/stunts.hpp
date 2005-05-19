@@ -23,7 +23,7 @@
  */
 
 #include <OGRE/Ogre.h>
-#include <../../nrEngine/nrEngine.h>
+#include <nrEngine/nrEngine.h>
 
 #ifndef __STUNTS_MY_CLASS_HPP_
 #define __STUNTS_MY_CLASS_HPP_

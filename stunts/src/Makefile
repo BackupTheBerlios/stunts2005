@@ -61,7 +61,7 @@ am_stunts_OBJECTS = GameApplication.$(OBJEXT) stunts.$(OBJEXT) \
 	UserInput.$(OBJEXT)
 stunts_OBJECTS = $(am_stunts_OBJECTS)
 stunts_LDADD = $(LDADD)
-DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
+DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir) -I../..
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \

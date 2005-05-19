@@ -25,6 +25,7 @@
 
 #include "GameApplication.hpp"
 
+
 namespace stunts {
   
 	GameApplication::GameApplication()
@@ -56,6 +57,9 @@ namespace stunts {
 		shared_ptr < nrITask > task (new CUserInput());
 		task->_taskPriority = NR_PRIORITY_VERY_HIGH;
 		nrKernel.AddTask(task);
+		
+		//
+		nrFramework.AddToKernel(nrKernel, NR_PRIORITY_LAST);
 	}
   
 }

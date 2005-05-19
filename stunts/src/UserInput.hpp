@@ -23,7 +23,7 @@
  */
 
 #include <OGRE/Ogre.h>
-#include <../../nrEngine/nrEngine.h>
+#include <nrEngine/nrEngine.h>
 
 #ifndef _CUSERINPUT_H_
 #define _CUSERINPUT_H_
