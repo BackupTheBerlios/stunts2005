@@ -23,11 +23,12 @@
  */
 
 
-#include "GameApplication.hpp"
+#include "stunts.hpp"
 
-int main() {
-  stunts::GameApplication app;
-  
-  app.initialize();
-  app.run();
+int main()
+{
+	stunts::GameApplication app;
+	
+	app.initialize();
+	app.run();
 }

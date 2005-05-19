@@ -4,7 +4,7 @@
  *                    Stunts 2005 Workgroup, 
  *                    http://developer.berlios.de/projects/stunts2005
  *
- * Maintainer:        Florian Winter <fw@graphics.cs.uni-sb.de>
+ * Maintainer:        Christian Morbach <GameDevelopment@paratronic.de>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,41 +21,52 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, 
  * USA.
  */
+ 
+#include "UserInput.hpp"
+#include <../../nrEngine/utils/nrCLog.h>
+#include <../../nrEngine/nrEngine.h>
+#include <iostream>
 
 
-#include "GameApplication.hpp"
-
-namespace stunts {
-  
-	GameApplication::GameApplication()
-    : __root(0)
-	{}
-  
-	GameApplication::~GameApplication()
+//namespace stunts
+//{
+	CUserInput::CUserInput()
 	{
-		//shutdown te game engine
-		nrEngineDelete(); 	
-		
-		//delete OGRE root
-		if (__root)
-    		delete __root;
-  	}
-  
-	void GameApplication::run()
-	{
-		//run the game engine
-		nrKernel.Execute();
+		// TODO: put constructor code here
 	}
-  
-	void GameApplication::initialize()
+	
+	
+	CUserInput::~CUserInput()
 	{
-		//initialize game engine
-		nrEngineInit();
-		
-		//add tasks
-		shared_ptr < nrITask > task (new CUserInput());
-		task->_taskPriority = NR_PRIORITY_VERY_HIGH;
-		nrKernel.AddTask(task);
+		// TODO: put destructor code here
 	}
-  
-}
+	
+	nrResult CUserInput::taskInit()
+	{
+		//nrLog.Log(NR_LOG_CONSOLE, "Init");
+		std::cout << "Init" << std::endl;
+		return 0;
+	}
+	
+	nrResult CUserInput::taskStart()
+	{
+		//nrLog.Log(NR_LOG_CONSOLE, "Start");
+		std::cout << "Start" << std::endl;
+		return 0;
+	}
+	
+	nrResult CUserInput::taskUpdate()
+	{
+		//nrFramework.taskGetName();
+		return 0;
+	}
+	
+	nrResult CUserInput::taskStop()
+	{
+		//nrLog.Log(NR_LOG_CONSOLE, "Stop");
+		std::cout << "Stop" << std::endl;
+		return 0;
+	}
+
+
+//}	//namespace stunts

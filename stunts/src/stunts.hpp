@@ -4,7 +4,7 @@
  *                    Stunts 2005 Workgroup, 
  *                    http://developer.berlios.de/projects/stunts2005
  *
- * Maintainer:        Florian Winter <fw@graphics.cs.uni-sb.de>
+ * Maintainer:        Christian Morbach <GameDevelopment@paratronic.de>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,40 +22,17 @@
  * USA.
  */
 
+#include <OGRE/Ogre.h>
+#include <../../nrEngine/nrEngine.h>
+
+#ifndef __STUNTS_MY_CLASS_HPP_
+#define __STUNTS_MY_CLASS_HPP_
+
+#include "UserInput.hpp"
 
 #include "GameApplication.hpp"
 
-namespace stunts {
-  
-	GameApplication::GameApplication()
-    : __root(0)
-	{}
-  
-	GameApplication::~GameApplication()
-	{
-		//shutdown te game engine
-		nrEngineDelete(); 	
-		
-		//delete OGRE root
-		if (__root)
-    		delete __root;
-  	}
-  
-	void GameApplication::run()
-	{
-		//run the game engine
-		nrKernel.Execute();
-	}
-  
-	void GameApplication::initialize()
-	{
-		//initialize game engine
-		nrEngineInit();
-		
-		//add tasks
-		shared_ptr < nrITask > task (new CUserInput());
-		task->_taskPriority = NR_PRIORITY_VERY_HIGH;
-		nrKernel.AddTask(task);
-	}
-  
-}
+int main();
+//namespace stunts
+
+#endif

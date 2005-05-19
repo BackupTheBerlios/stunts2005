@@ -7,12 +7,15 @@ bin_PROGRAMS = stunts
 # Add here all .cpp source files that are needed to build myapp
 stunts_SOURCES = \
 	GameApplication.cpp \
-	stunts.cpp
+	stunts.cpp \
+	UserInput.cpp
 
 # Add here all headers that are needed to build myapp
 # These headers will not be installed, but included in the dist
 noinst_HEADERS = \
-	GameApplication.hpp
+	GameApplication.hpp\
+	stunts.hpp \
+	UserInput.hpp
 
 # Set the include path found by configure
 INCLUDES = \
