@@ -475,7 +475,7 @@ CPPFLAGS="${NRENGINE_CFLAGS} ${CPPFLAGS}"
 AC_CACHE_CHECK([for nrEngine], [ax_cv_check_nrengine_libs],
 [ax_cv_check_nrengine_libs="no"
 ax_save_LIBS="${LIBS}"
-LIBS=""
+LIBS="-lnrFramework -lnrEngine -lnrVFS -lnrUtils -lnr3DEngine -lnrMath -lSDL -ljpeg -lpng"
 ax_lib="-lnrFramework -lnrEngine -lnrVFS -lnrUtils -lnr3DEngine -lnrMath -lSDL -ljpeg -lpng"
 if test "X$CC" = "Xcl"; then
   ax_try_lib=`echo $ax_lib | sed -e 's/^-l//' -e 's/$/.lib/'`
@@ -850,8 +850,7 @@ AC_DEFUN([RS_BOOST_SERIALIZATION],
   OLD_CPPFLAGS="$CPPFLAGS"
   CPPFLAGS="$BOOST_CPPFLAGS"
   OLD_LIBS="$LIBS"
-  #LIBS="-lboost_serialization-$boost_libsuff_r"
-  LIBS="-lboost_serialization"
+  LIBS=""
     AC_TRY_COMPILE(
 	    [ 
 		#include <boost/serialization/export.hpp> 
