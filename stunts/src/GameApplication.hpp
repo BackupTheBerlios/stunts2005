@@ -24,7 +24,6 @@
 
 #include <OGRE/Ogre.h>
 #include <nrEngine/nrEngine.h>
-#include <nrEngine/framework/nrIFrameWork.h>
 
 #ifndef _STUNTS_GAME_APPLICATION_HPP_
 #define _STUNTS_GAME_APPLICATION_HPP_

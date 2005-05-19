@@ -55,7 +55,7 @@ namespace stunts {
 		
 		//add tasks
 		shared_ptr < nrITask > task (new CUserInput());
-		task->_taskPriority = NR_PRIORITY_VERY_HIGH;
+		task->setTaskPriority(NR_PRIORITY_VERY_HIGH);
 		nrKernel.AddTask(task);
 		
 		//

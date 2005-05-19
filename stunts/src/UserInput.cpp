@@ -23,8 +23,7 @@
  */
  
 #include "UserInput.hpp"
-#include <../../nrEngine/utils/nrCLog.h>
-#include <../../nrEngine/nrEngine.h>
+#include <nrEngine/nrEngine.h>
 #include <iostream>
 
 
