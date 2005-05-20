@@ -22,13 +22,13 @@
  * USA.
  */
 
-#include <OGRE/Ogre.h>
-#include <nrEngine/nrEngine.h>
 
 #ifndef _STUNTS_GAME_APPLICATION_HPP_
 #define _STUNTS_GAME_APPLICATION_HPP_
 
 #include "UserInput.hpp"
+
+#include <OGRE/Ogre.h>
 
 namespace stunts {
   

@@ -25,41 +25,44 @@
 
 #include "GameApplication.hpp"
 
+#include <nrEngine/nrEngine.h>
 
 namespace stunts {
   
-	GameApplication::GameApplication()
+  GameApplication::GameApplication()
     : __root(0)
-	{}
+  {}
   
-	GameApplication::~GameApplication()
-	{
-		//shutdown te game engine
-		nrEngineDelete(); 	
-		
-		//delete OGRE root
-		if (__root)
-    		delete __root;
-  	}
+  GameApplication::~GameApplication() {
+    /* delete nrFramework singleton */
+    nrFrameworkDelete();
+    
+    /* delete nrEngine singleton */
+    nrEngineDelete();
+    
+    /* delete OGRE root */
+    delete __root;
+  }
   
-	void GameApplication::run()
-	{
-		//run the game engine
-		nrKernel.Execute();
-	}
+  void GameApplication::run() {
+    /* run the game engine */
+    nrKernel.Execute();
+  }
   
-	void GameApplication::initialize()
-	{
-		//initialize game engine
-		nrEngineInit();
-		
-		//add tasks
-		shared_ptr < nrITask > task (new CUserInput());
-		task->setTaskPriority(NR_PRIORITY_VERY_HIGH);
-		nrKernel.AddTask(task);
-		
-		//
-		nrFramework.AddToKernel(nrKernel, NR_PRIORITY_LAST);
-	}
+  void GameApplication::initialize() {
+    /* create nrEngine singleton */
+    nrEngineInit();
+    
+    /* create nrFramework singleton */
+    nrFrameworkInit();
+    
+    /* add tasks */
+    shared_ptr<nrITask>task (new CUserInput());
+    task->setTaskPriority(NR_PRIORITY_VERY_HIGH);
+    nrKernel.AddTask(task);
+    
+    /* whatever */
+    nrFramework.AddToKernel(nrKernel, NR_PRIORITY_LAST);
+  }
   
 }

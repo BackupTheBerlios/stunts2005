@@ -13,12 +13,13 @@ stunts_SOURCES = \
 # Add here all headers that are needed to build myapp
 # These headers will not be installed, but included in the dist
 noinst_HEADERS = \
-	GameApplication.hpp\
+	GameApplication.hpp \
 	stunts.hpp \
 	UserInput.hpp
 
 # Set the include path found by configure
 INCLUDES = \
+	@NRENGINE_CPPFLAGS@ \
 	@OGRE_CPPFLAGS@ \
 	@ODE_CFLAGS@ \
 	@BOOST_CPPFLAGS@ \
@@ -26,6 +27,7 @@ INCLUDES = \
 
 # The library search path for stunts
 stunts_LDFLAGS = \
+	@NRENGINE_LIBS@ \
 	@OGRE_LIBS@ \
 	@ODE_LIBS@ \
 	@BOOST_LIBS_R@ \

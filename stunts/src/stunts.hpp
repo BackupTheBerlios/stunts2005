@@ -22,17 +22,14 @@
  * USA.
  */
 
+#ifndef __STUNTS_HPP_
+#define __STUNTS_HPP_
+
 #include <OGRE/Ogre.h>
 #include <nrEngine/nrEngine.h>
-
-#ifndef __STUNTS_MY_CLASS_HPP_
-#define __STUNTS_MY_CLASS_HPP_
 
 #include "UserInput.hpp"
 
 #include "GameApplication.hpp"
-
-int main();
-//namespace stunts
 
 #endif
