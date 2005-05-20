@@ -5,9 +5,9 @@
 *******************************/
 
 #include <string>
-#include "CSound.h"
+#include "CSound.hpp"
 #include <iostream>
-#include "CSoundSystem.h"
+#include "CSoundSystem.hpp"
 
 using namespace std;
 
