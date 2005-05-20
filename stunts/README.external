@@ -1,0 +1,134 @@
+This file lists the external libraries used by this project, where to
+get them, how to compile and install them and how to make configure
+find them. You must read this before running ./configure for the first
+time.
+
+1. USED LIBRARIES
+
+We use the following libraries:
+
+	ODE		(version 0.5)		www.ode.org
+	Ogre		(version 1.0.1)		www.ogre3d.org
+	BOOST		(version 1.32.0)	www.boost.org
+	nrEngine	(version 0.0.2)		developer.berlios.de/projects/nrengine
+
+You have two ways to obtain these libraries:
+
+ - Download them from the website listed above (STABLE)
+ - Install them from your Linux distribution
+
+The STABLE means, I have tested the first method. I have also tested
+the second method with Debian sid, but I won't provide support.  If
+you have problems, use the versions of the libraries listed above, and
+download and compile them yourself. If you think, `apt-get install
+libogre-dev` is faster, you are on your own.
+
+
+2. BUILDING THE LIBRARIES
+
+2.1. Building ODE
+
+Download the source code ODE from http://www.ode.org/download.html.
+
+Unpack the source code.
+
+Follow the instructions in the file INSTALL.
+
+Choose a directory where you want to install ODE. I call it $ODE_DIR here.
+Run the following commands in the ODE source directory:
+
+	cp -r lib $ODE_DIR/lib
+	cp -r include $ODE_DIR/include
+
+
+2.2. Building Ogre
+
+Download the Ogre source code from www.ogre3d.org.
+
+Unpack the source code.
+
+Choose a directory where you want to install Ogre. I call it $OGRE_DIR here.
+Run the following commands:
+
+	./configure --prefix=$OGRE_DIR
+	make install
+
+Make yourself some coffee.
+
+If configure complains about any missing libraries ... install them ;)
+
+
+2.3. Building BOOST
+
+Download the BOOST source code from www.boost.org.
+
+Unpack the source code.
+
+Follow the instructions in index.html to install the bjam utility.
+(Needed to compile BOOST)
+
+Choose a directory where you want to install BOOST. I call it $BOOST_DIR here.
+
+Run the command:
+
+	bjam "-sTOOLS=gcc" --prefix=$BOOST_DIR install
+
+Make yourself some more coffee.
+
+
+2.4. Building nrEngine
+
+Download nrEngine source code from developer.berlios.de/projects/nrengine.
+
+Unpack the source code and run
+
+	make
+
+Choose a directory where you want to install BOOST. I call it $NRENGINE_DIR here.
+
+Copy the whole nrEngine-<versionbla> directory to $NRENGINE_DIR
+
+	cp -r nrEngine-<versionbla> $NRENGINE_DIR
+
+go to $NRENGINE_DIR and create the following link
+
+	ln -s nrEngine-<versionbla> nrEngine
+
+(This link will be needed so our source files can include nrEngine headers as <nrEngine/nrBlablubb.h>)
+
+
+3. Running configure
+
+This section explains how to invoke configure so that it finds the libraries.
+
+Let's say
+
+	$ODE_DIR	is the directory where you installed ODE
+	$OGRE_DIR	is the directory where you installed Ogre
+	$BOOST_DIR	is the directory where you installed BOOST
+	$NRENGINE_DIR	is the directory where you installed nrEngine
+
+If you installed one of these libs from your distribution, the
+directory will probably be /usr. Then you don't have to do anything
+for this library - configure will find it automatically.
+
+Now run configure with the following options:
+
+	./configure --with-ode=$ODE_DIR --with-ogre=$OGRE_DIR --with-boost=$BOOST_DIR --with-nrengine=$NRENGINE_DIR
+
+and make sure you get the following output at the end:
+
+	checking for nrEngine... -lnrFramework -lnrEngine -lnrVFS -lnrUtils -lnr3DEngine -lnrMath -lSDL -ljpeg -lpng
+	checking for ODE library... -L/home/azasello/software/ode-0.5/lib -lode
+	checking for the Boost C++ libraries, version 1.32.0 or newer... yes
+	checking whether we can use boost_serialization library... yes
+	checking for OGRE library... -L/home/azasello/software/ogre-1.0.1/lib -lOgreMain
+
+(or something similiar!)
+
+If you see a "no" after "Checking for blah...", this is bad. In this
+case, check the file config.log to see what went wrong.  If you have
+absolutely no idea or config.log looks too cryptic, send it to me - I
+will fix it.
+
+	(Florian Winter - fw@graphics.cs.uni-sb.de)
