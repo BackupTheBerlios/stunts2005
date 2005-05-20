@@ -456,10 +456,10 @@ AC_ARG_WITH([nrengine],
                             [specify nrEngine path])])
 
 NRENGINE_LIBS=""
-NRENGINE_CFLAGS=""
+NRENGINE_CPPFLAGS=""
 if test -n "$with_nrengine"; then
   NRENGINE_LIBS="-L$with_nrengine/lib"
-  NRENGINE_CFLAGS="-I$with_nrengine/include"
+  NRENGINE_CPPFLAGS="-I$with_nrengine/include"
 fi
 
 if test "X${no_glu}" != "Xyes"; then
@@ -467,10 +467,10 @@ if test "X${no_glu}" != "Xyes"; then
 fi
 
 NRENGINE_LIBS="${NRENGINE_LIBS}"
-NRENGINE_CFLAGS="${NRENGINE_CFLAGS}"
+NRENGINE_CPPFLAGS="${NRENGINE_CPPFLAGS}"
 
 ax_save_CPPFLAGS="${CPPFLAGS}"
-CPPFLAGS="${NRENGINE_CFLAGS} ${CPPFLAGS}"
+CPPFLAGS="${NRENGINE_CPPFLAGS} ${CPPFLAGS}"
 
 AC_CACHE_CHECK([for nrEngine], [ax_cv_check_nrengine_libs],
 [ax_cv_check_nrengine_libs="no"
@@ -495,13 +495,13 @@ CPPFLAGS="${ax_save_CPPFLAGS}"
 
 if test "X${ax_cv_check_nrengine_libs}" = "Xno"; then
   no_cg="yes"
-  NRENGINE_CFLAGS=""
+  NRENGINE_CPPFLAGS=""
   NRENGINE_LIBS=""
 else
   NRENGINE_LIBS="${ax_cv_check_nrengine_libs} ${NRENGINE_LIBS}"
 fi
 
-AC_SUBST([NRENGINE_CFLAGS])
+AC_SUBST([NRENGINE_CPPFLAGS])
 AC_SUBST([NRENGINE_LIBS])
 ])dnl
 
@@ -533,41 +533,43 @@ AC_SUBST([NRENGINE_LIBS])
 #
 AC_DEFUN([AX_CHECK_ODE],
 [
-  AC_LANG_SAVE
-  AC_LANG_C
+  AC_ARG_WITH([ode],
+            [AC_HELP_STRING([--with-ode],
+                            [specify ODE path])])
+  ODE_LIBS=""
+  ODE_CPPFLAGS=""
+  if test -n "$with_ode"; then
+    ODE_LIBS="-L$with_ode/lib"
+    ODE_CPPFLAGS="-I$with_ode/include"
+  fi
 
   ax_save_CPPFLAGS="${CPPFLAGS}"
-  CPPFLAGS="${ODE_CFLAGS} ${CPPFLAGS}"
+  CPPFLAGS="${ODE_CPPFLAGS} ${CPPFLAGS}"
 
   AC_CACHE_CHECK([for ODE library], [ax_cv_check_ode_libode],
   [ax_cv_check_ode_libode="no"
   ax_save_LIBS="${LIBS}"
-  LIBS=""
-  ax_check_libs="-lode"
-  for ax_lib in ${ax_check_libs}; do
-    LIBS="-lode"
+  LIBS="${ODE_LIBS} -lode"
     AC_TRY_LINK([
 # include <ode/ode.h>
 # include <ode/collision.h>
   ],
     [dWorldCreate()],
-    [ax_cv_check_ode_libode="-lode"; break])
+    [ax_cv_check_ode_libode="${ODE_LIBS} -lode"; break])
 
-  done
   LIBS=${ax_save_LIBS}
   ])
   CPPFLAGS="${ax_save_CPPFLAGS}"
-  AC_LANG_RESTORE
 
   if test "X${ax_cv_check_ode_libode}" = "Xno"; then
     no_ode="yes"
-    ODE_CFLAGS=""
+    ODE_CPPFLAGS=""
     ODE_LIBS=""
   else
     ODE_LIBS="${ax_cv_check_ode_libode} ${ODE_LIBS}"
   fi
 
-AC_SUBST([ODE_CFLAGS])
+AC_SUBST([ODE_CPPFLAGS])
 AC_SUBST([ODE_LIBS])
 ])dnl
 
@@ -920,7 +922,7 @@ AC_DEFUN([AX_CHECK_OGRE],
 
   if test "X${ax_cv_check_ogre_libogre}" = "Xno"; then
     no_ogre="yes"
-    OGRE_CFLAGS=""
+    OGRE_CPPFLAGS=""
     OGRE_LIBS=""
   else
     OGRE_LIBS="${ax_cv_check_ogre_libogre} ${OGRE_LIBS}"

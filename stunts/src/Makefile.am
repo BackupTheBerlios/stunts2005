@@ -21,7 +21,7 @@ noinst_HEADERS = \
 INCLUDES = \
 	@NRENGINE_CPPFLAGS@ \
 	@OGRE_CPPFLAGS@ \
-	@ODE_CFLAGS@ \
+	@ODE_CPPFLAGS@ \
 	@BOOST_CPPFLAGS@ \
 	$(all_includes)
 
