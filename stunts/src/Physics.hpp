@@ -23,49 +23,60 @@
  */
 
 
-#include "GameApplication.hpp"
-#include "PhysicsWorld.hpp"
+#ifndef _STUNTS_PHYSICS_HPP_
+#define _STUNTS_PHYSICS_HPP_
 
-#include <nrEngine/nrEngine.h>
+#include <ode/ode.h>
 
 namespace stunts {
   
-  GameApplication::GameApplication()
-    : __root(0)
-  {}
+  class CPhysicsWorld;
   
-  GameApplication::~GameApplication() {
-    /* delete nrFramework singleton */
-    nrFrameworkDelete();
+  /** A Physics component of a game object.
+   */
+  class CPhysics {
+  public:
+    /** @name Constructor & Destructor
+     */
+    //@{
+    /** Construct a physics object.
+     */
+    CPhysics() throw();
     
-    /* delete nrEngine singleton */
-    nrEngineDelete();
+    /** Copy constructor.
+     */
+    CPhysics(const CPhysics& other) throw();
     
-    /* delete OGRE root */
-    delete __root;
-  }
-  
-  void GameApplication::run() {
-    /* run the game engine */
-    nrKernel.Execute();
-  }
-  
-  void GameApplication::initialize() {
-    /* create nrEngine singleton */
-    nrEngineInit();
+    /** Virtual copy constructor.
+     */
+    virtual CPhysics* copy() const throw();
     
-    /* create nrFramework singleton */
-    nrFrameworkInit();
+    /** Virtual destructor.
+     */
+    virtual ~CPhysics();
+    //@}
     
-    /* add tasks */
-    shared_ptr<CUserInput> user_input(new CUserInput());
-    shared_ptr<CPhysicsWorld> physics_world(new CPhysicsWorld());
-    user_input->setTaskPriority(NR_PRIORITY_VERY_HIGH);
-    nrKernel.AddTask(user_input);
-    nrKernel.AddTask(physics_world);
+    /** @name Access Methods
+     */
+    //@{
+    /** Get the physics world which owns this object.
+     */
+    CPhysicsWorld* getPhysicsWorld() const throw() {
+      return __world;
+    };
     
-    /* whatever */
-    nrFramework.AddToKernel(nrKernel, NR_PRIORITY_LAST);
-  }
+    /** Get the internal body ID.
+     */
+    dBodyID getBodyID() const throw() {
+      return __body_id;
+    }
+    //@}
+    
+  private:
+    CPhysicsWorld* __world;     ///< Physics world owning this object.
+    dBodyID __body_id;          ///< ODE Body ID.
+  };
   
 }
+
+#endif

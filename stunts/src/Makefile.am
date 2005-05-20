@@ -8,14 +8,18 @@ bin_PROGRAMS = stunts
 stunts_SOURCES = \
 	GameApplication.cpp \
 	stunts.cpp \
-	UserInput.cpp
+	UserInput.cpp \
+	Physics.cpp \
+	PhysicsWorld.cpp
 
 # Add here all headers that are needed to build myapp
 # These headers will not be installed, but included in the dist
 noinst_HEADERS = \
 	GameApplication.hpp \
 	stunts.hpp \
-	UserInput.hpp
+	UserInput.hpp \
+	Physics.hpp \
+	PhysicsWorld.hpp
 
 # Set the include path found by configure
 INCLUDES = \

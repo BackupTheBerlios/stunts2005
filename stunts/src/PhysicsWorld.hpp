@@ -23,49 +23,42 @@
  */
 
 
-#include "GameApplication.hpp"
-#include "PhysicsWorld.hpp"
+#ifndef _STUNTS_PHYSICS_WORLD_HPP_
+#define _STUNTS_PHYSICS_WORLD_HPP_
 
+#include <ode/ode.h>
 #include <nrEngine/nrEngine.h>
 
 namespace stunts {
   
-  GameApplication::GameApplication()
-    : __root(0)
-  {}
-  
-  GameApplication::~GameApplication() {
-    /* delete nrFramework singleton */
-    nrFrameworkDelete();
+  /** Physics world.
+   * A task that performs all physics in a game world.
+   */
+  class CPhysicsWorld
+    : public nrITask
+  {
+  public:
+    CPhysicsWorld();
+    virtual ~CPhysicsWorld();
     
-    /* delete nrEngine singleton */
-    nrEngineDelete();
+    dWorldID getWorldID() const throw() {
+      return __world_id;
+    }
     
-    /* delete OGRE root */
-    delete __root;
-  }
-  
-  void GameApplication::run() {
-    /* run the game engine */
-    nrKernel.Execute();
-  }
-  
-  void GameApplication::initialize() {
-    /* create nrEngine singleton */
-    nrEngineInit();
+  protected:
+    virtual nrResult taskInit();
+    virtual nrResult taskStart();
+    virtual nrResult taskUpdate();
+    virtual nrResult taskStop();
     
-    /* create nrFramework singleton */
-    nrFrameworkInit();
+  private:
+    CPhysicsWorld(const CPhysicsWorld&);
+    const CPhysicsWorld& operator=(const CPhysicsWorld&);
     
-    /* add tasks */
-    shared_ptr<CUserInput> user_input(new CUserInput());
-    shared_ptr<CPhysicsWorld> physics_world(new CPhysicsWorld());
-    user_input->setTaskPriority(NR_PRIORITY_VERY_HIGH);
-    nrKernel.AddTask(user_input);
-    nrKernel.AddTask(physics_world);
-    
-    /* whatever */
-    nrFramework.AddToKernel(nrKernel, NR_PRIORITY_LAST);
-  }
+  private:
+    dWorldID __world_id;
+  };
   
 }
+
+#endif

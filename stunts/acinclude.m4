@@ -458,8 +458,8 @@ AC_ARG_WITH([nrengine],
 NRENGINE_LIBS=""
 NRENGINE_CPPFLAGS=""
 if test -n "$with_nrengine"; then
-  NRENGINE_LIBS="-L$with_nrengine/lib"
-  NRENGINE_CPPFLAGS="-I$with_nrengine/include"
+  NRENGINE_LIBS="-L$with_nrengine/nrEngine/libs"
+  NRENGINE_CPPFLAGS="-I$with_nrengine"
 fi
 
 if test "X${no_glu}" != "Xyes"; then
@@ -902,19 +902,28 @@ AC_DEFUN([RS_BOOST_SERIALIZATION],
 #
 AC_DEFUN([AX_CHECK_OGRE],
 [
+  AC_ARG_WITH([ogre],
+            [AC_HELP_STRING([--with-ogre],
+                            [specify OGRE path])])
+  OGRE_LIBS=""
   OGRE_CPPFLAGS="-DGCC_3_1 -DEXT_HASH"
+  if test -n "$with_ogre"; then
+    OGRE_LIBS="-L$with_ogre/lib"
+    OGRE_CPPFLAGS="${OGRE_CPPFLAGS} -I$with_ogre/include"
+  fi
+
   ax_save_CPPFLAGS="${CPPFLAGS}"
   CPPFLAGS="${OGRE_CPPFLAGS} ${CPPFLAGS}"
 
   AC_CACHE_CHECK([for OGRE library], [ax_cv_check_ogre_libogre],
   [ax_cv_check_ogre_libogre="no"
   ax_save_LIBS="${LIBS}"
-  LIBS="-lOgreMain"
+  LIBS="${OGRE_LIBS} -lOgreMain"
     AC_TRY_LINK([
 # include <OGRE/Ogre.h>
   ],
     [Ogre::Root* root = new Ogre::Root()],
-    [ax_cv_check_ogre_libogre="$LIBS"; break])
+    [ax_cv_check_ogre_libogre="${OGRE_LIBS} -lOgreMain"; break])
 
   LIBS=${ax_save_LIBS}
   ])

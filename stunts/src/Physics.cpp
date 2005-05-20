@@ -23,49 +23,32 @@
  */
 
 
-#include "GameApplication.hpp"
-#include "PhysicsWorld.hpp"
+#include "Physics.hpp"
 
-#include <nrEngine/nrEngine.h>
+#include <iostream>
 
 namespace stunts {
   
-  GameApplication::GameApplication()
-    : __root(0)
-  {}
-  
-  GameApplication::~GameApplication() {
-    /* delete nrFramework singleton */
-    nrFrameworkDelete();
-    
-    /* delete nrEngine singleton */
-    nrEngineDelete();
-    
-    /* delete OGRE root */
-    delete __root;
+  CPhysics::CPhysics() throw()
+    : __world(0),
+      __body_id(0)
+  {
+    std::cout << "CPhysics()" << std::endl;
   }
   
-  void GameApplication::run() {
-    /* run the game engine */
-    nrKernel.Execute();
+  CPhysics::CPhysics(const CPhysics& other) throw()
+    : __world(0),
+      __body_id(0)
+  {
+    std::cout << "CPhysics(const CPhysics&)" << std::endl;
   }
   
-  void GameApplication::initialize() {
-    /* create nrEngine singleton */
-    nrEngineInit();
-    
-    /* create nrFramework singleton */
-    nrFrameworkInit();
-    
-    /* add tasks */
-    shared_ptr<CUserInput> user_input(new CUserInput());
-    shared_ptr<CPhysicsWorld> physics_world(new CPhysicsWorld());
-    user_input->setTaskPriority(NR_PRIORITY_VERY_HIGH);
-    nrKernel.AddTask(user_input);
-    nrKernel.AddTask(physics_world);
-    
-    /* whatever */
-    nrFramework.AddToKernel(nrKernel, NR_PRIORITY_LAST);
+  CPhysics* CPhysics::copy() const throw() {
+    return new CPhysics(*this);
+  }
+  
+  CPhysics::~CPhysics() {
+    std::cout << "~CPhysics()" << std::endl;
   }
   
 }

@@ -23,49 +23,44 @@
  */
 
 
-#include "GameApplication.hpp"
 #include "PhysicsWorld.hpp"
-
-#include <nrEngine/nrEngine.h>
 
 namespace stunts {
   
-  GameApplication::GameApplication()
-    : __root(0)
+  CPhysicsWorld::CPhysicsWorld()
+    : __world_id(0)
   {}
   
-  GameApplication::~GameApplication() {
-    /* delete nrFramework singleton */
-    nrFrameworkDelete();
-    
-    /* delete nrEngine singleton */
-    nrEngineDelete();
-    
-    /* delete OGRE root */
-    delete __root;
+  CPhysicsWorld::~CPhysicsWorld() {}
+  
+  CPhysicsWorld::CPhysicsWorld(const CPhysicsWorld&)
+    : __world_id(0)
+  {
+    /* never called */
   }
   
-  void GameApplication::run() {
-    /* run the game engine */
-    nrKernel.Execute();
+  const CPhysicsWorld& CPhysicsWorld::operator=(const CPhysicsWorld&) {
+    /* never called */
+    return *this;
   }
   
-  void GameApplication::initialize() {
-    /* create nrEngine singleton */
-    nrEngineInit();
-    
-    /* create nrFramework singleton */
-    nrFrameworkInit();
-    
-    /* add tasks */
-    shared_ptr<CUserInput> user_input(new CUserInput());
-    shared_ptr<CPhysicsWorld> physics_world(new CPhysicsWorld());
-    user_input->setTaskPriority(NR_PRIORITY_VERY_HIGH);
-    nrKernel.AddTask(user_input);
-    nrKernel.AddTask(physics_world);
-    
-    /* whatever */
-    nrFramework.AddToKernel(nrKernel, NR_PRIORITY_LAST);
+  nrResult CPhysicsWorld::taskInit() {
+    nrLog.Log(NR_LOG_CONSOLE, "Init physics...");
+    return 0;
+  }
+  
+  nrResult CPhysicsWorld::taskStart() {
+    nrLog.Log(NR_LOG_CONSOLE, "Start physics...");
+    return 0;
+  }
+  
+  nrResult CPhysicsWorld::taskUpdate() {
+    return 0;
+  }
+  
+  nrResult CPhysicsWorld::taskStop() {
+    nrLog.Log(NR_LOG_CONSOLE, "Stop physics...");
+    return 0;
   }
   
 }
