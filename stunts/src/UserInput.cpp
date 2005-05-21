@@ -1,7 +1,7 @@
 /* Stunts 2005 - A remake of the game Stunts
  *
  * Copyright (C) 2005
- *                    Stunts 2005 Workgroup, 
+ *                    Stunts 2005 Workgroup,
  *                    http://developer.berlios.de/projects/stunts2005
  *
  * Maintainer:        Christian Morbach <GameDevelopment@paratronic.de>
@@ -18,48 +18,47 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, 
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
  * USA.
  */
- 
+
 #include "UserInput.hpp"
 #include <nrEngine/nrEngine.h>
 #include <iostream>
 
-
-//namespace stunts
-//{
+namespace stunts
+{
 	CUserInput::CUserInput()
 	{
 		// TODO: put constructor code here
 	}
-	
-	
+
+
 	CUserInput::~CUserInput()
 	{
 		// TODO: put destructor code here
 	}
-	
+
 	nrResult CUserInput::taskInit()
 	{
 		//nrLog.Log(NR_LOG_CONSOLE, "Init");
 		std::cout << "Init" << std::endl;
 		return 0;
 	}
-	
+
 	nrResult CUserInput::taskStart()
 	{
 		//nrLog.Log(NR_LOG_CONSOLE, "Start");
 		std::cout << "Start" << std::endl;
 		return 0;
 	}
-	
+
 	nrResult CUserInput::taskUpdate()
 	{
 		//nrFramework.taskGetName();
 		return 0;
 	}
-	
+
 	nrResult CUserInput::taskStop()
 	{
 		//nrLog.Log(NR_LOG_CONSOLE, "Stop");
@@ -68,4 +67,4 @@
 	}
 
 
-//}	//namespace stunts
+}	//namespace stunts

@@ -2,9 +2,9 @@ PREFIX=
  
 CC=g++
 
-INCLUDES= -I/usr/local/include -IExternal/FMOD/inc -IExternal
+INCLUDES= -I/usr/local/include -IExternal/FMOD/inc -IExternal -I/usr/include/OGRE
 
-CFLAGS=-Wall -Werror -O2 -DEXT_HASH -DGCC_3_1 
+CFLAGS=-Wall -Werror -O2 #-DEXT_HASH -DGCC_3_1 
 LIBS=-L/usr/lib -L/usr/X11R6/lib -LExternal/nrEngine/libs\
 		-lGL  -lSDL -ljpeg -lpng -lpthread -lGLU\
 		-lOgreMain\
@@ -17,7 +17,7 @@ EXTLIBS= External/FMOD/libfmod-3.74.so
 NAME= stunts
 
 OBJECTS= CSound.o Physics.o UserInput.o CSoundSystem.o\
-		PhysicsWorld.o GameApplication.o  stunts.o
+		PhysicsWorld.o GameApplication.o  stunts.o FrameListener.o
 
 all: $(NAME)
 

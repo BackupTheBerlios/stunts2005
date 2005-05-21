@@ -1,7 +1,7 @@
 /* Stunts 2005 - A remake of the game Stunts
  *
  * Copyright (C) 2005
- *                    Stunts 2005 Workgroup, 
+ *                    Stunts 2005 Workgroup,
  *                    http://developer.berlios.de/projects/stunts2005
  *
  * Maintainer:        Christian Morbach <GameDevelopment@paratronic.de>
@@ -18,9 +18,12 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, 
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
  * USA.
  */
+
+#define GCC_3_1
+#define EXT_HASH
 
 #include <OGRE/Ogre.h>
 #include <nrEngine/nrEngine.h>
@@ -28,19 +31,19 @@
 #ifndef _CUSERINPUT_H_
 #define _CUSERINPUT_H_
 
-//namespace stunts
-//{
+namespace stunts
+{
 
 	class CUserInput : public nrITask
 	{
 		public:
 			CUserInput();
 			virtual ~CUserInput();
-		
+
 			// CUserInput interface
-		
+
 			// TODO: add member function declarations...
-		
+
 		protected:
 			virtual nrResult taskInit();
 			virtual nrResult taskStart();
@@ -49,10 +52,10 @@
 			virtual const char* taskGetName(){return "UserInput";}
 
 			// CUserInput variables
-		
+
 			// TODO: add member variables...
-		
+
 	};
-//}	//namespace stunts
+}	//namespace stunts
 
 #endif	//_CUSERINPUT_H_
