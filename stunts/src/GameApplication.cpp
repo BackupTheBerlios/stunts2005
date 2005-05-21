@@ -45,13 +45,13 @@ namespace stunts
 			delete mRoot;
 
 		// kill all tasks if there are any
-		nrKernel.KillAllTasks();
+		//nrKernel.KillAllTasks();
 
 		/* delete nrFramework singleton */
-		nrFrameworkDelete();
+		//nrFrameworkDelete();
 
 		/* delete nrEngine singleton */
-		nrEngineDelete();
+		//nrEngineDelete();
 	}
 
 
@@ -100,6 +100,8 @@ namespace stunts
 		nrFramework.AddToKernel(nrKernel, NR_PRIORITY_LAST);
 		#endif
 
+		
+        mRoot = new Root();
 
 		setupResources();
 
@@ -204,12 +206,11 @@ namespace stunts
     {
         // Load resource paths from config file
         ConfigFile cf;
-//        cf.load("resources.cfg");
+        cf.load("../config/resources.cfg");
 
         // Go through all sections & settings in the file
-//        ConfigFile::SectionIterator seci = cf.getSectionIterator();
-
-/*        String secName, typeName, archName;
+        ConfigFile::SectionIterator seci = cf.getSectionIterator();
+        String secName, typeName, archName;
         while (seci.hasMoreElements())
         {
             secName = seci.peekNextKey();
@@ -222,7 +223,7 @@ namespace stunts
                 ResourceGroupManager::getSingleton().addResourceLocation(
                     archName, typeName, secName);
             }
-        }*/
+        }
     }
 
 
@@ -240,10 +241,8 @@ namespace stunts
 
 	void GameApplication::quit(void* p)
 	{
-		nrLog.Log(NR_LOG_APP, "Stunts::quit(): Quit the application");
-		nrKernel.KillAllTasks();
+		//nrLog.Log(NR_LOG_APP, "Stunts::quit(): Quit the application");
+		//nrKernel.KillAllTasks();
 	}
 
 }
-
-
