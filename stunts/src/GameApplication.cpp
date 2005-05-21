@@ -35,7 +35,10 @@ namespace stunts {
   {}
   
   GameApplication::~GameApplication() {
-    /* delete nrFramework singleton */
+	// kill all tasks if there is one 
+	nrKernel.KillAllTasks();
+    
+	/* delete nrFramework singleton */
     nrFrameworkDelete();
     
     /* delete nrEngine singleton */
@@ -53,13 +56,25 @@ namespace stunts {
   void GameApplication::initialize() {
     /* create nrEngine singleton */
     nrEngineInit();
-    
+
+	/* Logging */    
+	nrLog.Init("../log/","");
+	nrLog.Log(NR_LOG_APP, "Application started");
+
     /* create nrFramework singleton */
     nrFrameworkInit();
-    
+	int handle = 0;
+	nrResult ret = nrFramework.createRenderContext (&handle,800,600,32);
+	if (ret != NR_OK){
+		nrLog.Log(NR_LOG_APP, "Can not create rendering window");
+		return;
+	}
+	nrFramework.getRC()->changeWindowTitle("Stunts2005");
+   	nrFramework.setQuitCallback(GameApplication::quit, NULL);
+
     /* add tasks */
-    shared_ptr<CUserInput> user_input(new CUserInput());
-    shared_ptr<CPhysicsWorld> physics_world(new CPhysicsWorld());
+    boost::shared_ptr<CUserInput> user_input(new CUserInput());
+    boost::shared_ptr<CPhysicsWorld> physics_world(new CPhysicsWorld());
     user_input->setTaskPriority(NR_PRIORITY_VERY_HIGH);
     nrKernel.AddTask(user_input);
     nrKernel.AddTask(physics_world);
@@ -68,4 +83,10 @@ namespace stunts {
     nrFramework.AddToKernel(nrKernel, NR_PRIORITY_LAST);
   }
   
+  void GameApplication::quit(void* p)
+  {
+	nrLog.Log(NR_LOG_APP, "Stunts::quit(): Quit the application");
+	nrKernel.KillAllTasks();	
+  }
+
 }

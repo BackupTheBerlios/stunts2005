@@ -1,0 +1,36 @@
+PREFIX=
+
+CC=g++
+
+INCLUDES= -I/usr/local/include -IExternal/FMOD/inc -IExternal
+
+CFLAGS=-Wall -Werror -O2 -DEXT_HASH -DGCC_3_1 
+LIBS=-L/usr/lib -L/usr/X11R6/lib -LExternal/nrEngine/libs\
+		-lGL  -lSDL -ljpeg -lpng -lpthread -lGLU\
+		-lOgreMain\
+	  	-lnrEngine -lnrVFS -lnrFramework -lnrMath -lnrUtils -lnr3DEngine -lnrUtils
+		 
+LDFLAGS=
+EXTLIBS= External/FMOD/libfmod-3.74.so
+
+
+NAME= stunts
+
+OBJECTS= CSound.o Physics.o UserInput.o CSoundSystem.o\
+		PhysicsWorld.o GameApplication.o  stunts.o
+
+all: $(NAME)
+
+$(OBJECTS): %.o: %.cpp
+	$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDES)
+
+
+stunts: $(OBJECTS)
+	$(CC) $(CFLAGS) -o $(NAME) $(EXTLIBS) $(OBJECTS) $(LIBS) $(LDFLAGS)
+	
+clean: 
+	rm -f core.* core $(OBJECTS)
+	rm -f *~
+	rm -f DEADJOE
+	rm -f *.bb *.bbg *.da *.gcov *.out
+	rm -f $(LIB_NAME)

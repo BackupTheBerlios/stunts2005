@@ -35,7 +35,7 @@
 	{
 		public:
 			CUserInput();
-			 ~CUserInput();
+			virtual ~CUserInput();
 		
 			// CUserInput interface
 		
@@ -46,7 +46,8 @@
 			virtual nrResult taskStart();
 			virtual nrResult taskUpdate();
 			virtual nrResult taskStop();
-			
+			virtual const char* taskGetName(){return "UserInput";}
+
 			// CUserInput variables
 		
 			// TODO: add member variables...

@@ -50,7 +50,8 @@ namespace stunts {
     virtual nrResult taskStart();
     virtual nrResult taskUpdate();
     virtual nrResult taskStop();
-    
+	virtual const char* taskGetName(){return "PhysicWorld";}
+	    
   private:
     CPhysicsWorld(const CPhysicsWorld&);
     const CPhysicsWorld& operator=(const CPhysicsWorld&);

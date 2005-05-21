@@ -52,6 +52,10 @@ namespace stunts {
      */
     virtual void initialize();
     
+	/** Quit signal from nrEngine
+	*/
+    static void quit(void* p);
+  
   private:
     Ogre::Root* __root;
   };

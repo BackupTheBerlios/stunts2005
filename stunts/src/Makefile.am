@@ -26,7 +26,6 @@ INCLUDES = \
 	@NRENGINE_CPPFLAGS@ \
 	@OGRE_CPPFLAGS@ \
 	@ODE_CPPFLAGS@ \
-	@BOOST_CPPFLAGS@ \
 	$(all_includes)
 
 # The library search path for stunts
@@ -34,7 +33,6 @@ stunts_LDFLAGS = \
 	@NRENGINE_LIBS@ \
 	@OGRE_LIBS@ \
 	@ODE_LIBS@ \
-	@BOOST_LIBS_R@ \
 	$(all_libraries)
 
 # Add here all files that should go into the distribution in addition to the
