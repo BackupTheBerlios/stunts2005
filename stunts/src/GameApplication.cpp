@@ -28,9 +28,15 @@
 namespace stunts
 {
 	GameApplication::GameApplication()
-    	: mRoot(0)
 	{
+		//reset attributes
         mFrameListener = 0;
+		mRoot = 0;
+    	mRoot = NULL;
+    	mCamera = NULL;
+    	mSceneMgr = NULL;
+    	mWindow = NULL;
+    	mFrameListener = NULL;
 	}
 
 
@@ -40,18 +46,18 @@ namespace stunts
 		if (mFrameListener)
 			delete mFrameListener;
 
-		/* delete OGRE root */
+		//delete OGRE root
 		if (mRoot)
 			delete mRoot;
 
 		// kill all tasks if there are any
-		//nrKernel.KillAllTasks();
+		nrKernel.KillAllTasks();
 
-		/* delete nrFramework singleton */
-		//nrFrameworkDelete();
+		//delete nrFramework singleton
+		nrFrameworkDelete();
 
-		/* delete nrEngine singleton */
-		//nrEngineDelete();
+		//delete nrEngine singleton
+		nrEngineDelete();
 	}
 
 
@@ -60,36 +66,37 @@ namespace stunts
 		//go into rendering loop
         mRoot->startRendering();
 
-		/* run the game engine */
-		//nrKernel.Execute();		//temporarily disabled to test OGRE
+		//run the game engine
+		nrKernel.Execute();		//temporarily disabled to test OGRE
+std::cout << "### kill !!" << std::endl;
 
 		// clean up
-        destroyScene();
+		destroyScene();
 	}
 
 
 	bool GameApplication::initialize()
 	{
-		#ifdef FALSE
-		/* create nrEngine singleton */
+		//#ifdef FALSE
+		//create nrEngine singleton
 		nrEngineInit();
 
-		/* Logging */
+		//Logging
 		nrLog.Init("../log/","");
 		nrLog.Log(NR_LOG_APP, "Application started");
 
-		/* create nrFramework singleton */
+		//create nrFramework singleton
 		nrFrameworkInit();
 		int handle = 0;
 		nrResult ret = nrFramework.createRenderContext (&handle,800,600,32);
 		if (ret != NR_OK){
 			nrLog.Log(NR_LOG_APP, "Can not create rendering window");
-			return;
+			return false;
 		}
 		nrFramework.getRC()->changeWindowTitle("Stunts2005");
 		nrFramework.setQuitCallback(GameApplication::quit, NULL);
 
-		/* add tasks */
+		//add tasks
 		boost::shared_ptr<CUserInput> user_input(new CUserInput());
 		boost::shared_ptr<CPhysicsWorld> physics_world(new CPhysicsWorld());
 		user_input->setTaskPriority(NR_PRIORITY_VERY_HIGH);
@@ -98,15 +105,15 @@ namespace stunts
 
 		// add nrFramework to kernel
 		nrFramework.AddToKernel(nrKernel, NR_PRIORITY_LAST);
-		#endif
+		//#endif
 
 		
         mRoot = new Root();
 
 		setupResources();
 
-        bool carryOn = configure();
-        if (!carryOn)
+		bool carryOn = configure();
+		if (!carryOn)
 			return false;
 
         chooseSceneManager();
@@ -147,6 +154,9 @@ namespace stunts
         // Show the configuration dialog and initialise the system
         // You can skip this and use root.restoreConfig() to load configuration
         // settings if you were sure there are valid ones saved in ogre.cfg
+		
+		//attention: plugins.cfg must be in the root folder or
+		//	a segfault will occur!
         if(mRoot->showConfigDialog())
         {
             // If returned true, user clicked OK so initialise
@@ -241,8 +251,8 @@ namespace stunts
 
 	void GameApplication::quit(void* p)
 	{
-		//nrLog.Log(NR_LOG_APP, "Stunts::quit(): Quit the application");
-		//nrKernel.KillAllTasks();
+		nrLog.Log(NR_LOG_APP, "Stunts::quit(): Quit the application");
+		nrKernel.KillAllTasks();
 	}
 
 }

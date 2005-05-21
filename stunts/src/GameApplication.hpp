@@ -25,11 +25,11 @@
 #define GCC_3_1
 #define EXT_HASH
 
-#include <Ogre.h>
-#include <nrEngine/nrEngine.h>
+#include <Ogre.h>				//these two files must be in this order
+#include <nrEngine/nrEngine.h>	//	or make will fail (CM)
 
 #include "FrameListener.hpp"
-//#include "UserInput.hpp"
+#include "UserInput.hpp"
 #include "PhysicsWorld.hpp"
 
 #ifndef _STUNTS_GAME_APPLICATION_HPP_
@@ -50,54 +50,54 @@ namespace stunts {
 
     /** Destructor.
      */
-    virtual ~GameApplication();
+    ~GameApplication();
 
     /** Run the application.
      */
-    virtual void run();
+    void run();
 
     // These internal methods package up the stages in the startup process
     /** Sets up the application - returns false if the user chooses to
   	    abandon configuration. */
-    virtual bool initialize();
+    bool initialize();
 
     /** Show configure dialog
      */
-    virtual bool configure();
+    bool configure();
 
     /** choose scene manager
      */
-    virtual void chooseSceneManager();
+    void chooseSceneManager();
 
     /** create camera
      */
-    virtual void createCamera();
+    void createCamera();
 
     /** create Frame Listener
      */
-    virtual void createFrameListener();
+    void createFrameListener();
 
     /** create Scene
      */
-    virtual void createScene();
+    void createScene();
 
     /** destroy Scene
      */
-    virtual void destroyScene();
+    void destroyScene();
 
     /** create Viewports
      */
-    virtual void createViewports();
+    void createViewports();
 
     /// Method which will define the source of resources (other than current folder)
-    virtual void setupResources();
+    void setupResources();
 
 	/// Optional override method where you can create resource listeners (e.g. for loading screens)
-	virtual void createResourceListener();
+	void createResourceListener();
 
 	/// Optional override method where you can perform resource group loading
 	/// Must at least do ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-	virtual void loadResources();
+	void loadResources();
 
 	/** Quit signal from nrEngine
 	*/
@@ -115,4 +115,3 @@ namespace stunts {
 }	//namespace
 
 #endif
-
