@@ -475,14 +475,13 @@ CPPFLAGS="${NRENGINE_CPPFLAGS} ${CPPFLAGS}"
 AC_CACHE_CHECK([for nrEngine], [ax_cv_check_nrengine_libs],
 [ax_cv_check_nrengine_libs="no"
 ax_save_LIBS="${LIBS}"
-LIBS="-lnrFramework -lnrEngine -lnrVFS -lnrUtils -lnr3DEngine -lnrMath -lSDL -ljpeg -lpng"
-ax_lib="-lnrFramework -lnrEngine -lnrVFS -lnrUtils -lnr3DEngine -lnrMath -lSDL -ljpeg -lpng"
+ax_lib="-lnrFramework -lnrEngine -lnrVFS -lnrFramework -lnrMath -lnrUtils -lnr3DEngine -lnrUtils -lSDL -ljpeg -lpng"
 if test "X$CC" = "Xcl"; then
   ax_try_lib=`echo $ax_lib | sed -e 's/^-l//' -e 's/$/.lib/'`
 else
   ax_try_lib="${ax_lib}"
 fi
-LIBS="${NRENGINE_LIBS} $GL_LIBS $GLU_LIBS ${ax_try_lib} ${ax_save_LIBS}"
+LIBS="${NRENGINE_LIBS} $GLU_LIBS ${ax_try_lib} ${ax_save_LIBS}"
 AC_TRY_LINK([
 # include <nrEngine/nrEngine.h>
 ],
@@ -525,11 +524,7 @@ AC_SUBST([NRENGINE_LIBS])
 # 
 # Check for ODE. If ODE is found, the required compiler and linker
 # flags are included in the output variables "ODE_CFLAGS" and
-# "ODE_LIBS", respectively. This macro adds the configure option
-# "--with-apple-opengl-framework", which users can use to indicate that
-# Apple's OpenGL framework should be used on Mac OS X. If Apple's OpenGL
-# framework is used, the symbol "HAVE_APPLE_OPENGL_FRAMEWORK" is
-# defined. If ODE is not found, "no_ode" is set to "yes".
+# "ODE_LIBS", respectively.If ODE is not found, "no_ode" is set to "yes".
 #
 AC_DEFUN([AX_CHECK_ODE],
 [
@@ -572,6 +567,67 @@ AC_DEFUN([AX_CHECK_ODE],
 AC_SUBST([ODE_CPPFLAGS])
 AC_SUBST([ODE_LIBS])
 ])dnl
+
+
+#
+# Synopsis
+#
+# AX_CHECK_FMOD
+# 
+# Version
+# 
+# 1.6     0.5.58   :   fw
+# 
+# Author
+# 
+# Braden McDaniel <braden@endoframe.com> 
+#  copyright: (C) 2003 Braden McDaniel 
+#  license: GNU GPL 
+# 
+# Description
+# 
+#
+AC_DEFUN([AX_CHECK_FMOD],
+[
+  AC_ARG_WITH([fmod],
+            [AC_HELP_STRING([--with-fmod],
+                            [specify FMOD path])])
+  FMOD_LIBS=""
+  FMOD_CPPFLAGS=""
+  if test -n "$with_fmod"; then
+    FMOD_LIBS="-L$with_fmod"
+    FMOD_CPPFLAGS="-I$with_fmod/inc"
+  fi
+
+  ax_save_CPPFLAGS="${CPPFLAGS}"
+  CPPFLAGS="${FMOD_CPPFLAGS} ${CPPFLAGS}"
+
+  AC_CACHE_CHECK([for FMOD library], [ax_cv_check_fmod_libfmod],
+  [ax_cv_check_fmod_libfmod="no"
+  ax_save_LIBS="${LIBS}"
+  LIBS="${FMOD_LIBS} -lfmod-3.74"
+    AC_TRY_LINK([
+# include <fmod.h>
+  ],
+    [FSOUND_Init(44100, 32, 0);],
+    [ax_cv_check_fmod_libfmod="${FMOD_LIBS} -lfmod-3.74"; break])
+
+  LIBS=${ax_save_LIBS}
+  ])
+  CPPFLAGS="${ax_save_CPPFLAGS}"
+
+  if test "X${ax_cv_check_fmod_libfmod}" = "Xno"; then
+    no_fmod="yes"
+    FMOD_CPPFLAGS=""
+    FMOD_LIBS=""
+  else
+    FMOD_LIBS="${ax_cv_check_fmod_libfmod} ${FMOD_LIBS}"
+  fi
+
+AC_SUBST([FMOD_CPPFLAGS])
+AC_SUBST([FMOD_LIBS])
+])dnl
+
 
 dnl RS_BOOST([MINIMUM-VERSION], [ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND])
 dnl Test for the Boost C++ libraries of a particular version (or newer)
@@ -852,7 +908,7 @@ AC_DEFUN([RS_BOOST_SERIALIZATION],
   OLD_CPPFLAGS="$CPPFLAGS"
   CPPFLAGS="$BOOST_CPPFLAGS"
   OLD_LIBS="$LIBS"
-  LIBS=""
+  LIBS="-lboost_serialization"
     AC_TRY_COMPILE(
 	    [ 
 		#include <boost/serialization/export.hpp> 
