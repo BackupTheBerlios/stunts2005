@@ -1,0 +1,69 @@
+Von: azasello@web.de im Auftrag von Florian Winter [azasello@web.de]
+Gesendet: Donnerstag, 5. Mai 2005 17:06
+Cc: stunts@art.elowar.com
+Betreff: MCAFEE E-MAIL-SCAN-WARNUNG!~RE: [GAMEDEVELOPMENTSEMINAR -
+STUNTS 2005] YET ANOTHER TEST PROGRAM (SERIALIZATION)
+
+
+Anlagendatei: odetest.tar.gz
+Virusname: Heuristik - (Könnte ein neuer Virus sein)
+Unternommene Aktion: Fortsetzung...
+
+hi!
+
+I browed through the documentation of BOOST (www.boost.org) and was 
+surprised to see that the new version of boost has a complete 
+serialization framework. for those who don't know what serialization is: 
+it is basically "loading and saving of object data" (sorry for the bad 
+definition, try Wikipedia or something similiar for a better one). the 
+nice thing about serialization is that it separates the rendering and 
+parsing of a data stream from the definition what data gets loaded or 
+saved. "rendering and parsing the data stream" can mean a lot of 
+different things:
+ - saving data as XML
+ - loading data from XML
+ - saving data to a binary file
+ - loading data from a binary file
+ - sending dat over the network
+ - receiving data from the network
+ - passing references to a garbage collector
+ - ...
+
+BOOST serialization can not only write primitive types, such as int, 
+float, bool, etc into files. it can also serialize complete objects and 
+data structures, provided that serialization methods have been written 
+for the corresponding classes and structs (these are usually a few lines 
+of code that invoke a serialization operator for all members that should 
+be serialized). other features are:
+
+ * object tracking
+(if you save a pointer to the same object twice, the object is only 
+saved once. if you load the file again, the object is created once, and 
+both pointers will point to the same object)
+
+ * polymorphism
+(if you save objects by pointers to some base class, say GameObject and 
+load them again in the same way, the objects will be of the correct 
+subclass)
+
+ * extensibility
+(you can write new archive classes, for example for network 
+serialization, demo recording, garbage collection)
+
+we can use this library as a simple object oriented XML parser. we can 
+also use it for saving track files, savegames (okay, not very useful in 
+racing games), replays.
+
+for details see:
+
+http://www.boost.org/libs/serialization/doc/index.html
+
+I have attached a test program (sertest.cpp) which demonstrates BOOST 
+serialization by creating a pseudo-game scene, saving it to XML and 
+loading it again. you can look at the generated file filename.xml to see 
+what gets saved.
+
+The .tar.gz file also contains my old physics example because I was too 
+lazy to write a new Makefile...
+
+
