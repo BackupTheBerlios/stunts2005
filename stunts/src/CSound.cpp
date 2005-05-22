@@ -19,7 +19,8 @@ CSound::CSound(string name,bool isLoop,int volume){
   this->volume = volume;
   this->speed = 0;
   const char* tempName = name.c_str();
-  CSoundSample = FSOUND_Sample_Load(FSOUND_FREE,tempName,FSOUND_HW3D,0,0);
+
+      CSoundSample = FSOUND_Sample_Load(FSOUND_FREE,tempName,FSOUND_HW3D,0,0);
 }
 /*
 CSound::~CSound(){
@@ -28,23 +29,17 @@ CSound::~CSound(){
 */
 
 void CSound::start(){
-    if (!this->isPlaying){
-        if (this->isPause){
-                this->isPlaying = true;
-                this->isPause = false;;
-                if (!FSOUND_SetPaused(channel,false)){
-                      printf("%s\n", FMOD_ErrorString(FSOUND_GetError()));
-                }
-        
-        } else {
-                this->isPlaying = true;
-                channel = FSOUND_PlaySoundEx(FSOUND_FREE,CSoundSample,0,0);
-                if (!FSOUND_SetVolume(channel,volume)){
-                         printf("%s\n", FMOD_ErrorString(FSOUND_GetError()));       
-                }
-                cout << "Play\n";
-        }
-    }  
+    if (!this->isPlaying && !this->isPause) 
+    {
+           this->isPlaying = true;
+           channel = FSOUND_PlaySoundEx(FSOUND_FREE,CSoundSample,0,0);
+           if (!FSOUND_SetVolume(channel,volume))
+           {
+                    printf("%s\n", FMOD_ErrorString(FSOUND_GetError()));       
+           }
+           cout << "Play\n";
+    }
+      
 }
 
 void CSound::stop(){
@@ -65,6 +60,17 @@ void CSound::pause(){
         this->isPause = true;
         cout << "Pause\n";
         if (!FSOUND_SetPaused(channel,true)){
+                printf("%s\n", FMOD_ErrorString(FSOUND_GetError()));
+        }
+    }
+}
+
+void CSound::unpause(){
+    if (this->isPause){
+        this->isPlaying = true;
+        this->isPause = false;
+        cout << "Unapuse\n";
+        if (!FSOUND_SetPaused(channel,false)){
                 printf("%s\n", FMOD_ErrorString(FSOUND_GetError()));
         }
     }
@@ -91,3 +97,5 @@ void CSound::setSpeed(float speed){
 float CSound::getSpeed(){
     return this->speed;
 }
+
+

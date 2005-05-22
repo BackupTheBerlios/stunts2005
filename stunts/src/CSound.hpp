@@ -14,7 +14,7 @@
     #include <conio.h>
     #include <windows.h>
 #else
-    #include "wincompat.h"
+    #include "./External/FMOD/inc/wincompat.h"
 #endif
 #include "CSoundSystem.hpp"
 
@@ -31,6 +31,7 @@ class CSound {
     int volume;
     float speed;    
     FSOUND_SAMPLE* CSoundSample;
+    FMUSIC_MODULE* CMusicMod;
     int channel,channelNumber;
 
  public:
@@ -39,10 +40,12 @@ class CSound {
     void start();
     void stop();
     void pause();
+    void unpause();
     void setVolume(int volume);
     int getVolume();
     void setSpeed(float speed);
     float getSpeed();
+   
 };
 
 #endif
