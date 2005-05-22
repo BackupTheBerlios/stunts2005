@@ -24,12 +24,14 @@
 
 #define GCC_3_1
 #define EXT_HASH
+
 #include <Ogre.h>
 #include <OgreKeyEvent.h>
 #include <OgreEventListeners.h>
 #include <OgreStringConverter.h>
 #include <OgreException.h>
-//#include <iostream>
+
+#include <nrEngine/nrEngine.h>
 
 #ifndef _CFRAMELISTENER_H_
 #define _CFRAMELISTENER_H_
@@ -48,19 +50,25 @@ namespace stunts
 		~CFrameListener();
 		CFrameListener();
 
-		virtual bool processUnbufferedKeyInput(const FrameEvent& evt);
+		bool processUnbufferedKeyInput(const FrameEvent& evt);
 		bool processUnbufferedMouseInput(const FrameEvent& evt);
 		void moveCamera();
 		void showDebugOverlay(bool show);
+
 		bool frameStarted(const FrameEvent& evt);
+		bool updateWorld();
 		bool frameEnded(const FrameEvent& evt);
+
 		void switchMouseMode();
 		void switchKeyMode();
 		void keyClicked(KeyEvent* e);
 		void keyPressed(KeyEvent* e);
 		void keyReleased(KeyEvent* e);
 
+		
+		
 	protected:
+	
 		int mSceneDetailIndex ;
 		Real mMoveSpeed;
 		Degree mRotateSpeed;
@@ -83,7 +91,12 @@ namespace stunts
 		TextureFilterOptions mFiltering;
 		int mAniso;
 
-   		void updateStats();		
+   		void updateStats();
+
+		
+		RaySceneQuery* mRaySceneQuery;
+
+		friend class COgreTask;
 	};
 }	//namespace stunts
 

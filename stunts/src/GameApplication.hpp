@@ -22,21 +22,14 @@
  * USA.
  */
 
-#define GCC_3_1
-#define EXT_HASH
-
-#include <Ogre.h>				//these two files must be in this order
-#include <nrEngine/nrEngine.h>	//	or make will fail (CM)
-
-#include "FrameListener.hpp"
-#include "UserInput.hpp"
-#include "PhysicsWorld.hpp"
-
 #ifndef _STUNTS_GAME_APPLICATION_HPP_
 #define _STUNTS_GAME_APPLICATION_HPP_
 
+#include "UserInput.hpp"
+#include "PhysicsWorld.hpp"
+#include "OgreTask.hpp"
 
-using namespace Ogre;
+#include <nrEngine/nrEngine.h>	//	or make will fail (CM)
 
 namespace stunts {
 
@@ -56,59 +49,12 @@ namespace stunts {
      */
     void run();
 
-    // These internal methods package up the stages in the startup process
-    /** Sets up the application - returns false if the user chooses to
-  	    abandon configuration. */
-    bool initialize();
-
-    /** Show configure dialog
-     */
-    bool configure();
-
-    /** choose scene manager
-     */
-    void chooseSceneManager();
-
-    /** create camera
-     */
-    void createCamera();
-
-    /** create Frame Listener
-     */
-    void createFrameListener();
-
-    /** create Scene
-     */
-    void createScene();
-
-    /** destroy Scene
-     */
-    void destroyScene();
-
-    /** create Viewports
-     */
-    void createViewports();
-
-    /// Method which will define the source of resources (other than current folder)
-    void setupResources();
-
-	/// Optional override method where you can create resource listeners (e.g. for loading screens)
-	void createResourceListener();
-
-	/// Optional override method where you can perform resource group loading
-	/// Must at least do ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-	void loadResources();
-
 	/** Quit signal from nrEngine
 	*/
-    static void quit(void* p);
-
-  private:
-    Root* mRoot;
-    Camera* mCamera;
-    SceneManager* mSceneMgr;
-    RenderWindow* mWindow;
-    CFrameListener* mFrameListener;
+    void quit(void* p);
+	
+    // These internal methods package up the stages in the startup process
+    bool initialize();
 
   };
 

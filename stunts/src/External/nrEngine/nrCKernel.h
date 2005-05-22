@@ -71,7 +71,8 @@ public:
 
 	// execute the kernel
 	nrResult Execute();
-
+	nrResult OneTick();
+	
 	// methods to add/remove tasks
 	nrTaskID AddTask (shared_ptr<nrITask> t);
 	nrResult RemoveTask  (nrTaskID id);
@@ -100,7 +101,13 @@ private:
 
 	// id counter
 	nrTaskID lastTaskID;
-		
+
+	// Kernel Tasks already sorted
+	bool bTaskStarted;
+
+	// sort kernel's tasks (done by first call of execution or OneTick methods)
+	void startTasks();
+	
 };
 
 #endif	//_NR...

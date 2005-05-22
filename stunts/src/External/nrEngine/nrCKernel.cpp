@@ -25,6 +25,7 @@ nrCKernel::nrCKernel(){
 	pausedTaskList.clear();
 	
 	lastTaskID = 0;
+	bTaskStarted = false;
 }
 
 
@@ -34,6 +35,92 @@ nrCKernel::nrCKernel(){
 nrCKernel::~nrCKernel(){
 	taskList.clear();
 	pausedTaskList.clear();
+}
+
+
+/**
+ * Executes all task according to their priorities. After that
+ * return back.
+ **/
+nrResult nrCKernel::OneTick(){
+
+	// start tasks if their are not started before
+	if (!bTaskStarted)
+		startTasks();
+
+	// get iterator through our list
+	list< shared_ptr<nrITask> >::iterator it, thisIt;
+	nrTaskID tempID;
+
+	// scan the list and update tasks
+	it = taskList.begin();
+	while (it != taskList.end()){
+
+		shared_ptr<nrITask>& t=(*it);
+
+		// update the task
+		if (t.get()){
+			if (!t->_taskCanKill && t->_taskState == NR_TASK_RUNNING){
+				t->taskUpdate();
+			}
+		}
+
+		it ++;
+
+	}
+
+	//loop again to remove dead tasks
+	for( it = taskList.begin(); it != taskList.end();){
+
+		shared_ptr<nrITask> &t=(*it);
+		thisIt = it;
+		it ++;
+
+		// check if task is valid
+		if (t.get()){
+			// kill task if we need this
+			if(t->_taskCanKill){
+				nrLog.Log(NR_LOG_KERNEL, "Stop task %s (id=%d) before removing",t->taskGetName(), t->_taskID);
+				t->taskStop();tempID = t->_taskID;
+				taskList.erase(thisIt);
+				nrLog.Log(NR_LOG_KERNEL, "Task (id=%d) removed", tempID);
+			}
+
+			// check whenver priority of the task was changed by outside
+			if (t->_priorityChanged){
+				ChangePriority(t->_taskID, t->_taskPriority);
+			}
+		}
+	}
+
+	return NR_OK;	
+}
+
+/**
+ * This function will start each task and set it running state to running
+ * if starting was successful otherwise the task will not run
+ **/
+void nrCKernel::startTasks(){
+	
+	// get iterator through our list
+	list< shared_ptr<nrITask> >::iterator it;
+
+	// start all tasks, which are not running at now
+	for(it = taskList.begin(); it != taskList.end(); it++){
+		if ((*it)->_taskState == NR_TASK_STOPPED){
+			nrLog.Log(NR_LOG_KERNEL, "Start task %s with id=%d", (*it)->taskGetName(), (*it)->_taskID);
+
+			// start the task, if can not start so not add this task to the list
+			if( (*it)->taskStart() != NR_OK){
+				nrLog.Log(NR_LOG_KERNEL, "Cannot start the Task, because of Task-Internal Error");
+				(*it)->_taskState = NR_TASK_STOPPED;
+			}else{
+				(*it)->_taskState = NR_TASK_RUNNING;
+			}
+		}
+	}
+
+	bTaskStarted = true;
 }
 
 
@@ -51,71 +138,13 @@ nrResult nrCKernel::Execute(){
 		
 		nrLog.Log(NR_LOG_KERNEL, "Start kernel main loop");
 	
-		// get iterator through our list
-		list< shared_ptr<nrITask> >::iterator it, thisIt;
-		nrTaskID tempID;
-		
-		// start all tasks, which are not running at now
-		for(it = taskList.begin(); it != taskList.end(); it++){
-			if ((*it)->_taskState == NR_TASK_STOPPED){
-				nrLog.Log(NR_LOG_KERNEL, "Start task %s with id=%d", (*it)->taskGetName(), (*it)->_taskID);
-				
-				// start the task, if can not start so not add this task to the list	
-				if( (*it)->taskStart() != NR_OK){
-					nrLog.Log(NR_LOG_KERNEL, "Cannot start the Task, because of Task-Internal Error");
-					(*it)->_taskState = NR_TASK_STOPPED;
-				}else{
-					(*it)->_taskState = NR_TASK_RUNNING;	
-				}
-			}			
-		}
-		
+		// start tasks
+		if (!bTaskStarted)
+			startTasks();
 		
 		// loop until we have tasks in our pipeline
 		while (taskList.size()){
-			
-			// scan the list and update tasks
-			//for( it = taskList.begin(); it != taskList.end();){
-			it = taskList.begin();
-			while (it != taskList.end()){
-				
-				shared_ptr<nrITask>& t=(*it);
-				
-				// update the task
-				if (t.get()){
-					if (!t->_taskCanKill && t->_taskState == NR_TASK_RUNNING){
-						t->taskUpdate();
-					}
-				}
-				
-				it ++;
-				
-			}
-			
-			//loop again to remove dead tasks
-			for( it = taskList.begin(); it != taskList.end();){
-	
-				shared_ptr<nrITask> &t=(*it);
-				thisIt = it;
-				it ++;
-				
-				// check if task is valid
-				if (t.get()){
-					// kill task if we need this
-					if(t->_taskCanKill){
-						nrLog.Log(NR_LOG_KERNEL, "Stop task %s (id=%d) before removing",t->taskGetName(), t->_taskID);
-						t->taskStop();tempID = t->_taskID;
-						taskList.erase(thisIt);
-						nrLog.Log(NR_LOG_KERNEL, "Task (id=%d) removed", tempID);
-					}
-					
-					// check whenver priority of the task was changed by outside
-					if (t->_priorityChanged){
-						ChangePriority(t->_taskID, t->_taskPriority);
-					}
-				}
-			}
-			
+			OneTick();
 		}
 		
 		nrLog.Log(NR_LOG_KERNEL, "Stop kernel main loop");

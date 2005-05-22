@@ -45,22 +45,22 @@ namespace stunts {
   }
   
   nrResult CPhysicsWorld::taskInit() {
-    nrLog.Log(NR_LOG_CONSOLE, "Init physics...");
-    return 0;
+    nrLog.Log(NR_LOG_APP, "Init physics...");
+    return NR_OK;
   }
   
   nrResult CPhysicsWorld::taskStart() {
-    nrLog.Log(NR_LOG_CONSOLE, "Start physics...");
-    return 0;
+    nrLog.Log(NR_LOG_APP, "Start physics...");
+    return NR_OK;
   }
   
   nrResult CPhysicsWorld::taskUpdate() {
-    return 0;
+    return NR_OK;
   }
   
   nrResult CPhysicsWorld::taskStop() {
-    nrLog.Log(NR_LOG_CONSOLE, "Stop physics...");
-    return 0;
+    nrLog.Log(NR_LOG_APP, "Stop physics...");
+    return NR_OK;
   }
   
 }

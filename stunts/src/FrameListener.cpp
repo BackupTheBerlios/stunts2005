@@ -24,13 +24,14 @@
  
 #include "FrameListener.hpp"
 
-
 namespace stunts
 {
 	CFrameListener::CFrameListener(RenderWindow* win, Camera* cam,
 		bool useBufferedInputKeys,
 		bool useBufferedInputMouse)
     {
+
+		
         mDebugOverlay = OverlayManager::getSingleton().getByName("Core/DebugOverlay");
         mUseBufferedInputKeys = useBufferedInputKeys;
 		mUseBufferedInputMouse = useBufferedInputMouse;
@@ -66,11 +67,14 @@ namespace stunts
         mFiltering = TFO_BILINEAR;
 
         showDebugOverlay(true);
+
+		mRaySceneQuery = 0;
 	}
 	
 	
 	CFrameListener::~CFrameListener()
 	{
+		delete mRaySceneQuery;
 		if (mInputTypeSwitchingOn)
 		{
             delete mEventProcessor;
@@ -169,8 +173,8 @@ namespace stunts
         }
 
         if( mInputDevice->isKeyDown( KC_ESCAPE) )
-        {            
-            return false;
+        {
+	        return false;
         }
 
 		// see if switching is on, and you want to toggle 
@@ -311,9 +315,12 @@ namespace stunts
     // Override frameStarted event to process that (don't care about frameEnded)
     bool CFrameListener::frameStarted(const FrameEvent& evt)
     {
+
+		// if window is not active, so stop rendering
         if(mWindow->isClosed())
             return false;
 
+		// Capture input device
         if (!mInputTypeSwitchingOn)
     	{
             mInputDevice->capture();
@@ -378,9 +385,34 @@ namespace stunts
 
 		}
 
-		return true;
+		return updateWorld();
+
     }
 
+	/**
+	 * Update the world geometry
+	 **/
+	bool CFrameListener::updateWorld()
+	{
+        // clamp to terrain
+        static Ray updateRay;
+        updateRay.setOrigin(mCamera->getPosition());
+        updateRay.setDirection(Vector3::NEGATIVE_UNIT_Y);
+        mRaySceneQuery->setRay(updateRay);
+        RaySceneQueryResult& qryResult = mRaySceneQuery->execute();
+        RaySceneQueryResult::iterator i = qryResult.begin();
+        if (i != qryResult.end() && i->worldFragment)
+        {
+            //SceneQuery::WorldFragment* wf = i->worldFragment;
+            mCamera->setPosition(mCamera->getPosition().x, 
+                i->worldFragment->singleIntersection.y + 10, 
+                mCamera->getPosition().z);
+        }
+
+        return true;
+	}
+
+	
     bool CFrameListener::frameEnded(const FrameEvent& evt)
     {
         updateStats();

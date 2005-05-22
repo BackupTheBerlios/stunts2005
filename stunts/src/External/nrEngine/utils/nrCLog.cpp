@@ -47,10 +47,12 @@ nrResult nrCLog::Init(const string& logPath, const string& messagesFile){
 	
 	
 	// load the strings file
-	msgFile = messagesFile;
-	if (!LoadStrings()){
-		Log(NR_LOG_KERNEL, "File %s was not found !!!", msgFile.c_str());
-		return NR_LOG_ERROR;		
+	if (messagesFile.length() > 0){
+		msgFile = messagesFile;
+		if (!LoadStrings()){
+			Log(NR_LOG_KERNEL, "File %s was not found !!!", msgFile.c_str());
+			return NR_LOG_ERROR;		
+		}
 	}
 	
 	return NR_OK;

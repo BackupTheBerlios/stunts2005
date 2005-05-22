@@ -63,7 +63,8 @@ typedef uint32		nrResult;
 #define MCHAR2(a, b) (a | (b << 8))
 #define MCHAR4(a, b, c, d) (a | (b << 8) | (c << 16) | (d << 24))
 
-
+#define NR_SAFE_DELETE(p)       { if(p) { delete (p);     (p)=NULL; } }
+#define NR_SAFE_DELETE_ARRAY(p) { if(p) { delete[] (p);   (p)=NULL; } }
 
 //------------------------------------------------------------------------------
 //	Assert definitions

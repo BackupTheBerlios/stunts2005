@@ -24,7 +24,6 @@
 
 #include "UserInput.hpp"
 #include <nrEngine/nrEngine.h>
-#include <iostream>
 
 namespace stunts
 {
@@ -41,29 +40,26 @@ namespace stunts
 
 	nrResult CUserInput::taskInit()
 	{
-		//nrLog.Log(NR_LOG_CONSOLE, "Init");
-		std::cout << "Init" << std::endl;
-		return 0;
+		nrLog.Log(NR_LOG_APP, "Init");
+		return NR_OK;
 	}
 
 	nrResult CUserInput::taskStart()
 	{
-		//nrLog.Log(NR_LOG_CONSOLE, "Start");
-		std::cout << "Start" << std::endl;
-		return 0;
+		nrLog.Log(NR_LOG_APP, "Start");
+
+		return NR_OK;
 	}
 
 	nrResult CUserInput::taskUpdate()
 	{
-		//nrFramework.taskGetName();
-		return 0;
+		return NR_OK;
 	}
 
 	nrResult CUserInput::taskStop()
 	{
-		//nrLog.Log(NR_LOG_CONSOLE, "Stop");
-		std::cout << "Stop" << std::endl;
-		return 0;
+		nrLog.Log(NR_LOG_APP, "Stop");
+		return NR_OK;
 	}
 
 
