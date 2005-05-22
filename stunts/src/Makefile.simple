@@ -4,10 +4,11 @@ CC=g++
 
 INCLUDES= -I/usr/local/include -IExternal/FMOD/inc -IExternal -I/usr/local/include/OGRE
 
-CFLAGS=-Wall -Werror -g #-DEXT_HASH -DGCC_3_1 
+CFLAGS=-Wall -Werror -g -DEXT_HASH -DGCC_3_1
 LIBS=-L/usr/lib -L/usr/X11R6/lib -LExternal/nrEngine/libs\
 		-lGL  -lSDL -ljpeg -lpng -lpthread -lGLU\
 		-lOgreMain\
+		-lode\
 	  	-lnrEngine -lnrVFS -lnrFramework -lnrMath -lnrUtils -lnr3DEngine -lnrUtils
 		 
 LDFLAGS=
