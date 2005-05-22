@@ -10,7 +10,8 @@ We use the following libraries:
 	ODE		(version 0.5)		www.ode.org
 	Ogre		(version 1.0.1)		www.ogre3d.org
 	BOOST		(version 1.32.0)	www.boost.org
-	nrEngine	(version 0.0.2)		developer.berlios.de/projects/nrengine
+	nrEngine	(version -)		in CVS
+	FMOD		(version -)		in CVS
 
 You have two ways to obtain these libraries:
 
@@ -78,24 +79,9 @@ Make yourself some more coffee.
 
 2.4. Building nrEngine
 
-Download nrEngine source code from developer.berlios.de/projects/nrengine.
-
-Unpack the source code and run
+Go to $STUNTS_DIR/src/External/nrEngine and type
 
 	make
-
-Choose a directory where you want to install BOOST. I call it $NRENGINE_DIR here.
-
-Copy the whole nrEngine-<versionbla> directory to $NRENGINE_DIR
-
-	cp -r nrEngine-<versionbla> $NRENGINE_DIR
-
-go to $NRENGINE_DIR and create the following link
-
-	ln -s nrEngine-<versionbla> nrEngine
-
-(This link will be needed so our source files can include nrEngine headers as <nrEngine/nrBlablubb.h>)
-
 
 3. Running configure
 
@@ -106,7 +92,7 @@ Let's say
 	$ODE_DIR	is the directory where you installed ODE
 	$OGRE_DIR	is the directory where you installed Ogre
 	$BOOST_DIR	is the directory where you installed BOOST
-	$NRENGINE_DIR	is the directory where you installed nrEngine
+	$STUNTS_DIR	is the root directory of stunts (must be an absolute path)
 
 If you installed one of these libs from your distribution, the
 directory will probably be /usr. Then you don't have to do anything
@@ -114,7 +100,8 @@ for this library - configure will find it automatically.
 
 Now run configure with the following options:
 
-	./configure --with-ode=$ODE_DIR --with-ogre=$OGRE_DIR --with-boost=$BOOST_DIR --with-nrengine=$NRENGINE_DIR
+	./configure --with-ode=$ODE_DIR --with-ogre=$OGRE_DIR --with-boost=$BOOST_DIR --with-nrengine=$STUNTS_DIR/External \
+		--with-fmod=$STUNTS_DIR/External/FMOD
 
 and make sure you get the following output at the end:
 
