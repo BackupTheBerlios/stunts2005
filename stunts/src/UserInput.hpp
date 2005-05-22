@@ -23,14 +23,11 @@
  */
 
 
-#define GCC_3_1
-#define EXT_HASH
+#ifndef _CUSERINPUT_H_
+#define _CUSERINPUT_H_
 
 #include <OGRE/Ogre.h>
 #include <nrEngine/nrEngine.h>
-
-#ifndef _CUSERINPUT_H_
-#define _CUSERINPUT_H_
 
 namespace stunts
 {

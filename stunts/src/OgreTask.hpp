@@ -23,9 +23,6 @@
  */
 
 
-#define GCC_3_1
-#define EXT_HASH
-
 #include <OGRE/Ogre.h>
 #include <nrEngine/nrEngine.h>
 #include "FrameListener.hpp"

@@ -25,13 +25,22 @@
 
 #include "PhysicsWorld.hpp"
 
+#include <iostream>
+
 namespace stunts {
   
   CPhysicsWorld::CPhysicsWorld()
     : __world_id(0)
   {}
   
-  CPhysicsWorld::~CPhysicsWorld() {}
+  CPhysicsWorld::~CPhysicsWorld() {
+    /* destroy world */
+    if(__world_id) {
+      std::cout << "destroy world" << std::endl;
+      dWorldDestroy(__world_id);
+      __world_id = 0;
+    }
+  }
   
   CPhysicsWorld::CPhysicsWorld(const CPhysicsWorld&)
     : __world_id(0)
@@ -46,6 +55,11 @@ namespace stunts {
   
   nrResult CPhysicsWorld::taskInit() {
     nrLog.Log(NR_LOG_APP, "Init physics...");
+    
+    /* create a world */
+    std::cout << "create world" << std::endl;
+    __world_id = dWorldCreate();
+    
     return NR_OK;
   }
   
@@ -55,6 +69,9 @@ namespace stunts {
   }
   
   nrResult CPhysicsWorld::taskUpdate() {
+    /* just a test */
+    dWorldStep(__world_id,0.05);
+    
     return NR_OK;
   }
   

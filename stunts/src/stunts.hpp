@@ -22,13 +22,11 @@
  * USA.
  */
 
-#define GCC_3_1
-#define EXT_HASH
-#include <Ogre.h>
-
 
 #ifndef __STUNTS_HPP_
 #define __STUNTS_HPP_
+
+#include <OGRE/Ogre.h>
 
 #include "UserInput.hpp"
 

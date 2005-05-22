@@ -22,14 +22,12 @@
  * USA.
  */
 
-#define GCC_3_1
-#define EXT_HASH
 
-#include <Ogre.h>
-#include <OgreKeyEvent.h>
-#include <OgreEventListeners.h>
-#include <OgreStringConverter.h>
-#include <OgreException.h>
+#include <OGRE/Ogre.h>
+#include <OGRE/OgreKeyEvent.h>
+#include <OGRE/OgreEventListeners.h>
+#include <OGRE/OgreStringConverter.h>
+#include <OGRE/OgreException.h>
 
 #include <nrEngine/nrEngine.h>
 
