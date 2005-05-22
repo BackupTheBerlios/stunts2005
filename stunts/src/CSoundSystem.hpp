@@ -8,13 +8,13 @@
     #include <conio.h>
     #include <windows.h>
 #else
-    #include "wincompat.h"
+    #include "./External/FMOD/inc/wincompat.h"
 #endif
 
-#include "fmod.h"
-#include "fmod_errors.h"
+#include "./External/FMOD/inc/fmod.h"
+#include "./External/FMOD/inc/fmod_errors.h"
 #include <iostream>
-
+#include <vector>
 
 
 using namespace std;
