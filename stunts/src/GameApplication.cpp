@@ -38,7 +38,6 @@ namespace stunts
 	{
 		// kill all tasks if there are any
 		nrKernel.KillAllTasks();
-		nrKernel.OneTick();
 
 		//delete nrEngine singleton
 		nrEngineDelete();

@@ -2,14 +2,15 @@ PREFIX=
  
 CC=g++
 
-INCLUDES= -I/usr/local/include -IExternal/FMOD/inc -IExternal -I/usr/local/include/OGRE
+INCLUDES= -I/usr/local/include -IExternal/FMOD/inc  -I/usr/local/include/OGRE
 
 CFLAGS=-Wall -Werror -g -DEXT_HASH -DGCC_3_1
-LIBS=-L/usr/lib -L/usr/X11R6/lib -LExternal/nrEngine/libs\
+LIBS=-L/usr/lib -L/usr/X11R6/lib\
 		-lGL  -lSDL -ljpeg -lpng -lpthread -lGLU\
 		-lOgreMain\
 		-lode\
-	  	-lnrEngine -lnrVFS -lnrFramework -lnrMath -lnrUtils -lnr3DEngine -lnrUtils
+	  	-lnrEngine
+# -lnrVFS -lnrFramework -lnrMath -lnrUtils -lnr3DEngine -lnrUtils
 		 
 LDFLAGS=
 EXTLIBS= External/FMOD/libfmod-3.74.so

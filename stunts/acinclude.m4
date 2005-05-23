@@ -466,7 +466,7 @@ if test "X${no_glu}" != "Xyes"; then
   NRENGINE_LIBS="${NRENGINE_LIBS} ${GLU_LIBS}"
 fi
 
-NRENGINE_LIBS="${NRENGINE_LIBS}"
+NRENGINE_LIBS="${NRENGINE_LIBS} -lSDL -lGL -lGLU -lpng -ljpeg"
 NRENGINE_CPPFLAGS="${NRENGINE_CPPFLAGS}"
 
 ax_save_CPPFLAGS="${CPPFLAGS}"
@@ -475,7 +475,8 @@ CPPFLAGS="${NRENGINE_CPPFLAGS} ${CPPFLAGS}"
 AC_CACHE_CHECK([for nrEngine], [ax_cv_check_nrengine_libs],
 [ax_cv_check_nrengine_libs="no"
 ax_save_LIBS="${LIBS}"
-ax_lib="-lnrFramework -lnrEngine -lnrVFS -lnrFramework -lnrMath -lnrUtils -lnr3DEngine -lnrUtils -lSDL -ljpeg -lpng"
+LIBS="-lnrEngine  -lSDL -lGL -lGLU -lpng -ljpeg"
+ax_lib="-lnrEngine -lSDL -lGL -lGLU -lpng -ljpeg"
 if test "X$CC" = "Xcl"; then
   ax_try_lib=`echo $ax_lib | sed -e 's/^-l//' -e 's/$/.lib/'`
 else
@@ -485,7 +486,7 @@ LIBS="${NRENGINE_LIBS} $GLU_LIBS ${ax_try_lib} ${ax_save_LIBS}"
 AC_TRY_LINK([
 # include <nrEngine/nrEngine.h>
 ],
-[nrFrameworkInit()],
+[nrEngineInit()],
 [ax_cv_check_nrengine_libs="${ax_try_lib}"; break])
 
 LIBS=${ax_save_LIBS}
