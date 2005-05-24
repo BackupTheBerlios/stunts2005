@@ -458,8 +458,8 @@ AC_ARG_WITH([nrengine],
 NRENGINE_LIBS=""
 NRENGINE_CPPFLAGS=""
 if test -n "$with_nrengine"; then
-  NRENGINE_LIBS="-L$with_nrengine/nrEngine/libs"
-  NRENGINE_CPPFLAGS="-I$with_nrengine"
+  NRENGINE_LIBS="-L$with_nrengine/lib"
+  NRENGINE_CPPFLAGS="-I$with_nrengine/include"
 fi
 
 if test "X${no_glu}" != "Xyes"; then
