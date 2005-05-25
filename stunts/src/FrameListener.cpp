@@ -1,7 +1,7 @@
 /* Stunts 2005 - A remake of the game Stunts
  *
  * Copyright (C) 2005
- *                    Stunts 2005 Workgroup, 
+ *                    Stunts 2005 Workgroup,
  *                    http://developer.berlios.de/projects/stunts2005
  *
  * Maintainer:        Christian Morbach <GameDevelopment@paratronic.de>
@@ -18,10 +18,10 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, 
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
  * USA.
  */
- 
+
 #include "FrameListener.hpp"
 
 namespace stunts
@@ -31,7 +31,7 @@ namespace stunts
 		bool useBufferedInputMouse)
     {
 
-		
+
         mDebugOverlay = OverlayManager::getSingleton().getByName("Core/DebugOverlay");
         mUseBufferedInputKeys = useBufferedInputKeys;
 		mUseBufferedInputMouse = useBufferedInputMouse;
@@ -66,12 +66,13 @@ namespace stunts
         mAniso = 1;
         mFiltering = TFO_BILINEAR;
 
-        showDebugOverlay(true);
+        //showDebugOverlay(true);
+        showDebugOverlay(false);
 
 		mRaySceneQuery = 0;
 	}
-	
-	
+
+
 	CFrameListener::~CFrameListener()
 	{
 		delete mRaySceneQuery;
@@ -84,10 +85,12 @@ namespace stunts
             PlatformManager::getSingleton().destroyInputReader( mInputDevice );
         }
 	}
-	
-	
+
+
     void CFrameListener::updateStats()
     {
+		return;
+
         static String currFps = "Current FPS: ";
         static String avgFps = "Average FPS: ";
         static String bestFps = "Best FPS: ";
@@ -166,7 +169,7 @@ namespace stunts
         {
             mCamera->yaw(-mRotScale);
         }
-		
+
         if (mInputDevice->isKeyDown(KC_LEFT))
         {
             mCamera->yaw(mRotScale);
@@ -177,7 +180,7 @@ namespace stunts
 	        return false;
         }
 
-		// see if switching is on, and you want to toggle 
+		// see if switching is on, and you want to toggle
         if (mInputTypeSwitchingOn && mInputDevice->isKeyDown(KC_M) && mTimeUntilNextToggle <= 0)
         {
 			switchMouseMode();
@@ -233,7 +236,7 @@ namespace stunts
             mTimeUntilNextToggle = 0.5;
 			mWindow->setDebugText(String("Wrote ") + tmp);
         }
-		
+
 		if (mInputDevice->isKeyDown(KC_R) && mTimeUntilNextToggle <=0)
 		{
 			mSceneDetailIndex = (mSceneDetailIndex+1)%3 ;
@@ -256,7 +259,7 @@ namespace stunts
         if (displayCameraDetails)
         {
             // Print camera details
-            mWindow->setDebugText("P: " + StringConverter::toString(mCamera->getDerivedPosition()) + " " + 
+            mWindow->setDebugText("P: " + StringConverter::toString(mCamera->getDerivedPosition()) + " " +
                 "O: " + StringConverter::toString(mCamera->getDerivedOrientation()));
         }
 
@@ -268,7 +271,7 @@ namespace stunts
     {
         /* Rotation factors, may not be used if the second mouse button is pressed. */
 
-        /* If the second mouse button is pressed, then the mouse movement results in 
+        /* If the second mouse button is pressed, then the mouse movement results in
            sliding the camera, otherwise we rotate. */
         if( mInputDevice->getMouseButton( 1 ) )
         {
@@ -330,7 +333,7 @@ namespace stunts
 		if ( !mUseBufferedInputMouse || !mUseBufferedInputKeys)
 		{
 			// one of the input modes is immediate, so setup what is needed for immediate mouse/key movement
-			if (mTimeUntilNextToggle >= 0) 
+			if (mTimeUntilNextToggle >= 0)
 				mTimeUntilNextToggle -= evt.timeSinceLastFrame;
 
 			// If this is the first frame, pick a speed
@@ -354,7 +357,7 @@ namespace stunts
 
         if (mUseBufferedInputKeys)
         {
-            // no need to do any processing here, it is handled by event processor and 
+            // no need to do any processing here, it is handled by event processor and
 			// you get the results as KeyEvents
         }
         else
@@ -366,7 +369,7 @@ namespace stunts
         }
         if (mUseBufferedInputMouse)
         {
-            // no need to do any processing here, it is handled by event processor and 
+            // no need to do any processing here, it is handled by event processor and
 			// you get the results as MouseEvents
         }
         else
@@ -404,33 +407,33 @@ namespace stunts
         if (i != qryResult.end() && i->worldFragment)
         {
             //SceneQuery::WorldFragment* wf = i->worldFragment;
-            mCamera->setPosition(mCamera->getPosition().x, 
-                i->worldFragment->singleIntersection.y + 10, 
+            mCamera->setPosition(mCamera->getPosition().x,
+                i->worldFragment->singleIntersection.y + 10,
                 mCamera->getPosition().z);
         }
 
         return true;
 	}
 
-	
+
     bool CFrameListener::frameEnded(const FrameEvent& evt)
     {
         updateStats();
         return true;
     }
 
-	void CFrameListener::switchMouseMode() 
+	void CFrameListener::switchMouseMode()
 	{
         mUseBufferedInputMouse = !mUseBufferedInputMouse;
 		mInputDevice->setBufferedInput(mUseBufferedInputKeys, mUseBufferedInputMouse);
 	}
-	void CFrameListener::switchKeyMode() 
+	void CFrameListener::switchKeyMode()
 	{
         mUseBufferedInputKeys = !mUseBufferedInputKeys;
 		mInputDevice->setBufferedInput(mUseBufferedInputKeys, mUseBufferedInputMouse);
 	}
 
-	void CFrameListener::keyClicked(KeyEvent* e) 
+	void CFrameListener::keyClicked(KeyEvent* e)
 	{
 		if (e->getKeyChar() == 'm')
 		{
@@ -445,7 +448,7 @@ namespace stunts
 	}
 	void CFrameListener::keyPressed(KeyEvent* e) {}
 	void CFrameListener::keyReleased(KeyEvent* e) {}
-	
-	
+
+
 
 }	//namespace stunts
