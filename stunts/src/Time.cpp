@@ -1,7 +1,7 @@
 /* Stunts 2005 - A remake of the game Stunts
  *
  * Copyright (C) 2005
- *                    Stunts 2005 Workgroup, 
+ *                    Stunts 2005 Workgroup,
  *                    http://developer.berlios.de/projects/stunts2005
  *
  * Maintainer:        Florian Winter <fw@graphics.cs.uni-sb.de>
@@ -18,7 +18,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, 
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
  * USA.
  */
 
@@ -26,29 +26,29 @@
 #include "Time.hpp"
 
 namespace stunts {
-  
+
   CTime::CTime() throw() {
     reset();
   }
-  
+
   CTime::CTime(Infinite inf) throw() {
     reset(inf);
   }
-  
+
   CTime::CTime(int seconds, int nanoseconds) throw() {
     reset(seconds, nanoseconds);
   }
-  
+
   CTime::CTime(double seconds) throw() {
     reset(seconds);
   }
-  
+
   void CTime::reset() throw() {
     __infinite = false;
     __seconds = 0;
     __nanoseconds = 0;
   }
-  
+
   void CTime::reset(Infinite inf) throw() {
     __infinite = true;
     __nanoseconds = 0;
@@ -58,7 +58,7 @@ namespace stunts {
       __seconds = -1;
     }
   }
-  
+
   void CTime::reset(int seconds, int nanoseconds) throw() {
     while(nanoseconds < 0) {
       nanoseconds += NANOSECONDS_PER_SECOND;
@@ -68,23 +68,23 @@ namespace stunts {
       nanoseconds -= NANOSECONDS_PER_SECOND;
       ++seconds;
     }
-    
+
     __infinite = false;
     __seconds = seconds;
     __nanoseconds = nanoseconds;
   }
-  
+
   void CTime::reset(double seconds) throw() {
     __seconds = static_cast<int>(seconds);
     __nanoseconds = static_cast<int>((seconds - __seconds) * NANOSECONDS_PER_SECOND);
   }
-  
+
   CTime CTime::operator-() const throw() {
     CTime temp(*this);
     temp.negate();
     return temp;
   }
-  
+
   void CTime::negate() throw() {
     __seconds = -__seconds;
     if(__nanoseconds > 0) {
@@ -92,7 +92,7 @@ namespace stunts {
       --__seconds;
     }
   }
-  
+
   CTime CTime::operator*(double factor) const throw() {
     if(isFinite()) {
       double new_seconds = getDouble() * factor;
@@ -105,7 +105,7 @@ namespace stunts {
       return -(*this);
     }
   }
-  
+
   CTime CTime::operator/(double factor) const throw() {
     if(isFinite()) {
       double new_seconds = getDouble() / factor;
@@ -118,7 +118,7 @@ namespace stunts {
       return -(*this);
     }
   }
-  
+
   const CTime& CTime::operator+=(const CTime& time) throw() {
     if(!isInfinite() && !time.isInfinite()) {
       __seconds += time.__seconds;
@@ -139,7 +139,7 @@ namespace stunts {
     }
     return *this;
   }
-  
+
   const CTime& CTime::operator-=(const CTime& time) throw() {
     if(!isInfinite() && !time.isInfinite()) {
       __seconds += time.__seconds;
@@ -161,13 +161,13 @@ namespace stunts {
     }
     return *this;
   }
-  
+
   std::ostream& operator<<(std::ostream& ostr, const CTime& time) {
     if(time.__infinite) {
-      ostr << "INFINITE";
+      return ostr << "INFINITE";
     } else {
-	ostr << time.__seconds << "sec " << time.__nanoseconds << "nsec";
+	return ostr << time.__seconds << "sec " << time.__nanoseconds << "nsec";
     }
   }
-  
+
 }
