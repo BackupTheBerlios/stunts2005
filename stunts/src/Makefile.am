@@ -6,6 +6,7 @@ bin_PROGRAMS = stunts
 
 # Add here all .cpp source files that are needed to build myapp
 stunts_SOURCES = \
+	Level.cpp \
 	FrameListener.cpp \
 	GameApplication.cpp \
 	stunts.cpp \
@@ -19,6 +20,7 @@ stunts_SOURCES = \
 # Add here all headers that are needed to build myapp
 # These headers will not be installed, but included in the dist
 noinst_HEADERS = \
+	Level.hpp \
 	FrameListener.hpp \
 	GameApplication.hpp \
 	stunts.hpp \
