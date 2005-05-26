@@ -29,9 +29,17 @@
 
 namespace stunts {
   
-  CPhysicsWorld::CPhysicsWorld()
+  CPhysicsWorld::CPhysicsWorld(boost::shared_ptr< CLevel > level)
     : __world_id(0)
-  {}
+  {
+  	// here you can access all objects in the Level class
+  	//	(camera, baseObjects, Terrain, etc.)
+  	//  just call level->OgreTask()->mCamera  or things like this
+  	//  note that all pointers are smart pointers (shared)
+  	//  to get the pointer's content call  level.get()
+  	//
+  	//  CM
+  }
   
   CPhysicsWorld::~CPhysicsWorld() {
     /* destroy world */

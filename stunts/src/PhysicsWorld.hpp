@@ -26,8 +26,19 @@
 #ifndef _STUNTS_PHYSICS_WORLD_HPP_
 #define _STUNTS_PHYSICS_WORLD_HPP_
 
+//------------------------------------------------------------------------------
+//--- predeclare this class
+//------------------------------------------------------------------------------
+namespace stunts
+{
+	class CPhysicsWorld;
+}
+
+//------------------------------------------------------------------------------
+//--- includes
+//------------------------------------------------------------------------------
 #include <ode/ode.h>
-#include <nrEngine/nrEngine.h>
+#include "Level.hpp"
 
 namespace stunts {
   
@@ -38,7 +49,7 @@ namespace stunts {
     : public nrITask
   {
   public:
-    CPhysicsWorld();
+    CPhysicsWorld(boost::shared_ptr< CLevel > level);
     virtual ~CPhysicsWorld();
     
     dWorldID getWorldID() const throw() {

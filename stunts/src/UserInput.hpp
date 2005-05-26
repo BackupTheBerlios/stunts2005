@@ -26,8 +26,19 @@
 #ifndef _CUSERINPUT_H_
 #define _CUSERINPUT_H_
 
-#include <OGRE/Ogre.h>
-#include <nrEngine/nrEngine.h>
+//------------------------------------------------------------------------------
+//--- predeclare this class
+//------------------------------------------------------------------------------
+namespace stunts
+{
+	class CUserInput;
+}
+
+//------------------------------------------------------------------------------
+//--- includes
+//------------------------------------------------------------------------------
+
+#include "Level.hpp"
 
 namespace stunts
 {
@@ -35,23 +46,27 @@ namespace stunts
 	class CUserInput : public nrITask
 	{
 		public:
-			CUserInput();
+			CUserInput(boost::shared_ptr< CLevel > level);
 			virtual ~CUserInput();
+			void react(float delaySeconds);
+			void activate(bool activated);
+			bool isActivated() const;
+			virtual const char* taskGetName() {return "UserInput";}
 
-			// CUserInput interface
-
-			// TODO: add member function declarations...
 
 		protected:
 			virtual nrResult taskInit();
 			virtual nrResult taskStart();
 			virtual nrResult taskUpdate();
 			virtual nrResult taskStop();
-			virtual const char* taskGetName(){return "UserInput";}
 
-			// CUserInput variables
 
-			// TODO: add member variables...
+			boost::shared_ptr< CLevel >				mLevel;
+
+			boost::shared_ptr< Ogre::InputReader >	mInputDevice;
+			boost::shared_ptr< Ogre::Camera >		mCamera;
+
+			bool mActivated;
 
 	};
 }	//namespace stunts

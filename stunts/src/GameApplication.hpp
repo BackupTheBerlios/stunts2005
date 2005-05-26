@@ -25,11 +25,15 @@
 #ifndef _STUNTS_GAME_APPLICATION_HPP_
 #define _STUNTS_GAME_APPLICATION_HPP_
 
-#include "UserInput.hpp"
-#include "PhysicsWorld.hpp"
-#include "OgreTask.hpp"
 
-#include <nrEngine/nrEngine.h>	//	or make will fail (CM)
+#include <nrEngine/nrEngine.h>
+
+
+#include "Level.hpp"
+#include "UserInput.hpp"
+#include "OgreTask.hpp"
+#include "PhysicsWorld.hpp"
+
 
 namespace stunts {
 

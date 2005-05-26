@@ -64,16 +64,29 @@ namespace stunts
 		nrLog.Log(NR_LOG_APP, "Application started");
 
 		//add tasks
-		boost::shared_ptr<nrITask> user_input(new CUserInput());
-		boost::shared_ptr<nrITask> physics_world(new CPhysicsWorld());
-		boost::shared_ptr<nrITask> ogre_task(new COgreTask());
-		
+		boost::shared_ptr<CLevel>
+			level_task(new CLevel());
+
+		boost::shared_ptr<CUserInput>
+			user_input(new CUserInput(level_task));
+			
+		boost::shared_ptr<CPhysicsWorld>
+			physics_world(new CPhysicsWorld(level_task));
+			
+		boost::shared_ptr<COgreTask>
+			ogre_task(new COgreTask(level_task));
+
+
+		//set priorities
 		user_input->setTaskPriority(NR_PRIORITY_VERY_HIGH);
+		level_task->setTaskPriority(NR_PRIORITY_VERY_HIGH);
 		ogre_task->setTaskPriority(NR_PRIORITY_FIRST);
 		
+		//add tasks to the kernel
 		nrKernel.AddTask(user_input);
 		nrKernel.AddTask(physics_world);
 		nrKernel.AddTask(ogre_task);
+		nrKernel.AddTask(level_task);
 
         return true;
 	}

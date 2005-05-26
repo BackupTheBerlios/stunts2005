@@ -23,6 +23,9 @@
  */
 
 
+#ifndef _CFRAMELISTENER_H_
+#define _CFRAMELISTENER_H_
+
 #include <OGRE/Ogre.h>
 #include <OGRE/OgreKeyEvent.h>
 #include <OGRE/OgreEventListeners.h>
@@ -30,9 +33,6 @@
 #include <OGRE/OgreException.h>
 
 #include <nrEngine/nrEngine.h>
-
-#ifndef _CFRAMELISTENER_H_
-#define _CFRAMELISTENER_H_
 
 using namespace Ogre;
 
@@ -42,9 +42,7 @@ namespace stunts
 	class CFrameListener : public FrameListener, public KeyListener
 	{
 	public:
-		CFrameListener(RenderWindow* win, Camera* cam,
-			bool useBufferedInputKeys = false,
-			bool useBufferedInputMouse = false);
+		CFrameListener(RenderWindow* win, Camera* cam);
 		~CFrameListener();
 		CFrameListener();
 
@@ -72,14 +70,11 @@ namespace stunts
 		Degree mRotateSpeed;
 		Overlay* mDebugOverlay;
 	
-		EventProcessor* mEventProcessor;
-		InputReader* mInputDevice;
 		Camera* mCamera;
 	
 		Vector3 mTranslateVector;
 		RenderWindow* mWindow;
 		bool mStatsOn;
-		bool mUseBufferedInputKeys, mUseBufferedInputMouse, mInputTypeSwitchingOn;
 		unsigned int mNumScreenShots;
 		float mMoveScale;
 		Degree mRotScale;

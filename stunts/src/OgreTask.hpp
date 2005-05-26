@@ -23,18 +23,25 @@
  */
 
 
-#include <OGRE/Ogre.h>
-#include <nrEngine/nrEngine.h>
-#include "FrameListener.hpp"
-
 #ifndef _OGRE_NRENGINE_TASK_HPP_
 #define _OGRE_NRENGINE_TASK_HPP_
 
-using namespace Ogre;
+//------------------------------------------------------------------------------
+//--- predeclare this class
+//------------------------------------------------------------------------------
+namespace stunts
+{
+	class COgreTask;
+}
 
+//------------------------------------------------------------------------------
+//--- includes
+//------------------------------------------------------------------------------
+
+#include "Level.hpp"
 
 namespace stunts {
-  
+
 	/**
 	* This is a class derived from engine's task class. This allows us
 	* to run the ogre rendering engine
@@ -44,7 +51,7 @@ namespace stunts {
 	public:
 
 		// Constr & Destr
-		COgreTask();
+		COgreTask(boost::shared_ptr< CLevel > level);
 		virtual ~COgreTask();
 		
 		// Task Functions
@@ -58,17 +65,23 @@ namespace stunts {
 	private:
 		bool configure();
 		void createCamera();
-		void createFrameListener();
 		void createScene();
 		void destroyScene();
 		void createViewports();
 		void setupResources();
 
-		Root* 			mRoot;
-		Camera* 		mCamera;
-		SceneManager* 	mSceneMgr;
-		RenderWindow* 	mWindow;
-		CFrameListener* mFrameListener;
+		boost::shared_ptr< CLevel >				mLevel;
+
+
+	public:	//for testing issues
+		Ogre::Root* 			mRoot;
+		//Ogre::Camera* 			mCamera;
+		Ogre::SceneManager* 	mSceneMgr;
+		Ogre::RenderWindow* 	mWindow;
+		//CFrameListener* mFrameListener;
+
+		boost::shared_ptr< Ogre::InputReader >	mInputDevice;
+		boost::shared_ptr< Ogre::Camera >	mCamera;
 	};
   
 }

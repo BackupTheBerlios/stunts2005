@@ -25,19 +25,22 @@
 
 #include "OgreTask.hpp"
 
+using namespace Ogre;
 
 namespace stunts {
 
 	/**
 	* Constructor
 	**/
-	COgreTask::COgreTask(){
+	COgreTask::COgreTask(boost::shared_ptr< CLevel > level){
 		//reset attributes
     	mRoot = NULL;
-    	mCamera = NULL;
+    	//mCamera = NULL;
     	mSceneMgr = NULL;
     	mWindow = NULL;
-    	mFrameListener = NULL;
+    	//mFrameListener = NULL;
+    	
+    	mLevel = level;
 	}
 	
 	/**
@@ -64,9 +67,29 @@ namespace stunts {
 		createCamera();
         createViewports();
 
-		// Create the scene
-        createFrameListener();
+
+//Disable the FrameListener as it won't exist anymore in later versions!
+//
+// CM
+		/**
+		 * Here we create the frame listener. Frame listener will be
+		 * informed in each frame by the Ogre-Engine to let update
+		 * him the application. There is also another possibility how to
+		 * update graphics. But we use at now this method here.
+		**/        
+//		mFrameListener= new CFrameListener(mWindow, mCamera);
+//        mRoot->addFrameListener(mFrameListener);
+
+		//setup input class
+		mInputDevice  =	
+			boost::shared_ptr< Ogre::InputReader >
+				(PlatformManager::getSingleton().createInputReader());
+		mInputDevice->initialise(mWindow,true, true);
+
+
+ 		// Create the scene
         createScene();
+		//boost::shared_ptr< Ogre::InputReader >	mInputDevice;
 
 		return NR_OK;
 	}
@@ -77,7 +100,8 @@ namespace stunts {
 	**/
 	nrResult COgreTask::taskStart()
 	{
-		
+		//activate input class
+		mLevel->UserInput()->activate(true);
 		return NR_OK;
 	}
 	
@@ -106,7 +130,7 @@ namespace stunts {
 		destroyScene();
 
 		//delete OGRE frame listener
-		NR_SAFE_DELETE(mFrameListener);
+//		NR_SAFE_DELETE(mFrameListener);
 
 		//delete OGRE root
 		NR_SAFE_DELETE(mRoot);
@@ -143,12 +167,12 @@ namespace stunts {
         }
 
         // Set a nice viewpoint
-        mCamera->setPosition(707,2500,528);
+        mCamera->setPosition(707,100,528);
         mCamera->setOrientation(Quaternion(-0.3486, 0.0122, 0.9365, 0.0329));
 
 		// Get the query for this scene
-        mFrameListener->mRaySceneQuery = mSceneMgr->createRayQuery(
-            Ray(mCamera->getPosition(), Vector3::NEGATIVE_UNIT_Y));
+//       mFrameListener->mRaySceneQuery = mSceneMgr->createRayQuery(
+//            Ray(mCamera->getPosition(), Vector3::NEGATIVE_UNIT_Y));
 
 	}
 
@@ -190,7 +214,8 @@ namespace stunts {
     void COgreTask::createCamera()
     {
         // Create the camera
-        mCamera = mSceneMgr->createCamera("PlayerCam");
+        mCamera = boost::shared_ptr< Ogre::Camera >
+        	(mSceneMgr->createCamera("PlayerCam"));
 
         // Position it at 500 in Z direction
         mCamera->setPosition(Vector3(128,25,128));
@@ -201,17 +226,6 @@ namespace stunts {
     }
 
 
-	/**
-	 * Here we create the frame listener. Frame listener will be
-	 * informed in each frame by the Ogre-Engine to let update
-	 * him the application. There is also another possibility how to
-	 * update graphics. But we use at now this method here.
-	 **/
-	void COgreTask::createFrameListener()
-    {
-        mFrameListener= new CFrameListener(mWindow, mCamera);
-        mRoot->addFrameListener(mFrameListener);
-    }
 
 
 	/**
@@ -220,7 +234,7 @@ namespace stunts {
 	void COgreTask::createViewports()
     {
         // Create one viewport, entire window
-        Viewport* vp = mWindow->addViewport(mCamera);
+        Viewport* vp = mWindow->addViewport(mCamera.get());
         vp->setBackgroundColour(ColourValue(0,0,0));
 
         // Alter the camera aspect ratio to match the viewport
