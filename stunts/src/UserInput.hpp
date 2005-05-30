@@ -40,6 +40,8 @@ namespace stunts
 
 #include "Level.hpp"
 
+#include <nrEngine/nrEngine.h>
+
 namespace stunts
 {
 
