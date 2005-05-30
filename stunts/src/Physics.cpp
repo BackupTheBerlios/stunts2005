@@ -25,30 +25,27 @@
 
 #include "Physics.hpp"
 
-#include <iostream>
-
 namespace stunts {
   
   CPhysics::CPhysics() throw()
     : __world(0),
       __body_id(0)
-  {
-    std::cout << "CPhysics()" << std::endl;
-  }
+  {}
   
   CPhysics::CPhysics(const CPhysics& other) throw()
     : __world(0),
       __body_id(0)
-  {
-    std::cout << "CPhysics(const CPhysics&)" << std::endl;
-  }
+  {}
   
   CPhysics* CPhysics::copy() const throw() {
     return new CPhysics(*this);
   }
   
   CPhysics::~CPhysics() {
-    std::cout << "~CPhysics()" << std::endl;
+    if(__body_id) {
+      dBodyDestroy(__body_id);
+      __body_id = 0;
+    }
   }
   
 }
