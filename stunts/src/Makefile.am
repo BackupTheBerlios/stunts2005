@@ -6,16 +6,18 @@ bin_PROGRAMS = stunts
 
 # Add here all .cpp source files that are needed to build myapp
 stunts_SOURCES = \
-	Level.cpp \
 	FrameListener.cpp \
 	GameApplication.cpp \
 	stunts.cpp \
 	UserInput.cpp \
 	OgreTask.cpp \
 	Physics.cpp \
-	PhysicsWorld.cpp
+	PhysicsWorld.cpp \
 	CSound.cpp \
-	CSoundSystem.cpp
+	CSoundSystem.cpp \
+	Time.cpp \
+	Level.cpp \
+	Joint.cpp
 
 # Add here all headers that are needed to build myapp
 # These headers will not be installed, but included in the dist
@@ -28,8 +30,12 @@ noinst_HEADERS = \
 	OgreTask.hpp \
 	Physics.hpp \
 	PhysicsWorld.hpp \
+	PhysicsWorldInfo.hpp \
+	PhysicsAutoDisable.hpp \
 	CSound.hpp \
-	CSoundSystem.hpp
+	CSoundSystem.hpp \
+	Time.hpp \
+	Joint.hpp
 
 # Set the include path found by configure
 INCLUDES = \
