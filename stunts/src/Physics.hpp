@@ -26,6 +26,8 @@
 #ifndef _STUNTS_PHYSICS_HPP_
 #define _STUNTS_PHYSICS_HPP_
 
+#include "PhysicsAutoDisable.hpp"
+
 #include <ode/ode.h>
 
 namespace stunts {
@@ -71,6 +73,17 @@ namespace stunts {
       return __body_id;
     }
     //@}
+    
+  private:
+    /** Serialization method.
+     */
+    friend class boost::serialization::access;
+    template<class Archive>
+    void serialize(Archive & ar, const unsigned int version) {
+      ar & boost::serialization::base_object<CPhysicsAutoDisable>(make_nvp("auto_disable", *this));
+      
+      ar & make_nvp("world", __world);
+    }
     
   private:
     CPhysicsWorld* __world;     ///< Physics world owning this object.
