@@ -48,6 +48,7 @@ namespace stunts
 #include "PhysicsWorld.hpp"
 #include "OgreTask.hpp"
 #include "UserInput.hpp"
+#include "Terrain.h"
 
 //------------------------------------------------------------------------------
 //--- namespace stunts
@@ -83,6 +84,14 @@ namespace stunts
 			boost::shared_ptr< CPhysicsWorld >	PhysicsWorld();
 
 
+			/**
+			 * Get Terrain
+			 * 
+			 * @return smart pointer to Terrain class
+			 */
+			boost::shared_ptr< CTerrain >	Terrain();
+
+
 		protected:
 			virtual nrResult taskInit();
 			virtual nrResult taskStart();
@@ -91,16 +100,17 @@ namespace stunts
 			virtual const char* taskGetName() {return "LevelTask";}
 
 			/**
-			 * Detect all tasks to initialize own member variables.
+			 * get all tasks to initialize own member variables.
 			 */
 			void getEngineTasks();
-			
+
 			//member variables
 			boost::shared_ptr< COgreTask >			mOgreTask;
 			boost::shared_ptr< CUserInput > 		mUserInput;
 			boost::shared_ptr< CPhysicsWorld > 		mPhysicsWorld;
 			
 			boost::shared_ptr< Ogre::InputReader >	mInputDevice;
+			boost::shared_ptr< CTerrain > 			mTerrain;
 	};
 
 };// namespace stunts

@@ -36,7 +36,7 @@ namespace stunts {
 		//reset attributes
     	mRoot = NULL;
     	//mCamera = NULL;
-    	mSceneMgr = NULL;
+    	//mSceneMgr = NULL;
     	mWindow = NULL;
     	//mFrameListener = NULL;
     	
@@ -202,7 +202,8 @@ namespace stunts {
 			mWindow = mRoot->initialise(true, "Stunts2005");
         }
 		// Create scene manager
-		mSceneMgr = mRoot->getSceneManager(ST_EXTERIOR_CLOSE);
+		mSceneMgr = boost::shared_ptr< Ogre::SceneManager >
+			(mRoot->getSceneManager(ST_EXTERIOR_CLOSE));
 
 		return ok;
     }

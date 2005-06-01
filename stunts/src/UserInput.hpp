@@ -38,7 +38,16 @@ namespace stunts
 //--- includes
 //------------------------------------------------------------------------------
 
+#include <OGRE/Ogre.h>
+#include <OGRE/OgreKeyEvent.h>
+#include <OGRE/OgreEventListeners.h>
+#include <OGRE/OgreStringConverter.h>
+#include <OGRE/OgreException.h>
+
+#include <nrEngine/nrEngine.h>
+
 #include "Level.hpp"
+#include "Terrain.h"
 
 #include <nrEngine/nrEngine.h>
 
@@ -67,6 +76,7 @@ namespace stunts
 
 			boost::shared_ptr< Ogre::InputReader >	mInputDevice;
 			boost::shared_ptr< Ogre::Camera >		mCamera;
+			boost::shared_ptr< CTerrain >			mTerrain;
 
 			bool mActivated;
 

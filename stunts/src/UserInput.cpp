@@ -75,6 +75,7 @@ namespace stunts
 		{
 			mInputDevice = mLevel->OgreTask()->mInputDevice;
 			mCamera = mLevel->OgreTask()->mCamera;
+			mTerrain = mLevel->Terrain();
 		}
 		
 		//return
@@ -113,8 +114,9 @@ namespace stunts
 		mInputDevice->capture();
 
 		// app specific
-		Ogre::Vector3 mTranslateVector;
-		float mMoveScale = 1;	// * delaySeconds in fact!
+		Ogre::Vector3 mTranslateVector(0.0f, 0.0f, 0.0f);
+		float mMoveScale = 1;		// * delaySeconds in fact!
+		Ogre::Degree mRotScale(1);	// * delaySeconds in fact!
 		Ogre::Degree mRotX;
 		Ogre::Degree mRotY;
 		//
@@ -148,18 +150,24 @@ namespace stunts
 
         if (mInputDevice->isKeyDown(Ogre::KC_PGUP))
         {
+            // Move camera up
+            mTranslateVector.y = mMoveScale;
         }
 
         if (mInputDevice->isKeyDown(Ogre::KC_PGDOWN))
         {
+            // Move camera down
+            mTranslateVector.y = -mMoveScale;
         }
 
         if (mInputDevice->isKeyDown(Ogre::KC_RIGHT))
         {
+            mCamera->yaw(-mRotScale);
         }
 
         if (mInputDevice->isKeyDown(Ogre::KC_LEFT))
         {
+            mCamera->yaw(mRotScale);
         }
 
         if( mInputDevice->isKeyDown(Ogre::KC_ESCAPE))
@@ -179,6 +187,11 @@ namespace stunts
 
         if (mInputDevice->isKeyDown(Ogre::KC_SYSRQ))
         {
+//			char tmp[20];
+//			sprintf(tmp, "screenshot_%d.png", ++mNumScreenShots);
+//            mWindow->writeContentsToFile(tmp);
+//            mTimeUntilNextToggle = 0.5;
+//			mWindow->setDebugText(String("Wrote ") + tmp);
         }
 
 		if (mInputDevice->isKeyDown(Ogre::KC_R))
@@ -188,6 +201,7 @@ namespace stunts
         if (mInputDevice->isKeyDown(Ogre::KC_P))
         {
         }
+
         
         
         /* Rotation factors, may not be used if the second mouse button is pressed. */
@@ -204,15 +218,14 @@ namespace stunts
             mRotX = Ogre::Degree(-mInputDevice->getMouseRelativeX() * 0.13);
             mRotY = Ogre::Degree(-mInputDevice->getMouseRelativeY() * 0.13);
         }
-        
-        
-        
-        
-        
+
+
         // app specific
         mCamera->yaw(mRotX);
         mCamera->pitch(mRotY);
         mCamera->moveRelative(mTranslateVector);
+
+		mTerrain->getHeight(mTranslateVector);
         //
 	}
 
@@ -237,175 +250,6 @@ namespace stunts
 
 }	//namespace stunts
 
-	
-	
-	
-	
-	
-//	bool CFrameListener::processUnbufferedKeyInput(const FrameEvent& evt)
-//    {
-//        if (mInputDevice->isKeyDown(KC_A))
-//        {
-//            // Move camera left
-//            mTranslateVector.x = -mMoveScale;
-//        }
-//
-//        if (mInputDevice->isKeyDown(KC_D))
-//        {
-//            // Move camera RIGHT
-//            mTranslateVector.x = mMoveScale;
-//        }
-//
-//        /* Move camera forward by keypress. */
-//        if (mInputDevice->isKeyDown(KC_UP) || mInputDevice->isKeyDown(KC_W) )
-//        {
-//            mTranslateVector.z = -mMoveScale;
-//        }
-//
-//        /* Move camera backward by keypress. */
-//        if (mInputDevice->isKeyDown(KC_DOWN) || mInputDevice->isKeyDown(KC_S) )
-//        {
-//            mTranslateVector.z = mMoveScale;
-//        }
-//
-//        if (mInputDevice->isKeyDown(KC_PGUP))
-//        {
-//            // Move camera up
-//            mTranslateVector.y = mMoveScale;
-//        }
-//
-//        if (mInputDevice->isKeyDown(KC_PGDOWN))
-//        {
-//            // Move camera down
-//            mTranslateVector.y = -mMoveScale;
-//        }
-//
-//        if (mInputDevice->isKeyDown(KC_RIGHT))
-//        {
-//            mCamera->yaw(-mRotScale);
-//        }
-//
-//        if (mInputDevice->isKeyDown(KC_LEFT))
-//        {
-//            mCamera->yaw(mRotScale);
-//        }
-//
-//        if( mInputDevice->isKeyDown( KC_ESCAPE) )
-//        {
-//	        return false;
-//        }
-//
-//
-//        if (mInputDevice->isKeyDown(KC_F) && mTimeUntilNextToggle <= 0)
-//        {
-//            mStatsOn = !mStatsOn;
-//            showDebugOverlay(mStatsOn);
-//
-//            mTimeUntilNextToggle = 1;
-//        }
-//        if (mInputDevice->isKeyDown(KC_T) && mTimeUntilNextToggle <= 0)
-//        {
-//            switch(mFiltering)
-//            {
-//            case TFO_BILINEAR:
-//                mFiltering = TFO_TRILINEAR;
-//                mAniso = 1;
-//                break;
-//            case TFO_TRILINEAR:
-//                mFiltering = TFO_ANISOTROPIC;
-//                mAniso = 8;
-//                break;
-//            case TFO_ANISOTROPIC:
-//                mFiltering = TFO_BILINEAR;
-//                mAniso = 1;
-//                break;
-//            default:
-//                break;
-//            }
-//            MaterialManager::getSingleton().setDefaultTextureFiltering(mFiltering);
-//            MaterialManager::getSingleton().setDefaultAnisotropy(mAniso);
-//
-//
-//            showDebugOverlay(mStatsOn);
-//
-//            mTimeUntilNextToggle = 1;
-//        }
-//
-//        if (mInputDevice->isKeyDown(KC_SYSRQ) && mTimeUntilNextToggle <= 0)
-//        {
-//			char tmp[20];
-//			sprintf(tmp, "screenshot_%d.png", ++mNumScreenShots);
-//            mWindow->writeContentsToFile(tmp);
-//            mTimeUntilNextToggle = 0.5;
-//			mWindow->setDebugText(String("Wrote ") + tmp);
-//        }
-//
-//		if (mInputDevice->isKeyDown(KC_R) && mTimeUntilNextToggle <=0)
-//		{
-//			mSceneDetailIndex = (mSceneDetailIndex+1)%3 ;
-//			switch(mSceneDetailIndex) {
-//				case 0 : mCamera->setDetailLevel(SDL_SOLID) ; break ;
-//				case 1 : mCamera->setDetailLevel(SDL_WIREFRAME) ; break ;
-//				case 2 : mCamera->setDetailLevel(SDL_POINTS) ; break ;
-//			}
-//			mTimeUntilNextToggle = 0.5;
-//		}
-//
-//        static bool displayCameraDetails = false;
-//        if (mInputDevice->isKeyDown(KC_P) && mTimeUntilNextToggle <= 0)
-//        {
-//            displayCameraDetails = !displayCameraDetails;
-//            mTimeUntilNextToggle = 0.5;
-//            if (!displayCameraDetails)
-//                mWindow->setDebugText("");
-//        }
-//        if (displayCameraDetails)
-//        {
-//            // Print camera details
-//            mWindow->setDebugText("P: " + StringConverter::toString(mCamera->getDerivedPosition()) + " " +
-//                "O: " + StringConverter::toString(mCamera->getDerivedOrientation()));
-//        }
-//
-//        // Return true to continue rendering
-//        return true;
-//    }
-//
-//    bool CFrameListener::processUnbufferedMouseInput(const FrameEvent& evt)
-//    {
-//        /* Rotation factors, may not be used if the second mouse button is pressed. */
-//
-//        /* If the second mouse button is pressed, then the mouse movement results in
-//           sliding the camera, otherwise we rotate. */
-//        if( mInputDevice->getMouseButton( 1 ) )
-//        {
-//            mTranslateVector.x += mInputDevice->getMouseRelativeX() * 0.13;
-//            mTranslateVector.y -= mInputDevice->getMouseRelativeY() * 0.13;
-//        }
-//        else
-//        {
-//            mRotX = Degree(-mInputDevice->getMouseRelativeX() * 0.13);
-//            mRotY = Degree(-mInputDevice->getMouseRelativeY() * 0.13);
-//        }
-//
-//
-//		return true;
-//	}
-//
-//	void CFrameListener::moveCamera()
-//	{
-//
-//        // Make all the changes to the camera
-//        // Note that YAW direction is around a fixed axis (freelook style) rather than a natural YAW (e.g. airplane)
-//        mCamera->yaw(mRotX);
-//        mCamera->pitch(mRotY);
-//        mCamera->moveRelative(mTranslateVector);
-//
-//
-//	}
-	
-	
-	
-	
-	
-	
-	
+
+
+

@@ -31,10 +31,9 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	CLevel::CLevel()
 	{
-
 	}
-	
-	
+
+
 	//--------------------------------------------------------------------------
 	//--- ~CLevel()
 	//--------------------------------------------------------------------------
@@ -51,6 +50,10 @@ namespace stunts
 		//get all tasks and set member attributes
 		getEngineTasks();
 
+		//create terrain (after the engine tasks have been gotten)
+		mTerrain = boost::shared_ptr< CTerrain >
+			(new CTerrain(boost::shared_ptr< CLevel >(this)));
+			
 		//return
 		return NR_OK;
 	}
@@ -88,30 +91,11 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	void CLevel::getEngineTasks()
 	{
-		//get task list
-		/*std::list< boost::shared_ptr< nrITask > > taskList = nrKernel.getTaskList();
-		std::list< boost::shared_ptr< nrITask > >::const_iterator iter;
-
-		//iterate through this list
-		for (iter=taskList.begin(); iter != taskList.end(); iter++)
-		{
-			if (!strcmp((*iter)->taskGetName(), "OgreTask"))
-			{
-				mOgreTask = *((boost::shared_ptr<COgreTask>*)&(*iter));
-			}
-			else if (!strcmp((*iter)->taskGetName(), "UserInput"))
-			{
-				mUserInput = *(boost::shared_ptr< CUserInput >*)&(*iter);
-			}
-			else if (!strcmp((*iter)->taskGetName(), "PhysicWorld"))
-			{
-				mPhysicsWorld = *(boost::shared_ptr< CPhysicsWorld >*)&(*iter);
-			}			
-		}*/
+		//get tasks
 		mOgreTask = boost::dynamic_pointer_cast<COgreTask, nrITask>(nrKernel.getTaskByName("OgreTask"));
 		mUserInput = boost::dynamic_pointer_cast<CUserInput, nrITask>(nrKernel.getTaskByName("UserInput"));
 		mPhysicsWorld = boost::dynamic_pointer_cast<CPhysicsWorld, nrITask>(nrKernel.getTaskByName("PhysicWorld"));
-		
+
 		//check for errors
 		if (!mOgreTask || !mUserInput || !mPhysicsWorld)
 		{
@@ -154,6 +138,14 @@ namespace stunts
 		return mPhysicsWorld;
 	}
 
+
+	//--------------------------------------------------------------------------
+	//--- Terrain()
+	//--------------------------------------------------------------------------
+	boost::shared_ptr< CTerrain >  CLevel::Terrain()
+	{
+		return mTerrain;
+	}
 };
 
 
