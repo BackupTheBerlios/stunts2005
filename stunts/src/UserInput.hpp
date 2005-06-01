@@ -47,7 +47,7 @@ namespace stunts
 #include <nrEngine/nrEngine.h>
 
 #include "Level.hpp"
-#include "Terrain.h"
+#include "Terrain.hpp"
 
 #include <nrEngine/nrEngine.h>
 

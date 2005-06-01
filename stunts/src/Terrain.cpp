@@ -22,7 +22,7 @@
  * USA.
  */
 
-#include "Terrain.h"
+#include "Terrain.hpp"
 
 namespace stunts
 {

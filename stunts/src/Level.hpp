@@ -48,7 +48,7 @@ namespace stunts
 #include "PhysicsWorld.hpp"
 #include "OgreTask.hpp"
 #include "UserInput.hpp"
-#include "Terrain.h"
+#include "Terrain.hpp"
 
 //------------------------------------------------------------------------------
 //--- namespace stunts
