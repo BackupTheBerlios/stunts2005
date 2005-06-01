@@ -17,12 +17,14 @@ stunts_SOURCES = \
 	CSoundSystem.cpp \
 	Time.cpp \
 	Level.cpp \
+	Terrain.cpp \
 	Joint.cpp
 
 # Add here all headers that are needed to build myapp
 # These headers will not be installed, but included in the dist
 noinst_HEADERS = \
 	Level.hpp \
+	Terrain.hpp \
 	FrameListener.hpp \
 	GameApplication.hpp \
 	stunts.hpp \
