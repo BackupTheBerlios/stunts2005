@@ -99,9 +99,9 @@ namespace stunts {
     friend class boost::serialization::access;
     template<class Archive>
     void serialize(Archive & ar, const unsigned int version) {
-      ar & make_nvp("world", __world);
-      ar & make_nvp("body1", __body1);
-      ar & make_nvp("body2", __body2);
+      ar & boost::serialization::make_nvp<CPhysicsWorld*>("world", __world);
+      ar & boost::serialization::make_nvp<CPhysics*>("body1", __body1);
+      ar & boost::serialization::make_nvp<CPhysics*>("body2", __body2);
     }
     
   private:

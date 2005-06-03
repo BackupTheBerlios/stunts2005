@@ -184,9 +184,9 @@ namespace stunts {
     friend class boost::serialization::access;
     template<class Archive>
     void serialize(Archive & ar, const unsigned int version) {
-      ar & make_nvp("infinite", __infinite);
-      ar & make_nvp("seconds", __seconds);
-      ar & make_nvp("nanoseconds", __nanoseconds);
+      ar & boost::serialization::make_nvp<bool>("infinite", __infinite);
+      ar & boost::serialization::make_nvp<int>("seconds", __seconds);
+      ar & boost::serialization::make_nvp<int>("nanoseconds", __nanoseconds);
     }
     
   private:

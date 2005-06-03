@@ -141,11 +141,11 @@ namespace stunts {
     friend class boost::serialization::access;
     template<class Archive>
     void serialize(Archive & ar, const unsigned int version) {
-      ar & make_nvp("auto_disable", __auto_disable);
-      ar & make_nvp("auto_disable_linear_threshold", __linear_threshold);
-      ar & make_nvp("auto_disable_angular_threshold", __angular_threshold);
-      ar & make_nvp("auto_disable_steps", __steps);
-      ar & make_nvp("auto_disable_time", __time);
+      ar & boost::serialization::make_nvp<bool>("auto_disable", __auto_disable);
+      ar & boost::serialization::make_nvp<float>("auto_disable_linear_threshold", __linear_threshold);
+      ar & boost::serialization::make_nvp<float>("auto_disable_angular_threshold", __angular_threshold);
+      ar & boost::serialization::make_nvp<unsigned int>("auto_disable_steps", __steps);
+      ar & boost::serialization::make_nvp<CTime>("auto_disable_time", __time);
     }
     
   private:

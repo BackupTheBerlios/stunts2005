@@ -80,9 +80,12 @@ namespace stunts {
     friend class boost::serialization::access;
     template<class Archive>
     void serialize(Archive & ar, const unsigned int version) {
-      ar & boost::serialization::base_object<CPhysicsAutoDisable>(make_nvp("auto_disable", *this));
+      // TODO Correct for g++-3.4
+      //ar & boost::serialization::base_object<CPhysicsAutoDisable>(
+	 // 	boost::serialization::make_nvp<CPhysicsWorld>("auto_disable", *this)
+	//	);
       
-      ar & make_nvp("world", __world);
+      ar & boost::serialization::make_nvp<CPhysicsWorld*>("world", __world);
     }
     
   private:

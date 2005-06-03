@@ -6,7 +6,7 @@ INCLUDES= -I/usr/local/include -IExternal/FMOD/inc  -I/usr/local/include/OGRE
 
 CFLAGS=-Wall -Werror -g -DEXT_HASH -DGCC_3_1
 LIBS=-L/usr/lib -L/usr/X11R6/lib\
-		-lGL  -lSDL -ljpeg -lpng -lpthread -lGLU\
+		-lGL  -lSDL -ljpeg -lpng -lGLU\
 		-lOgreMain\
 		-lode\
 	  	-lnrEngine
