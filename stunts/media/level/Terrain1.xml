@@ -1,0 +1,14 @@
+<!-- this is a terrain -->
+<terrain>
+	<fence>
+		<geometry>
+			<file>terrainFence.mesh</file>
+		</geometry>
+	</fence>
+
+	<water>
+		<beginBelow>0.0</beginBelow>
+	</water>
+
+	<config>terrain.cfg</config>
+</terrain>

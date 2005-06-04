@@ -1,0 +1,30 @@
+<!-- This is an atmosphere file -->
+<atmosphere>
+	<lensflare>
+		<active>true</active>
+		<type>LensflareType1</type>
+	</lensflare>
+
+	<billboards>
+		<billboard>
+			<name>sun</name>
+			<directionX>1.0</directionX>
+			<directionY>1.0</directionY>
+			<directionZ>1.0</directionZ>
+		</billboard>
+	</billboards>
+
+	<geometry>
+		<file>Skydome1.mesh</file>
+		<stretchX>1.0</stretchX>
+		<stretchY>0.8</stretchY>
+		<stretchZ>1.0</stretchZ>
+	</geometry>
+
+	<particles>
+		<particle type="userPosDependent">
+			<name>rain.particle</name>
+			<density>0.2</density>
+		</particle>
+	</particles>
+</atmosphere>
