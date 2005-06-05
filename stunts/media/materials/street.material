@@ -1,0 +1,44 @@
+
+material Street/Teer
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture Teer.JPG
+			}
+		}
+	}
+}
+
+
+material Street/redwhite
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture redwhite.JPG
+			}
+		}
+	}
+}
+
+material Street/redwhite
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture wall.JPG
+			}
+		}
+	}
+}
+
