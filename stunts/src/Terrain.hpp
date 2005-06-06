@@ -63,7 +63,7 @@ namespace stunts
 
 		bool getHeight(Ogre::Vector3& position);
 
-		
+
 		/**
 		 * Import the terrain from a file.
 		 * @param fileName Name of the file containing terrain data.
@@ -71,9 +71,11 @@ namespace stunts
 		 * @return true if error occurs otherwise false
 		 **/
 		bool importFromFile(const char* fileName, const char* rootNode = "terrain");
-		
+
 
 	protected:
+		void Init();
+
 		boost::shared_ptr< Ogre::RaySceneQuery> mRaySceneQuery;
 
 		boost::shared_ptr< Ogre::SceneManager >	mSceneMgr;
