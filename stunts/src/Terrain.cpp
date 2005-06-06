@@ -26,16 +26,15 @@
 
 namespace stunts
 {
-	CTerrain::CTerrain(boost::shared_ptr< Ogre::SceneManager > sceneMgr,
-			boost::shared_ptr< Ogre::Camera > camera)
+	CTerrain::CTerrain(boost::shared_ptr< Ogre::SceneManager > sceneMgr)
 	{
 
 		mSceneMgr = sceneMgr;
-		mCamera = camera;
 
 		mRaySceneQuery = boost::shared_ptr< Ogre::RaySceneQuery>
 			(mSceneMgr->createRayQuery(
-              Ogre::Ray(mCamera->getPosition(), Ogre::Vector3::NEGATIVE_UNIT_Y))
+				Ogre::Ray(Ogre::Vector3(0.0f, 0.0f, 0.0f),
+				Ogre::Vector3::NEGATIVE_UNIT_Y))
             );
 	}
 
@@ -47,7 +46,7 @@ namespace stunts
 	{
         // clamp to terrain
         static Ogre::Ray updateRay;
-        updateRay.setOrigin(mCamera->getPosition());
+        updateRay.setOrigin(pos);
         updateRay.setDirection(Ogre::Vector3::NEGATIVE_UNIT_Y);
         mRaySceneQuery->setRay(updateRay);
         Ogre::RaySceneQueryResult& qryResult = mRaySceneQuery->execute();

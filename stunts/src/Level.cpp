@@ -153,7 +153,7 @@ namespace stunts
 		TiXmlElement*	smElem = elem->FirstChildElement("import");
 		if (smElem)
 		{
-			mTerrain.reset(new CTerrain(mOgreTask->mSceneMgr, mOgreTask->mCamera));
+			mTerrain.reset(new CTerrain(mOgreTask->mSceneMgr));
 			mTerrain->importFromFile(smElem->Attribute("file"), smElem->Attribute("root"));
 		}
 
@@ -244,7 +244,7 @@ namespace stunts
 
 		//create terrain (after the engine tasks have been gotten)
 		mTerrain = boost::shared_ptr< CTerrain >
-			(new CTerrain(mOgreTask->mSceneMgr, mOgreTask->mCamera));
+			(new CTerrain(mOgreTask->mSceneMgr));
 
 		//return
 		return NR_OK;

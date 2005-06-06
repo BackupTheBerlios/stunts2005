@@ -115,6 +115,7 @@ namespace stunts
 
 		// app specific
 		Ogre::Vector3 mTranslateVector(0.0f, 0.0f, 0.0f);
+		Ogre::Vector3 mTranslateVectorTerrain(0.0f, 0.0f, 0.0f);
 		float mMoveScale = 1;		// * delaySeconds in fact!
 		Ogre::Degree mRotScale(1);	// * delaySeconds in fact!
 		Ogre::Degree mRotX;
@@ -225,12 +226,18 @@ namespace stunts
         mCamera->pitch(mRotY);
         mCamera->moveRelative(mTranslateVector);
 
-		mTerrain->getHeight(mTranslateVector);
+		mTranslateVectorTerrain = mCamera->getPosition();
 
-		//SceneQuery::WorldFragment* wf = i->worldFragment;
-		mCamera->setPosition(mCamera->getPosition().x,
-			mTranslateVector.y + 10,
-			mCamera->getPosition().z);
+		bool rval;
+		rval = mTerrain->getHeight(mTranslateVectorTerrain);
+
+		if (rval && (mCamera->getPosition().y < (mTranslateVectorTerrain.y + 10)))
+		{
+			mCamera->setPosition(mTranslateVectorTerrain.x,
+				mTranslateVectorTerrain.y + 10,
+				mTranslateVectorTerrain.z);
+		}
+
         //
 	}
 

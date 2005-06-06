@@ -56,8 +56,7 @@ namespace stunts
 	{
 
 	public:
-		CTerrain(boost::shared_ptr< Ogre::SceneManager > sceneMgr,
-			boost::shared_ptr< Ogre::Camera > camera);
+		CTerrain(boost::shared_ptr< Ogre::SceneManager > sceneMgr);
 		virtual ~CTerrain();
 
 		bool getHeight(Ogre::Vector3& position);
@@ -73,7 +72,6 @@ namespace stunts
 	protected:
 		boost::shared_ptr< Ogre::RaySceneQuery> mRaySceneQuery;
 
-		boost::shared_ptr< Ogre::Camera >		mCamera;
 		boost::shared_ptr< Ogre::SceneManager >	mSceneMgr;
 	};
 }
