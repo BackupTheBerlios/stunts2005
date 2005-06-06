@@ -1,31 +1,31 @@
 <!-- this is a level -->
 <level>
 
-	<gravity>9.81</gravity>
+	<gravity value="9.81" />
 
 	<terrain>
-		<import root="terrain">Terrain1.xml</import>
+		<import root="terrain" file="Terrain1.xml" />
 	</terrain>
 
 	<objects>
-		<object>
+		<object type="car">
 			<name>HumanPlayerCar</name>
-			<import root="car">CarBMW.xml</import>
-			<control>human</control>
+			<import file="CarBMW.xml" />
+			<control name="Human" />
 		</object>
 
-		<object>
+		<object type="car">
 			<name>AICar</name>
-			<import root="car">CarBMW.xml</import>
+			<import file="CarBMW.xml" />
 			<!-- AICar is loaded from another file -->
-			<control name="AICar">ai</control>
+			<control name="AICar" />
 		</object>
 
 		<!-- this imports all track objects -->
-		<import root="track">Track1.xml</import>
+		<import root="track" file="Track1.xml" />
 	</objects>
 
 	<atmosphere>
-		<import root="atmosphere">Atmosphere1.xml</import>
+		<import root="atmosphere" file="Atmosphere1.xml" />
 	</atmosphere>
 </level>
