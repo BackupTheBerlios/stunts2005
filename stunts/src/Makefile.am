@@ -28,7 +28,8 @@ stunts_SOURCES = \
 	External/tinyxml/tinyxml.cpp\
 	External/tinyxml/tinystr.cpp\
 	External/tinyxml/tinyxmlerror.cpp\
-	External/tinyxml/tinyxmlparser.cpp
+	External/tinyxml/tinyxmlparser.cpp\
+	Utils.cpp
 	
 
 # Add here all headers that are needed to build myapp
@@ -54,7 +55,8 @@ noinst_HEADERS = \
 	BaseControl.hpp\
 	AICarControl.hpp\
 	HumanControl.hpp\
-	Atmosphere.hpp
+	Atmosphere.hpp\
+	Utils.hpp
 
 # Set the include path found by configure
 INCLUDES = \

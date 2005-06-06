@@ -148,8 +148,9 @@ namespace stunts
 			std::vector<boost::shared_ptr<CBaseObject> >	mObjects;
 			
 			float32						mGravity;
-			
 			std::string					mLevelFileName;
+			std::string					mLevelFilePath;
+			
 			bool						mIsLoaded;
 			bool						mShouldLoadLevel;
 			

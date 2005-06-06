@@ -23,9 +23,16 @@
  */
 
 #include "Terrain.hpp"
+#include "Utils.hpp"
+
+#include <boost/shared_ptr.hpp>
+#include <nrEngine/nrEngine.h>
+
+using namespace boost;
 
 namespace stunts
 {
+
 	CTerrain::CTerrain(boost::shared_ptr< Ogre::SceneManager > sceneMgr)
 	{
 
@@ -62,10 +69,59 @@ namespace stunts
 
 	//--------------------------------------------------------------------------
 	bool CTerrain::importFromFile(const char* fileName, const char* rootNode){
+		
+		nrLog.Log(NR_LOG_APP, "CTerrain::importFromFile(): Start loading of a terrain from file \"%s\"", fileName);
+				
+		// we open the file for parsing.
+		shared_ptr<TiXmlDocument> mLevelDoc (new TiXmlDocument(fileName));
+		if (!mLevelDoc->LoadFile())
+		{
+			nrLog.Log(NR_LOG_APP, "CTerrain::importFromFile(): There is an error occurs by loading of terrain specification file \"%s\"", fileName);
+			return true;
+		}
 
+		// Load elements form the level file and handle with them in according way		
+		TiXmlElement* elem = NULL;
+		TiXmlElement* rootElem;
+		if (rootNode == NULL)
+			rootElem = mLevelDoc->FirstChildElement("terrain");
+		else
+			rootElem = mLevelDoc->FirstChildElement(rootNode);
+		
+		if (!rootElem){
+			nrLog.Log(NR_LOG_APP, "CTerrain::importFromFile(): The atmosphere file is corrupted");
+			return true;
+		}
+
+		// get path containing this file
+		std::string mPath = getPathFromFileName(fileName);
+				
+		// read out the location of cfg file
+		elem = rootElem->FirstChildElement("config");
+		if (elem){
+			TiXmlText* name = elem->FirstChild()->ToText();
+			if (name){
+				std::string file = mPath + name->Value();
+				
+				// Setup new terrain
+				try {
+					nrLog.Log(NR_LOG_APP, "CTerrain::importFromFile(): Use \"%s\" as terrain configuration file", file.c_str());
+					mSceneMgr -> setWorldGeometry(file);
+				}catch(...){
+					nrLog.Log(NR_LOG_APP, "CTerrain::importFromFile(): \"%s\" file was not found", file.c_str());
+					return true;
+				}
+			}
+			
+		}else{
+			nrLog.Log(NR_LOG_APP, "CTerrain::importFromFile(): No Config file definition found !!!");
+			return true;
+		}
+		
 		return false;
 	}
 
+	
 }	//namespace stunts
 
 

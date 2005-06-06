@@ -56,18 +56,22 @@ namespace stunts
 	{
 
 	public:
+
 		CTerrain(boost::shared_ptr< Ogre::SceneManager > sceneMgr);
+
 		virtual ~CTerrain();
 
 		bool getHeight(Ogre::Vector3& position);
 
+		
 		/**
 		 * Import the terrain from a file.
 		 * @param fileName Name of the file containing terrain data.
 		 * @param rootNode Name of the root node in the file. If no such defined, so default will be used
-		 * @return false if error occurs otherwise true
+		 * @return true if error occurs otherwise false
 		 **/
 		bool importFromFile(const char* fileName, const char* rootNode = "terrain");
+		
 
 	protected:
 		boost::shared_ptr< Ogre::RaySceneQuery> mRaySceneQuery;

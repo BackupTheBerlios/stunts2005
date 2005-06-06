@@ -77,7 +77,7 @@ namespace stunts
 			mCamera = mLevel->OgreTask()->mCamera;
 			mTerrain = mLevel->Terrain();
 		}
-
+		
 		//return
 		return NR_OK;
 	}
@@ -115,7 +115,6 @@ namespace stunts
 
 		// app specific
 		Ogre::Vector3 mTranslateVector(0.0f, 0.0f, 0.0f);
-		Ogre::Vector3 mTranslateVectorTerrain(0.0f, 0.0f, 0.0f);
 		float mMoveScale = 1;		// * delaySeconds in fact!
 		Ogre::Degree mRotScale(1);	// * delaySeconds in fact!
 		Ogre::Degree mRotX;
@@ -181,7 +180,7 @@ namespace stunts
         if (mInputDevice->isKeyDown(Ogre::KC_F))
         {
         }
-
+        
         if (mInputDevice->isKeyDown(Ogre::KC_T))
         {
         }
@@ -203,8 +202,8 @@ namespace stunts
         {
         }
 
-
-
+        
+        
         /* Rotation factors, may not be used if the second mouse button is pressed. */
 
         /* If the second mouse button is pressed, then the mouse movement results in
@@ -226,18 +225,7 @@ namespace stunts
         mCamera->pitch(mRotY);
         mCamera->moveRelative(mTranslateVector);
 
-		mTranslateVectorTerrain = mCamera->getPosition();
-
-		bool rval;
-		rval = mTerrain->getHeight(mTranslateVectorTerrain);
-
-		if (rval && (mCamera->getPosition().y < (mTranslateVectorTerrain.y + 10)))
-		{
-			mCamera->setPosition(mTranslateVectorTerrain.x,
-				mTranslateVectorTerrain.y + 10,
-				mTranslateVectorTerrain.z);
-		}
-
+		mTerrain->getHeight(mTranslateVector);
         //
 	}
 
@@ -249,8 +237,8 @@ namespace stunts
 	{
 		mActivated = activated;
 	}
-
-
+	
+	
 	//--------------------------------------------------------------------------
 	//--- isActivated() const
 	//--------------------------------------------------------------------------
