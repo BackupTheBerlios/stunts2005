@@ -26,32 +26,12 @@
 
 namespace stunts
 {
-	CTerrain::CTerrain()
+	CTerrain::CTerrain(boost::shared_ptr< Ogre::SceneManager > sceneMgr,
+			boost::shared_ptr< Ogre::Camera > camera)
 	{
-	}
-	
-	
-	CTerrain::CTerrain(boost::shared_ptr< CLevel > level)
-	{
-		mLevel = level;
 
-		if (!(mLevel->OgreTask()))
-		{
-			nrLog.Log(NR_LOG_APP, "CTerrain::CTerrain(): Error in getting\
-				OgreTask");
-
-			#ifdef ENABLE_DEBUG_MESSAGES
-				std::cout << "CTerrain::CTerrain(): Error in getting\
-				OgreTask" << std::endl;
-			#endif
-
-			nrKernel.KillAllTasks();
-		}
-		else
-		{
-			mCamera = mLevel->OgreTask()->mCamera;
-			mSceneMgr = mLevel->OgreTask()->mSceneMgr;
-		}
+		mSceneMgr = sceneMgr;
+		mCamera = camera;
 
 		mRaySceneQuery = boost::shared_ptr< Ogre::RaySceneQuery>
 			(mSceneMgr->createRayQuery(
@@ -74,21 +54,19 @@ namespace stunts
         Ogre::RaySceneQueryResult::iterator i = qryResult.begin();
         if (i != qryResult.end() && i->worldFragment)
         {
-            //SceneQuery::WorldFragment* wf = i->worldFragment;
-            mCamera->setPosition(mCamera->getPosition().x,
-                i->worldFragment->singleIntersection.y + 10,
-                mCamera->getPosition().z);
+        	pos.y = i->worldFragment->singleIntersection.y;
+        	return true;
         }
 
-        return true;
+        return false;
 	}
 
 	//--------------------------------------------------------------------------
 	bool CTerrain::importFromFile(const char* fileName, const char* rootNode){
-	
+
 		return false;
 	}
-	
+
 }	//namespace stunts
 
 

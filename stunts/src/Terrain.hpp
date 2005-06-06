@@ -54,14 +54,14 @@ namespace stunts
 {
 	class CTerrain
 	{
-		
+
 	public:
-		CTerrain();
-		CTerrain(boost::shared_ptr< CLevel > level);
+		CTerrain(boost::shared_ptr< Ogre::SceneManager > sceneMgr,
+			boost::shared_ptr< Ogre::Camera > camera);
 		virtual ~CTerrain();
-		
+
 		bool getHeight(Ogre::Vector3& position);
-		
+
 		/**
 		 * Import the terrain from a file.
 		 * @param fileName Name of the file containing terrain data.
@@ -69,14 +69,13 @@ namespace stunts
 		 * @return false if error occurs otherwise true
 		 **/
 		bool importFromFile(const char* fileName, const char* rootNode = "terrain");
-		
+
 	protected:
-		boost::shared_ptr< Ogre::Camera >		mCamera;
-		boost::shared_ptr< CLevel >				mLevel;
 		boost::shared_ptr< Ogre::RaySceneQuery> mRaySceneQuery;
-		
+
+		boost::shared_ptr< Ogre::Camera >		mCamera;
 		boost::shared_ptr< Ogre::SceneManager >	mSceneMgr;
-	};	
+	};
 }
 
 #endif //_TERRAIN_H_

@@ -77,7 +77,7 @@ namespace stunts
 			mCamera = mLevel->OgreTask()->mCamera;
 			mTerrain = mLevel->Terrain();
 		}
-		
+
 		//return
 		return NR_OK;
 	}
@@ -180,7 +180,7 @@ namespace stunts
         if (mInputDevice->isKeyDown(Ogre::KC_F))
         {
         }
-        
+
         if (mInputDevice->isKeyDown(Ogre::KC_T))
         {
         }
@@ -202,8 +202,8 @@ namespace stunts
         {
         }
 
-        
-        
+
+
         /* Rotation factors, may not be used if the second mouse button is pressed. */
 
         /* If the second mouse button is pressed, then the mouse movement results in
@@ -226,6 +226,11 @@ namespace stunts
         mCamera->moveRelative(mTranslateVector);
 
 		mTerrain->getHeight(mTranslateVector);
+
+		//SceneQuery::WorldFragment* wf = i->worldFragment;
+		mCamera->setPosition(mCamera->getPosition().x,
+			mTranslateVector.y + 10,
+			mCamera->getPosition().z);
         //
 	}
 
@@ -237,8 +242,8 @@ namespace stunts
 	{
 		mActivated = activated;
 	}
-	
-	
+
+
 	//--------------------------------------------------------------------------
 	//--- isActivated() const
 	//--------------------------------------------------------------------------
