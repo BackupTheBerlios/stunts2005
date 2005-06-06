@@ -67,9 +67,10 @@ namespace stunts {
 			 * "\<object\>" nodes. All derived classes should overwrite this method to allow reading
 			 * of data for specified object.
 			 * @param fileName Name of the file containing object data
-			 * @return true if the reading was successfull
+			 * @return false if the reading was successfull
 			 **/
 			virtual bool importFromFile(const char* fileName);
+					bool importFromFile(const std::string fileName){ return importFromFile(fileName.c_str()); }
 			
 			
 			/**
@@ -88,7 +89,7 @@ namespace stunts {
 			/**
 			 * Get the object type name.
 			 */
-			static const char* getObjectType() { return "object"; }
+			static const char* getObjectType() { return "base"; }
 			
 		protected:
 			//! String storing the name

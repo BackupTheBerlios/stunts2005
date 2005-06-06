@@ -23,6 +23,14 @@
  */
 
 #include "Atmosphere.hpp"
+#include <nrEngine/nrEngine.h>
+
+#include "External/tinyxml/tinyxml.h"
+
+#include <boost/shared_ptr.hpp>
+
+using namespace std;
+using namespace boost;
 
 namespace stunts
 {
@@ -39,7 +47,32 @@ namespace stunts
 
 	//--------------------------------------------------------------------------
 	bool CAtmosphere::importFromFile(const char* fileName, const char* rootNode){
-	
+		
+		nrLog.Log(NR_LOG_APP, "CAtmosphere::importFromFile(): Start loading of a atmosphere from file \"%s\"", fileName);
+				
+		// we open the file for parsing.
+		// Later we can open the file through the virtual file system if we had got more time 
+		// for development
+		shared_ptr<TiXmlDocument> mLevelDoc (new TiXmlDocument(fileName));
+		if (!mLevelDoc->LoadFile())
+		{
+			nrLog.Log(NR_LOG_APP, "CAtmosphere::importFromFile(): There is an error occurs by loading atmosphere specification file \"%s\"", fileName);
+			return true;
+		}
+
+		// Load elements form the level file and handle with them in according way		
+		TiXmlElement* elem = NULL;
+		TiXmlElement* rootElem;
+		if (rootNode == NULL)
+			rootElem = mLevelDoc->FirstChildElement("atmosphere");
+		else
+			rootElem = mLevelDoc->FirstChildElement(rootNode);
+		
+		if (!rootElem){
+			nrLog.Log(NR_LOG_APP, "CAtmosphere::importFromFile(): The atmosphere file is corrupted");
+			return true;
+		}
+		
 		return false;
 	}
 	

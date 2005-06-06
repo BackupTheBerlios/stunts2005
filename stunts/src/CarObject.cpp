@@ -47,12 +47,14 @@ namespace stunts {
 	//--------------------------------------------------------------------------
 	bool CCarObject::importFromFile(const char* fileName)
 	{
+		nrLog.Log(NR_LOG_APP, "CCarObject::importFromFile(): Import car definition from file \"%s\"", fileName);
+		
 		// load the xml document
 		shared_ptr<TiXmlDocument> mDoc (new TiXmlDocument(fileName));
 		if (!mDoc->LoadFile())
 		{
 			nrLog.Log(NR_LOG_APP, "CCarObject::importFromFile(): Can not load the file \"%s\"", fileName);
-			return false;	
+			return true;	
 		}
 		
 		TiXmlElement* rootElem = mDoc->FirstChildElement(CCarObject::getObjectType());
@@ -62,11 +64,11 @@ namespace stunts {
 		if (rootElem == NULL)
 		{
 			nrLog.Log(NR_LOG_APP, "CCarObject::importFromFile(): Can not find root node \"%s\"", CCarObject::getObjectType());
-			return false;
+			return true;
 		}
 		
 		
-		return true;		
+		return false;		
 	}
 		
 }

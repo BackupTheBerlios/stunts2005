@@ -73,12 +73,14 @@ namespace stunts {
 	//--------------------------------------------------------------------------
 	bool CBaseObject::importFromFile(const char* fileName)
 	{
+		nrLog.Log(NR_LOG_APP, "CBaseObject::importFromFile(): Import object definition from file \"%s\"", fileName);
+		
 		// load the xml document
 		shared_ptr<TiXmlDocument> mDoc (new TiXmlDocument(fileName));
 		if (!mDoc->LoadFile())
 		{
 			nrLog.Log(NR_LOG_APP, "CBaseObject::importFromFile(): Can not load the file \"%s\"", fileName);
-			return false;	
+			return true;	
 		}
 		
 		TiXmlElement* rootElem = mDoc->FirstChildElement(CBaseObject::getObjectType());
@@ -88,18 +90,21 @@ namespace stunts {
 		if (rootElem == NULL)
 		{
 			nrLog.Log(NR_LOG_APP, "CBaseObject::importFromFile(): Can not find root node \"%s\"", CBaseObject::getObjectType());
-			return false;
+			return true;
 		}
 		
 		// get the name of the object
 		elem = rootElem->FirstChildElement("name");
-		if (elem){
-			TiXmlElement* name = elem->FirstChildElement();
-			if (name) setName(name->ToText()->Value());
+		if (elem && !elem->NoChildren()){
+			TiXmlText* name = elem->FirstChild()->ToText();
+			if (name){
+				nrLog.Log(NR_LOG_APP, "CBaseObject::importFromFile(): Found object with name=\"%s\"", name->Value());
+				setName(name->Value());
+			}
 		}
-
 		
-		return true;		
+		
+		return false;		
 	}
 	
 	//--------------------------------------------------------------------------
