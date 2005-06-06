@@ -2,9 +2,8 @@
 
 <track>
 	<objects>
-		<object>
+		<object type="base">
 			<!-- syk jump -->
-			<type>base</type>
 			<friction>0.9</friction>
 			<mass posX="0" posY="0" posZ="0">#inf</mass>
 	
@@ -36,7 +35,7 @@
 			</waypoints>
 		</object>
 	
-		<object>
+		<object type="base">
 			<!-- syk jump2 -->
 			<type>base</type>
 			<friction>0.9</friction>
