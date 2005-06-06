@@ -79,7 +79,7 @@ namespace stunts
 
 		//set priorities
 		user_input->setTaskPriority(NR_PRIORITY_VERY_HIGH);
-		level_task->setTaskPriority(NR_PRIORITY_VERY_HIGH);
+		level_task->setTaskPriority(NR_PRIORITY_NORMAL);
 		ogre_task->setTaskPriority(NR_PRIORITY_FIRST);
 		
 		//add tasks to the kernel
@@ -88,6 +88,10 @@ namespace stunts
 		nrKernel.AddTask(ogre_task);
 		nrKernel.AddTask(level_task);
 
+		// set level variables. JUST FOR TESTING, this should be done by GUI
+		nrSettings.get("level_file") = std::string("../media/level/Level.xml");
+		nrSettings.get("load_level") = std::string("1");
+		
         return true;
 	}
 

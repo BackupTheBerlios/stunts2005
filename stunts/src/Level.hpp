@@ -5,6 +5,7 @@
  *                    http://developer.berlios.de/projects/stunts2005
  *
  * Maintainer:        Christian Morbach <GameDevelopment@paratronic.de>
+ *                    Art Tevs <tevs@mpi-sb.mpg.de>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -45,10 +46,14 @@ namespace stunts
 
 #include <nrEngine/nrEngine.h>
 
+#include "External/tinyxml/tinyxml.h"
+
 #include "PhysicsWorld.hpp"
 #include "OgreTask.hpp"
 #include "UserInput.hpp"
 #include "Terrain.hpp"
+#include "BaseObject.hpp"
+#include "Atmosphere.hpp"
 
 //------------------------------------------------------------------------------
 //--- namespace stunts
@@ -60,7 +65,19 @@ namespace stunts
 		public:
 			CLevel();
 			virtual ~CLevel();
+
+			//! Register all used variables by the settings manager
+			void registerVariables();
 			
+			//! Remove all used variables from the settings manager
+			void deregisterVariables();
+									
+			/**
+			 * Loads the level by given XML-String
+			 * @param levelFile Filename of file containing XML-Data about the level
+			 * @return 0 if no error occurs otherwise 1
+			 **/
+			bool	loadLevel(const std::string& levelFile);
 			
 			/**
 			 * Get OgreTask
@@ -104,6 +121,21 @@ namespace stunts
 			 */
 			void getEngineTasks();
 
+			//! Parse the gravity value of the level file
+			void readGravity(TiXmlElement* elem);
+
+			//! Parse the terrain node of the xml file
+			void readTerrain(TiXmlElement* elem);
+			
+			//! Parse teh objects node of the level file
+			void readObjects(TiXmlElement* elem);
+			
+			//! Parse the atmosphere node of the file
+			void readAtmosphere(TiXmlElement* elem);
+			
+			//! import file containing data of the track
+			void importTrackFile(const char* fileName, const char* root = NULL);
+						
 			//member variables
 			boost::shared_ptr< COgreTask >			mOgreTask;
 			boost::shared_ptr< CUserInput > 		mUserInput;
@@ -111,6 +143,16 @@ namespace stunts
 			
 			boost::shared_ptr< Ogre::InputReader >	mInputDevice;
 			boost::shared_ptr< CTerrain > 			mTerrain;
+			boost::shared_ptr< CAtmosphere >		mAtmosphere;
+			
+			std::vector<boost::shared_ptr<CBaseObject> >	mObjects;
+			
+			float32						mGravity;
+			
+			std::string					mLevelFileName;
+			bool						mIsLoaded;
+			bool						mShouldLoadLevel;
+			
 	};
 
 };// namespace stunts

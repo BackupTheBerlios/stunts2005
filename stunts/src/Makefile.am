@@ -18,7 +18,18 @@ stunts_SOURCES = \
 	Time.cpp \
 	Level.cpp \
 	Terrain.cpp \
-	Joint.cpp
+	Joint.cpp\
+	BaseObject.cpp\
+	CarObject.cpp\
+	BaseControl.cpp\
+	AICarControl.cpp\
+	HumanControl.cpp\
+	Atmosphere.cpp\
+	External/tinyxml/tinyxml.cpp\
+	External/tinyxml/tinystr.cpp\
+	External/tinyxml/tinyxmlerror.cpp\
+	External/tinyxml/tinyxmlparser.cpp
+	
 
 # Add here all headers that are needed to build myapp
 # These headers will not be installed, but included in the dist
@@ -37,7 +48,13 @@ noinst_HEADERS = \
 	CSound.hpp \
 	CSoundSystem.hpp \
 	Time.hpp \
-	Joint.hpp
+	Joint.hpp\
+	BaseObject.hpp\
+	CarObject.hpp\
+	BaseControl.hpp\
+	AICarControl.hpp\
+	HumanControl.hpp\
+	Atmosphere.hpp
 
 # Set the include path found by configure
 INCLUDES = \

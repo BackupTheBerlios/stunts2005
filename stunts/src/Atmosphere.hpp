@@ -4,7 +4,7 @@
  *                    Stunts 2005 Workgroup,
  *                    http://developer.berlios.de/projects/stunts2005
  *
- * Maintainer:        Christian Morbach <GameDevelopment@paratronic.de>
+ * Maintainer:        Art Tevs <tevs@mpi-sb.mpg.de>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,59 +23,37 @@
  */
 
 
-#ifndef _TERRAIN_H_
-#define _TERRAIN_H_
+#ifndef _STUNTS_ATMOSPHERE_H_
+#define _STUNTS_ATMOSPHERE_H_
 
 //------------------------------------------------------------------------------
 //--- predeclare this class
 //------------------------------------------------------------------------------
 namespace stunts
 {
-	class CTerrain;
+	class CAtmosphere;
 }
-
-//------------------------------------------------------------------------------
-//--- includes
-//------------------------------------------------------------------------------
-#include <OGRE/Ogre.h>
-#include <OGRE/OgreKeyEvent.h>
-#include <OGRE/OgreEventListeners.h>
-#include <OGRE/OgreStringConverter.h>
-#include <OGRE/OgreException.h>
-
-#include <nrEngine/nrEngine.h>
-
-#include "Level.hpp"
 
 //------------------------------------------------------------------------------
 //--- namespace stunts
 //------------------------------------------------------------------------------
 namespace stunts
 {
-	class CTerrain
+	class CAtmosphere
 	{
 		
 	public:
-		CTerrain();
-		CTerrain(boost::shared_ptr< CLevel > level);
-		virtual ~CTerrain();
-		
-		bool getHeight(Ogre::Vector3& position);
-		
+		CAtmosphere();
+		virtual ~CAtmosphere();
+				
 		/**
-		 * Import the terrain from a file.
+		 * Import the atmosphere from a file.
 		 * @param fileName Name of the file containing terrain data.
 		 * @param rootNode Name of the root node in the file. If no such defined, so default will be used
 		 * @return false if error occurs otherwise true
 		 **/
-		bool importFromFile(const char* fileName, const char* rootNode = "terrain");
+		bool importFromFile(const char* fileName, const char* rootNode = "atmosphere");
 		
-	protected:
-		boost::shared_ptr< Ogre::Camera >		mCamera;
-		boost::shared_ptr< CLevel >				mLevel;
-		boost::shared_ptr< Ogre::RaySceneQuery> mRaySceneQuery;
-		
-		boost::shared_ptr< Ogre::SceneManager >	mSceneMgr;
 	};	
 }
 

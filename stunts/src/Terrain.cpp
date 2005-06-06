@@ -26,6 +26,11 @@
 
 namespace stunts
 {
+	CTerrain::CTerrain()
+	{
+	}
+	
+	
 	CTerrain::CTerrain(boost::shared_ptr< CLevel > level)
 	{
 		mLevel = level;
@@ -78,6 +83,12 @@ namespace stunts
         return true;
 	}
 
+	//--------------------------------------------------------------------------
+	bool CTerrain::importFromFile(const char* fileName, const char* rootNode){
+	
+		return false;
+	}
+	
 }	//namespace stunts
 
 
