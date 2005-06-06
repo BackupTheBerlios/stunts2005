@@ -1,0 +1,70 @@
+
+material Car/lack
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture blue.JPG
+			}
+		}
+	}
+}
+
+material Car/front
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture frontlight.JPG
+			}
+		}
+	}
+}
+
+material Car/back
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture backlight.JPG
+			}
+		}
+	}
+}
+
+material Car/wheelray
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture ???.JPG
+			}
+		}
+	}
+}
+
+material Car/wheelgray
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture ???.JPG
+			}
+		}
+	}
+}
