@@ -4,7 +4,7 @@
  *                    Stunts 2005 Workgroup, 
  *                    http://developer.berlios.de/projects/stunts2005
  *
- * Maintainer:        Art Tevs <tevs@mpi-sb.mpg.de>
+ * Maintainer:        Andreas Maurer <andi@andile.de
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,7 +22,6 @@
  * USA.
  */
 
-
 #include "BaseObject.hpp"
 #include "CarObject.hpp"
 #include "External/tinyxml/tinyxml.h"
@@ -33,18 +32,40 @@
 using boost::shared_ptr;
 
 namespace stunts {
-
-	//--------------------------------------------------------------------------
-	CBaseObject::CBaseObject()
-	{
-	}
 	
-	//--------------------------------------------------------------------------
+	/**
+	* Constructor of BaseObject
+	*
+	* @param xmlSettingsString String with settings in XML format 
+	*
+	* @return nothing
+	*/
+	CBaseObject::CBaseObject(char* xmlSettingsString)
+	{
+		// Parse given XML settings string, save in attributes
+		// TODO, when XML Format is known
+	};
+	
+	
+	
+	
+	/** 
+	* Destruktor of BaseObject
+	*
+	* @param none
+	*
+	* @return nothing
+	*
+	*/
 	CBaseObject::~CBaseObject()
 	{
-	}
-	
-	
+		// RemoveObject from memory
+		// TODO
+	};
+
+
+
+
 	//--------------------------------------------------------------------------
 	CBaseObject* CBaseObject::createInstance(std::string objType)
 	{
@@ -62,14 +83,12 @@ namespace stunts {
 			return NULL;
 		}
 		
-	}
+	};
 
-	//--------------------------------------------------------------------------
-	void CBaseObject::setName(const char* name)
-	{
-		this->mName = name;
-	}
-	
+
+
+
+
 	//--------------------------------------------------------------------------
 	bool CBaseObject::importFromFile(const char* fileName)
 	{
@@ -106,7 +125,10 @@ namespace stunts {
 		
 		return false;		
 	}
-	
+
+
+
+
 	//--------------------------------------------------------------------------
 	bool CBaseObject::bindController(const char* name){
 		
@@ -119,6 +141,79 @@ namespace stunts {
 
 		return true;
 	}
-	
-}
 
+
+
+
+	//--------------------------------------------------------------------------
+	void CBaseObject::setName(const char* name)
+	{
+		this->mName = name;
+	}
+	
+	
+	
+	/**
+	* Get event from queue
+	*
+	* @params none
+	*
+	* @return CEvent, the first item of the queue
+	*/
+	CEvent CBaseObject::getEvent()
+	{
+		// Check if queue has elements
+		if (this->m_eventQueue.empty() == false)
+		{
+			// Read first element from vector queue
+			CEvent firstElement = this->m_eventQueue.front();
+	
+			// Remove first element from queue
+			this->m_eventQueue.pop();
+		
+			return firstElement;
+		};
+	};
+	
+	
+	
+	
+	/**
+	* Add event to queue
+	*
+	* @params CEvent Add new item to queue
+	*
+	* @return nothing
+	*/
+	void CBaseObject::addEvent(CEvent element)
+	{
+		this->m_eventQueue.push(element);
+		return;
+	};
+	
+	
+	
+	
+	/**
+	* Process event from queue
+	*
+	* @params none
+	*
+	* @return 0: ok; -1 Error: No further elements in queue;
+	*/
+	int CBaseObject::process()
+	{
+		// If no further element @ queue
+		if (this->m_eventQueue.empty() == true) return -1;
+		
+		// Get first element from queue
+		CEvent task = this->getEvent();
+		
+		// Check what todo
+		// TODO: Implementierung der verschiedenen
+		// Tasks, die durch das Objekt abgearbeitet
+		// werden müssen!
+		
+		return true;
+	};
+};

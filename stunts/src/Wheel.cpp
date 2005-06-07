@@ -22,50 +22,43 @@
  * USA.
  */
 
-#include "CarObject.hpp"
-#include "External/tinyxml/tinyxml.h"
-
-#include <nrEngine/nrEngine.h>
-
-using boost::shared_ptr;
+#include "Wheel.hpp"
 
 namespace stunts {
 	
 	/**
-	* Constructor of BaseObject
+	* Constructor of wheel object
 	*
-	* @param settingsMgr Pointer to nrCSettings object
+	* @param xmlSettingsString Contains Settings in XML format
 	*
 	* @return nothing
 	*/
-	CCarObject::CCarObject(char* xmlSettingsString) : CInteractiveObject(xmlSettingsString)
+	CWheel::CWheel(char* xmlSettingsString) : CBaseObject(xmlSettingsString)
 	{
-		// Parse given XML settings string, save in attributes
-		// TODO, when XML Format is known
+	
 	};
 	
 	
 	
 	
-	/** 
-	* Destruktor of BaseObject
+	
+	/**
+	* Deconstructor of wheel object
 	*
 	* @param none
 	*
 	* @return nothing
-	*
 	*/
-	CCarObject::~CCarObject()
+	CWheel::~CWheel()
 	{
-		// RemoveObject from memory
-		// TODO
+	
 	};
 
 
 
 
 	//--------------------------------------------------------------------------
-	bool CCarObject::importFromFile(const char* fileName)
+	bool CWheel::importFromFile(const char* fileName)
 	{
 		nrLog.Log(NR_LOG_APP, "CCarObject::importFromFile(): Import car definition from file \"%s\"", fileName);
 		
@@ -90,4 +83,5 @@ namespace stunts {
 		
 		return false;		
 	}
-};	
+
+};

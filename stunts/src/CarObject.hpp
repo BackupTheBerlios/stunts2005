@@ -4,7 +4,7 @@
  *                    Stunts 2005 Workgroup, 
  *                    http://developer.berlios.de/projects/stunts2005
  *
- * Maintainer:        Art Tevs <tevs@mpi-sb.mpg.de>
+ * Maintainer:        Andreas Maurer <andi@andile.de
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,39 +22,73 @@
  * USA.
  */
 
+#include "InteractiveObject.hpp"
+#include "Engine.hpp"
+#include "GearBox.hpp"
+#include "Wheel.hpp"
 
-#ifndef _STUNTS_CAR_OBJECT_HPP_
-#define _STUNTS_CAR_OBJECT_HPP_
 
-#include "BaseObject.hpp"
+#ifndef CCAROBJECT_H
+#define CCAROBJECT_H
 
 namespace stunts {
-
-	/**
-	 * This is a car class representing a car object in the game.
-	 **/
-	class CCarObject: public CBaseObject {
+	
+	class CCarObject : public CInteractiveObject
+	{
 		public:
-			//! Default constructor
-			CCarObject();
-			
-			//! Default destructor
+			/**
+			* Constructor of Car Object
+			*
+			* @params xmlSettingsString, String with Settings in XML Format
+			*
+			* @return none
+			*/
+			CCarObject(char* xmlSettingsString);
+	
+	
+			/**
+			* Deconstructor of Car Object
+			*
+			* @params none
+			*
+			* @return none
+			*/
 			~CCarObject();
-			
-			
+	
+			bool 		brake();
+			bool 		steer();
+
+
+
+
 			/**
 			 * Import the file which has got declaration of the car object.
 			 * @param fileName Name of the file containing object data
 			 * @return false if the reading was successfull
 			 **/
-			bool importFromFile(const char* fileName);		
+			bool importFromFile(const char* fileName);	
+
+
+
 			
 			/**
 			 * Get the object type name.
 			 */
 			static const char* getObjectType() { return "car"; }
-			
-	};
-}
 
+
+		protected:
+			// Gearbox of car
+			CGearBox	m_Gear(int numberOfGears, vector<float>* gearTransmission);
+
+			// Engine of car
+			CEngine		m_Engine(int minRpm, int maxRpm);
+
+			// Vector with car wheels
+			vector<CWheel>	wheels(char* xmlSettingsString);
+
+			// brakepedal value
+			bool		m_brake(float brakepedal);
+	};
+};	
 #endif

@@ -21,6 +21,11 @@ stunts_SOURCES = \
 	Joint.cpp\
 	BaseObject.cpp\
 	CarObject.cpp\
+	InteractiveObject.cpp\
+	CarObject.cpp\
+	Wheel.cpp\
+	Engine.cpp\
+	Gearbox.cpp\
 	BaseControl.cpp\
 	AICarControl.cpp\
 	HumanControl.cpp\
@@ -51,7 +56,12 @@ noinst_HEADERS = \
 	Time.hpp \
 	Joint.hpp\
 	BaseObject.hpp\
+	InteractiveObject.hpp\
 	CarObject.hpp\
+	Wheel.hpp\
+	Engine.hpp\
+	GearBox.hpp\
+	Event.hpp\
 	BaseControl.hpp\
 	AICarControl.hpp\
 	HumanControl.hpp\
