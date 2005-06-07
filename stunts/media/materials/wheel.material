@@ -1,0 +1,58 @@
+material Material #79/Metal_Black_Plai
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.0 0.0 0.0
+            diffuse 0.439216 0.439216 0.439216
+            specular 0.898039 0.898039 0.898039 14100.0
+            emissive 0.0 0.0 0.0
+        }
+    }
+}
+
+material Material #79/Material_#137
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.0 0.0 0.0
+            diffuse 0.439216 0.439216 0.439216
+            specular 0.898039 0.898039 0.898039 15000.0
+            emissive 0.0 0.0 0.0
+        }
+    }
+}
+
+material Material #79/2_-_Default
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.588235 0.588235 0.588235
+            diffuse 0.588235 0.588235 0.588235
+            specular 0.898039 0.898039 0.898039 0.0
+            emissive 0.0 0.0 0.0
+            
+            
+        }
+    }
+}
+
+material Material #79/17_-_Default
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.0313726 0.0313726 0.0313726
+            diffuse 0.0313726 0.0313726 0.0313726
+            specular 0.415686 0.415686 0.415686 2000.0
+            emissive 0.0 0.0 0.0
+        }
+    }
+}
+
