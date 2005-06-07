@@ -27,6 +27,7 @@
 #ifndef _LEVEL_HPP_
 #define _LEVEL_HPP_
 
+
 //------------------------------------------------------------------------------
 //--- predeclare this class
 //------------------------------------------------------------------------------
@@ -54,6 +55,7 @@ namespace stunts
 #include "Terrain.hpp"
 #include "BaseObject.hpp"
 #include "Atmosphere.hpp"
+
 
 //------------------------------------------------------------------------------
 //--- namespace stunts
@@ -109,6 +111,21 @@ namespace stunts
 			boost::shared_ptr< CTerrain >	Terrain();
 
 
+			/**
+			 * Convert given GridUnits into Meters
+			 * @param x,z 2D-Grid-Position. 
+			 * @return Vector containing the position vector. The returned vector has y set to 0
+			 * 			so you have to reset the y to right position.
+			 **/
+			Ogre::Vector3 unitsToMeters(int32 x, int32 z);
+			
+			/**
+			 * Convert given GridUnit into Meter
+			 * @param x Grid unit
+			 * @return Value in meters. Assume the terrain is quadratic
+			 **/
+			Ogre::Real unitToMeter(int32 x);
+			
 		protected:
 			virtual nrResult taskInit();
 			virtual nrResult taskStart();
@@ -123,6 +140,9 @@ namespace stunts
 
 			//! Parse the gravity value of the level file
 			void readGravity(TiXmlElement* elem);
+			
+			//! Parse the gridsize value of the level file
+			void readGridsize(TiXmlElement* elem);
 
 			//! Parse the terrain node of the xml file
 			void readTerrain(TiXmlElement* elem);
@@ -154,6 +174,8 @@ namespace stunts
 			bool						mIsLoaded;
 			bool						mShouldLoadLevel;
 			
+			int32 						mGridCountInX;
+			int32 						mGridCountInZ;
 	};
 
 };// namespace stunts

@@ -41,10 +41,8 @@ namespace stunts {
 			* @return nothing
 			*/
 			
-			CGearBox(int numberOfGears, std::vector<float>* gearTransmission);
-	
-	
-	
+			CGearBox(int numberOfGears, std::vector<float> gearTransmission);
+		
 	
 			/**
 			* Deconstructor of Gearbox
@@ -54,9 +52,6 @@ namespace stunts {
 			* @return nothing
 			*/
 			~CGearBox();
-	
-	
-	
 			
 			/**
 			* Function to shift up
@@ -67,9 +62,6 @@ namespace stunts {
 			*/
 			bool			shiftUp();
 	
-	
-	
-	
 			/**
 			* Function to shift down
 			*
@@ -78,9 +70,6 @@ namespace stunts {
 			* @return true: success; false: if not
 			*/
 			bool			shiftDown();
-	
-	
-			
 	
 			/**
 			* Function to get current gearTransmission
@@ -99,7 +88,7 @@ namespace stunts {
 			int			m_numberOfGears;
 	
 			// Contains vector with transmisson of each gear
-			std::vector<float>*	m_gearTransmission;
+			std::vector<float>	m_gearTransmission;
 	};
 };
 #endif

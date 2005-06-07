@@ -26,6 +26,8 @@
 #include "Level.hpp"
 #include "Utils.hpp"
 
+#include "ObjectInstantiator.hpp"
+
 using boost::shared_ptr;
 
 namespace stunts
@@ -37,6 +39,11 @@ namespace stunts
 		mIsLoaded = false;
 		mShouldLoadLevel = false;
 		mLevelFileName = "";
+		
+		// Setup default grid count size
+		mGridCountInX = 30;
+		mGridCountInZ = 30;
+		
 		registerVariables();
 	}
 
@@ -96,6 +103,9 @@ namespace stunts
 		mLevelFilePath = getPathFromFileName(levelFile);
 		mLevelFileName = levelFile;
 		
+		// remove all objects that we are have got at now
+		mObjects.clear();
+		
         // Get the gravity for this level
 		elem = rootElem->FirstChildElement("gravity");
 		if (elem)
@@ -132,6 +142,19 @@ namespace stunts
 		// assign string to the gravity value
 		gravity = elem->Attribute("value");
 		
+	}
+	//--------------------------------------------------------------------------
+	void CLevel::readGridsize(TiXmlElement* elem)
+	{
+		
+		nrCDator<int32>		x(this->mGridCountInX);
+		nrCDator<int32>		z(this->mGridCountInZ);
+				
+		// assign string to the values
+		x = elem->Attribute("x");
+		z = elem->Attribute("z");
+		
+		nrLog.Log(NR_LOG_APP, "CLevel::readGridsize(): The track use grid of size %dx%d", (int32)x, (int32)z);
 	}
 	
 	//--------------------------------------------------------------------------
@@ -173,39 +196,23 @@ namespace stunts
 		for (TiXmlElement* smElem = elem->FirstChildElement("object"); smElem != 0; 
 					smElem = smElem->NextSiblingElement("object"))
         {
-			// Element
-			TiXmlElement*	subElem = NULL;
 			
 			// if it is an object node, so load data from it
-			shared_ptr<CBaseObject>	obj(CBaseObject::createInstance(smElem->Attribute("type")));
+			shared_ptr<CBaseObject>	obj(CObjectInstantiator::createInstance(smElem->Attribute("type")));
 			if (obj == NULL){
 				nrLog.Log(NR_LOG_APP, "CLevel::readObjects(): Non valid object type \"%s\"", smElem->Attribute("type"));
 				break;
 			}
 			
-			// read the name and set it for the object
-			subElem = smElem->FirstChildElement("name");
-			if (subElem && !subElem->NoChildren()){
-				TiXmlText* name = subElem->FirstChild()->ToText();
-				if (name){
-					obj->setName(name->Value());
-					nrLog.Log(NR_LOG_APP, "CLevel::readObjects(): Found object \"%s\"", name->Value());
-				}
+			// set the level file
+			obj->mLevel = this;
+			
+			// Now let the object parse the settings by itself
+			if (obj->parseSettings(smElem, mLevelFilePath)){
+				nrLog.Log(NR_LOG_APP, "CLevel::readObjects(): Error by parsing object settings");
+				break;
 			}
-			
-			// find if we want to import a file
-			subElem = smElem->FirstChildElement("import");
-			if (subElem)
-			{
-				// Workaround because there is probably bugs in path::operator /= method
-				obj->importFromFile(mLevelFilePath + subElem->Attribute("file"));
-			}
-			
-			// if we found a controller, so bind it
-			subElem = smElem->FirstChildElement("control");
-			if (subElem)
-				obj->bindController(subElem->Attribute("name"));
-			
+						
 			// store the object in a vector
 			this->mObjects.push_back(obj);
 		}
@@ -240,12 +247,35 @@ namespace stunts
 			return;
 		}
 		
+		// Get the grid size for this level
+		elem = rootElem->FirstChildElement("gridsize");
+		if (elem)
+			readGridsize(elem);
+
 		// check now for object in the file
 		elem = rootElem->FirstChildElement("objects");
 		if (elem)
 			readObjects(elem);
 		
 	}		
+	
+	//--------------------------------------------------------------------------
+	Ogre::Vector3 CLevel::unitsToMeters(int32 x, int32 z){
+		
+		Ogre::Vector3 vec;
+		
+		vec.x = (Terrain()->getWidthX() / Ogre::Real(mGridCountInX)) * Ogre::Real(x);
+		vec.y = Ogre::Real(0);
+		vec.z = (Terrain()->getWidthZ() / Ogre::Real(mGridCountInZ)) * Ogre::Real(z);
+		
+		return vec;
+	}
+
+	//--------------------------------------------------------------------------
+	Ogre::Real CLevel::unitToMeter(int32 x){
+		return (Terrain()->getWidthX() / float(mGridCountInX)) * float(x);
+	}
+
 	//--------------------------------------------------------------------------
 	nrResult CLevel::taskInit()
 	{
@@ -263,6 +293,8 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	nrResult CLevel::taskStart()
 	{
+		//activate input class
+		UserInput()->activate(true);
 		return NR_OK;
 	}
 
@@ -315,6 +347,7 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	boost::shared_ptr< COgreTask >  CLevel::OgreTask()
 	{
+		//COgreTask::GetSingletonPtr();
 		return mOgreTask;
 	}
 	

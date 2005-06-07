@@ -23,8 +23,19 @@
  */
 
 #include "Wheel.hpp"
+#include "External/tinyxml/tinyxml.h"
+
+#include <boost/shared_ptr.hpp>
+#include <nrEngine/nrEngine.h>
+
+using boost::shared_ptr;
 
 namespace stunts {
+	
+	CWheel::CWheel()
+	{
+	
+	}
 	
 	/**
 	* Constructor of wheel object
@@ -33,13 +44,10 @@ namespace stunts {
 	*
 	* @return nothing
 	*/
-	CWheel::CWheel(char* xmlSettingsString) : CBaseObject(xmlSettingsString)
+	CWheel::CWheel(char* xmlSettingsString, const std::string& xmlPath) : CBaseObject(xmlSettingsString, xmlPath)
 	{
 	
 	};
-	
-	
-	
 	
 	
 	/**
@@ -54,34 +62,5 @@ namespace stunts {
 	
 	};
 
-
-
-
-	//--------------------------------------------------------------------------
-	bool CWheel::importFromFile(const char* fileName)
-	{
-		nrLog.Log(NR_LOG_APP, "CCarObject::importFromFile(): Import car definition from file \"%s\"", fileName);
-		
-		// load the xml document
-		shared_ptr<TiXmlDocument> mDoc (new TiXmlDocument(fileName));
-		if (!mDoc->LoadFile())
-		{
-			nrLog.Log(NR_LOG_APP, "CCarObject::importFromFile(): Can not load the file \"%s\"", fileName);
-			return true;	
-		}
-		
-		TiXmlElement* rootElem = mDoc->FirstChildElement(CCarObject::getObjectType());
-		TiXmlElement* elem = NULL;
-		
-		// get the first root element.
-		if (rootElem == NULL)
-		{
-			nrLog.Log(NR_LOG_APP, "CCarObject::importFromFile(): Can not find root node \"%s\"", CCarObject::getObjectType());
-			return true;
-		}
-		
-		
-		return false;		
-	}
-
 };
+

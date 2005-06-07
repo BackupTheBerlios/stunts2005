@@ -23,76 +23,208 @@
  */
 
 #include "BaseObject.hpp"
-#include "CarObject.hpp"
+#include "ObjectInstantiator.hpp"
+
 #include "External/tinyxml/tinyxml.h"
+#include "Utils.hpp"
 
 #include <boost/shared_ptr.hpp>
+#include <boost/lexical_cast.hpp>
+
 #include <nrEngine/nrEngine.h>
+
+#include <OgreTask.hpp>
 
 using boost::shared_ptr;
 
 namespace stunts {
+
+	//--------------------------------------------------------------------------
+	// Small Helping function to parse position
+	// <node unit="gridUnit">12</node>
+	//--------------------------------------------------------------------------
+	float parsePosition(TiXmlElement* node, CLevel* level){
 	
-	/**
-	* Constructor of BaseObject
-	*
-	* @param xmlSettingsString String with settings in XML format 
-	*
-	* @return nothing
-	*/
-	CBaseObject::CBaseObject(char* xmlSettingsString)
+		if (node == NULL || level == NULL) return 0.0f;
+				
+		// Use Dators to easy convert between strings and normal types like int,float
+		float32 fvalue = 0.0f;
+		nrCDator<float32> fval(fvalue);
+		
+		// Parsing the value and convert from grid units
+		const char* str = node->GetText();
+		if (str){
+			fval = std::string(str);
+			if (node->Attribute("unit") != NULL){
+				// If we have got grid units, so convert them and store
+				if (!strcmp(node->Attribute("unit"), "gridUnits"))
+					fvalue = level->unitToMeter((int32)fval);
+			}
+			
+		}
+	
+		return fvalue;
+	}
+		
+	//--------------------------------------------------------------------------
+	CBaseObject::CBaseObject()
 	{
-		// Parse given XML settings string, save in attributes
-		// TODO, when XML Format is known
-	};
+		mLevel = NULL;
+		mSceneNode = NULL;
+		mEntity = NULL;
+		setName(createName().c_str());
+	}
+		
+	//--------------------------------------------------------------------------
+	CBaseObject::CBaseObject(char* xmlSettingsString, const std::string& xmlPath)
+	{
+		mLevel = NULL;
+		mSceneNode = NULL;
+		mEntity = NULL;
+		setName(createName().c_str());
+		
+		// call the import from string function which will call the right
+		// overwrited parseSettings method
+		importFromString(xmlSettingsString, xmlPath);
+	}
 	
 	
-	
-	
-	/** 
-	* Destruktor of BaseObject
-	*
-	* @param none
-	*
-	* @return nothing
-	*
-	*/
+	//--------------------------------------------------------------------------
 	CBaseObject::~CBaseObject()
 	{
 		// RemoveObject from memory
 		// TODO
-	};
-
-
-
-
+	}
+	
+	
 	//--------------------------------------------------------------------------
-	CBaseObject* CBaseObject::createInstance(std::string objType)
+	bool CBaseObject::parseSettings(TiXmlElement* rootElem, const std::string& xmlPath)
 	{
-		// check whenever we have valid parameter
-		if (objType.length() == 0) return NULL;
-			
-		// check whenever we do support this kind of object type
-		if (objType == CBaseObject::getObjectType())
-			return new CBaseObject();
-		else if (objType == CCarObject::getObjectType())
-			return new CCarObject();
-		else
-		{
-			nrLog.Log(NR_LOG_APP, "CBaseObject::createInstance(): Not supported kind of object type \"%s\"", objType.c_str());
-			return NULL;
+		nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): Start parsing the settings");
+
+		if (rootElem == NULL){
+			nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): Not valid XML-Element given");
+			return true;
 		}
 		
-	};
+		// variables
+		TiXmlElement* elem = NULL;
+		
+		
+		// get the name of the object
+		elem = rootElem->FirstChildElement("name");
+		if (elem){
+			const char* name = elem->GetText();
+			if (name){
+				nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): Set name to \"%s\"", name);
+				setName(name);
+			}
+		}
 
+		
+		// find if we want to import a file
+		elem = rootElem->FirstChildElement("import");
+		if (elem)
+			importFromFile(xmlPath + elem->Attribute("file"), xmlPath);
+		
+		// Get the geometry of the object
+		elem = rootElem->FirstChildElement("geometry");
+		if (elem)
+			if (loadGeometry(elem, xmlPath)) return true;
+	
+		// if we found a controller, so bind it
+		elem = rootElem->FirstChildElement("control");
+		if (elem)
+			bindController(elem->Attribute("name"));
 
-
-
+			
+		// NOTE: The geometry has to be parsed before, so we can access to created nodes
+		if (mSceneNode){
+			Ogre::Vector3 pos = mSceneNode->getPosition();
+			
+			// check whenever such kind of position tag exists
+			elem = rootElem->FirstChildElement("posX");
+			if (elem)
+				pos.x = parsePosition(elem, mLevel);
+			
+			elem = rootElem->FirstChildElement("posZ");
+			if (elem)
+				pos.z = parsePosition(elem, mLevel);
+									
+			elem = rootElem->FirstChildElement("posY");
+			if (elem){
+				// setup normal y-position
+				pos.y = parsePosition(elem, mLevel);
+				
+				// check whenever we want to setup bottom position
+				if (elem->Attribute("type") != NULL){
+					if (!strcmp(elem->Attribute("type"), "bottom"))
+						pos.y = mLevel->Terrain()->getHeight(pos); 
+				}
+			}
+			
+			// Set the position of the node to new position
+			mSceneNode->setPosition(pos);
+		}
+		
+		nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): parsing is complete now");
+		return false;
+		
+	}
+	
+	//--------------------------------------------------------------------------
+	bool CBaseObject::loadGeometry(TiXmlElement* geomElem, const std::string& xmlPath){
+	
+		// Logging
+		nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): Load geometry definition of the object");
+		
+		if (geomElem == NULL){
+			nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): Not a valid XML-Element given");
+			return true;
+		}
+		
+		// variables
+		TiXmlElement* elem = NULL;
+		
+		// get the name of the object
+		elem = geomElem->FirstChildElement("file");
+		if (elem){
+			const char* file = elem->GetText();
+			if (file){
+				nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): Load mesh file \"%s\"", file);
+			
+				try{	
+					// Create & Load the entity
+					mEntity 	= COgreTask::GetSingleton().mSceneMgr->createEntity(mName, std::string(file));
+					mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
+					mSceneNode->attachObject( mEntity );
+				}catch (...){
+					nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): An error occurs by loading of the geometry node");
+					return true;
+				}
+			}
+		}
+		
+		// check for scaling properties
+		elem = geomElem->FirstChildElement("stretch");
+		if (elem){
+			const char* x = elem->Attribute("x");
+			const char* y = elem->Attribute("y");
+			const char* z = elem->Attribute("z");
+			
+			float fx = x ? boost::lexical_cast<float>(x) : 1.0f;
+			float fy = y ? boost::lexical_cast<float>(y) : 1.0f;
+			float fz = z ? boost::lexical_cast<float>(z) : 1.0f;
+			
+			mSceneNode->setScale(fx, fy, fz);
+		}
+		
+		return false;
+	}
 
 	//--------------------------------------------------------------------------
-	bool CBaseObject::importFromFile(const char* fileName)
+	bool CBaseObject::importFromFile(const char* fileName, const std::string& xmlPath)
 	{
-		nrLog.Log(NR_LOG_APP, "CBaseObject::importFromFile(): Import object definition from file \"%s\"", fileName);
 		
 		// load the xml document
 		shared_ptr<TiXmlDocument> mDoc (new TiXmlDocument(fileName));
@@ -101,33 +233,47 @@ namespace stunts {
 			nrLog.Log(NR_LOG_APP, "CBaseObject::importFromFile(): Can not load the file \"%s\"", fileName);
 			return true;	
 		}
-		
-		TiXmlElement* rootElem = mDoc->FirstChildElement(CBaseObject::getObjectType());
-		TiXmlElement* elem = NULL;
+
+		// Get the root element from the file		
+		TiXmlElement* rootElem = mDoc->FirstChildElement(this->getObjectType());
 		
 		// get the first root element.
 		if (rootElem == NULL)
 		{
-			nrLog.Log(NR_LOG_APP, "CBaseObject::importFromFile(): Can not find root node \"%s\"", CBaseObject::getObjectType());
+			nrLog.Log(NR_LOG_APP, "CBaseObject::importFromFile(): Can not find root node \"%s\"", this->getObjectType());
 			return true;
 		}
+				
 		
-		// get the name of the object
-		elem = rootElem->FirstChildElement("name");
-		if (elem && !elem->NoChildren()){
-			TiXmlText* name = elem->FirstChild()->ToText();
-			if (name){
-				nrLog.Log(NR_LOG_APP, "CBaseObject::importFromFile(): Found object with name=\"%s\"", name->Value());
-				setName(name->Value());
-			}
-		}
-		
-		
-		return false;		
+		return parseSettings(rootElem, xmlPath);
 	}
+	
+	//--------------------------------------------------------------------------
+	bool CBaseObject::importFromString(const char* xmlSettings, const std::string& xmlPath)
+	{
+		
+		// load the xml document
+		shared_ptr<TiXmlDocument> mDoc (new TiXmlDocument());
+		mDoc->Parse(xmlSettings);
+		if (mDoc->Error())
+		{
+			nrLog.Log(NR_LOG_APP, "CBaseObject::importFromString(): Can not parse string. %s", mDoc->ErrorDesc());
+			return true;
+		}
 
-
-
+		// Get the root element from the file		
+		TiXmlElement* rootElem = mDoc->FirstChildElement(this->getObjectType());
+		
+		// get the first root element.
+		if (rootElem == NULL)
+		{
+			nrLog.Log(NR_LOG_APP, "CBaseObject::importFromString(): Can not find root node \"%s\"", this->getObjectType());
+			return true;
+		}
+				
+		
+		return parseSettings(rootElem, xmlPath);
+	}
 
 	//--------------------------------------------------------------------------
 	bool CBaseObject::bindController(const char* name){
@@ -141,9 +287,6 @@ namespace stunts {
 
 		return true;
 	}
-
-
-
 
 	//--------------------------------------------------------------------------
 	void CBaseObject::setName(const char* name)
@@ -160,20 +303,20 @@ namespace stunts {
 	*
 	* @return CEvent, the first item of the queue
 	*/
-	CEvent CBaseObject::getEvent()
+	boost::shared_ptr<CEvent> CBaseObject::getEvent()
 	{
 		// Check if queue has elements
 		if (this->m_eventQueue.empty() == false)
 		{
 			// Read first element from vector queue
-			CEvent firstElement = this->m_eventQueue.front();
+			boost::shared_ptr<CEvent> firstElement = this->m_eventQueue.front();
 	
 			// Remove first element from queue
 			this->m_eventQueue.pop();
 		
 			return firstElement;
-		};
-	};
+		}
+	}
 	
 	
 	
@@ -185,11 +328,11 @@ namespace stunts {
 	*
 	* @return nothing
 	*/
-	void CBaseObject::addEvent(CEvent element)
+	void CBaseObject::addEvent(boost::shared_ptr<CEvent> element)
 	{
 		this->m_eventQueue.push(element);
 		return;
-	};
+	}
 	
 	
 	
@@ -207,13 +350,14 @@ namespace stunts {
 		if (this->m_eventQueue.empty() == true) return -1;
 		
 		// Get first element from queue
-		CEvent task = this->getEvent();
+		boost::shared_ptr<CEvent> task = this->getEvent();
 		
 		// Check what todo
 		// TODO: Implementierung der verschiedenen
 		// Tasks, die durch das Objekt abgearbeitet
-		// werden müssen!
+		// werden muessen!
 		
 		return true;
-	};
+	}
+	
 };

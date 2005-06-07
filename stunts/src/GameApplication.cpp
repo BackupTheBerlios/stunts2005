@@ -36,6 +36,8 @@ namespace stunts
 
 	GameApplication::~GameApplication()
 	{
+		COgreTask::Release();
+		
 		// kill all tasks if there are any
 		nrKernel.KillAllTasks();
 
@@ -64,30 +66,30 @@ namespace stunts
 		nrLog.Log(NR_LOG_APP, "Application started");
 
 		//add tasks
+		COgreTask::Instantiate();
+		
 		boost::shared_ptr<CLevel>
 			level_task(new CLevel());
-
+		
 		boost::shared_ptr<CUserInput>
 			user_input(new CUserInput(level_task));
 			
 		boost::shared_ptr<CPhysicsWorld>
 			physics_world(new CPhysicsWorld(level_task));
 			
-		boost::shared_ptr<COgreTask>
-			ogre_task(new COgreTask(level_task));
-
-
 		//set priorities
 		user_input->setTaskPriority(NR_PRIORITY_VERY_HIGH);
 		level_task->setTaskPriority(NR_PRIORITY_NORMAL);
-		ogre_task->setTaskPriority(NR_PRIORITY_FIRST);
 		
+		// Add singletons to the kernel		
+		COgreTask::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_FIRST);
+				
 		//add tasks to the kernel
 		nrKernel.AddTask(user_input);
 		nrKernel.AddTask(physics_world);
-		nrKernel.AddTask(ogre_task);
 		nrKernel.AddTask(level_task);
-
+		
+		
 		// set level variables. JUST FOR TESTING, this should be done by GUI
 		nrSettings.get("level_file") = std::string("../media/level/Level.xml");
 		nrSettings.get("load_level") = std::string("1");

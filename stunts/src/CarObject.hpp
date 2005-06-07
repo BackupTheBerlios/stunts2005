@@ -22,20 +22,24 @@
  * USA.
  */
 
+#ifndef _C_CAROBJECT_H
+#define _C_CAROBJECT_H
+
 #include "InteractiveObject.hpp"
 #include "Engine.hpp"
 #include "GearBox.hpp"
 #include "Wheel.hpp"
 
-
-#ifndef CCAROBJECT_H
-#define CCAROBJECT_H
+#include <vector>
+#include <boost/shared_ptr.hpp>
 
 namespace stunts {
 	
-	class CCarObject : public CInteractiveObject
+	class CCarObject : public CBaseObject
 	{
 		public:
+			CCarObject();
+			
 			/**
 			* Constructor of Car Object
 			*
@@ -43,7 +47,7 @@ namespace stunts {
 			*
 			* @return none
 			*/
-			CCarObject(char* xmlSettingsString);
+			CCarObject(char* xmlSettingsString, const std::string& xmlPath);
 	
 	
 			/**
@@ -57,38 +61,30 @@ namespace stunts {
 	
 			bool 		brake();
 			bool 		steer();
-
-
-
-
-			/**
-			 * Import the file which has got declaration of the car object.
-			 * @param fileName Name of the file containing object data
-			 * @return false if the reading was successfull
-			 **/
-			bool importFromFile(const char* fileName);	
-
-
-
 			
-			/**
-			 * Get the object type name.
-			 */
-			static const char* getObjectType() { return "car"; }
+			
+			static	const char* getObjectTypeSt() 	{ return "car"; }
+					const char* getObjectType() 	{ return CCarObject::getObjectTypeSt(); }
 
 
 		protected:
+			//------------------ Methods --------------------------------------
+			//! @see CBaseObject::parseSettings()
+			bool parseSettings(TiXmlElement* rootElem, const std::string& xmlPath);
+			
+			//------------------ Variables --------------------------------------
+
 			// Gearbox of car
-			CGearBox	m_Gear(int numberOfGears, vector<float>* gearTransmission);
+			boost::shared_ptr<CGearBox>	m_Gear;
 
 			// Engine of car
-			CEngine		m_Engine(int minRpm, int maxRpm);
+			boost::shared_ptr<CEngine>	m_Engine;
 
-			// Vector with car wheels
-			vector<CWheel>	wheels(char* xmlSettingsString);
+			// Vector with carwheels
+			std::vector<boost::shared_ptr<CWheel> >	wheels;
 
 			// brakepedal value
-			bool		m_brake(float brakepedal);
+			bool		m_brake;
 	};
 };	
 #endif

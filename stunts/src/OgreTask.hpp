@@ -47,11 +47,11 @@ namespace stunts {
 	* to run the ogre rendering engine
 	* as a task in the nrEngine
 	*/
-	class COgreTask: public nrITask {
+	class COgreTask: public nrISingletonTask<COgreTask> {
 	public:
 
 		// Constr & Destr
-		COgreTask(boost::shared_ptr< CLevel > level);
+		COgreTask();
 		virtual ~COgreTask();
 		
 		// Task Functions
@@ -69,8 +69,6 @@ namespace stunts {
 		void destroyScene();
 		void createViewports();
 		void setupResources();
-
-		boost::shared_ptr< CLevel >				mLevel;
 
 
 	public:	//for testing issues

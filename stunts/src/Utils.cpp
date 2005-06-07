@@ -27,4 +27,15 @@ namespace stunts{
 		return (path + "/");
 	}
 
+	/** Create Name */	
+	std::string createName(){
+		static int counter = 0;
+		counter ++;
+		
+		char name[128];
+		sprintf(name, "__Unknown_Name_%d", counter);
+		
+		return std::string(name);
+	}
+
 } // namepsace 

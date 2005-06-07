@@ -43,6 +43,9 @@ namespace stunts
 				Ogre::Ray(Ogre::Vector3(0.0f, 0.0f, 0.0f),
 				Ogre::Vector3::NEGATIVE_UNIT_Y))
             );
+			
+		mWidthX = 0.0f;
+		mWidthZ = 0.0f;
 	}
 
 	CTerrain::~CTerrain()
@@ -73,6 +76,18 @@ namespace stunts
         return false;
 	}
 
+	//--------------------------------------------------------------------------
+	float CTerrain::getWidthX()
+	{
+		return mWidthX;
+	}
+	//--------------------------------------------------------------------------
+	float CTerrain::getWidthZ()
+	{
+		return mWidthZ;
+	}
+	
+		
 	//--------------------------------------------------------------------------
 	bool CTerrain::importFromFile(const char* fileName, const char* rootNode){
 
@@ -105,9 +120,9 @@ namespace stunts
 		// read out the location of cfg file
 		elem = rootElem->FirstChildElement("config");
 		if (elem){
-			TiXmlText* name = elem->FirstChild()->ToText();
+			const char* name = elem->GetText();
 			if (name){
-				std::string file = mPath + name->Value();
+				std::string file = mPath + name;
 
 				// Setup new terrain
 				try {
@@ -125,6 +140,17 @@ namespace stunts
 			return true;
 		}
 
+		// read the size of the terrain out
+		elem = rootElem->FirstChildElement("size");
+		if (elem){
+			nrCDator<float> wx (mWidthX);
+			nrCDator<float> wz (mWidthZ);
+			
+			wx = std::string(elem->Attribute("widthX"));
+			wz = std::string(elem->Attribute("widthZ"));
+			
+		}
+		
 		return false;
 	}
 

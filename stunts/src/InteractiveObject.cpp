@@ -26,6 +26,12 @@
 
 namespace stunts {
 	
+	CInteractiveObject::CInteractiveObject()
+	{
+	
+	}
+	
+	
 	/**
 	* Constructor of BaseObject
 	*
@@ -36,8 +42,10 @@ namespace stunts {
 	*/
 	CInteractiveObject::CInteractiveObject(char* xmlSettingsString) : CBaseObject(xmlSettingsString) 
 	{
-		// TODO
-	};
+		// We do not need to specify here more, bacause the base object will call the 
+		// appropriate overrided parseSettings mehtod, where we are defining how to
+		// parse the settings
+	}
 	
 	
 	
@@ -52,5 +60,6 @@ namespace stunts {
 	CInteractiveObject::~CInteractiveObject()
 	{
 	
-	};
+	}
 };
+

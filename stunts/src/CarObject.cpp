@@ -5,7 +5,7 @@
  *                    http://developer.berlios.de/projects/stunts2005
  *
  * Maintainer:        Andreas Maurer <andi@andile.de
- *
+ *                    Art Tevs <tevs@mpi-sb.mpg.de>
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -30,64 +30,43 @@
 using boost::shared_ptr;
 
 namespace stunts {
-	
-	/**
-	* Constructor of BaseObject
-	*
-	* @param settingsMgr Pointer to nrCSettings object
-	*
-	* @return nothing
-	*/
-	CCarObject::CCarObject(char* xmlSettingsString) : CInteractiveObject(xmlSettingsString)
+
+	//--------------------------------------------------------------------------
+	CCarObject::CCarObject():CBaseObject()
 	{
-		// Parse given XML settings string, save in attributes
-		// TODO, when XML Format is known
-	};
 	
-	
-	
-	
-	/** 
-	* Destruktor of BaseObject
-	*
-	* @param none
-	*
-	* @return nothing
-	*
-	*/
+	}
+	//--------------------------------------------------------------------------
+	CCarObject::CCarObject(char* xmlSettingsString, const std::string& xmlPath) : 
+				CBaseObject(xmlSettingsString, xmlPath)
+	{
+		// We do not need to specify here more, bacause the base object will call the 
+		// appropriate overrided parseSettings mehtod, where we are defining how to
+		// parse the settings
+	}
+		
+	//--------------------------------------------------------------------------
 	CCarObject::~CCarObject()
 	{
 		// RemoveObject from memory
 		// TODO
-	};
-
-
-
+	}
 
 	//--------------------------------------------------------------------------
-	bool CCarObject::importFromFile(const char* fileName)
+	bool CCarObject::parseSettings(TiXmlElement* rootElem, const std::string& xmlPath)
 	{
-		nrLog.Log(NR_LOG_APP, "CCarObject::importFromFile(): Import car definition from file \"%s\"", fileName);
-		
-		// load the xml document
-		shared_ptr<TiXmlDocument> mDoc (new TiXmlDocument(fileName));
-		if (!mDoc->LoadFile())
-		{
-			nrLog.Log(NR_LOG_APP, "CCarObject::importFromFile(): Can not load the file \"%s\"", fileName);
-			return true;	
-		}
-		
-		TiXmlElement* rootElem = mDoc->FirstChildElement(CCarObject::getObjectType());
-		TiXmlElement* elem = NULL;
-		
-		// get the first root element.
-		if (rootElem == NULL)
-		{
-			nrLog.Log(NR_LOG_APP, "CCarObject::importFromFile(): Can not find root node \"%s\"", CCarObject::getObjectType());
+
+		if (rootElem == NULL){
+			nrLog.Log(NR_LOG_APP, "CCarObject::parseSettings(): Not valid XML-Element given");
 			return true;
 		}
 		
+		// variables
+		TiXmlElement* elem = NULL;
+		TiXmlElement* smElem = NULL;
 		
-		return false;		
+		// Ok now let the base object parse it's settings
+		return CBaseObject::parseSettings(rootElem, xmlPath);
 	}
+
 };	

@@ -11,6 +11,12 @@ namespace stunts{
 	 **/
 	std::string getPathFromFileName(std::string fileName);
 	
+	/**
+	 * Create random name, that are free
+	 **/
+	std::string createName();
+	
+	
 } // namepsace 
 
 #endif

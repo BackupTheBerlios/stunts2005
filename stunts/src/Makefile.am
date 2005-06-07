@@ -21,11 +21,9 @@ stunts_SOURCES = \
 	Joint.cpp\
 	BaseObject.cpp\
 	CarObject.cpp\
-	InteractiveObject.cpp\
-	CarObject.cpp\
 	Wheel.cpp\
 	Engine.cpp\
-	Gearbox.cpp\
+	GearBox.cpp\
 	BaseControl.cpp\
 	AICarControl.cpp\
 	HumanControl.cpp\
@@ -35,6 +33,7 @@ stunts_SOURCES = \
 	External/tinyxml/tinyxmlerror.cpp\
 	External/tinyxml/tinyxmlparser.cpp\
 	Utils.cpp
+#	ObjectInstantiator.cpp
 	
 
 # Add here all headers that are needed to build myapp
@@ -66,7 +65,8 @@ noinst_HEADERS = \
 	AICarControl.hpp\
 	HumanControl.hpp\
 	Atmosphere.hpp\
-	Utils.hpp
+	Utils.hpp\
+	ObjectInstantiator.hpp
 
 # Set the include path found by configure
 INCLUDES = \

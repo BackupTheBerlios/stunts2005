@@ -32,16 +32,14 @@ namespace stunts {
 	/**
 	* Constructor
 	**/
-	COgreTask::COgreTask(boost::shared_ptr< CLevel > level){
+	COgreTask::COgreTask(){
 		//reset attributes
     	mRoot = NULL;
     	//mCamera = NULL;
     	//mSceneMgr = NULL;
     	mWindow = NULL;
     	//mFrameListener = NULL;
-    	
-    	mLevel = level;
-	}
+   	}
 	
 	/**
 	* Destructor
@@ -68,18 +66,6 @@ namespace stunts {
         createViewports();
 
 
-//Disable the FrameListener as it won't exist anymore in later versions!
-//
-// CM
-		/**
-		 * Here we create the frame listener. Frame listener will be
-		 * informed in each frame by the Ogre-Engine to let update
-		 * him the application. There is also another possibility how to
-		 * update graphics. But we use at now this method here.
-		**/        
-//		mFrameListener= new CFrameListener(mWindow, mCamera);
-//        mRoot->addFrameListener(mFrameListener);
-
 		//setup input class
 		mInputDevice  =	
 			boost::shared_ptr< Ogre::InputReader >
@@ -89,8 +75,7 @@ namespace stunts {
 
  		// Create the scene
         createScene();
-		//boost::shared_ptr< Ogre::InputReader >	mInputDevice;
-
+				
 		return NR_OK;
 	}
 	
@@ -100,8 +85,7 @@ namespace stunts {
 	**/
 	nrResult COgreTask::taskStart()
 	{
-		//activate input class
-		mLevel->UserInput()->activate(true);
+
 		return NR_OK;
 	}
 	
@@ -128,9 +112,6 @@ namespace stunts {
 
 		// clean up
 		destroyScene();
-
-		//delete OGRE frame listener
-//		NR_SAFE_DELETE(mFrameListener);
 
 		//delete OGRE root
 		NR_SAFE_DELETE(mRoot);
@@ -169,10 +150,6 @@ namespace stunts {
         // Set a nice viewpoint
         mCamera->setPosition(707,100,528);
         mCamera->setOrientation(Quaternion(-0.3486, 0.0122, 0.9365, 0.0329));
-
-		// Get the query for this scene
-//       mFrameListener->mRaySceneQuery = mSceneMgr->createRayQuery(
-//            Ray(mCamera->getPosition(), Vector3::NEGATIVE_UNIT_Y));
 
 	}
 
@@ -269,6 +246,10 @@ namespace stunts {
                     archName, typeName, secName);
             }
         }
+		
+		// Initialise, parse scripts etc
+		ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+
     }
 
 }

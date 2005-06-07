@@ -82,3 +82,4 @@ namespace stunts {
 		if (this->m_rpm >= this->m_maxRpm)  return false;
 	};
 };
+

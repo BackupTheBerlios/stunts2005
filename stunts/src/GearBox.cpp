@@ -34,14 +34,11 @@ namespace stunts {
 	* @return none
 	*
 	*/
-	
-	CGearBox::CGearBox(int numberOfGears, std::vector<float>* gearTransmission)
+	CGearBox::CGearBox(int numberOfGears, std::vector<float> gearTransmission)
 	{
 		this->m_numberOfGears 		=	numberOfGears;
 		this->m_gearTransmission 	=	gearTransmission;
-	};
-	
-	
+	}
 	
 	
 	/**
@@ -56,8 +53,7 @@ namespace stunts {
 	CGearBox::~CGearBox()
 	{
 		
-	};
-	
+	}
 	
 	
 	
@@ -75,8 +71,7 @@ namespace stunts {
 		if (m_currentGear == m_numberOfGears) return false;
 		m_currentGear++;
 		return true;
-	};
-	
+	}
 	
 	
 	
@@ -94,9 +89,7 @@ namespace stunts {
 		if (m_currentGear == 1) return false;
 		m_currentGear--;
 		return true;
-	};
-	
-	
+	}
 	
 	
 	
@@ -111,7 +104,6 @@ namespace stunts {
 	
 	float CGearBox::getTransmission()
 	{
-		return (*this->m_gearTransmission)[this->m_currentGear-1];
-		
-	};
+		return (this->m_gearTransmission)[this->m_currentGear-1];	
+	}
 };

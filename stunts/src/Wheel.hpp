@@ -32,6 +32,8 @@ namespace stunts {
 	class CWheel : public CBaseObject
 	{
 		public:
+			CWheel();
+			
 			/**
 			* Constructor of wheel object
 			*
@@ -39,27 +41,8 @@ namespace stunts {
 			*
 			* @return nothing
 			*/
-			CWheel(char* xmlSettingsString);
+			CWheel(char* xmlSettingsString, const std::string& xmlPath);
 
-
-
-
-			/**
-			 * Import the file which has got declaration of the car object.
-			 * @param fileName Name of the file containing object data
-			 * @return false if the reading was successfull
-			 **/
-			bool importFromFile(const char* fileName);	
-
-
-
-			
-			/**
-			 * Get the object type name.
-			 */
-			static const char* getObjectType() { return "wheel"; }
-	
-			
 			/**
 			* Deconstructor of wheel object
 			*
@@ -68,7 +51,13 @@ namespace stunts {
 			* @return nothing
 			*/
 			~CWheel();
-		
+
+			
+			static	const char* getObjectTypeSt() 	{ return "wheel"; }
+					const char* getObjectType() 	{ return CWheel::getObjectTypeSt(); }
+
+	
+					
 		protected:
 			// Setting if this wheel is driven (angetrieben)
 			bool	m_isDrivewheel;

@@ -5,7 +5,7 @@
  *                    http://developer.berlios.de/projects/stunts2005
  *
  * Maintainer:        Andreas Maurer <andi@andile.de
- *
+ *					Art Tevs <tevs@mpi-sb.mpg.de>
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -23,30 +23,51 @@
  */
 
 
-#ifndef CBASEOBJECT_H
-#define CBASEOBJECT_H
+#ifndef _C_BASEOBJECT_H
+#define _C_BASEOBJECT_H
+
+//------------------------------------------------------------------------------
+//--- predeclare this class
+//------------------------------------------------------------------------------
+namespace stunts
+{
+	class CBaseObject;
+}
+
 
 #include "BaseControl.hpp"
 #include "Event.hpp"
+#include "Level.hpp"
+
 #include <queue>
+
+#include <OGRE/Ogre.h>
+
+#include "External/tinyxml/tinyxml.h"
 
 namespace stunts {
 
 	class CBaseObject
 	{
 		public:
+			//! The level is a friend, because it can load the objects and so it needs full access to the object
+			friend class CLevel;
+			
+			/**
+			 * Default constructor
+			 **/
+			CBaseObject();
+			
 			/**
 			* Constructor of BaseObject
 			*
 			* @param char* xmlSettingsString, String with settings in XML format
-			*
+			* @param xmlPath path where the XML file was found (needed for import tags)
+			* 
 			* @return nothing
 			*/
-			CBaseObject(char* xmlSettingsString);
-			
-	
-	
-			
+			CBaseObject(char* xmlSettingsString, const std::string& xmlPath);
+							
 			// Deconstructor
 			virtual ~CBaseObject();
 		
@@ -83,12 +104,23 @@ namespace stunts {
 			* "\<object\>" nodes. All derived classes should overwrite this method to allow reading
 			* of data for specified object.
 			* @param fileName Name of the file containing object data
+			* @param xmlPath path where the XML file was found (needed for import tags)
 			* @return false if the reading was successfull
 			**/
-			virtual bool importFromFile(const char* fileName);
-				bool importFromFile(const std::string fileName){ return importFromFile(fileName.c_str()); }
+			virtual bool importFromFile(const char* fileName, const std::string& xmlPath);
+					bool importFromFile(const std::string fileName, const std::string& xmlPath){ return importFromFile(fileName.c_str(), xmlPath); }
 				
 	
+			/**
+			 * Let import the settings of the object from a string. The string must be a readed 
+			 * XML-File that has got the description of the object. Each derived class should
+			 * overwrite this function, to be able to read it's own declarations
+			 * @param xmlSettings String containing XML-Settings (incl. Root-Tag)
+			 * @param xmlPath path where the XML file was found (needed for import tags)
+			 * @return false if the reading was succesful
+			 **/
+			virtual bool importFromString(const char* xmlSettings, const std::string& xmlPath);
+					bool importFromString(const std::string xmlSettings, const std::string& xmlPath){ return importFromString(xmlSettings.c_str(), xmlPath); }
 	
 				
 			/**
@@ -104,15 +136,8 @@ namespace stunts {
 			virtual bool bindController(const char* name);
 			
 	
-	
-			
-			/**
-			* Get the object type name.
-			*/
-			static const char* getObjectType() { return "base"; }
-	
-	
-	
+			static	const char* getObjectTypeSt() 	{ return "base"; }
+			virtual const char* getObjectType() 	{ return CBaseObject::getObjectTypeSt(); }
 			
 			// Functions to get attributes and attribute-references
 			inline vec3	Position() const		{ return m_position; };
@@ -146,13 +171,10 @@ namespace stunts {
 			*
 			* @params none
 			*
-			* @return &CEvent, Reference on the first item of the queue
+			* @return CEvent, Instance of the first item of the queue
 			*/
-			CEvent	getEvent();
-	
-			
-	
-			
+			boost::shared_ptr<CEvent>	getEvent();
+						
 			/**
 			* Add event to queue
 			*
@@ -160,10 +182,7 @@ namespace stunts {
 			*
 			* @return nothing
 			*/	
-			void	addEvent(CEvent element);
-			
-	
-	
+			void	addEvent(boost::shared_ptr<CEvent> element);
 			
 			/**
 			* Process event from queue
@@ -174,8 +193,34 @@ namespace stunts {
 			*/
 			int	process();
 			
-	
+			
 		protected:
+			//------------------ Methods --------------------------------------
+			
+			/**
+			 * Parse settings of the object by defining the root node of an XML-Tree.
+			 * Using here the tinyxml-parser.
+			 * @param rootElem Pointer to the tinyxml-Element node
+			 * @param xmlPath path where the XML file was found (needed for import tags)
+			 * @return false if reading was successful
+			 **/	
+			virtual bool parseSettings(TiXmlElement* rootElem, const std::string& xmlPath);
+			
+			/**
+			 * This will load the geometry node from the settings.
+			 * The geometry node does contain information, about the used .mesh
+			 * file and also some transformation information (e.g. stretching)
+			 * @param geomElem Pointer to the tinyxml-Element containing geometry node from the XML-tree
+			 * @param xmlPath path where the XML file was found (needed for import tags)
+			 * @return true if an error occurs
+			 **/
+			virtual bool loadGeometry(TiXmlElement* geomElem, const std::string& xmlPath);
+
+			
+			//------------------ Variables --------------------------------------
+			Ogre::Entity*		mEntity;
+			Ogre::SceneNode*	mSceneNode;
+			
 			// TODO: These Classes must be included, then
 			// the 2 lines can be uncommentated
 	
@@ -203,13 +248,16 @@ namespace stunts {
 			vec3			m_torqueAxis;
 			
 			// CVector of queue items
-			std::queue<CEvent>	m_eventQueue;	
+			std::queue<boost::shared_ptr<CEvent> >	m_eventQueue;	
 	
 			//! String storing the name
 			std::string		mName;
 				
 			//! Controller of this object
 			CBaseControl*		mControl;
+			
+			//! Parent level for the objects
+			CLevel*				mLevel;
 			
 	};
 };

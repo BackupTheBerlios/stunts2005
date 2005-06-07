@@ -72,13 +72,27 @@ namespace stunts
 		 **/
 		bool importFromFile(const char* fileName, const char* rootNode = "terrain");
 
-
+		/**
+		 * Return the width in x-direction of terrain in meters
+		 **/
+		float getWidthX();
+		
+		/**
+		 * Return the width in z-direction of terrain in meters
+		 **/
+		float getWidthZ();
+		
+		
 	protected:
 		void Init();
 
 		boost::shared_ptr< Ogre::RaySceneQuery> mRaySceneQuery;
 
 		boost::shared_ptr< Ogre::SceneManager >	mSceneMgr;
+		
+		float mWidthX;
+		float mWidthZ;
+		
 	};
 }
 

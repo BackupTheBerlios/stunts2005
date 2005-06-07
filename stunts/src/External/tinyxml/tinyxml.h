@@ -22,7 +22,12 @@ must not be misrepresented as being the original software.
 distribution.
 */
 
-
+/*
+ Code was modified by Art Tevs <tevs@mpi-sb.mpg.de> to provide some
+ more useful methods, that can helps you to increase development speed :-)
+ 
+ Copyright is the same as above. 
+ */
 #ifndef TINYXML_INCLUDED
 #define TINYXML_INCLUDED
 
@@ -586,6 +591,45 @@ private:
 	TiXmlAttribute sentinel;
 };
 
+/** XML text. Contained in an element.
+*/
+class TiXmlText : public TiXmlNode
+{
+	friend class TiXmlElement;
+public:
+	/// Constructor.
+	TiXmlText (const char * initValue) : TiXmlNode (TiXmlNode::TEXT)
+	{
+		SetValue( initValue );
+	}
+	virtual ~TiXmlText() {}
+
+	#ifdef TIXML_USE_STL
+	/// Constructor.
+	TiXmlText( const std::string& initValue ) : TiXmlNode (TiXmlNode::TEXT)
+	{
+		SetValue( initValue );
+	}
+	#endif
+
+protected :
+	// [internal use] Creates a new Element and returns it.
+	virtual TiXmlNode* Clone() const;
+	// [internal use]
+	virtual void Print( FILE* cfile, int depth ) const;
+	virtual void StreamOut ( TIXML_OSTREAM * out ) const;
+	// [internal use]
+	bool Blank() const;	// returns true if all white space and new lines
+	/*	[internal use]
+			Attribtue parsing starts: First char of the text
+							 returns: next char past '>'
+		*/
+	virtual const char* Parse( const char* p );
+	// [internal use]
+	#ifdef TIXML_USE_STL
+	    virtual void StreamIn( TIXML_ISTREAM * in, TIXML_STRING * tag );
+	#endif
+};
 
 /** The element is a container class. It has a value, the element name,
 	and can contain other elements, text, comments, and unknowns.
@@ -663,6 +707,21 @@ public:
 
 	virtual void Print( FILE* cfile, int depth ) const;
 
+// Art's Change
+	/** Returns the text which is containing by this element. If no such text exists, NULL will be given back.
+	     @verbatim
+		 	<tag>Contained Text</tag>
+		 @endverbatim
+		 So return here "Contained Text"
+	*/
+	const char* GetText()
+	{ 
+		if (NoChildren()) return 0; 
+		TiXmlText* txt = FirstChild()->ToText(); 
+		if (txt != NULL) return txt->Value(); else return 0;
+	}
+// Art's Change
+
 protected:
 
 	// Used to be public [internal use]
@@ -712,47 +771,6 @@ protected:
 						 returns: next char past '>'
 	*/
 	virtual const char* Parse( const char* p );
-};
-
-
-/** XML text. Contained in an element.
-*/
-class TiXmlText : public TiXmlNode
-{
-	friend class TiXmlElement;
-public:
-	/// Constructor.
-	TiXmlText (const char * initValue) : TiXmlNode (TiXmlNode::TEXT)
-	{
-		SetValue( initValue );
-	}
-	virtual ~TiXmlText() {}
-
-	#ifdef TIXML_USE_STL
-	/// Constructor.
-	TiXmlText( const std::string& initValue ) : TiXmlNode (TiXmlNode::TEXT)
-	{
-		SetValue( initValue );
-	}
-	#endif
-
-protected :
-	// [internal use] Creates a new Element and returns it.
-	virtual TiXmlNode* Clone() const;
-	// [internal use]
-	virtual void Print( FILE* cfile, int depth ) const;
-	virtual void StreamOut ( TIXML_OSTREAM * out ) const;
-	// [internal use]
-	bool Blank() const;	// returns true if all white space and new lines
-	/*	[internal use]
-			Attribtue parsing starts: First char of the text
-							 returns: next char past '>'
-		*/
-	virtual const char* Parse( const char* p );
-	// [internal use]
-	#ifdef TIXML_USE_STL
-	    virtual void StreamIn( TIXML_ISTREAM * in, TIXML_STRING * tag );
-	#endif
 };
 
 

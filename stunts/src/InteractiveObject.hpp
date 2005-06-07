@@ -32,6 +32,8 @@ namespace stunts {
 	class CInteractiveObject : public CBaseObject
 	{
 		public:
+			CInteractiveObject();
+			
 			/**
 			* Constructor of BaseObject
 			*
@@ -56,6 +58,7 @@ namespace stunts {
 			// TODO Uncomment if classes are implemented
 			//CUserInput	m_userInput;
 			//CAI		m_ai;
+			
 	};
 };
 #endif
