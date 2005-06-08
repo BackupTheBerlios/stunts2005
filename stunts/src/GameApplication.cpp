@@ -25,6 +25,10 @@
 
 #include "GameApplication.hpp"
 
+#include "OgreTimer.hpp"
+
+using boost::shared_ptr;
+
 
 namespace stunts
 {
@@ -68,31 +72,34 @@ namespace stunts
 		//add tasks
 		COgreTask::Instantiate();
 		
-		boost::shared_ptr<CLevel>
-			level_task(new CLevel());
+		shared_ptr<CLevel> 		level_task(new CLevel());
+		shared_ptr<CUserInput> 	user_input(new CUserInput(level_task));
+		shared_ptr<CPhysicsWorld>physics_world(new CPhysicsWorld(level_task));
+			
 		
-		boost::shared_ptr<CUserInput>
-			user_input(new CUserInput(level_task));
-			
-		boost::shared_ptr<CPhysicsWorld>
-			physics_world(new CPhysicsWorld(level_task));
-			
 		//set priorities
 		user_input->setTaskPriority(NR_PRIORITY_VERY_HIGH);
 		level_task->setTaskPriority(NR_PRIORITY_NORMAL);
 		
 		// Add singletons to the kernel		
-		COgreTask::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_FIRST);
+		COgreTask::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_NORMAL);
 				
 		//add tasks to the kernel
 		nrKernel.AddTask(user_input);
 		nrKernel.AddTask(physics_world);
 		nrKernel.AddTask(level_task);
-		
-		
+				
 		// set level variables. JUST FOR TESTING, this should be done by GUI
 		nrSettings.get("level_file") = std::string("../media/level/Level.xml");
 		nrSettings.get("load_level") = std::string("1");
+		
+		// Setup InGame-Clock
+		shared_ptr<nrITimeSource> timer (new COgreTimer());
+		nrCClock::GetSingleton().setTimeSource(timer);
+		
+		// Add clock to the kernel. The priority must be first, because we
+		// want use timer before Ogre
+		nrCClock::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_FIRST);
 		
         return true;
 	}

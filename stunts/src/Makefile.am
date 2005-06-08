@@ -46,6 +46,7 @@ noinst_HEADERS = \
 	stunts.hpp \
 	UserInput.hpp \
 	OgreTask.hpp \
+	OgreTimer.hpp\
 	Physics.hpp \
 	PhysicsWorld.hpp \
 	PhysicsWorldInfo.hpp \

@@ -67,6 +67,43 @@ namespace stunts {
 	}
 		
 	//--------------------------------------------------------------------------
+	// Small Helping function to parse rotation node
+	// <rotate x="." y="." z="." unit="." value="." />
+	//--------------------------------------------------------------------------
+	Ogre::Quaternion parseRotation(TiXmlElement* node)
+	{
+		if (node == NULL) return Ogre::Quaternion();
+
+		float32 x = 0.0f;
+		float32 y = 0.0f;
+		float32 z = 0.0f;
+		float32 w = 0.0f;
+		
+		nrCDator<float32> _x(x);
+		nrCDator<float32> _y(y);
+		nrCDator<float32> _z(z);
+		nrCDator<float32> _w(w);
+		
+		_x = std::string(node->Attribute("x"));
+		_y = std::string(node->Attribute("y"));
+		_z = std::string(node->Attribute("z"));
+		_w = std::string(node->Attribute("value"));
+		
+		// check for units
+		if (node->Attribute("unit")){
+			if (!strcmp(node->Attribute("unit"), "quarters")){
+				w *= 90.0f;
+			}
+		}
+						
+		Ogre::Quaternion quat(Ogre::Radian(Ogre::Degree(Ogre::Real(w))), Ogre::Vector3(x,y,z));
+		quat.normalise();
+		
+		return quat;	
+	}
+	
+	
+	//--------------------------------------------------------------------------
 	CBaseObject::CBaseObject()
 	{
 		mLevel = NULL;
@@ -139,38 +176,38 @@ namespace stunts {
 
 			
 		// NOTE: The geometry has to be parsed before, so we can access to created nodes
-		if (mSceneNode){
-			Ogre::Vector3 pos = mSceneNode->getPosition();
+		Ogre::Vector3 pos(0.0f, 0.0f, 0.0f);
 			
-			// check whenever such kind of position tag exists
-			elem = rootElem->FirstChildElement("posX");
-			if (elem)
-				pos.x = parsePosition(elem, mLevel);
-			
-			elem = rootElem->FirstChildElement("posZ");
-			if (elem)
-				pos.z = parsePosition(elem, mLevel);
-									
-			elem = rootElem->FirstChildElement("posY");
-			if (elem){
-				// setup normal y-position
-				pos.y = parsePosition(elem, mLevel);
-				
-				// check whenever we want to setup bottom position
-				if (elem->Attribute("type") != NULL){
-					if (!strcmp(elem->Attribute("type"), "bottom"))
-						pos.y = mLevel->Terrain()->getHeight(pos); 
-				}
-			}
-			
-			// Set the position of the node to new position
-			mSceneNode->setPosition(pos);
-			
-			// Read rotation out
-			//Ogre::Vector3 rot = mSceneNode->getRotation();
-			
-		}
+		// check whenever such kind of position tag exists
+		elem = rootElem->FirstChildElement("posX");
+		if (elem)
+			pos.x = parsePosition(elem, mLevel);
 		
+		elem = rootElem->FirstChildElement("posZ");
+		if (elem)
+			pos.z = parsePosition(elem, mLevel);
+								
+		elem = rootElem->FirstChildElement("posY");
+		if (elem){
+			// setup normal y-position
+			pos.y = parsePosition(elem, mLevel);
+			
+			// check whenever we want to setup bottom position
+			if (elem->Attribute("type") != NULL){
+				if (!strcmp(elem->Attribute("type"), "bottom"))
+					pos.y = mLevel->Terrain()->getHeight(pos); 
+			}
+		}
+				
+		// Set the position of the node to new position
+		setPosition(Position() + pos);
+		
+		// Read rotation out
+		elem = rootElem->FirstChildElement("rotate");
+		if (elem)
+			setOrientation(parseRotation(elem));
+
+								
 		nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): parsing is complete now");
 		return false;
 		
@@ -195,8 +232,7 @@ namespace stunts {
 		if (elem){
 			const char* file = elem->GetText();
 			if (file){
-				nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): Load mesh file \"%s\"", file);
-			
+				nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): Load mesh file \"%s\"", file);			
 				try{	
 					// Create & Load the entity
 					mEntity 	= COgreTask::GetSingleton().mSceneMgr->createEntity(mName, std::string(file));
@@ -209,20 +245,42 @@ namespace stunts {
 			}
 		}
 		
+		// Correct object's origin
+		correctObjectsOrigin();
+		
+		// read proportion values
+		elem = geomElem->FirstChildElement("proportion");
+		if (elem)
+		{
+			const char* axis = elem->Attribute("axis");
+			const char* val  = elem->Attribute("size");
+			const char* unit = elem->Attribute("units");
+			
+			bool  useGrid = unit ? (!strcmp(unit, "gridUnits") ? true : false) : false;
+			float32 value = val ? boost::lexical_cast<float32>(val) : 1.0f;
+			
+			scaleObjectProportionaly (axis[0], value, useGrid);
+		}
+			
+		
 		// check for scaling properties
 		elem = geomElem->FirstChildElement("stretch");
-		if (elem){
+		if (elem)
+		{
 			const char* x = elem->Attribute("x");
 			const char* y = elem->Attribute("y");
 			const char* z = elem->Attribute("z");
 			
-			float fx = x ? boost::lexical_cast<float>(x) : 1.0f;
-			float fy = y ? boost::lexical_cast<float>(y) : 1.0f;
-			float fz = z ? boost::lexical_cast<float>(z) : 1.0f;
-			
-			mSceneNode->setScale(fx, fy, fz);
+			try{
+				float fx = x ? boost::lexical_cast<float>(x) : 1.0f;
+				float fy = y ? boost::lexical_cast<float>(y) : 1.0f;
+				float fz = z ? boost::lexical_cast<float>(z) : 1.0f;
+				mSceneNode->scale(fx, fy, fz);
+			}catch(...){
+				return true;
+			}
 		}
-		
+				
 		return false;
 	}
 
@@ -292,14 +350,87 @@ namespace stunts {
 		return true;
 	}
 
+	
+	//--------------------------------------------------------------------------
+	void CBaseObject::correctObjectsOrigin()
+	{
+		// only if can access to the geometry
+		if (!mSceneNode || !mEntity) return;
+		
+		// get the AABB
+		const AxisAlignedBox& box = mEntity->getBoundingBox();
+		
+		// get length along the needed axis
+		Real lengthX = box.getMaximum().x - box.getMinimum().x;
+		Real lengthY = box.getMaximum().y - box.getMinimum().y;
+		Real lengthZ = box.getMaximum().z - box.getMinimum().z;
+
+		// calculate new position of the object
+		Vector3 pos = Position();
+		pos.x += -(box.getMinimum().x + lengthX / 2.0f);
+		pos.y += -(box.getMinimum().y + lengthY / 2.0f);
+		pos.z += -(box.getMinimum().z + lengthZ / 2.0f);
+			
+		setPosition(pos);
+	}
+	//--------------------------------------------------------------------------
+	void CBaseObject::scaleObjectProportionaly(char axis, float32 value, bool useGrid)
+	{	
+		// only if can access to the geometry
+		if (!mSceneNode || !mEntity) return;
+		
+		// get the AABB
+		const AxisAlignedBox& box = mEntity->getBoundingBox();
+		
+		// get length along the needed axis
+		Real length = 0.0f;
+		if (axis == 'x') length = box.getMaximum().x - box.getMinimum().x;
+		if (axis == 'y') length = box.getMaximum().y - box.getMinimum().y;
+		if (axis == 'z') length = box.getMaximum().z - box.getMinimum().z;
+		
+		// calculate new size
+		if (useGrid) value = mLevel->unitToMeter((int32)value);
+		Ogre::Real scale = (value / length);
+		
+		mSceneNode->setScale(scale, scale, scale);
+		
+	}
+	
 	//--------------------------------------------------------------------------
 	void CBaseObject::setName(const char* name)
 	{
 		this->mName = name;
 	}
-	
-	
-	
+	//--------------------------------------------------------------------------
+	void CBaseObject::setPosition(Vector3 pos)
+	{
+		this->m_position = pos;
+		if (mSceneNode)
+			mSceneNode->setPosition(pos);
+	}
+	//--------------------------------------------------------------------------
+	void CBaseObject::setOrientation(Quaternion orient)
+	{
+		this->m_orientation = orient;
+		if (mSceneNode)
+			mSceneNode->setOrientation(orient);
+	}
+	//--------------------------------------------------------------------------
+	void CBaseObject::setMass (float mass)
+	{
+		this->m_mass = mass;
+	}
+	//--------------------------------------------------------------------------
+	void CBaseObject::setMassPoint(Vector3 massPoint)
+	{
+		this->m_masspoint = massPoint;
+	}
+	//--------------------------------------------------------------------------
+	void CBaseObject::setFriction(float coeff)
+	{
+		this->m_frictionCoefficient = coeff;
+	}
+
 	/**
 	* Get event from queue
 	*

@@ -88,7 +88,7 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	nrResult CUserInput::taskUpdate()
 	{
-		this->react(0.0f);		//react here only in this example application
+		this->react(COgreTask::GetSingleton().mTimer->getFrameInterval());		//react here only in this example application
 								//	as no InteractiveObject is running
 		return NR_OK;
 	}
@@ -116,8 +116,8 @@ namespace stunts
 		// app specific
 		Ogre::Vector3 mTranslateVector(0.0f, 0.0f, 0.0f);
 		Ogre::Vector3 mTranslateVectorTerrain(0.0f, 0.0f, 0.0f);
-		float mMoveScale = 1;		// * delaySeconds in fact!
-		Ogre::Degree mRotScale(1);	// * delaySeconds in fact!
+		float mMoveScale = 100.0f  * delaySeconds;// in fact!
+		Ogre::Degree mRotScale(120.0f * delaySeconds);// in fact!
 		Ogre::Degree mRotX;
 		Ogre::Degree mRotY;
 		//

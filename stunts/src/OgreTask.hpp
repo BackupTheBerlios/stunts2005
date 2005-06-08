@@ -81,6 +81,10 @@ namespace stunts {
 		boost::shared_ptr< Ogre::InputReader >	mInputDevice;
 		boost::shared_ptr< Ogre::Camera >		mCamera;
 		boost::shared_ptr< Ogre::SceneManager >	mSceneMgr;
+		
+		//! Timer for the game task. The timer is placed here because OgreTask is also a singleton
+		boost::shared_ptr<nrCTimer>				mTimer;
+		
 	};
   
 }

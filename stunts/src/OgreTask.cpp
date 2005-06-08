@@ -45,7 +45,10 @@ namespace stunts {
 	* Destructor
 	**/
 	COgreTask::~COgreTask(){
-
+	
+		//delete OGRE root
+		NR_SAFE_DELETE(mRoot);
+	
 	}
 	
 	
@@ -86,6 +89,11 @@ namespace stunts {
 	nrResult COgreTask::taskStart()
 	{
 
+		// create the timer interface
+		mTimer.reset (new nrCTimer(nrCClock::GetSingleton()));
+		nrCClock::GetSingleton().addObserver(mTimer);
+		
+		// OK
 		return NR_OK;
 	}
 	
@@ -112,9 +120,6 @@ namespace stunts {
 
 		// clean up
 		destroyScene();
-
-		//delete OGRE root
-		NR_SAFE_DELETE(mRoot);
 				
 		return NR_OK;
 	}

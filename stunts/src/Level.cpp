@@ -264,16 +264,16 @@ namespace stunts
 		
 		Ogre::Vector3 vec;
 		
-		vec.x = (Terrain()->getWidthX() / Ogre::Real(mGridCountInX)) * Ogre::Real(x);
+		vec.x = (Terrain()->getWidthX() / Ogre::Real(mGridCountInX)) * Ogre::Real(x + 1);
 		vec.y = Ogre::Real(0);
-		vec.z = (Terrain()->getWidthZ() / Ogre::Real(mGridCountInZ)) * Ogre::Real(z);
+		vec.z = (Terrain()->getWidthZ() / Ogre::Real(mGridCountInZ)) * Ogre::Real(z + 1);
 		
 		return vec;
 	}
 
 	//--------------------------------------------------------------------------
 	Ogre::Real CLevel::unitToMeter(int32 x){
-		return (Terrain()->getWidthX() / float(mGridCountInX)) * float(x);
+		return (Terrain()->getWidthX() / float(mGridCountInX)) * float(x + 1);
 	}
 
 	//--------------------------------------------------------------------------
@@ -303,7 +303,7 @@ namespace stunts
 	nrResult CLevel::taskUpdate()
 	{
 		// if we are forced to load the level file
-		if (mShouldLoadLevel && !mIsLoaded && mLevelFileName.length() > 0){
+		if (mShouldLoadLevel && mLevelFileName.length() > 0){
 			mShouldLoadLevel = false;
 			if (!loadLevel(mLevelFileName))
 				return NR_UNKNOWN_ERROR;

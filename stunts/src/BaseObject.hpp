@@ -45,6 +45,8 @@ namespace stunts
 
 #include "External/tinyxml/tinyxml.h"
 
+using namespace Ogre;
+
 namespace stunts {
 
 	class CBaseObject
@@ -139,32 +141,27 @@ namespace stunts {
 			static	const char* getObjectTypeSt() 	{ return "base"; }
 			virtual const char* getObjectType() 	{ return CBaseObject::getObjectTypeSt(); }
 			
-			// Functions to get attributes and attribute-references
-			inline vec3	Position() const		{ return m_position; };
-			inline vec3&	rPosition() 			{ return m_position; };
-			inline vec3	Direction() const		{ return m_direction; };
-			inline vec3&	rDirection() 			{ return m_direction; };
+			// Functions to get attributes
+			inline Vector3	Position() const		{ return m_position; };
+			inline Quaternion	Orientation() const		{ return m_orientation; };
 			
 			inline float	Speed() const			{ return m_speed; };
-			inline float&	rSpeed()			{ return m_speed; };
-			inline vec3	SpeedVector() const		{ return m_speedVector; };
-			inline vec3&	rSpeedVector() 			{ return m_speedVector; };
+			inline Vector3	SpeedVector() const		{ return m_speedVector; };
 			
 			inline float	Mass() const			{ return m_mass; };
-			inline float& 	rMass() 			{ return m_mass; };
-			inline vec3	MassPoint() const		{ return m_masspoint; };
-			inline vec3&	rMassPoint() 			{ return m_masspoint; };
+			inline Vector3	MassPoint() const		{ return m_masspoint; };
 			
 			inline float	FrictionCoefficient() const	{ return m_frictionCoefficient; };
-			inline float& 	rFrictionCoefficient() 		{ return m_frictionCoefficient; };
 			
 			inline float	Torque() const			{ return m_torque; };
-			inline float& 	rTorque() 			{ return m_torque; };
-			inline vec3	TorqueAxis() const		{ return m_torqueAxis; };
-			inline vec3&	TorqueAxis() 			{ return m_torqueAxis; };
+			inline Vector3	TorqueAxis() const		{ return m_torqueAxis; };
 			
-	
-	
+			// Functions to set object attributes
+			void	setPosition		(Vector3 pos);
+			void	setOrientation	(Quaternion orient);
+			void	setMass			(float mass);
+			void	setMassPoint	(Vector3 massPoint);
+			void	setFriction		(float coeff);
 			
 			/**
 			* Get event from queue
@@ -216,6 +213,26 @@ namespace stunts {
 			 **/
 			virtual bool loadGeometry(TiXmlElement* geomElem, const std::string& xmlPath);
 
+			/**
+			 * This method calculates the difference between object's local origin and global
+			 * position. After that this method will translate the object's scene node according
+			 * to calculated value, so that the origin of the object lies int the center of all
+			 * local object's axis. This method must be called after the geometry is loaded.
+			 * Otehrwise the object's transforming behavior is not intuitive
+			 **/
+			void correctObjectsOrigin();
+			
+			/**
+			 * Scale the object according to the given proprtion value and the axis.
+			 * First we get the bounding box of the object (mesh must be already loaded).
+			 * Then we scale the object so that it's given axis does have th elength 1m.
+			 * Then we scale the object up to the given proportion value. This can be defined
+			 * in gridUnits, so it will be converted to meters before scaling
+			 * @param axis Char representing the axis ('x', 'y', 'z')
+			 * @param value Proportion value
+			 * @param useGrid if true the given value will be interpreted as grid unit
+			 **/
+			void scaleObjectProportionaly(char axis, float32 value, bool useGrid);
 			
 			//------------------ Variables --------------------------------------
 			Ogre::Entity*		mEntity;
@@ -229,23 +246,23 @@ namespace stunts {
 			//vector<CGeometry>	m_geometry;
 			
 			// Position and direction of the object
-			vec3 			m_position;
-			vec3 			m_direction;
+			Vector3 			m_position;
+			Quaternion			m_orientation;
 			
 			// Speed value and speed vector
 			float			m_speed;
-			vec3			m_speedVector;
+			Vector3			m_speedVector;
 			
 			// Mass value and masspoint vector
 			float			m_mass;
-			vec3			m_masspoint;
+			Vector3			m_masspoint;
 	
 			// Friction Coefficient (dt: Reibungskoeffizient)		
 			float			m_frictionCoefficient;
 			
 			// Torque value and torqueAxis vector
 			float			m_torque;
-			vec3			m_torqueAxis;
+			Vector3			m_torqueAxis;
 			
 			// CVector of queue items
 			std::queue<boost::shared_ptr<CEvent> >	m_eventQueue;	
