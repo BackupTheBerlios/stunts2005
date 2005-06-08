@@ -96,10 +96,10 @@ namespace stunts {
 			}
 		}
 						
-		Ogre::Quaternion quat(Ogre::Radian(Ogre::Degree(Ogre::Real(w))), Ogre::Vector3(x,y,z));
-		quat.normalise();
+		Ogre::Quaternion quater(Ogre::Radian(Ogre::Degree(Ogre::Real(w))), Ogre::Vector3(x,y,z));
+		quater.normalise();
 		
-		return quat;	
+		return quater;	
 	}
 	
 	
