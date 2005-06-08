@@ -1,7 +1,6 @@
 <!-- This is a car -->
 <!-- the contol (ai/human) has to be defined externally -->
 <car>
-	<type>car</type>
 
 	<!-- of course the wheels are physically connected to the car body -->
 	<wheels>
@@ -53,10 +52,8 @@
 	</sounds>
 
 	<geometry>
-		<file>Car1.mesh</file>
-		<stretchX>0.8</stretchX>
-		<stretchY>0.9</stretchY>
-		<stretchZ>0.8</stretchZ>
+		<file>car.mesh</file>
+		<stretch x="0.8" y="0.8" z="0.8"/>
 	</geometry>
 
 	<particles>

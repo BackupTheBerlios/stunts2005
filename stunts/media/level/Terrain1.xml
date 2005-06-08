@@ -1,5 +1,11 @@
 <!-- this is a terrain -->
 <terrain>
+	<!-- 
+		Ausdehnung vom Terrain in Metern. Muss das gleiche sein, wie in terrain.cfg 
+		Die Angabe ist wichtig, um die Units nach Meter konvertieren zu können.
+	-->
+	<size widthX="1024.0" widthZ="1024.0" />
+	
 	<fence>
 		<geometry>
 			<file>terrainFence.mesh</file>

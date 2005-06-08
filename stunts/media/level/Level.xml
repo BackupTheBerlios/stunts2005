@@ -2,7 +2,7 @@
 <level>
 
 	<gravity value="9.81" />
-
+	
 	<terrain>
 		<import root="terrain" file="Terrain1.xml" />
 	</terrain>
@@ -12,15 +12,19 @@
 			<name>HumanPlayerCar</name>
 			<import file="CarBMW.xml" />
 			<control name="Human" />
+			
+			<posX unit="gridUnits">10</posX>
+			<posY unit="gridUnits" type="bottom">0</posY>
+			<posZ unit="gridUnits">13</posZ>
+	
 		</object>
 
 		<object type="car">
 			<name>AICar</name>
 			<import file="CarBMW.xml" />
-			<!-- AICar is loaded from another file -->
 			<control name="AICar" />
 		</object>
-
+		
 		<!-- this imports all track objects -->
 		<import root="track" file="Track1.xml" />
 	</objects>

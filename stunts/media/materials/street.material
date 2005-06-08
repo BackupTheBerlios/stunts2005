@@ -28,7 +28,7 @@ material Street/redwhite
 	}
 }
 
-material Street/redwhite
+material Street/wall
 {
 	technique
 	{

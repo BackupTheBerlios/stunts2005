@@ -165,6 +165,10 @@ namespace stunts {
 			
 			// Set the position of the node to new position
 			mSceneNode->setPosition(pos);
+			
+			// Read rotation out
+			//Ogre::Vector3 rot = mSceneNode->getRotation();
+			
 		}
 		
 		nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): parsing is complete now");
