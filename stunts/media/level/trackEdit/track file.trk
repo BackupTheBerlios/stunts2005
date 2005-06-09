@@ -1,0 +1,16 @@
+_POS_X_	_POS_Z_	_ROT_Y_	_MESH_NAME_
+
+15	7	0	house
+17	7	0	house
+
+16	8	0	house
+17	8	0	house
+18	8	0	house
+
+1	9	0	firTree
+2	9	0	corner_big
+4	9	0	straight_line
+5	9	0	drive-up_bridge
+6	9	0	straight_line_bridge
+7	9	0	straight_line_bridge
+8	9	0	straight_line_bridge

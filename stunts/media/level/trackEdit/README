@@ -1,0 +1,9 @@
+usage of convert (Linux only)
+-----------------------------
+
+1) edit "track file.trk", insert all track elements
+2) adapt the "track object template.xml" template if needed
+3) build convert with "sh make.sh"
+4) run convert from its directory with "./convert"
+5) if convert succeeded, the file "total track objects.xml"
+	is the result with all objects
