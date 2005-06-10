@@ -26,7 +26,7 @@
 		</object>
 		
 		<!-- this imports all track objects -->
-		<import root="track" file="Track1.xml" />
+		<import root="track" file="total_track_objects.xml" />
 	</objects>
 
 	<atmosphere>
