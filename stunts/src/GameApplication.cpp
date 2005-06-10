@@ -79,7 +79,7 @@ namespace stunts
 		
 		//set priorities
 		user_input->setTaskPriority(NR_PRIORITY_VERY_HIGH);
-		level_task->setTaskPriority(NR_PRIORITY_NORMAL);
+		level_task->setTaskPriority(NR_PRIORITY_VERY_LOW);
 		
 		// Add singletons to the kernel		
 		COgreTask::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_NORMAL);
