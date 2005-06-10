@@ -127,6 +127,41 @@ namespace stunts
 			readAtmosphere(elem);
 		
 		mIsLoaded = true;
+		
+		// Erstelle Gitter model
+		for (int32 i = 0; i < mGridCountInX; i++)
+			for (int32 j=0; j < mGridCountInZ; j++){
+		
+				char name[256];
+				sprintf(name, "Gitter_%d_%d", i,j);
+				fprintf(stderr, "%s\n", name);
+				
+				/// Create the mesh via the MeshManager
+				Ogre::MeshPtr msh = MeshManager::getSingleton().createManual(name, "General");
+		
+				/// Set bounding information (for culling)
+				Vector3 min = unitsToMeters(i,j);
+				Vector3 max = unitsToMeters(i+1,j+1);
+				min.y = 10.0f;
+				max.y = 10.0f;
+				
+				AxisAlignedBox aabb(min, max);
+				msh->_setBounds(aabb);
+				
+				/// Notify Mesh object that it has been loaded
+				msh->load();
+				
+				// Now add this into scene graph
+				char ename[256];
+				sprintf(ename, "%s_entity", name);
+				Entity* ent;
+				ent 	= COgreTask::GetSingleton().mSceneMgr->createEntity(std::string(ename), std::string(name));
+				SceneNode* mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
+				mSceneNode->attachObject( ent );
+				mSceneNode->showBoundingBox(true);
+		}
+
+				
 		return false;
 	}
 
@@ -264,16 +299,16 @@ namespace stunts
 		
 		Ogre::Vector3 vec;
 		
-		vec.x = (Terrain()->getWidthX() / Ogre::Real(mGridCountInX)) * Ogre::Real(x + 1);
+		vec.x = (Terrain()->getWidthX() / Ogre::Real(mGridCountInX)) * Ogre::Real(x);
 		vec.y = Ogre::Real(0);
-		vec.z = (Terrain()->getWidthZ() / Ogre::Real(mGridCountInZ)) * Ogre::Real(z + 1);
+		vec.z = (Terrain()->getWidthZ() / Ogre::Real(mGridCountInZ)) * Ogre::Real(z);
 		
 		return vec;
 	}
 
 	//--------------------------------------------------------------------------
 	Ogre::Real CLevel::unitToMeter(int32 x){
-		return (Terrain()->getWidthX() / float(mGridCountInX)) * float(x + 1);
+		return (Terrain()->getWidthX() / float(mGridCountInX)) * float(x);
 	}
 
 	//--------------------------------------------------------------------------
@@ -295,6 +330,7 @@ namespace stunts
 	{
 		//activate input class
 		UserInput()->activate(true);
+		
 		return NR_OK;
 	}
 

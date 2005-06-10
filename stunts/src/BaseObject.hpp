@@ -236,7 +236,7 @@ namespace stunts {
 			
 			//------------------ Variables --------------------------------------
 			Ogre::Entity*		mEntity;
-			Ogre::SceneNode*	mSceneNode;
+			Ogre::SceneNode*	mObjNode;
 			
 			// TODO: These Classes must be included, then
 			// the 2 lines can be uncommentated

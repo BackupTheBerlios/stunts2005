@@ -95,9 +95,14 @@ namespace stunts {
 				w *= 90.0f;
 			}
 		}
-						
-		Ogre::Quaternion quater(Ogre::Radian(Ogre::Degree(Ogre::Real(w))), Ogre::Vector3(x,y,z));
-		quater.normalise();
+
+		//Ogre::Quaternion quater(Ogre::Radian(Ogre::Degree(Ogre::Real(w))),
+		//			Ogre::Vector3((Ogre::Real)x,(Ogre::Real)y,(Ogre::Real)z));
+		//quater.normalise();
+		Radian  rf (Real(TORAD(w)));
+		Vector3 v  (x,y,z);
+		
+		Quaternion quater(rf, v);
 		
 		return quater;	
 	}
@@ -107,16 +112,17 @@ namespace stunts {
 	CBaseObject::CBaseObject()
 	{
 		mLevel = NULL;
-		mSceneNode = NULL;
+		mObjNode = NULL;
 		mEntity = NULL;
 		setName(createName().c_str());
+		setPosition(Vector3(0,0,0));
 	}
 		
 	//--------------------------------------------------------------------------
 	CBaseObject::CBaseObject(char* xmlSettingsString, const std::string& xmlPath)
 	{
 		mLevel = NULL;
-		mSceneNode = NULL;
+		mObjNode = NULL;
 		mEntity = NULL;
 		setName(createName().c_str());
 		
@@ -158,16 +164,17 @@ namespace stunts {
 			}
 		}
 
-		
+		// Get the geometry of the object
+		elem = rootElem->FirstChildElement("geometry");
+		if (elem)
+			if (loadGeometry(elem, xmlPath)) return true;
+
+			
 		// find if we want to import a file
 		elem = rootElem->FirstChildElement("import");
 		if (elem)
 			importFromFile(xmlPath + elem->Attribute("file"), xmlPath);
 		
-		// Get the geometry of the object
-		elem = rootElem->FirstChildElement("geometry");
-		if (elem)
-			if (loadGeometry(elem, xmlPath)) return true;
 	
 		// if we found a controller, so bind it
 		elem = rootElem->FirstChildElement("control");
@@ -200,14 +207,20 @@ namespace stunts {
 		}
 				
 		// Set the position of the node to new position
-		setPosition(Position() + pos);
+		// Here we correct the node's position to the underlying grid model
+		Vector3 newPos = Position() + pos;
+		const AxisAlignedBox& aabb = mEntity->getBoundingBox();
+		newPos.x += mObjNode->getScale().x  * (aabb.getMaximum().x - aabb.getMinimum().x) / 2.0f;
+		newPos.z += mObjNode->getScale().z  * (aabb.getMaximum().z - aabb.getMinimum().z) / 2.0f;		
+		setPosition(newPos);
+		
 		
 		// Read rotation out
 		elem = rootElem->FirstChildElement("rotate");
 		if (elem)
 			setOrientation(parseRotation(elem));
 
-								
+						
 		nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): parsing is complete now");
 		return false;
 		
@@ -236,18 +249,16 @@ namespace stunts {
 				try{	
 					// Create & Load the entity
 					mEntity 	= COgreTask::GetSingleton().mSceneMgr->createEntity(mName, std::string(file));
-					mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
-					mSceneNode->attachObject( mEntity );
+					mObjNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
+					//mObjNode	= mRootNode->createChildNode()
+					mObjNode->attachObject( mEntity );
 				}catch (...){
 					nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): An error occurs by loading of the geometry node");
 					return true;
 				}
 			}
 		}
-		
-		// Correct object's origin
-		correctObjectsOrigin();
-		
+						
 		// read proportion values
 		elem = geomElem->FirstChildElement("proportion");
 		if (elem)
@@ -275,12 +286,13 @@ namespace stunts {
 				float fx = x ? boost::lexical_cast<float>(x) : 1.0f;
 				float fy = y ? boost::lexical_cast<float>(y) : 1.0f;
 				float fz = z ? boost::lexical_cast<float>(z) : 1.0f;
-				mSceneNode->scale(fx, fy, fz);
+				mObjNode->scale(fx, fy, fz);
 			}catch(...){
 				return true;
 			}
 		}
-				
+	
+		
 		return false;
 	}
 
@@ -354,8 +366,9 @@ namespace stunts {
 	//--------------------------------------------------------------------------
 	void CBaseObject::correctObjectsOrigin()
 	{
+
 		// only if can access to the geometry
-		if (!mSceneNode || !mEntity) return;
+		if (!mObjNode || !mEntity) return;
 		
 		// get the AABB
 		const AxisAlignedBox& box = mEntity->getBoundingBox();
@@ -366,24 +379,58 @@ namespace stunts {
 		Real lengthZ = box.getMaximum().z - box.getMinimum().z;
 
 		// calculate new position of the object
-		Vector3 pos = Position();
-		pos.x += -(box.getMinimum().x + lengthX / 2.0f);
-		pos.y += -(box.getMinimum().y + lengthY / 2.0f);
-		pos.z += -(box.getMinimum().z + lengthZ / 2.0f);
+		Vector3 pos;// = mObjNode->getPosition();
+		pos.x = lengthX/2.0f;//-(box.getMinimum().x + lengthX / 2.0f);
+		pos.y = lengthY/2.0f;//-(box.getMinimum().y + lengthY / 2.0f);
+		pos.z = lengthZ/2.0f;//-(box.getMinimum().z + lengthZ / 2.0f);
+
+		
+		mObjNode->translate(pos, Ogre::Node::TS_PARENT);
+		mObjNode->showBoundingBox(true);
+				
+//		setPosition(mObjNode->getPosition() + pos);
+#if 0		
+		// Now access Ogre's vertices and correct their position;
+		for (unsigned short i=0; i < mEntity->getMesh()->getNumSubMeshes(); i++)
+		{
+			SubMesh* sub_mesh = mEntity->getMesh()->getSubMesh(i);
+			VertexData* v_data = NULL;
 			
-		setPosition(pos);
+			// get the pointer to vertex data
+			if (sub_mesh->useSharedVertices)
+				v_data = mEntity->getMesh()->sharedVertexData;
+			else
+				v_data = sub_mesh->vertexData;
+			
+			// get pointer to vertices
+			const Ogre::VertexElement* posElem = v_data->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
+			Ogre::HardwareVertexBufferSharedPtr vbuf = v_data->vertexBufferBinding->getBuffer(posElem->getSource());
+			unsigned char* vertex = static_cast<unsigned char*>(vbuf->lock(Ogre::HardwareBuffer::HBL_NORMAL));
+			float* pReal;
+
+			for(size_t j = 0; j < v_data->vertexCount; ++j, vertex += vbuf->getVertexSize())
+			{
+				posElem->baseVertexPointerToElement(vertex, &pReal);
+
+				*pReal += pos.x; pReal ++;
+				*pReal += pos.y; pReal ++;
+				*pReal += pos.z; pReal ++;
+			}
+			vbuf->unlock();
+		}
+#endif
 	}
 	//--------------------------------------------------------------------------
 	void CBaseObject::scaleObjectProportionaly(char axis, float32 value, bool useGrid)
 	{	
 		// only if can access to the geometry
-		if (!mSceneNode || !mEntity) return;
+		if (!mObjNode || !mEntity) return;
 		
 		// get the AABB
 		const AxisAlignedBox& box = mEntity->getBoundingBox();
 		
 		// get length along the needed axis
-		Real length = 0.0f;
+		Real length = 1.0f;
 		if (axis == 'x') length = box.getMaximum().x - box.getMinimum().x;
 		if (axis == 'y') length = box.getMaximum().y - box.getMinimum().y;
 		if (axis == 'z') length = box.getMaximum().z - box.getMinimum().z;
@@ -392,8 +439,7 @@ namespace stunts {
 		if (useGrid) value = mLevel->unitToMeter((int32)value);
 		Ogre::Real scale = (value / length);
 		
-		mSceneNode->setScale(scale, scale, scale);
-		
+		mObjNode->setScale(scale, scale, scale);
 	}
 	
 	//--------------------------------------------------------------------------
@@ -405,15 +451,15 @@ namespace stunts {
 	void CBaseObject::setPosition(Vector3 pos)
 	{
 		this->m_position = pos;
-		if (mSceneNode)
-			mSceneNode->setPosition(pos);
+		if (mObjNode)
+			mObjNode->setPosition(pos);
 	}
 	//--------------------------------------------------------------------------
 	void CBaseObject::setOrientation(Quaternion orient)
 	{
 		this->m_orientation = orient;
-		if (mSceneNode)
-			mSceneNode->setOrientation(orient);
+		if (mObjNode)
+			mObjNode->setOrientation(orient);
 	}
 	//--------------------------------------------------------------------------
 	void CBaseObject::setMass (float mass)
