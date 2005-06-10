@@ -1,11 +1,9 @@
 		<object type="base">
 			<!-- _OBJECT_COMMENT_ -->
 			<friction>0.9</friction>
-			<mass posX="0" posY="0" posZ="0">#inf</mass>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotX>0</rotX>
-			<rotY unit="quarters">_ROT_Y_</rotY>
-			<rotZ>0</rotZ>
+			<rotate x="0" y="1" z="0" unit="quarters" value="_ROT_Y_" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -14,8 +12,10 @@
 			<posY>30</posY>
 			<posZ unit="gridUnits">_POS_Z_</posZ>
 
+
 			<geometry>
 				<file>_MESH_NAME_.mesh</file>
+				<proportion axis="x" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 

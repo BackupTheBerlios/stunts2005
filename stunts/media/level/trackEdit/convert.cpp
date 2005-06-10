@@ -102,7 +102,7 @@ int main()
 	string totalTrackString;
 
 	//begin root tag
-	totalTrackString += "<objects>";
+	totalTrackString += "<track>\n\t<objects>\n";
 
 
 	//ignore first line
@@ -168,7 +168,7 @@ int main()
 		delete trackChars;
 
 	//close root tag
-	totalTrackString += "</objects>";
+	totalTrackString += "\t</objects>\n</track>";
 
 	//write file
 	FILE* totalTrackFile;
