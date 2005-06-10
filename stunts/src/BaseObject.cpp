@@ -167,7 +167,7 @@ namespace stunts {
 		// Get the geometry of the object
 		elem = rootElem->FirstChildElement("geometry");
 		if (elem)
-			if (loadGeometry(elem, xmlPath)) return true;
+			loadGeometry(elem, xmlPath);
 
 			
 		// find if we want to import a file
@@ -209,9 +209,11 @@ namespace stunts {
 		// Set the position of the node to new position
 		// Here we correct the node's position to the underlying grid model
 		Vector3 newPos = Position() + pos;
-		const AxisAlignedBox& aabb = mEntity->getBoundingBox();
-		newPos.x += mObjNode->getScale().x  * (aabb.getMaximum().x - aabb.getMinimum().x) / 2.0f;
-		newPos.z += mObjNode->getScale().z  * (aabb.getMaximum().z - aabb.getMinimum().z) / 2.0f;		
+		if (mObjNode && mEntity){
+			const AxisAlignedBox& aabb = mEntity->getBoundingBox();
+			newPos.x += mObjNode->getScale().x  * (aabb.getMaximum().x - aabb.getMinimum().x) / 2.0f;
+			newPos.z += mObjNode->getScale().z  * (aabb.getMaximum().z - aabb.getMinimum().z) / 2.0f;		
+		}
 		setPosition(newPos);
 		
 		
@@ -258,7 +260,8 @@ namespace stunts {
 				}
 			}
 		}
-						
+		if (!mObjNode || !mEntity) return false;
+		
 		// read proportion values
 		elem = geomElem->FirstChildElement("proportion");
 		if (elem)
