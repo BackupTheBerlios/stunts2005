@@ -164,6 +164,7 @@ namespace stunts {
 			}
 		}
 
+			
 		// Get the geometry of the object
 		elem = rootElem->FirstChildElement("geometry");
 		if (elem)
@@ -206,7 +207,7 @@ namespace stunts {
 			}
 		}
 				
-		// Set the position of the node to new position
+
 		// Here we correct the node's position to the underlying grid model
 		Vector3 newPos = Position() + pos;
 		if (mObjNode && mEntity){
@@ -260,8 +261,10 @@ namespace stunts {
 				}
 			}
 		}
+
 		if (!mObjNode || !mEntity) return false;
 		
+
 		// read proportion values
 		elem = geomElem->FirstChildElement("proportion");
 		if (elem)
@@ -405,6 +408,31 @@ namespace stunts {
 			else
 				v_data = sub_mesh->vertexData;
 			
+<<<<<<< BaseObject.cpp
+			// get the pointer to vertex data
+			if (sub_mesh->useSharedVertices)
+				v_data = mEntity->getMesh()->sharedVertexData;
+			else
+				v_data = sub_mesh->vertexData;
+			
+			// get pointer to vertices
+			const Ogre::VertexElement* posElem = v_data->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
+			Ogre::HardwareVertexBufferSharedPtr vbuf = v_data->vertexBufferBinding->getBuffer(posElem->getSource());
+			unsigned char* vertex = static_cast<unsigned char*>(vbuf->lock(Ogre::HardwareBuffer::HBL_NORMAL));
+			float* pReal;
+
+			for(size_t j = 0; j < v_data->vertexCount; ++j, vertex += vbuf->getVertexSize())
+			{
+				posElem->baseVertexPointerToElement(vertex, &pReal);
+
+				*pReal += pos.x; pReal ++;
+				*pReal += pos.y; pReal ++;
+				*pReal += pos.z; pReal ++;
+			}
+			vbuf->unlock();
+		}
+
+
 			// get pointer to vertices
 			const Ogre::VertexElement* posElem = v_data->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
 			Ogre::HardwareVertexBufferSharedPtr vbuf = v_data->vertexBufferBinding->getBuffer(posElem->getSource());
@@ -422,6 +450,7 @@ namespace stunts {
 			vbuf->unlock();
 		}
 #endif
+
 	}
 	//--------------------------------------------------------------------------
 	void CBaseObject::scaleObjectProportionaly(char axis, float32 value, bool useGrid)
