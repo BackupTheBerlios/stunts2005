@@ -1,7 +1,7 @@
 <!-- this is a track -->
 
 <track>
-	<gridsize x="40" z="40" />
+	<gridsize x="30" z="30" />
 	
 	<objects>
 		<object type="base">
@@ -23,7 +23,7 @@
 			<!-- if a position has a bottom type, it's on the terrain's ground -->
 			<posX unit="gridUnits">0</posX>
 			<posY unit="gridUnits" type="bottom">0</posY>
-			<posZ unit="gridUnits">0</posZ>
+			<posZ unit="gridUnits">1</posZ>
 	
 			<geometry>
 				<file>corner_big.mesh</file>
@@ -49,23 +49,69 @@
 				<waypoint index="3">wplast</waypoint>
 			</waypoints>
 		</object>
-	
+		
 		<object type="base">
-			<!-- syk jump2 -->
 			<friction>0.9</friction>
-			<mass relX="1" relY="0" relZ="0" value="inf" />
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+	
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<posX unit="gridUnits">1</posX>
+			<posY unit="gridUnits" type="bottom">0</posY>
+			<posZ unit="gridUnits">1</posZ>
+	
+			<geometry>
+				<file>crossover.mesh</file>
+				<proportion axis="x" size="1" units="gridUnits" /> 
+				<stretch x="0.7" y="0.7" z="0.7" />
+			</geometry>
+		</object>
+		
+		<object type="base">
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
 	
 			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">2</posX>
+			<posY unit="gridUnits" type="bottom">0</posY>
+			<posZ unit="gridUnits">1</posZ>
+	
+			<geometry>
+				<file>corner_big.mesh</file>
+				<proportion axis="x" size="1" units="gridUnits" /> 
+			</geometry>
+		</object>
+	
+		<object type="base">
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+	
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 			<posX unit="gridUnits">1</posX>
 			<posY unit="gridUnits" type="bottom">0</posY>
 			<posZ unit="gridUnits">0</posZ>
 	
 			<geometry>
-				<file>corner_big.mesh</file>
+				<file>corner_bridge_big.mesh</file>
+				<proportion axis="x" size="1" units="gridUnits" /> 
+			</geometry>
+		</object>
+		
+		<object type="base">
+			<!-- syk jump2 -->
+			<friction>0.9</friction>
+			<mass relX="1" relY="0" relZ="0" value="inf" />
+	
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">0</posX>
+			<posY unit="gridUnits" type="bottom">0</posY>
+			<posZ unit="gridUnits">0</posZ>
+	
+			<geometry>
+				<file>crossover.mesh</file>
 				<proportion axis="x" size="1" units="gridUnits" /> 
 			</geometry>
 	

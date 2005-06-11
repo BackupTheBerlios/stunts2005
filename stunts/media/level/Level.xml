@@ -2,7 +2,7 @@
 <level>
 
 	<gravity value="9.81" />
-	
+		
 	<terrain>
 		<import root="terrain" file="Terrain1.xml" />
 	</terrain>
