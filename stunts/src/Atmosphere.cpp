@@ -72,6 +72,21 @@ namespace stunts
 		elem = rootElem->FirstChildElement("lights");
 		if (elem)
 			readLights(elem);
+
+		// read Ambient light settings
+		elem = rootElem->FirstChildElement("ambient");
+		if (elem)
+		{
+			const char* x = elem->Attribute("r");
+			const char* y = elem->Attribute("g");
+			const char* z = elem->Attribute("b");
+
+			float fx = x ? lexical_cast<float>(x) : 1.0f;
+			float fy = y ? lexical_cast<float>(y) : 1.0f;
+			float fz = z ? lexical_cast<float>(z) : 1.0f;
+
+			COgreTask::GetSingleton().mSceneMgr->setAmbientLight(ColourValue(fx,fy,fz));
+		}
 			
 		nrLog.Log(NR_LOG_APP, "CAtmosphere::parseSettings(): Stop parsing the settings");
 		return false;
@@ -223,7 +238,16 @@ namespace stunts
 						// create billboard set
 						BillboardSet* bbs = COgreTask::GetSingleton().mSceneMgr->createBillboardSet(std::string(namestr) + "_billboards", 1);
 						bbs->setMaterialName(matname);
-						bbs->createBillboard(0.0f,0.0f,0.0f, diffuse);
+						Billboard* bs = bbs->createBillboard(0.0f,0.0f,0.0f, diffuse);
+
+						// get size of teh billboard
+						const char* width = sElem->Attribute("width");
+						const char* height = sElem->Attribute("height");
+
+						float widthf = width ? lexical_cast<float>(width) : 1.0f;
+						float heightf = height ? lexical_cast<float>(height) : 1.0f;
+
+						bs->setDimensions(widthf, heightf);
 						
 						// attach
 						mLightNode->attachObject(bbs);

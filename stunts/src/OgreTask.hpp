@@ -73,11 +73,9 @@ namespace stunts {
 
 	public:	//for testing issues
 		Ogre::Root* 			mRoot;
-		//Ogre::Camera* 			mCamera;
-		//Ogre::SceneManager* 	mSceneMgr;
 		Ogre::RenderWindow* 	mWindow;
-		//CFrameListener* mFrameListener;
-
+		Ogre::RenderSystem*		mRenderer;
+		
 		boost::shared_ptr< Ogre::InputReader >	mInputDevice;
 		boost::shared_ptr< Ogre::Camera >		mCamera;
 		boost::shared_ptr< Ogre::SceneManager >	mSceneMgr;

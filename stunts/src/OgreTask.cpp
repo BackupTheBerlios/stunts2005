@@ -132,16 +132,16 @@ namespace stunts {
 	{
 
         // Set ambient light
-        mSceneMgr->setAmbientLight(ColourValue(0.5, 0.5, 0.5));
+        mSceneMgr->setAmbientLight(ColourValue(0.0, 0.0, 0.0));
 
         // Create a light
-        Light* l = mSceneMgr->createLight("MainLight");
-        l->setPosition(20,80,50);
+        //Light* l = mSceneMgr->createLight("MainLight");
+        //l->setPosition(20,80,50);
 
         // Fog
-        ColourValue fadeColour(0.93, 0.86, 0.76);
-        mSceneMgr->setFog( FOG_LINEAR, fadeColour, .001, 500, 1000);
-        mWindow->getViewport(0)->setBackgroundColour(fadeColour);
+        //ColourValue fadeColour(0.93, 0.86, 0.76);
+        //mSceneMgr->setFog( FOG_LINEAR, fadeColour, .001, 500, 1000);
+        //mWindow->getViewport(0)->setBackgroundColour(fadeColour);
 
 		// Load game data
         mSceneMgr -> setWorldGeometry("../config/terrain.cfg");
@@ -175,10 +175,10 @@ namespace stunts {
     {
 
 		bool ok = mRoot->restoreConfig();
+		//bool ok = mRoot->showConfigDialog();
 		
 		//attention: plugins.cfg must be in the root folder or
 		//	a segfault will occur!
-        //if(mRoot->showConfigDialog())
 		if (ok)
         {
 			mWindow = mRoot->initialise(true, "Stunts2005");
@@ -186,6 +186,16 @@ namespace stunts {
 		// Create scene manager
 		mSceneMgr = boost::shared_ptr< Ogre::SceneManager >
 			(mRoot->getSceneManager(ST_EXTERIOR_CLOSE));
+        // Set default mipmap level (NB some APIs ignore this)
+        TextureManager::getSingleton().setDefaultNumMipmaps(5);
+		
+		// Get Render System
+		mRenderer = mRoot->getRenderSystem();
+
+		// Setup Rendering Options
+		//mRenderer->setShadingType(SO_GOURAUD);
+		//mRenderer->setLightingEnabled(true);
+		//mRenderer->setNormaliseNormals(true);
 
 		return ok;
     }

@@ -202,7 +202,7 @@ namespace stunts
 		if (smElem)
 		{
 			mAtmosphere.reset(new CAtmosphere());
-			mAtmosphere->importFromFile((mLevelFilePath + smElem->Attribute("file")).c_str(), smElem->Attribute("root"));
+			mAtmosphere->importFromFile((mLevelFilePath + smElem->Attribute("file")).c_str(), mLevelFilePath);
 		}
 	}
 	
