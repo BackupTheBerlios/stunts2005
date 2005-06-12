@@ -32,7 +32,16 @@ stunts_SOURCES = \
 	External/tinyxml/tinystr.cpp\
 	External/tinyxml/tinyxmlerror.cpp\
 	External/tinyxml/tinyxmlparser.cpp\
-	Utils.cpp
+	Utils.cpp\
+	CGuiAddInt.cpp\
+	CGuiButton.cpp\
+	CGuiExitGui.cpp\
+	CGuiMulti.cpp\
+	CGuiPage.cpp\
+	CGuiParser.cpp\
+	CGuiStartGame.cpp\
+	CGuiTask.cpp\
+	CGuiTex.cpp
 #	ObjectInstantiator.cpp
 	
 
@@ -67,7 +76,23 @@ noinst_HEADERS = \
 	HumanControl.hpp\
 	Atmosphere.hpp\
 	Utils.hpp\
-	ObjectInstantiator.hpp
+	ObjectInstantiator.hpp\
+	CGuiAction.h\
+	CGuiAddInt.h\
+	CGuiButton.h\
+	CGuiDummy.h\
+	CGuiExitGui.h\
+	CGuiGfx.h\
+	CGuiMulti.h\
+	CGuiObject.h\
+	CGuiPage.h\
+	CGuiParser.h\
+	CGuiStartGame.h\
+	CGuiTask.h\
+	CGuiTex.h\
+	GuiActions.h\
+	GuiGfx.h\
+	GuiObjects.h
 
 # Set the include path found by configure
 INCLUDES = \
