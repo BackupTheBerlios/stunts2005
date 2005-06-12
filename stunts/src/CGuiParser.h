@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiParser.h,v 1.2 2005/06/12 19:43:45 elowar Exp $ */
+/* CVS $Id: CGuiParser.h,v 1.3 2005/06/12 22:32:29 psyborg Exp $ */
 
 /** @file
  *  GUI parser for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.2 $
- *  @date    CVS $Date: 2005/06/12 19:43:45 $
+ *  @version CVS $Revision: 1.3 $
+ *  @date    CVS $Date: 2005/06/12 22:32:29 $
  */
 
 
@@ -22,8 +22,10 @@
 #include "GuiObjects.h"
 #include "GuiGfx.h"
 
-#include "xmlParser/xmlParser.h"
+//#include "xmlParser/xmlParser.h"
+class XMLNode{
 
+};
 
 /** GUI parser.
  *  This class contains functions to parse XML trees and generate pages, objects

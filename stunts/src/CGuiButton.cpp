@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiButton.cpp,v 1.2 2005/06/12 19:43:45 elowar Exp $ */
+/* CVS $Id: CGuiButton.cpp,v 1.3 2005/06/12 22:32:29 psyborg Exp $ */
 
 /** @file
  *  Button object (CGuiObject) for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.2 $
- *  @date    CVS $Date: 2005/06/12 19:43:45 $
+ *  @version CVS $Revision: 1.3 $
+ *  @date    CVS $Date: 2005/06/12 22:32:29 $
  */
 
 
@@ -15,6 +15,8 @@ using std::string;
 using std::vector;
 using std::map;
 
+#include "OgreTask.hpp"
+using namespace stunts;
 
 /** Constructor initializing render context and ID. */
 CGuiButton::CGuiButton( int32 Context, unsigned int Id ) {
@@ -57,9 +59,11 @@ void CGuiButton::objectUpdate( bool MouseMoved, unsigned int Focus ) {
 
 	/* Keyboard and mouse handling. */
 	if( Focus == mId ) { 
-		if( nrFramework.keyPush( NRKEY_RETURN ) ||
-			nrFramework.getMouseButton( NRBUTTON_LEFT ) == 1 ) {
-
+		//if( nrFramework.keyPush( NRKEY_RETURN ) ||
+		//	nrFramework.getMouseButton( NRBUTTON_LEFT ) == 1 ) {
+		if (COgreTask::GetSingleton().mInputDevice->isKeyDown(Ogre::KC_RETURN) ||
+			COgreTask::GetSingleton().mInputDevice->getMouseButton(0)){
+			
 			vector<CGuiAction*>::iterator i;
 			for( i = mActions.begin(); i != mActions.end(); i++ ) {
 				 (*i)->Perform(); /* Activate next associated action. */

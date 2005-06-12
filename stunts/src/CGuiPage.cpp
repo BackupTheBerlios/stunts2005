@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiPage.cpp,v 1.2 2005/06/12 19:43:45 elowar Exp $ */
+/* CVS $Id: CGuiPage.cpp,v 1.3 2005/06/12 22:32:29 psyborg Exp $ */
 
 /** @file
  *  GUI Page container for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.2 $
- *  @date    CVS $Date: 2005/06/12 19:43:45 $
+ *  @version CVS $Revision: 1.3 $
+ *  @date    CVS $Date: 2005/06/12 22:32:29 $
  */
 
 
@@ -15,6 +15,8 @@ using std::string;
 using std::vector;
 using std::map;
 
+#include "OgreTask.hpp"
+using namespace stunts;
 
 /** Constructor initializing render context and page name. */
 CGuiPage::CGuiPage( int32 Context, string PageName ) {
@@ -47,7 +49,7 @@ void CGuiPage::pageSelect() {
 void CGuiPage::pageUpdate() {
 
 	/* Cursor key pressed. */
-	if( nrFramework.keyPush( NRKEY_DOWN ) ||
+ 	/*if( nrFramework.keyPush( NRKEY_DOWN ) ||
 		nrFramework.keyPush( NRKEY_RIGHT ) ) {
 		if( mFocus >= mMaxId ) {
 			mFocus = 1;
@@ -63,12 +65,16 @@ void CGuiPage::pageUpdate() {
 		} else {
 			mFocus--;
 		}
-	}
+	}*/
 
+	
 	/* Mouse motion detection. */
 	static int32 LastMousePos[2] = { 0, 0 }; /* remember in next call */
 	int32 MousePos[2] = { 0, 0 };
-	nrFramework.getCursorPosition( &MousePos[0], &MousePos[1] );
+	//nrFramework.getCursorPosition( &MousePos[0], &MousePos[1] );
+	MousePos[0] = COgreTask::GetSingleton().mInputDevice->getMouseAbsX();
+	MousePos[1] = COgreTask::GetSingleton().mInputDevice->getMouseAbsY();
+	
 	bool MouseMoved =
 		MousePos[0] != LastMousePos[0] || MousePos[1] != LastMousePos[1];
 

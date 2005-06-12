@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.cpp,v 1.2 2005/06/12 19:43:45 elowar Exp $ */
+/* CVS $Id: CGuiTask.cpp,v 1.3 2005/06/12 22:32:29 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.2 $
- *  @date    CVS $Date: 2005/06/12 19:43:45 $
+ *  @version CVS $Revision: 1.3 $
+ *  @date    CVS $Date: 2005/06/12 22:32:29 $
  */
 
 
@@ -96,7 +96,7 @@ nrResult CGuiTask::taskUpdate() {
 
 	if( mActive && mCurrent != NULL )
 		mCurrent->pageUpdate();
-
+	
 	return NR_OK;
 }
 

@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.h,v 1.2 2005/06/12 19:43:45 elowar Exp $ */
+/* CVS $Id: CGuiTask.h,v 1.3 2005/06/12 22:32:29 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.2 $
- *  @date    CVS $Date: 2005/06/12 19:43:45 $
+ *  @version CVS $Revision: 1.3 $
+ *  @date    CVS $Date: 2005/06/12 22:32:29 $
  */
 
 
@@ -31,10 +31,12 @@
  *  newReality game engine.
  */
 
-class CGuiTask : public nrITask {
+class CGuiTask : public nrISingletonTask<CGuiTask> {
 
 public:
- 
+
+	CGuiTask() { mContext = 0; }
+	 
 	/** Constructor initializing render context.
 	 *  @note Please note that all other attributes will not be initialized
 	 *        until @c taskInit() is called.
