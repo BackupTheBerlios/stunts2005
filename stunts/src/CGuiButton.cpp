@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiButton.cpp,v 1.1 2005/06/09 15:35:48 elowar Exp $ */
+/* CVS $Id: CGuiButton.cpp,v 1.2 2005/06/12 19:43:45 elowar Exp $ */
 
 /** @file
  *  Button object (CGuiObject) for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.1 $
- *  @date    CVS $Date: 2005/06/09 15:35:48 $
+ *  @version CVS $Revision: 1.2 $
+ *  @date    CVS $Date: 2005/06/12 19:43:45 $
  */
 
 
@@ -57,8 +57,9 @@ void CGuiButton::objectUpdate( bool MouseMoved, unsigned int Focus ) {
 
 	/* Keyboard and mouse handling. */
 	if( Focus == mId ) { 
-		if( nrFramework.keyPush( NRKEY_RETURN ) /* ||
-			nrFramework.getMouseButton( NRBUTTON_LEFT ) */ ) {
+		if( nrFramework.keyPush( NRKEY_RETURN ) ||
+			nrFramework.getMouseButton( NRBUTTON_LEFT ) == 1 ) {
+
 			vector<CGuiAction*>::iterator i;
 			for( i = mActions.begin(); i != mActions.end(); i++ ) {
 				 (*i)->Perform(); /* Activate next associated action. */
@@ -67,5 +68,9 @@ void CGuiButton::objectUpdate( bool MouseMoved, unsigned int Focus ) {
 		}
 	}
 
-}
+	/* 
+	 * Note: for some reason nrFramework.getMouseButton contains 224 (probably
+	 * random number) until the first click. Maybe investigate further later.
+	 */
 
+}

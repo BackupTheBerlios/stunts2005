@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiPage.cpp,v 1.1 2005/06/09 15:35:48 elowar Exp $ */
+/* CVS $Id: CGuiPage.cpp,v 1.2 2005/06/12 19:43:45 elowar Exp $ */
 
 /** @file
  *  GUI Page container for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.1 $
- *  @date    CVS $Date: 2005/06/09 15:35:48 $
+ *  @version CVS $Revision: 1.2 $
+ *  @date    CVS $Date: 2005/06/12 19:43:45 $
  */
 
 
@@ -55,6 +55,7 @@ void CGuiPage::pageUpdate() {
 			mFocus++;
 		}
 	}
+
 	if( nrFramework.keyPush( NRKEY_UP ) ||
 		nrFramework.keyPush( NRKEY_LEFT ) ) {
 		if( mFocus <= 1 ) {

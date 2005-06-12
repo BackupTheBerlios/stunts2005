@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.cpp,v 1.1 2005/06/09 15:35:48 elowar Exp $ */
+/* CVS $Id: CGuiTask.cpp,v 1.2 2005/06/12 19:43:45 elowar Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.1 $
- *  @date    CVS $Date: 2005/06/09 15:35:48 $
+ *  @version CVS $Revision: 1.2 $
+ *  @date    CVS $Date: 2005/06/12 19:43:45 $
  */
 
 
@@ -47,12 +47,9 @@ bool CGuiTask::selectPage( string PageName ) {
 	if ( mPages.find( PageName ) == mPages.end() )
 		return false;
 
-	std::cerr << "[[[[ FOUND PAGE " << PageName << "\n";
-
 	mCurrent = mPages[ PageName ];
 	mCurrent->pageSelect(); /* Inform page that is has been selected. */
 
-	std::cerr << "[[[[ mCurrent = " << mCurrent->PageName() << "\n";
 	return true;
 }
 
@@ -109,4 +106,3 @@ nrResult CGuiTask::taskStop() {
 	mActive = false;
 	return NR_OK;
 }
-

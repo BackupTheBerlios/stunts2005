@@ -1,4 +1,4 @@
-/* CVS $Id: CGuiParser.cpp,v 1.1 2005/06/09 15:35:48 elowar Exp $ */
+/* CVS $Id: CGuiParser.cpp,v 1.2 2005/06/12 19:43:45 elowar Exp $ */
 
 /** @file
  *  (Dummy) GUI parser for Stunts 2005.
@@ -7,8 +7,8 @@
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.1 $
- *  @date    CVS $Date: 2005/06/09 15:35:48 $
+ *  @version CVS $Revision: 1.2 $
+ *  @date    CVS $Date: 2005/06/12 19:43:45 $
  */
 
 
@@ -16,7 +16,7 @@
 using std::string;
 using std::map;
 
-
+/** (Dummy) Generates a standard start/exit page. */
 CGuiPage* CGuiParser::ParsePage( string PageName, string Data ) {
 
 	CGuiPage* DummyPage = new CGuiPage( mContext, PageName );
@@ -33,7 +33,7 @@ CGuiPage* CGuiParser::ParsePage( string PageName, string Data ) {
 	CGuiMulti* Background = new CGuiMulti( mContext );
 
 	Background->mGfx[ "default" ] =
-		new CGuiTex( mContext, "media/graphics/gui/GuiBackground.png" );
+		new CGuiTex( mContext, "media/graphics/gui/GuiDemoBG.jpg" );
 	Background->mPos[0] = 0; Background->mPos[1] = 0;
 
 	// start button
@@ -42,10 +42,11 @@ CGuiPage* CGuiParser::ParsePage( string PageName, string Data ) {
 	DummyPage->mMaxId++;
 
 	Start->mGfx[ "default" ] =
-		new CGuiTex( mContext, "media/graphics/gui/GuiStart.png" );
+		new CGuiTex( mContext, "media/graphics/gui/GuiDemoStart.jpg" );
 	Start->mGfx[ "highlight" ] =
-		new CGuiTex( mContext, "media/graphics/gui/GuiStartHL.png" );
+		new CGuiTex( mContext, "media/graphics/gui/GuiDemoStartHL.jpg" );
 	Start->mActions.push_back( new CGuiStartGame( mContext ) );
+	Start->mActions.push_back( new CGuiExitGui( mContext ) );
 	Start->mPos[0] = 100; Start->mPos[1] = 360;
 
 	// exit button
@@ -54,9 +55,9 @@ CGuiPage* CGuiParser::ParsePage( string PageName, string Data ) {
 	DummyPage->mMaxId++;
 
 	Exit->mGfx[ "default" ] =
-		new CGuiTex( mContext, "media/graphics/gui/GuiExit.png" );
+		new CGuiTex( mContext, "media/graphics/gui/GuiDemoExit.jpg" );
 	Exit->mGfx[ "highlight" ] =
-		new CGuiTex( mContext, "media/graphics/gui/GuiExitHL.png" );
+		new CGuiTex( mContext, "media/graphics/gui/GuiDemoExitHL.jpg" );
 	Exit->mActions.push_back( new CGuiExitGui( mContext ) );
 	Exit->mPos[0] = 100; Exit->mPos[1] = 450;
 

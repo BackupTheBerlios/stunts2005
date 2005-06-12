@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTex.h,v 1.1 2005/06/09 15:35:48 elowar Exp $ */
+/* CVS $Id: CGuiTex.h,v 1.2 2005/06/12 19:43:45 elowar Exp $ */
 
 /** @file
  *  Simple 2D texture graphics for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.1 $
- *  @date    CVS $Date: 2005/06/09 15:35:48 $
+ *  @version CVS $Revision: 1.2 $
+ *  @date    CVS $Date: 2005/06/12 19:43:45 $
  */
 
 
@@ -31,7 +31,7 @@ public:
 
 	/** Constructor initializing render context and filename.
 	 *  @param  Context   Render context to be used by GUI.
-	 *  @param  Id        ID to be associated with the object.
+	 *  @param  Filename  File to load texture from.
    	 */
 	CGuiTex( int32 Context, std::string FileName );
 
@@ -43,9 +43,9 @@ public:
 
 private:
 
-	std::string mFileName;
+	std::string mFileName;  /**< Let's remember the filename just in case. */
 
-	nrCTexture mTexture;
+	nrCTexture mTexture;  /**< Our texture. */
 
 };
 

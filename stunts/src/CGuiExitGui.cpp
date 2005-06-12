@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiExitGui.cpp,v 1.1 2005/06/09 15:35:48 elowar Exp $ */
+/* CVS $Id: CGuiExitGui.cpp,v 1.2 2005/06/12 19:43:45 elowar Exp $ */
 
 /** @file
  *  Exit GUI action for Stunts 2005 GUI objects.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.1 $
- *  @date    CVS $Date: 2005/06/09 15:35:48 $
+ *  @version CVS $Revision: 1.2 $
+ *  @date    CVS $Date: 2005/06/12 19:43:45 $
  */
 
 
