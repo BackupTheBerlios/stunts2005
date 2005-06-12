@@ -119,7 +119,7 @@ namespace stunts
 		// this is how you load a page!
 		CGuiTask::GetSingleton().addPage( "dummy", "" );
 		CGuiTask::GetSingleton().selectPage( "dummy" );		
-		CGuiTask::GetSingleton().rActive() = true;
+		CGuiTask::GetSingleton().rActive() = false;
  		
         return true;
 	}
