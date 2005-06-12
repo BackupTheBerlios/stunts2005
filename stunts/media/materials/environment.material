@@ -1,16 +1,37 @@
-material Effects/Flare
+material Effects/Sun
 {
+	// Firsat technique to use
 	technique
 	{
+		// In the first rendering pass, we should do...
 		pass
 		{
+			// Disable lighting
 			lighting off
+
+			// Blend with the scene
 			scene_blend add
+
+			// Do not write into Depth Buffer
 			depth_write off
 
+			// Color-Values
+			ambient 1.0 1.0 1.0
+			diffuse 0.8 0.5 0.2
+			
+			// Texture 0
 			texture_unit
 			{
-				texture flare.png
+				texture flare.tga
+			}
+
+			// Texture 1
+			texture_unit
+			{
+				texture flare.tga
+				rotate_anim 0.25
+				scale 1.2 1.2
+				colour_op add
 			}
 		}
 	}
