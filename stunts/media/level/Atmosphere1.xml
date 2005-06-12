@@ -2,21 +2,23 @@
 <atmosphere>
 	
 	<!-- This will draw a SkyBox with the given Material name on the distance 3000m -->
-	<skybox material="SkyBox/Stormy" distance="2000"/>
+	<skybox material="SkyBox/Evening" distance="2000"/>
 
+	<ambient r="0.6" g="0.3" b="0.5" />
+	
 	<!-- Define lights. You can define more than one light, but this will decrease performance -->
 	<lights>
 		<!-- Defines a light with y type "directional". Other values are "point", "spot" -->
-		<light type="directional">
+		<light type="spot">
 			<name>Sun</name>
 			
 			<!-- Direction and position of this light -->
-			<direction x="1.0" y="1.0" z="1.0" />
-			<pos x="300" y="1000" z="400" />
+			<direction x="0.26" y="-0.89" z="0.35" />
+			<pos x="-300" y="700" z="2000" />
 			
 			<!-- Colors components -->
 			<diffuse r="0.88" g="0.82" b="0.76" />
-			<specular r="0.3" g="0.3" b="0.3" />
+			<specular r="0.9" g="0.9" b="0.4" />
 			
 			<!--
 				Lights normally get fainter the further they are away. 
@@ -34,11 +36,11 @@
 				outer [degrees] - Outer angle of the light spot
 				falloff - falloff between inner and outer cones
 				-->
-			<spot inner="10.0" outer="100.0" falloff="1.0" />
+			<spot inner="30.0" outer="50.0" falloff="1.0" />
 			
 			<!-- Tell us if we want to use a billboard for that light. With a help of a billboard
 				we can always see the light source -->
-			<billboard material="Effects/Flare" />
+			<billboard material="Effects/Sun" width="200.0" height="200.0"/>
 			
 		</light>
 	</lights>

@@ -52,8 +52,8 @@
 	</sounds>
 
 	<geometry>
-		<file>car.mesh</file>
-		<stretch x="0.8" y="0.8" z="0.8"/>
+		<file>mustang.mesh</file>
+		<stretch x="20.8" y="20.8" z="20.8"/>
 	</geometry>
 
 	<particles>
