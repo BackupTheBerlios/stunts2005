@@ -5,6 +5,10 @@ material Street/Teer
 	{
 		pass
 		{
+		ambient 0.584314 0.584314 0.584314
+            	diffuse 0.584314 0.584314 0.584314
+            	specular 0.898039 0.898039 0.898039 0.0
+            	emissive 0.0 0.0 0.0
 			texture_unit
 			{
 				texture Teer.JPG
@@ -20,6 +24,10 @@ material Street/redwhite
 	{
 		pass
 		{
+		ambient 0.584314 0.584314 0.584314
+            	diffuse 0.584314 0.584314 0.584314
+            	specular 0.898039 0.898039 0.898039 0.0
+            	emissive 0.0 0.0 0.0
 			texture_unit
 			{
 				texture redwhite.JPG
@@ -41,4 +49,33 @@ material Street/wall
 		}
 	}
 }
-
+material Street/steel
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture carbon.JPG
+			}
+		}
+	}
+}
+material Street/goal
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.588 0.588 0.588
+            diffuse 0.588 0.588 0.588
+            specular 0.9 0.9 0.9 0.0
+            emissive 0.0 0.0 0.0
+            texture_unit
+            {
+                texture zielflagge.jpg 
+            }
+        }
+    }
+}

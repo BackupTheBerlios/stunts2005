@@ -1,0 +1,54 @@
+material Material windmill/Mill_1
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.588 0.588 0.588
+            diffuse 0.588 0.588 0.588
+            specular 0.9 0.9 0.9 0.0
+            emissive 0.0 0.0 0.0
+            texture_unit
+            {
+                texture mill_1.jpg 
+            }
+        }
+    }
+}
+
+material Material windmill/Mill_2
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.1 0.1 0.1
+            diffuse 0.5 0.5 0.5
+            specular 0.9 0.9 0.9 0.0
+            emissive 0.0 0.0 0.0
+            texture_unit
+            {
+                texture mill_2.jpg 
+            }
+        }
+    }
+}
+
+material Material windmill/Sails
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.580392 0.411765 0.196078
+            diffuse 0.580392 0.411765 0.196078
+            specular 0.9 0.9 0.9 0.0
+            emissive 0.0 0.0 0.0
+            texture_unit
+            {
+                texture sails.jpg 
+            }
+        }
+    }
+}
+

@@ -1,0 +1,116 @@
+
+material House/roof
+{
+	technique
+	{
+		pass
+		{
+		
+			texture_unit
+			{
+				texture roof.JPG
+			}
+		}
+	}
+}
+
+
+material House/oldwall
+{
+	technique
+	{
+		pass
+		{
+		
+			texture_unit
+			{
+				texture oldwall.JPG
+			}
+		}
+	}
+}
+
+material House/steel
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture carbon.JPG
+			}
+		}
+	}
+}
+material House/wood
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture darkwood.JPG
+			}
+		}
+	}
+}
+
+
+material Material House/beams
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.160784 0.101961 0.0509804
+            diffuse 0.160784 0.101961 0.0509804
+            specular 0.898039 0.898039 0.898039 0.0
+            emissive 0.0 0.0 0.0
+        }
+    }
+}
+
+material Material House/lattice
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.133333 0.117647 0.0980392
+            diffuse 0.133333 0.117647 0.0980392
+            specular 0.898039 0.898039 0.898039 0.0
+            emissive 0.0 0.0 0.0
+        }
+    }
+}
+
+material Material House/Glass
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.0196078 0.0196078 0.0196078
+            diffuse 0.0196078 0.0196078 0.0196078
+            specular 1.0 1.0 1.0 0.0
+            emissive 0.0 0.0 0.0
+        }
+    }
+}
+
+
+material Material House/Default
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.7 0.7 0.7
+            diffuse 0.7 0.7 0.7
+            specular 1.0 1.0 1.0 7070.0
+            emissive 0.0 0.0 0.0
+        }
+    }
+}
