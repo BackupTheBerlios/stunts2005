@@ -1,5 +1,5 @@
 
-material Street/Teer
+material Street/teer
 {
 	technique
 	{
@@ -11,7 +11,7 @@ material Street/Teer
             	emissive 0.0 0.0 0.0
 			texture_unit
 			{
-				texture Teer.jpg
+				texture teer.jpg
 			}
 		}
 	}
