@@ -86,7 +86,7 @@ material House/lattice
     }
 }
 
-material House/Glass
+material House/glass
 {
     technique
     {
@@ -101,7 +101,7 @@ material House/Glass
 }
 
 
-material House/Default
+material House/default
 {
     technique
     {
