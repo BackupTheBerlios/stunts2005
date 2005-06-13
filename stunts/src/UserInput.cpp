@@ -186,13 +186,13 @@ namespace stunts
         {
         }
 
-        if (mInputDevice->isKeyDown(Ogre::KC_SYSRQ))
+        if (mInputDevice->isKeyDown(Ogre::KC_C))
         {
-//			char tmp[20];
-//			sprintf(tmp, "screenshot_%d.png", ++mNumScreenShots);
-//            mWindow->writeContentsToFile(tmp);
-//            mTimeUntilNextToggle = 0.5;
-//			mWindow->setDebugText(String("Wrote ") + tmp);
+			static int mNumScreenShots=0;
+			char tmp[20];
+			sprintf(tmp, "screenshot_%d.png", ++mNumScreenShots);
+            mLevel->OgreTask()->mWindow->writeContentsToFile(tmp);
+			mLevel->OgreTask()->mWindow->setDebugText(String("Wrote ") + tmp);
         }
 
 		if (mInputDevice->isKeyDown(Ogre::KC_R))
