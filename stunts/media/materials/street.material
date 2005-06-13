@@ -93,3 +93,16 @@ material Street/rock
 		}
 	}
 }
+material Street/waypoint
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture waypoint.jpg
+			}
+		}
+	}
+}
