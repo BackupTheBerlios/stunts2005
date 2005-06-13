@@ -79,3 +79,17 @@ material Street/goal
         }
     }
 }
+
+material Street/rock
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture rock.jpg
+			}
+		}
+	}
+}
