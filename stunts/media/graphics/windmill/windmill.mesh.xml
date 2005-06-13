@@ -1,6 +1,6 @@
 <mesh>
 	<submeshes>
-		<submesh material = "windmill/Mill_1" usesharedvertices="false" use32bitindexes="false">
+		<submesh material = "windmill/mill1" usesharedvertices="false" use32bitindexes="false">
 			<faces count="204">
 				<face v1="0" v2="1" v3="2" />
 				<face v1="3" v2="4" v3="5" />
@@ -2162,7 +2162,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-		<submesh material = "windmill/Mill_2" usesharedvertices="false" use32bitindexes="false">
+		<submesh material = "windmill/mill2" usesharedvertices="false" use32bitindexes="false">
 			<faces count="118">
 				<face v1="0" v2="1" v3="2" />
 				<face v1="2" v2="1" v3="3" />
@@ -3048,7 +3048,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-		<submesh material = "windmill/Sails" usesharedvertices="false" use32bitindexes="false">
+		<submesh material = "windmill/sails" usesharedvertices="false" use32bitindexes="false">
 			<faces count="758">
 				<face v1="0" v2="1" v3="2" />
 				<face v1="3" v2="4" v3="5" />
