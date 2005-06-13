@@ -7,7 +7,6 @@ material Street/teer
 		{
 		ambient 0.584314 0.584314 0.584314
             	diffuse 0.584314 0.584314 0.584314
-            	specular 0.898039 0.898039 0.898039 100.0
             	emissive 0.0 0.0 0.0
 			texture_unit
 			{
@@ -55,7 +54,6 @@ material Street/steel
 	{
 		pass
 		{
-            		specular 0.898039 0.898039 0.898039 0.0
 			texture_unit
 			{
 				texture carbon.jpg
