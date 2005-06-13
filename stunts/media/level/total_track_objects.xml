@@ -17,7 +17,38 @@
 
 			<geometry>
 				<file>house.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- house -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">15</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">7</posZ>
+
+
+			<geometry>
+				<file>house.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -48,7 +79,7 @@
 
 			<geometry>
 				<file>house.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -63,100 +94,7 @@
 		</object>
 
 		<object type="base">
-			<!-- house -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">16</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">8</posZ>
-
-
-			<geometry>
-				<file>house.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- house -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">17</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">8</posZ>
-
-
-			<geometry>
-				<file>house.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- house -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">18</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">8</posZ>
-
-
-			<geometry>
-				<file>house.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -171,8 +109,70 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- tree -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">1</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">9</posZ>
+
+
+			<geometry>
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- tree -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">1</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">9</posZ>
+
+
+			<geometry>
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -203,7 +203,7 @@
 
 			<geometry>
 				<file>corner_big.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -222,7 +222,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -234,7 +234,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -253,7 +253,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -265,7 +265,7 @@
 
 			<geometry>
 				<file>drive-up_bridge.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -284,7 +284,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -296,7 +296,7 @@
 
 			<geometry>
 				<file>straight_line_bridge.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -315,7 +315,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -327,7 +327,7 @@
 
 			<geometry>
 				<file>straight_line_bridge.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -346,7 +346,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -358,7 +358,627 @@
 
 			<geometry>
 				<file>straight_line_bridge.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- drive-up_bridge -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">9</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">9</posZ>
+
+
+			<geometry>
+				<file>drive-up_bridge.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">10</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">9</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">11</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">9</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">12</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">9</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">13</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">9</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">14</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">9</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">15</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">9</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- corner_big -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">16</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">9</posZ>
+
+
+			<geometry>
+				<file>corner_big.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- tree -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">1</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">10</posZ>
+
+
+			<geometry>
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- tree -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">1</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">10</posZ>
+
+
+			<geometry>
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- windmill -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">7</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">10</posZ>
+
+
+			<geometry>
+				<file>windmill.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- windmill -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">8</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">10</posZ>
+
+
+			<geometry>
+				<file>windmill.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- tree -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">13</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">10</posZ>
+
+
+			<geometry>
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- tree -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">14</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">10</posZ>
+
+
+			<geometry>
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- tree -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">15</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">10</posZ>
+
+
+			<geometry>
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="4" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">2</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">11</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="4" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">2</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">11</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">17</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">11</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="4" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">2</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">12</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="4" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">2</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">12</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -382,14 +1002,14 @@
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
 			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">9</posX>
+			<posX unit="gridUnits">17</posX>
 			<posY>30</posY>
-			<posZ unit="gridUnits">9</posZ>
+			<posZ unit="gridUnits">12</posZ>
 
 
 			<geometry>
 				<file>drive-up_bridge.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -408,534 +1028,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">10</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">9</posZ>
-
-
-			<geometry>
-				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">11</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">9</posZ>
-
-
-			<geometry>
-				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">12</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">9</posZ>
-
-
-			<geometry>
-				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">13</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">9</posZ>
-
-
-			<geometry>
-				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">14</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">9</posZ>
-
-
-			<geometry>
-				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">15</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">9</posZ>
-
-
-			<geometry>
-				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- corner_big -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">16</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">9</posZ>
-
-
-			<geometry>
-				<file>corner_big.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- firTree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">1</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">10</posZ>
-
-
-			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- windmill -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">7</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">10</posZ>
-
-
-			<geometry>
-				<file>windmill.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- windmill -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">8</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">10</posZ>
-
-
-			<geometry>
-				<file>windmill.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- firTree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">13</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">10</posZ>
-
-
-			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- firTree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">14</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">10</posZ>
-
-
-			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- firTree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">15</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">10</posZ>
-
-
-			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">2</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">11</posZ>
-
-
-			<geometry>
-				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">17</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">11</posZ>
-
-
-			<geometry>
-				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">2</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">12</posZ>
-
-
-			<geometry>
-				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- jump -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">17</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">12</posZ>
-
-
-			<geometry>
-				<file>jump.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -947,131 +1040,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">2</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">14</posZ>
-
-
-			<geometry>
-				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- jump -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">17</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">14</posZ>
-
-
-			<geometry>
-				<file>jump.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- hut -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">1</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">15</posZ>
-
-
-			<geometry>
-				<file>hut.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- hut -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">1</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">15</posZ>
-
-
-			<geometry>
-				<file>hut.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1097,12 +1066,12 @@
 			<!-- if a position has a bottom type, it's on the terrain's ground -->
 			<posX unit="gridUnits">2</posX>
 			<posY>30</posY>
-			<posZ unit="gridUnits">15</posZ>
+			<posZ unit="gridUnits">13</posZ>
 
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1117,7 +1086,224 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- straight_line_bridge -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="4" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">17</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">13</posZ>
+
+
+			<geometry>
+				<file>straight_line_bridge.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">2</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">14</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">2</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">14</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line_bridge -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="4" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">17</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">14</posZ>
+
+
+			<geometry>
+				<file>straight_line_bridge.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- hut -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">1</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">15</posZ>
+
+
+			<geometry>
+				<file>hut.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- hut -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">1</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">15</posZ>
+
+
+			<geometry>
+				<file>hut.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="4" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">2</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">15</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -1132,8 +1318,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1148,11 +1334,11 @@
 		</object>
 
 		<object type="base">
-			<!-- straight_line -->
+			<!-- straight_line_bridge -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="4" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1163,8 +1349,8 @@
 
 
 			<geometry>
-				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>straight_line_bridge.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1195,7 +1381,38 @@
 
 			<geometry>
 				<file>hut.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- hut -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">1</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">16</posZ>
+
+
+			<geometry>
+				<file>hut.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1214,7 +1431,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1226,7 +1443,7 @@
 
 			<geometry>
 				<file>corner_big.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1241,7 +1458,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -1256,8 +1473,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1272,7 +1489,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -1287,8 +1504,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1303,7 +1520,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -1318,8 +1535,39 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line_bridge -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">17</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">16</posZ>
+
+
+			<geometry>
+				<file>straight_line_bridge.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1343,14 +1591,14 @@
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
 			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">17</posX>
+			<posX unit="gridUnits">4</posX>
 			<posY>30</posY>
-			<posZ unit="gridUnits">16</posZ>
+			<posZ unit="gridUnits">17</posZ>
 
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1369,7 +1617,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1381,7 +1629,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1400,7 +1648,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1412,7 +1660,7 @@
 
 			<geometry>
 				<file>tunnel_in_out.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1431,7 +1679,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1443,7 +1691,7 @@
 
 			<geometry>
 				<file>tunnel_in_out.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1462,7 +1710,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1474,7 +1722,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1493,7 +1741,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1505,7 +1753,7 @@
 
 			<geometry>
 				<file>tunnel_in_out.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1524,7 +1772,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1536,7 +1784,7 @@
 
 			<geometry>
 				<file>tunnel_in_out.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1555,7 +1803,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1567,7 +1815,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1586,7 +1834,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1598,7 +1846,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1617,7 +1865,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1629,7 +1877,7 @@
 
 			<geometry>
 				<file>tunnel_in_out.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1648,7 +1896,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1660,7 +1908,7 @@
 
 			<geometry>
 				<file>tunnel_in_out.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1679,7 +1927,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1691,7 +1939,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1710,7 +1958,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1722,7 +1970,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1741,7 +1989,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1753,7 +2001,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1772,7 +2020,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1803,7 +2051,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1815,7 +2063,7 @@
 
 			<geometry>
 				<file>jump.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1834,7 +2082,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1846,7 +2094,7 @@
 
 			<geometry>
 				<file>jump.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1865,7 +2113,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1877,7 +2125,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1896,7 +2144,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1908,7 +2156,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1927,7 +2175,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1939,7 +2187,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1954,11 +2202,11 @@
 		</object>
 
 		<object type="base">
-			<!-- corner -->
+			<!-- corner_small -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1969,8 +2217,8 @@
 
 
 			<geometry>
-				<file>corner.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>corner_small.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -1985,7 +2233,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -2000,8 +2248,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2016,7 +2264,38 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">2</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">18</posZ>
+
+
+			<geometry>
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -2031,8 +2310,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2063,7 +2342,7 @@
 
 			<geometry>
 				<file>windmill.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2094,7 +2373,7 @@
 
 			<geometry>
 				<file>skyscraper.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2125,7 +2404,7 @@
 
 			<geometry>
 				<file>skyscraper.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2156,7 +2435,7 @@
 
 			<geometry>
 				<file>skyscraper.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2171,11 +2450,11 @@
 		</object>
 
 		<object type="base">
-			<!-- startFinish -->
+			<!-- drive-up_bridge -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -2186,8 +2465,8 @@
 
 
 			<geometry>
-				<file>startFinish.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>drive-up_bridge.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2206,7 +2485,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -2218,7 +2497,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2233,7 +2512,7 @@
 		</object>
 
 		<object type="base">
-			<!-- corner -->
+			<!-- corner_small -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -2248,8 +2527,39 @@
 
 
 			<geometry>
-				<file>corner.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>corner_small.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- corner_small -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">12</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">19</posZ>
+
+
+			<geometry>
+				<file>corner_small.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2268,7 +2578,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -2280,7 +2590,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2295,11 +2605,11 @@
 		</object>
 
 		<object type="base">
-			<!-- corner -->
+			<!-- corner_small -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -2310,8 +2620,8 @@
 
 
 			<geometry>
-				<file>corner.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>corner_small.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2342,7 +2652,7 @@
 
 			<geometry>
 				<file>hut.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2373,7 +2683,7 @@
 
 			<geometry>
 				<file>corner_big.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2388,7 +2698,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -2403,8 +2713,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2423,7 +2733,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -2435,7 +2745,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2450,7 +2760,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -2465,8 +2775,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2485,7 +2795,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -2497,7 +2807,38 @@
 
 			<geometry>
 				<file>tunnel_in_out.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- tunnel_in_out -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">12</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">20</posZ>
+
+
+			<geometry>
+				<file>tunnel_in_out.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2528,7 +2869,7 @@
 
 			<geometry>
 				<file>hut.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2543,11 +2884,11 @@
 		</object>
 
 		<object type="base">
-			<!-- corner -->
+			<!-- corner_small -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -2558,70 +2899,8 @@
 
 
 			<geometry>
-				<file>corner.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">15</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">20</posZ>
-
-
-			<geometry>
-				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
-			</geometry>
-
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
-		</object>
-
-		<object type="base">
-			<!-- firTree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">23</posX>
-			<posY>30</posY>
-			<posZ unit="gridUnits">20</posZ>
-
-
-			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>corner_small.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2645,14 +2924,14 @@
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
 			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<posX unit="gridUnits">24</posX>
+			<posX unit="gridUnits">15</posX>
 			<posY>30</posY>
 			<posZ unit="gridUnits">20</posZ>
 
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2667,7 +2946,69 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">23</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">20</posZ>
+
+
+			<geometry>
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">24</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">20</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -2682,8 +3023,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2698,7 +3039,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -2713,8 +3054,39 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- tree -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">11</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">21</posZ>
+
+
+			<geometry>
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2733,7 +3105,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -2745,7 +3117,7 @@
 
 			<geometry>
 				<file>tunnel_in_out.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2760,7 +3132,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -2775,8 +3147,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2791,7 +3163,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -2806,8 +3178,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2822,7 +3194,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -2837,8 +3209,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2857,7 +3229,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -2869,7 +3241,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2884,7 +3256,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -2899,8 +3271,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2915,7 +3287,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -2930,8 +3302,39 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- tree -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">11</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">22</posZ>
+
+
+			<geometry>
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2950,7 +3353,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -2962,7 +3365,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -2977,7 +3380,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -2992,8 +3395,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3012,7 +3415,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -3024,6 +3427,37 @@
 
 			<geometry>
 				<file>drive-up_bridge.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- loop -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">12</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">23</posZ>
+
+
+			<geometry>
+				<file>loop.mesh</file>
 				<proportion axis="x" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
@@ -3074,7 +3508,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -3086,7 +3520,7 @@
 
 			<geometry>
 				<file>straight_line_bridge.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3105,7 +3539,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -3117,7 +3551,38 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">12</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">24</posZ>
+
+
+			<geometry>
+				<file>straight_line.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3148,7 +3613,7 @@
 
 			<geometry>
 				<file>skyscraper.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3167,7 +3632,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -3179,7 +3644,7 @@
 
 			<geometry>
 				<file>straight_line_bridge.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3210,7 +3675,7 @@
 
 			<geometry>
 				<file>skyscraper.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3241,7 +3706,38 @@
 
 			<geometry>
 				<file>hut.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- hut -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">11</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">25</posZ>
+
+
+			<geometry>
+				<file>hut.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3272,7 +3768,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3291,7 +3787,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -3303,7 +3799,7 @@
 
 			<geometry>
 				<file>straight_line_bridge.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3334,7 +3830,7 @@
 
 			<geometry>
 				<file>skyscraper.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3365,7 +3861,38 @@
 
 			<geometry>
 				<file>hut.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- hut -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">11</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">26</posZ>
+
+
+			<geometry>
+				<file>hut.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3384,7 +3911,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -3396,7 +3923,7 @@
 
 			<geometry>
 				<file>corner_big.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3411,7 +3938,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -3426,8 +3953,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3442,7 +3969,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -3457,8 +3984,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3489,7 +4016,7 @@
 
 			<geometry>
 				<file>corner_bridge_big.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3520,7 +4047,7 @@
 
 			<geometry>
 				<file>skyscraper.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3551,7 +4078,38 @@
 
 			<geometry>
 				<file>hut.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- hut -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">11</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">27</posZ>
+
+
+			<geometry>
+				<file>hut.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3570,7 +4128,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -3582,7 +4140,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3601,7 +4159,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -3613,7 +4171,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3632,7 +4190,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -3644,7 +4202,7 @@
 
 			<geometry>
 				<file>jump.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3663,7 +4221,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -3675,7 +4233,7 @@
 
 			<geometry>
 				<file>jump.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3694,7 +4252,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -3706,7 +4264,7 @@
 
 			<geometry>
 				<file>straight_line.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3725,7 +4283,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -3737,7 +4295,7 @@
 
 			<geometry>
 				<file>drive-up_bridge.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3756,7 +4314,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -3768,7 +4326,7 @@
 
 			<geometry>
 				<file>straight_line_bridge.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3787,7 +4345,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -3799,7 +4357,7 @@
 
 			<geometry>
 				<file>straight_line_bridge.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3818,7 +4376,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -3830,7 +4388,7 @@
 
 			<geometry>
 				<file>straight_line_bridge.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3845,7 +4403,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -3860,8 +4418,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3876,7 +4434,38 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<posX unit="gridUnits">11</posX>
+			<posY>30</posY>
+			<posZ unit="gridUnits">28</posZ>
+
+
+			<geometry>
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
+				<stretch x="1.0" y="1.0" z="1.0" />
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<!--waypoints>
+				<waypoint index="0">wpbegin</waypoint>
+				<waypoint index="1">wp1</waypoint>
+				<waypoint index="2">wp2</waypoint>
+				<waypoint index="3">wplast</waypoint>
+			</waypoints-->
+		</object>
+
+		<object type="base">
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -3891,8 +4480,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
@@ -3907,7 +4496,7 @@
 		</object>
 
 		<object type="base">
-			<!-- firTree -->
+			<!-- tree -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -3922,8 +4511,8 @@
 
 
 			<geometry>
-				<file>firTree.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<file>tree.mesh</file>
+				<proportion axis="z" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 

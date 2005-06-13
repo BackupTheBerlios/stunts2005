@@ -1,16 +1,147 @@
-_POS_X_	_POS_Z_	_ROT_Y_	_MESH_NAME_
+_POS_X_	_POS_Z_	_ROT_Y_ _SCALE_AXIS_ _MESH_NAME_
 
-15	7	0	house
-17	7	0	house
+15	7	0	z	house
+17	7	0	z	house
 
-16	8	0	house
-17	8	0	house
-18	8	0	house
 
-1	9	0	firTree
-2	9	0	corner_big
-4	9	0	straight_line
-5	9	0	drive-up_bridge
-6	9	0	straight_line_bridge
-7	9	0	straight_line_bridge
-8	9	0	straight_line_bridge
+1	9	0	z	tree
+2	9	0	z	corner_big
+4	9	1	z	straight_line
+5	9	3	z	drive-up_bridge
+6	9	1	z	straight_line_bridge
+7	9	1	z	straight_line_bridge
+8	9	1	z	straight_line_bridge
+9	9	1	z	drive-up_bridge
+10	9	1	z	straight_line
+11	9	1	z	straight_line
+12	9	1	z	straight_line
+13	9	1	z	straight_line
+14	9	1	z	straight_line
+15	9	1	z	straight_line
+16	9	3	z	corner_big
+
+1	10	0	z	tree
+7	10	0	z	windmill
+8	10	0	z	windmill
+13	10	0	z	tree
+14	10	0	z	tree
+15	10	0	z	tree
+
+2	11	4	z	straight_line
+17	11	2	z	straight_line
+
+2	12	4	z	straight_line
+17	12	2	z	drive-up_bridge
+
+2	13	2	z	straight_line
+17	13	4	z	straight_line_bridge
+
+2	14	2	z	straight_line
+17	14	4	z	straight_line_bridge
+
+1	15	0	z	hut
+2	15	4	z	straight_line
+3	15	0	z	tree
+17	15	4	z	straight_line_bridge
+
+1	16	0	z	hut
+2	16	1	z	corner_big
+3	16	0	z	tree
+7	16	0	z	tree
+10	16	0	z	tree
+17	16	2	z	straight_line_bridge
+
+4	17	1	z	straight_line
+5	17	1	z	tunnel_in_out
+6	17	3	z	tunnel_in_out
+7	17	1	z	straight_line
+8	17	1	z	tunnel_in_out
+9	17	3	z	tunnel_in_out
+10	17	1	z	straight_line
+11	17	1	z	straight_line
+12	17	1	z	tunnel_in_out
+13	17	3	z	tunnel_in_out
+14	17	1	z	straight_line
+15	17	1	z	straight_line
+16	17	1	z	straight_line
+17	17	1	x	crossover
+18	17	3	z	jump
+20	17	1	z	jump
+21	17	1	z	straight_line
+22	17	1	z	straight_line
+23	17	1	z	straight_line
+24	17	3	z	corner_small
+
+2	18	0	z	tree
+3	18	0	z	tree
+4	18	0	z	windmill
+7	18	0	z	skyscraper
+10	18	0	z	skyscraper
+11	18	0	z	skyscraper
+17	18	0	z	drive-up_bridge
+24	18	2	z	straight_line
+
+12	19	0	z	corner_small
+13	19	1	z	straight_line
+14	19	3	z	corner_small
+15	19	3	z	hut
+16	19	2	z	corner_big
+23	19	0	z	tree
+24	19	2	z	straight_line
+25	19	0	z	tree
+
+12	20	0	z	tunnel_in_out
+13	20	0	z	hut
+14	20	1	z	corner_small
+15	20	1	z	straight_line
+23	20	0	z	tree
+24	20	2	z	straight_line
+25	20	0	z	tree
+
+11	21	0	z	tree
+12	21	2	z	tunnel_in_out
+17	21	0	z	tree
+18	21	0	z	tree
+23	21	0	z	tree
+24	21	2	z	straight_line
+25	21	0	z	tree
+
+11	22	0	z	tree
+12	22	2	z	straight_line
+13	22	0	z	tree
+24	22	2	z	drive-up_bridge
+
+12	23	1	x	loop
+24	23	2	z	straight_line_bridge
+
+12	24	2	z	straight_line
+23	24	0	z	skyscraper
+24	24	2	z	straight_line_bridge
+26	24	0	z	skyscraper
+
+11	25	0	z	hut
+12	25	0	z	straight_line
+24	25	2	z	straight_line_bridge
+26	25	0	z	skyscraper
+
+11	26	0	z	hut
+12	26	1	z	corner_big
+14	26	0	z	tree
+15	26	0	z	tree
+24	26	2	z	corner_bridge_big
+26	26	0	z	skyscraper
+
+11	27	0	z	hut
+14	27	1	z	straight_line
+15	27	1	z	straight_line
+16	27	3	z	jump
+18	27	1	z	jump
+19	27	1	z	straight_line
+20	27	3	z	drive-up_bridge
+21	27	1	z	straight_line_bridge
+22	27	1	z	straight_line_bridge
+23	27	1	z	straight_line_bridge
+
+11	28	0	z	tree
+14	28	0	z	tree
+15	28	0	z	tree

@@ -15,7 +15,7 @@
 
 			<geometry>
 				<file>_MESH_NAME_.mesh</file>
-				<proportion axis="x" size="1" units="gridUnits" />
+				<proportion axis="_SCALE_AXIS_" size="1" units="gridUnits" />
 				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 

@@ -96,6 +96,7 @@ int main()
 	char* posX = new char[16];			memset(posX, 0, 16);
 	char* posZ = new char[16];			memset(posZ, 0, 16);
 	char* rotY = new char[16];			memset(rotY, 0, 16);
+	char* scaleA = new char[16];		memset(scaleA, 0, 16);
 	char* meshName = new char[260];	memset(meshName, 0, 260);
 
 	string currentTemplateString;
@@ -122,7 +123,7 @@ int main()
 			break;
 
 		//scan line
-		sscanf(currentTrackChars, "%s%s%s%s", posX, posZ, rotY, meshName);
+		sscanf(currentTrackChars, "%s%s%s%s%s", posX, posZ, rotY, scaleA, meshName);
 
 		//one line down
 		currentTrackChars = strchr(currentTrackChars, 10);
@@ -134,6 +135,7 @@ int main()
 		const char* _ROT_Y_ = "_ROT_Y_";
 		const char* _POS_X_ = "_POS_X_";
 		const char* _POS_Z_ = "_POS_Z_";
+		const char* _SCALE_AXIS_ = "_SCALE_AXIS_";
 		const char* _MESH_NAME_ = "_MESH_NAME_";
 
 		currentTemplateString.replace(
@@ -148,6 +150,9 @@ int main()
 		currentTemplateString.replace(
 			currentTemplateString.find(_POS_Z_, 0),
 			strlen(_POS_Z_), posZ);
+		currentTemplateString.replace(
+			currentTemplateString.find(_SCALE_AXIS_, 0),
+			strlen(_SCALE_AXIS_), scaleA);
 		currentTemplateString.replace(
 			currentTemplateString.find(_MESH_NAME_, 0),
 			strlen(_MESH_NAME_), meshName);
@@ -173,7 +178,7 @@ int main()
 	//write file
 	FILE* totalTrackFile;
 
-	totalTrackFile = fopen("total track objects.xml", "wb");
+	totalTrackFile = fopen("total_track_objects.xml", "wb");
 
 	if (!totalTrackFile)
 	{
