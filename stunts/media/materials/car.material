@@ -11,7 +11,7 @@ material Car/blue
             	emissive 0.0 0.0 0.0
 			texture_unit
 			{
-				texture blue.JPG
+				texture blue.jpg
 			}
 		}
 	}
@@ -25,7 +25,7 @@ material Car/front
 		{
 			texture_unit
 			{
-				texture frontlight.JPG
+				texture frontlight.jpg
 			}
 		}
 	}
@@ -39,7 +39,7 @@ material Car/back
 		{
 			texture_unit
 			{
-				texture backlight.JPG
+				texture backlight.jpg
 			}
 		}
 	}
@@ -53,7 +53,7 @@ material Car/black
 		{
 			texture_unit
 			{
-				texture black.JPG
+				texture black.jpg
 			}
 		}
 	}

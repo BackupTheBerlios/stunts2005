@@ -1,4 +1,4 @@
-material Material #79/Metal_Black_Plai
+material #79/Metal_Black_Plai
 {
     technique
     {
@@ -12,7 +12,7 @@ material Material #79/Metal_Black_Plai
     }
 }
 
-material Material #79/Material_#137
+material #79/Material_#137
 {
     technique
     {
@@ -26,7 +26,7 @@ material Material #79/Material_#137
     }
 }
 
-material Material #79/2_-_Default
+material #79/2_-_Default
 {
     technique
     {
@@ -42,7 +42,7 @@ material Material #79/2_-_Default
     }
 }
 
-material Material #79/17_-_Default
+material #79/17_-_Default
 {
     technique
     {

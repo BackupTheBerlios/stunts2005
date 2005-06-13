@@ -1,4 +1,4 @@
-material Material windmill/Mill_1
+material windmill/Mill_1
 {
     technique
     {
@@ -16,7 +16,7 @@ material Material windmill/Mill_1
     }
 }
 
-material Material windmill/Mill_2
+material windmill/Mill_2
 {
     technique
     {
@@ -34,7 +34,7 @@ material Material windmill/Mill_2
     }
 }
 
-material Material windmill/Sails
+material windmill/Sails
 {
     technique
     {

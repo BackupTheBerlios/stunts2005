@@ -8,7 +8,7 @@ material House/roof
 		
 			texture_unit
 			{
-				texture roof.JPG
+				texture roof.jpg
 			}
 		}
 	}
@@ -24,7 +24,7 @@ material House/oldwall
 		
 			texture_unit
 			{
-				texture oldwall.JPG
+				texture oldwall.jpg
 			}
 		}
 	}
@@ -38,7 +38,7 @@ material House/steel
 		{
 			texture_unit
 			{
-				texture carbon.JPG
+				texture carbon.jpg
 			}
 		}
 	}
@@ -51,14 +51,14 @@ material House/wood
 		{
 			texture_unit
 			{
-				texture darkwood.JPG
+				texture darkwood.jpg
 			}
 		}
 	}
 }
 
 
-material Material House/beams
+material House/beams
 {
     technique
     {
@@ -72,7 +72,7 @@ material Material House/beams
     }
 }
 
-material Material House/lattice
+material House/lattice
 {
     technique
     {
@@ -86,7 +86,7 @@ material Material House/lattice
     }
 }
 
-material Material House/Glass
+material House/Glass
 {
     technique
     {
@@ -101,7 +101,7 @@ material Material House/Glass
 }
 
 
-material Material House/Default
+material House/Default
 {
     technique
     {

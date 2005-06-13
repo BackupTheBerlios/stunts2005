@@ -11,7 +11,7 @@ material Street/Teer
             	emissive 0.0 0.0 0.0
 			texture_unit
 			{
-				texture Teer.JPG
+				texture Teer.jpg
 			}
 		}
 	}
@@ -30,7 +30,7 @@ material Street/redwhite
             	emissive 0.0 0.0 0.0
 			texture_unit
 			{
-				texture redwhite.JPG
+				texture redwhite.jpg
 			}
 		}
 	}
@@ -44,7 +44,7 @@ material Street/wall
 		{
 			texture_unit
 			{
-				texture wall.JPG
+				texture wall.jpg
 			}
 		}
 	}
@@ -57,7 +57,7 @@ material Street/steel
 		{
 			texture_unit
 			{
-				texture carbon.JPG
+				texture carbon.jpg
 			}
 		}
 	}

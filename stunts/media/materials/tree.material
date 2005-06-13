@@ -1,4 +1,4 @@
-material Material Tree/l
+material Tree/l
 {
     technique
     {
@@ -10,13 +10,13 @@ material Material Tree/l
             emissive 0.0 0.0 0.0
             texture_unit
             {
-                texture LEAFS.JPG 
+                texture leafs.jpg 
             }
         }
     }
 }
 
-material Material Tree/Bark
+material Tree/Bark
 {
     technique
     {
@@ -28,7 +28,7 @@ material Material Tree/Bark
             emissive 0.0 0.0 0.0
             texture_unit
             {
-                texture PLANTS09.JPG 
+                texture plants09.jpg 
             }
         }
     }
