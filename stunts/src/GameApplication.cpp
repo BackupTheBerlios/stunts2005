@@ -100,8 +100,8 @@ namespace stunts
 		nrKernel.AddTask(level_task);
 				
 		// set level variables. JUST FOR TESTING, this should be done by GUI
-//		nrSettings.get("level_file") = std::string("../media/level/Level.xml");
-//		nrSettings.get("load_level") = std::string("1");
+		nrSettings.get("level_file") = std::string("../media/level/Level.xml");
+		nrSettings.get("load_level") = std::string("1");
 		
 		// Setup InGame-Clock
 		shared_ptr<nrITimeSource> timer (new COgreTimer());
