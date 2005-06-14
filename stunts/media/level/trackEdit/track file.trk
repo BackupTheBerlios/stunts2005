@@ -21,10 +21,8 @@ _POS_X_	_POS_Z_	_ROT_Y_ _SCALE_AXIS_ _MESH_NAME_
 16	9	3	z	corner_big
 
 1	10	0	z	tree
-7	10	0	z	windmill
-8	10	0	z	windmill
-13	10	0	z	tree
-14	10	0	z	tree
+7	10	0	x	windmill
+8	10	0	x	windmill
 15	10	0	z	tree
 
 2	11	4	z	straight_line
@@ -73,8 +71,7 @@ _POS_X_	_POS_Z_	_ROT_Y_ _SCALE_AXIS_ _MESH_NAME_
 24	17	3	z	corner_small
 
 2	18	0	z	tree
-3	18	0	z	tree
-4	18	0	z	windmill
+4	18	0	x	windmill
 7	18	0	z	skyscraper
 10	18	0	z	skyscraper
 11	18	0	z	skyscraper
@@ -101,8 +98,6 @@ _POS_X_	_POS_Z_	_ROT_Y_ _SCALE_AXIS_ _MESH_NAME_
 11	21	0	z	tree
 12	21	2	z	tunnel_in_out
 17	21	0	z	tree
-18	21	0	z	tree
-23	21	0	z	tree
 24	21	2	z	straight_line
 25	21	0	z	tree
 
@@ -127,7 +122,6 @@ _POS_X_	_POS_Z_	_ROT_Y_ _SCALE_AXIS_ _MESH_NAME_
 11	26	0	z	hut
 12	26	1	z	corner_big
 14	26	0	z	tree
-15	26	0	z	tree
 24	26	2	z	corner_bridge_big
 26	26	0	z	skyscraper
 
@@ -143,5 +137,4 @@ _POS_X_	_POS_Z_	_ROT_Y_ _SCALE_AXIS_ _MESH_NAME_
 23	27	1	z	straight_line_bridge
 
 11	28	0	z	tree
-14	28	0	z	tree
-15	28	0	z	tree
+
