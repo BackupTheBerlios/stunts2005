@@ -264,8 +264,7 @@ namespace stunts {
 			newPos.x += mObjNode->getScale().x  * (aabb.getMaximum().x - aabb.getMinimum().x) / 2.0f;
 			newPos.z += mObjNode->getScale().z  * (aabb.getMaximum().z - aabb.getMinimum().z) / 2.0f;
 
-			//why the HELL do I have to scale by 10?!
-			newPos.y = pos.y / 10.0f; //-aabb.getMinimum().y/**mObjNode->getScale().y*/;
+			newPos.y = pos.y;  //-aabb.getMinimum().y/**mObjNode->getScale().y*/;
 		}
 		setPosition(newPos);
 
