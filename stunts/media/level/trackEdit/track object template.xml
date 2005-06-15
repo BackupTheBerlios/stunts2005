@@ -9,14 +9,14 @@
 			<!-- if the unit isn't set, its default is meters-->
 			<!-- if a position has a bottom type, it's on the terrain's ground -->
 			<posX unit="gridUnits">_POS_X_</posX>
-			<posY>30</posY>
+			<posY type="bottom">30</posY>
 			<posZ unit="gridUnits">_POS_Z_</posZ>
 
+			<proportion axis="_SCALE_AXIS_" size="1" units="gridUnits" />
+			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
 				<file>_MESH_NAME_.mesh</file>
-				<proportion axis="_SCALE_AXIS_" size="1" units="gridUnits" />
-				<stretch x="1.0" y="1.0" z="1.0" />
 			</geometry>
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->

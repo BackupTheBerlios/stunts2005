@@ -68,7 +68,7 @@ _POS_X_	_POS_Z_	_ROT_Y_ _SCALE_AXIS_ _MESH_NAME_
 21	17	1	z	straight_line
 22	17	1	z	straight_line
 23	17	1	z	straight_line
-24	17	3	z	corner_small
+24	17	3	z	corner_big
 
 2	18	0	z	tree
 4	18	0	x	windmill
@@ -78,9 +78,9 @@ _POS_X_	_POS_Z_	_ROT_Y_ _SCALE_AXIS_ _MESH_NAME_
 17	18	0	z	drive-up_bridge
 24	18	2	z	straight_line
 
-12	19	0	z	corner_small
+12	19	0	z	corner_big
 13	19	1	z	straight_line
-14	19	3	z	corner_small
+14	19	3	z	corner_big
 15	19	3	z	hut
 16	19	2	z	corner_big
 23	19	0	z	tree
@@ -89,7 +89,7 @@ _POS_X_	_POS_Z_	_ROT_Y_ _SCALE_AXIS_ _MESH_NAME_
 
 12	20	0	z	tunnel_in_out
 13	20	0	z	hut
-14	20	1	z	corner_small
+14	20	1	z	corner_big
 15	20	1	z	straight_line
 23	20	0	z	tree
 24	20	2	z	straight_line
