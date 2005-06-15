@@ -117,7 +117,13 @@ namespace stunts
 			 * @return Value in meters. Assume the terrain is quadratic
 			 **/
 			Ogre::Real unitToMeter(int32 x);
-
+			
+			/**
+			 * Same as unitToMeter, but convert from float unit value, to float meter value.
+			 * This can help to prevent roundings errors by converting the values
+			 **/
+			Ogre::Real unitToMeter(float32 x);
+			
 		protected:
 			virtual nrResult taskInit();
 			virtual nrResult taskStart();

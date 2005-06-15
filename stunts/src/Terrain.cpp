@@ -28,6 +28,7 @@
 #include <boost/shared_ptr.hpp>
 #include <nrEngine/nrEngine.h>
 
+
 using namespace boost;
 
 namespace stunts
@@ -37,7 +38,6 @@ namespace stunts
 	{
 
 		mSceneMgr = sceneMgr;
-
 		mRaySceneQuery = boost::shared_ptr< Ogre::RaySceneQuery>
 			(mSceneMgr->createRayQuery(
 				Ogre::Ray(Ogre::Vector3(0.0f, 0.0f, 0.0f),
@@ -54,16 +54,24 @@ namespace stunts
 
 	void CTerrain::Init()
 	{
-
+		mRaySceneQuery = boost::shared_ptr< Ogre::RaySceneQuery>
+			(mSceneMgr->createRayQuery(
+				Ogre::Ray(Ogre::Vector3(0.0f, 0.0f, 0.0f),
+				Ogre::Vector3::NEGATIVE_UNIT_Y))
+            );
+			
 	}
 
 
 	bool CTerrain::getHeight(Ogre::Vector3& pos)
 	{
+		
         // clamp to terrain
         static Ogre::Ray updateRay;
         updateRay.setOrigin(pos);
-        updateRay.setDirection(Ogre::Vector3::NEGATIVE_UNIT_Y);
+        
+		// check in down direction
+		updateRay.setDirection(Ogre::Vector3::NEGATIVE_UNIT_Y);
         mRaySceneQuery->setRay(updateRay);
         Ogre::RaySceneQueryResult& qryResult = mRaySceneQuery->execute();
         Ogre::RaySceneQueryResult::iterator i = qryResult.begin();
@@ -73,6 +81,17 @@ namespace stunts
         	return true;
         }
 
+		// now check in up direction
+		updateRay.setDirection(Ogre::Vector3::UNIT_Y);
+        mRaySceneQuery->setRay(updateRay);
+        Ogre::RaySceneQueryResult& qryResultUp = mRaySceneQuery->execute();
+        i = qryResultUp.begin();
+        if (i != qryResultUp.end() && i->worldFragment)
+        {
+        	pos.y = i->worldFragment->singleIntersection.y;
+        	return true;
+        }
+		
         return false;
 	}
 
@@ -127,7 +146,7 @@ namespace stunts
 				// Setup new terrain
 				try {
 					nrLog.Log(NR_LOG_APP, "CTerrain::importFromFile(): Use \"%s\" as terrain configuration file", file.c_str());
-					mSceneMgr -> setWorldGeometry(file);
+					mSceneMgr -> setWorldGeometry(file);					
 					Init();
 				}catch(...){
 					nrLog.Log(NR_LOG_APP, "CTerrain::importFromFile(): \"%s\" file was not found", file.c_str());

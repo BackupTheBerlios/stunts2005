@@ -4,8 +4,9 @@ material Tree/l
     {
         pass
         {
-	    scene_blend alpha_blend
-
+	    	scene_blend alpha_blend
+			depth_write off
+		
             ambient 1.0 1.0 1.0
             diffuse 1.0 1.0 1.0
             specular 0.0 0.0 0.0 500.0

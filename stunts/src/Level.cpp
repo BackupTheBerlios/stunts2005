@@ -145,7 +145,6 @@ namespace stunts
 
 				char name[256];
 				sprintf(name, "Gitter_%d_%d", i,j);
-				fprintf(stderr, "%s\n", name);
 
 				/// Create the mesh via the MeshManager
 				Ogre::MeshPtr msh = MeshManager::getSingleton().createManual(name, "General");
@@ -155,7 +154,7 @@ namespace stunts
 				Vector3 max = unitsToMeters(i+1,j+1);
 				min.y = 10.0f;
 				max.y = 10.0f;
-
+				
 				AxisAlignedBox aabb(min, max);
 				msh->_setBounds(aabb);
 
@@ -326,6 +325,10 @@ namespace stunts
 			return (Terrain()->getWidthX() / float(mGridCountInX)) * float(x);
 		else
 			return 1.0f;
+	}
+	//--------------------------------------------------------------------------
+	Ogre::Real CLevel::unitToMeter(float32 x){
+		return (Terrain()->getWidthX() / float(mGridCountInX)) * x;
 	}
 
 	//--------------------------------------------------------------------------

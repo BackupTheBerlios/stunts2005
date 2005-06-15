@@ -236,22 +236,11 @@ namespace stunts {
 			pos.y = parsePosition(elem, mLevel);
 
 			// check whenever we want to setup bottom position
-			if ((elem->Attribute("type") != NULL) &&
-				(mLevel->Terrain() != NULL))
-			{
-				if (!strcmp(elem->Attribute("type"), "bottom"))
-				{
-					Ogre::Vector3 posTerrain = pos;
-					posTerrain.y = 100.0f;
-
-					bool rval;
-
-					rval = mLevel->Terrain()->getHeight(posTerrain);
-					pos.y += posTerrain.y;
-
-					//std::cout << "pos(" << posTerrain.x << "," <<
-					//	posTerrain.z << ") = "<< posTerrain.y <<
-					//	" - " << (rval ? "!" : "failed") << std::endl;
+			if (elem->Attribute("type") != NULL && mLevel->Terrain() != NULL){
+				if (!strcmp(elem->Attribute("type"), "bottom")){
+					Vector3 npos = Position() + pos;
+					if (mLevel->Terrain()->getHeight(npos))
+						pos.y += npos.y;
 				}
 			}
 
@@ -259,13 +248,13 @@ namespace stunts {
 
 		// Here we correct the node's position to the underlying grid model
 		Vector3 newPos = Position() + pos;
-		if (mObjNode && mEntity){
-			const AxisAlignedBox& aabb = mEntity->getBoundingBox();
-			newPos.x += mObjNode->getScale().x  * (aabb.getMaximum().x - aabb.getMinimum().x) / 2.0f;
-			newPos.z += mObjNode->getScale().z  * (aabb.getMaximum().z - aabb.getMinimum().z) / 2.0f;
-
-			newPos.y = pos.y;  //-aabb.getMinimum().y/**mObjNode->getScale().y*/;
-		}
+		
+		// Auskommentiert, da diese kleine Verschiebung zu falschen Ergebnissen führt
+		//if (mObjNode && mEntity){
+		//	const AxisAlignedBox& aabb = mEntity->getBoundingBox();
+		//	newPos.x += mObjNode->getScale().x  * (aabb.getMaximum().x - aabb.getMinimum().x) / 2.0f;
+		//	newPos.z += mObjNode->getScale().z  * (aabb.getMaximum().z - aabb.getMinimum().z) / 2.0f;		
+		//}
 		setPosition(newPos);
 
 
@@ -305,7 +294,7 @@ namespace stunts {
 					mEntity 	= COgreTask::GetSingleton().mSceneMgr->createEntity(mName, std::string(file));
 					mObjNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
 					//mObjNode	= mRootNode->createChildNode()
-					mObjNode->attachObject( mEntity );
+					mObjNode->attachObject( mEntity );					
 				}catch (...){
 					nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): An error occurs by loading of the geometry node");
 					return true;
@@ -386,7 +375,8 @@ namespace stunts {
 	//--------------------------------------------------------------------------
 	void CBaseObject::correctObjectsOrigin()
 	{
-
+		return;
+		
 		// only if can access to the geometry
 		if (!mObjNode || !mEntity) return;
 
@@ -422,7 +412,6 @@ namespace stunts {
 			else
 				v_data = sub_mesh->vertexData;
 
-<<<<<<< BaseObject.cpp
 			// get the pointer to vertex data
 			if (sub_mesh->useSharedVertices)
 				v_data = mEntity->getMesh()->sharedVertexData;
@@ -482,9 +471,9 @@ namespace stunts {
 		if (axis == 'z') length = box.getMaximum().z - box.getMinimum().z;
 
 		// calculate new size
-		if (useGrid) value = mLevel->unitToMeter((int32)value);
-		Ogre::Real scale = (value / length) * 1.025f;		//###########################
-
+		if (useGrid) value = mLevel->unitToMeter(value);
+		Ogre::Real scale = (value / length);
+		
 		mObjNode->setScale(scale, scale, scale);
 	}
 

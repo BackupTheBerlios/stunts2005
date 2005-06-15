@@ -186,9 +186,7 @@ namespace stunts {
 		// Create scene manager
 		mSceneMgr = boost::shared_ptr< Ogre::SceneManager >
 			(mRoot->getSceneManager(ST_EXTERIOR_CLOSE));
-        // Set default mipmap level (NB some APIs ignore this)
-        TextureManager::getSingleton().setDefaultNumMipmaps(5);
-
+		
 		// Get Render System
 		mRenderer = mRoot->getRenderSystem();
 
@@ -197,6 +195,14 @@ namespace stunts {
 		//mRenderer->setLightingEnabled(true);
 		//mRenderer->setNormaliseNormals(true);
 
+		// Setup some Ogre-Properties
+		
+		// Setup boundig box padding value
+		MeshManager::getSingleton().setBoundsPaddingFactor(0.0f);
+		
+		// Set default mipmap level (NB some APIs ignore this)
+        TextureManager::getSingleton().setDefaultNumMipmaps(5);
+		
 		return ok;
     }
 
