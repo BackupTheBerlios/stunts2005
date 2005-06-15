@@ -32,7 +32,6 @@
 #include "Level.hpp"
 #include "UserInput.hpp"
 #include "OgreTask.hpp"
-#include "PhysicsWorld.hpp"
 
 
 namespace stunts {
@@ -56,7 +55,7 @@ namespace stunts {
 	/** Quit signal from nrEngine
 	*/
     void quit(void* p);
-	
+
     // These internal methods package up the stages in the startup process
     bool initialize();
 

@@ -11,14 +11,10 @@ stunts_SOURCES = \
 	stunts.cpp \
 	UserInput.cpp \
 	OgreTask.cpp \
-	Physics.cpp \
-	PhysicsWorld.cpp \
 	CSound.cpp \
 	CSoundSystem.cpp \
-	Time.cpp \
 	Level.cpp \
 	Terrain.cpp \
-	Joint.cpp\
 	BaseObject.cpp\
 	CarObject.cpp\
 	Wheel.cpp\
@@ -43,7 +39,7 @@ stunts_SOURCES = \
 	CGuiTask.cpp\
 	CGuiTex.cpp
 #	ObjectInstantiator.cpp
-	
+
 
 # Add here all headers that are needed to build myapp
 # These headers will not be installed, but included in the dist
@@ -56,14 +52,8 @@ noinst_HEADERS = \
 	UserInput.hpp \
 	OgreTask.hpp \
 	OgreTimer.hpp\
-	Physics.hpp \
-	PhysicsWorld.hpp \
-	PhysicsWorldInfo.hpp \
-	PhysicsAutoDisable.hpp \
 	CSound.hpp \
 	CSoundSystem.hpp \
-	Time.hpp \
-	Joint.hpp\
 	BaseObject.hpp\
 	InteractiveObject.hpp\
 	CarObject.hpp\

@@ -1,7 +1,7 @@
 /* Stunts 2005 - A remake of the game Stunts
  *
  * Copyright (C) 2005
- *                    Stunts 2005 Workgroup, 
+ *                    Stunts 2005 Workgroup,
  *                    http://developer.berlios.de/projects/stunts2005
  *
  * Maintainer:        Andreas Maurer <andi@andile.de
@@ -18,7 +18,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, 
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
  * USA.
  */
 
@@ -44,13 +44,13 @@ namespace stunts {
 	// <node unit="gridUnit">12</node>
 	//--------------------------------------------------------------------------
 	float parsePosition(TiXmlElement* node, CLevel* level){
-	
+
 		if (node == NULL || level == NULL) return 0.0f;
-				
+
 		// Use Dators to easy convert between strings and normal types like int,float
 		float32 fvalue = 0.0f;
 		nrCDator<float32> fval(fvalue);
-		
+
 		// Parsing the value and convert from grid units
 		const char* str = node->GetText();
 		if (str){
@@ -60,12 +60,12 @@ namespace stunts {
 				if (!strcmp(node->Attribute("unit"), "gridUnits"))
 					fvalue = level->unitToMeter((int32)fval);
 			}
-			
+
 		}
-	
+
 		return fvalue;
 	}
-		
+
 	//--------------------------------------------------------------------------
 	// Small Helping function to parse rotation node
 	// <rotate x="." y="." z="." unit="." value="." />
@@ -78,17 +78,17 @@ namespace stunts {
 		float32 y = 0.0f;
 		float32 z = 0.0f;
 		float32 w = 0.0f;
-		
+
 		nrCDator<float32> _x(x);
 		nrCDator<float32> _y(y);
 		nrCDator<float32> _z(z);
 		nrCDator<float32> _w(w);
-		
+
 		_x = std::string(node->Attribute("x"));
 		_y = std::string(node->Attribute("y"));
 		_z = std::string(node->Attribute("z"));
 		_w = std::string(node->Attribute("value"));
-		
+
 		// check for units
 		if (node->Attribute("unit")){
 			if (!strcmp(node->Attribute("unit"), "quarters")){
@@ -101,13 +101,13 @@ namespace stunts {
 		//quater.normalise();
 		Radian  rf (Real(TORAD(w)));
 		Vector3 v  (x,y,z);
-		
+
 		Quaternion quater(rf, v);
-		
-		return quater;	
+
+		return quater;
 	}
-	
-	
+
+
 	//--------------------------------------------------------------------------
 	CBaseObject::CBaseObject()
 	{
@@ -117,7 +117,7 @@ namespace stunts {
 		setName(createName().c_str());
 		setPosition(Vector3(0,0,0));
 	}
-		
+
 	//--------------------------------------------------------------------------
 	CBaseObject::CBaseObject(char* xmlSettingsString, const std::string& xmlPath)
 	{
@@ -125,35 +125,38 @@ namespace stunts {
 		mObjNode = NULL;
 		mEntity = NULL;
 		setName(createName().c_str());
-		
+
 		// call the import from string function which will call the right
 		// overwrited parseSettings method
 		importFromString(xmlSettingsString, xmlPath);
 	}
-	
-	
+
+
 	//--------------------------------------------------------------------------
 	CBaseObject::~CBaseObject()
 	{
 		// RemoveObject from memory
 		// TODO
 	}
-	
-	
+
+
 	//--------------------------------------------------------------------------
 	bool CBaseObject::parseSettings(TiXmlElement* rootElem, const std::string& xmlPath)
 	{
+		std::cout << "Level:" << (mLevel != NULL) << std::endl;
+		std::cout << "Terrain:" << (mLevel->Terrain() != NULL) << std::endl;
+
+
 		nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): Start parsing the settings");
 
 		if (rootElem == NULL){
 			nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): Not valid XML-Element given");
 			return true;
 		}
-		
+
 		// variables
 		TiXmlElement* elem = NULL;
-		
-		
+
 		// get the name of the object
 		elem = rootElem->FirstChildElement("name");
 		if (elem){
@@ -164,92 +167,141 @@ namespace stunts {
 			}
 		}
 
-			
 		// Get the geometry of the object
 		elem = rootElem->FirstChildElement("geometry");
 		if (elem)
 			loadGeometry(elem, xmlPath);
 
-			
+
 		// find if we want to import a file
 		elem = rootElem->FirstChildElement("import");
 		if (elem)
 			importFromFile(xmlPath + elem->Attribute("file"), xmlPath);
-		
-	
+
+
 		// if we found a controller, so bind it
 		elem = rootElem->FirstChildElement("control");
 		if (elem)
 			bindController(elem->Attribute("name"));
 
-			
+
 		// NOTE: The geometry has to be parsed before, so we can access to created nodes
 		Ogre::Vector3 pos(0.0f, 0.0f, 0.0f);
-			
+
+		// read proportion values
+		elem = rootElem->FirstChildElement("proportion");
+		if (elem)
+		{
+			const char* axis = elem->Attribute("axis");
+			const char* val  = elem->Attribute("size");
+			const char* unit = elem->Attribute("units");
+
+			bool  useGrid = unit ? (!strcmp(unit, "gridUnits") ? true : false) : false;
+			float32 value = val ? boost::lexical_cast<float32>(val) : 1.0f;
+
+			scaleObjectProportionaly (axis[0], value, useGrid);
+		}
+
+
+		// check for scaling properties
+/*		elem = rootElem->FirstChildElement("stretch");
+		if (elem)
+		{
+			const char* x = elem->Attribute("x");
+			const char* y = elem->Attribute("y");
+			const char* z = elem->Attribute("z");
+
+			try{
+				float fx = x ? boost::lexical_cast<float>(x) : 1.0f;
+				float fy = y ? boost::lexical_cast<float>(y) : 1.0f;
+				float fz = z ? boost::lexical_cast<float>(z) : 1.0f;
+				mObjNode->scale(fx, fy, fz);
+			}catch(...){
+				return true;
+			}
+		}*/
+
 		// check whenever such kind of position tag exists
 		elem = rootElem->FirstChildElement("posX");
 		if (elem)
 			pos.x = parsePosition(elem, mLevel);
-		
+
 		elem = rootElem->FirstChildElement("posZ");
 		if (elem)
 			pos.z = parsePosition(elem, mLevel);
-								
+
 		elem = rootElem->FirstChildElement("posY");
 		if (elem){
 			// setup normal y-position
 			pos.y = parsePosition(elem, mLevel);
-			
+
 			// check whenever we want to setup bottom position
-			if (elem->Attribute("type") != NULL){
+			if ((elem->Attribute("type") != NULL) &&
+				(mLevel->Terrain() != NULL))
+			{
 				if (!strcmp(elem->Attribute("type"), "bottom"))
-					pos.y = mLevel->Terrain()->getHeight(pos); 
+				{
+					Ogre::Vector3 posTerrain = pos;
+					posTerrain.y = 100.0f;
+
+					bool rval;
+
+					rval = mLevel->Terrain()->getHeight(posTerrain);
+					pos.y += posTerrain.y;
+
+					//std::cout << "pos(" << posTerrain.x << "," <<
+					//	posTerrain.z << ") = "<< posTerrain.y <<
+					//	" - " << (rval ? "!" : "failed") << std::endl;
+				}
 			}
+
 		}
-				
 
 		// Here we correct the node's position to the underlying grid model
 		Vector3 newPos = Position() + pos;
 		if (mObjNode && mEntity){
 			const AxisAlignedBox& aabb = mEntity->getBoundingBox();
 			newPos.x += mObjNode->getScale().x  * (aabb.getMaximum().x - aabb.getMinimum().x) / 2.0f;
-			newPos.z += mObjNode->getScale().z  * (aabb.getMaximum().z - aabb.getMinimum().z) / 2.0f;		
+			newPos.z += mObjNode->getScale().z  * (aabb.getMaximum().z - aabb.getMinimum().z) / 2.0f;
+
+			//why the HELL do I have to scale by 10?!
+			newPos.y = pos.y / 10.0f; //-aabb.getMinimum().y/**mObjNode->getScale().y*/;
 		}
 		setPosition(newPos);
-		
-		
+
+
 		// Read rotation out
 		elem = rootElem->FirstChildElement("rotate");
 		if (elem)
 			setOrientation(parseRotation(elem));
 
-						
+
 		nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): parsing is complete now");
 		return false;
-		
+
 	}
-	
+
 	//--------------------------------------------------------------------------
 	bool CBaseObject::loadGeometry(TiXmlElement* geomElem, const std::string& xmlPath){
-	
+
 		// Logging
 		nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): Load geometry definition of the object");
-		
+
 		if (geomElem == NULL){
 			nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): Not a valid XML-Element given");
 			return true;
 		}
-		
+
 		// variables
 		TiXmlElement* elem = NULL;
-		
+
 		// get the name of the object
 		elem = geomElem->FirstChildElement("file");
 		if (elem){
 			const char* file = elem->GetText();
 			if (file){
-				nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): Load mesh file \"%s\"", file);			
-				try{	
+				nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): Load mesh file \"%s\"", file);
+				try{
 					// Create & Load the entity
 					mEntity 	= COgreTask::GetSingleton().mSceneMgr->createEntity(mName, std::string(file));
 					mObjNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
@@ -262,76 +314,39 @@ namespace stunts {
 			}
 		}
 
-		if (!mObjNode || !mEntity) return false;
-		
-
-		// read proportion values
-		elem = geomElem->FirstChildElement("proportion");
-		if (elem)
-		{
-			const char* axis = elem->Attribute("axis");
-			const char* val  = elem->Attribute("size");
-			const char* unit = elem->Attribute("units");
-			
-			bool  useGrid = unit ? (!strcmp(unit, "gridUnits") ? true : false) : false;
-			float32 value = val ? boost::lexical_cast<float32>(val) : 1.0f;
-			
-			scaleObjectProportionaly (axis[0], value, useGrid);
-		}
-			
-		
-		// check for scaling properties
-		elem = geomElem->FirstChildElement("stretch");
-		if (elem)
-		{
-			const char* x = elem->Attribute("x");
-			const char* y = elem->Attribute("y");
-			const char* z = elem->Attribute("z");
-			
-			try{
-				float fx = x ? boost::lexical_cast<float>(x) : 1.0f;
-				float fy = y ? boost::lexical_cast<float>(y) : 1.0f;
-				float fz = z ? boost::lexical_cast<float>(z) : 1.0f;
-				mObjNode->scale(fx, fy, fz);
-			}catch(...){
-				return true;
-			}
-		}
-	
-		
 		return false;
 	}
 
 	//--------------------------------------------------------------------------
 	bool CBaseObject::importFromFile(const char* fileName, const std::string& xmlPath)
 	{
-		
+
 		// load the xml document
 		shared_ptr<TiXmlDocument> mDoc (new TiXmlDocument(fileName));
 		if (!mDoc->LoadFile())
 		{
 			nrLog.Log(NR_LOG_APP, "CBaseObject::importFromFile(): Can not load the file \"%s\"", fileName);
-			return true;	
+			return true;
 		}
 
-		// Get the root element from the file		
+		// Get the root element from the file
 		TiXmlElement* rootElem = mDoc->FirstChildElement(this->getObjectType());
-		
+
 		// get the first root element.
 		if (rootElem == NULL)
 		{
 			nrLog.Log(NR_LOG_APP, "CBaseObject::importFromFile(): Can not find root node \"%s\"", this->getObjectType());
 			return true;
 		}
-				
-		
+
+
 		return parseSettings(rootElem, xmlPath);
 	}
-	
+
 	//--------------------------------------------------------------------------
 	bool CBaseObject::importFromString(const char* xmlSettings, const std::string& xmlPath)
 	{
-		
+
 		// load the xml document
 		shared_ptr<TiXmlDocument> mDoc (new TiXmlDocument());
 		mDoc->Parse(xmlSettings);
@@ -341,26 +356,26 @@ namespace stunts {
 			return true;
 		}
 
-		// Get the root element from the file		
+		// Get the root element from the file
 		TiXmlElement* rootElem = mDoc->FirstChildElement(this->getObjectType());
-		
+
 		// get the first root element.
 		if (rootElem == NULL)
 		{
 			nrLog.Log(NR_LOG_APP, "CBaseObject::importFromString(): Can not find root node \"%s\"", this->getObjectType());
 			return true;
 		}
-				
-		
+
+
 		return parseSettings(rootElem, xmlPath);
 	}
 
 	//--------------------------------------------------------------------------
 	bool CBaseObject::bindController(const char* name){
-		
+
 		// create an instance of controller object
 		mControl = CBaseControl::createInstance(name);
-		
+
 		// is the interface not valid
 		if (mControl == NULL)
 			return false;
@@ -368,17 +383,17 @@ namespace stunts {
 		return true;
 	}
 
-	
+
 	//--------------------------------------------------------------------------
 	void CBaseObject::correctObjectsOrigin()
 	{
 
 		// only if can access to the geometry
 		if (!mObjNode || !mEntity) return;
-		
+
 		// get the AABB
 		const AxisAlignedBox& box = mEntity->getBoundingBox();
-		
+
 		// get length along the needed axis
 		Real lengthX = box.getMaximum().x - box.getMinimum().x;
 		Real lengthY = box.getMaximum().y - box.getMinimum().y;
@@ -390,31 +405,31 @@ namespace stunts {
 		pos.y = lengthY/2.0f;//-(box.getMinimum().y + lengthY / 2.0f);
 		pos.z = lengthZ/2.0f;//-(box.getMinimum().z + lengthZ / 2.0f);
 
-		
+
 		mObjNode->translate(pos, Ogre::Node::TS_PARENT);
 		mObjNode->showBoundingBox(true);
-				
+
 //		setPosition(mObjNode->getPosition() + pos);
-#if 0		
+#if 0
 		// Now access Ogre's vertices and correct their position;
 		for (unsigned short i=0; i < mEntity->getMesh()->getNumSubMeshes(); i++)
 		{
 			SubMesh* sub_mesh = mEntity->getMesh()->getSubMesh(i);
 			VertexData* v_data = NULL;
-			
+
 			// get the pointer to vertex data
 			if (sub_mesh->useSharedVertices)
 				v_data = mEntity->getMesh()->sharedVertexData;
 			else
 				v_data = sub_mesh->vertexData;
-			
+
 <<<<<<< BaseObject.cpp
 			// get the pointer to vertex data
 			if (sub_mesh->useSharedVertices)
 				v_data = mEntity->getMesh()->sharedVertexData;
 			else
 				v_data = sub_mesh->vertexData;
-			
+
 			// get pointer to vertices
 			const Ogre::VertexElement* posElem = v_data->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
 			Ogre::HardwareVertexBufferSharedPtr vbuf = v_data->vertexBufferBinding->getBuffer(posElem->getSource());
@@ -454,26 +469,26 @@ namespace stunts {
 	}
 	//--------------------------------------------------------------------------
 	void CBaseObject::scaleObjectProportionaly(char axis, float32 value, bool useGrid)
-	{	
+	{
 		// only if can access to the geometry
 		if (!mObjNode || !mEntity) return;
-		
+
 		// get the AABB
 		const AxisAlignedBox& box = mEntity->getBoundingBox();
-		
+
 		// get length along the needed axis
 		Real length = 1.0f;
 		if (axis == 'x') length = box.getMaximum().x - box.getMinimum().x;
 		if (axis == 'y') length = box.getMaximum().y - box.getMinimum().y;
 		if (axis == 'z') length = box.getMaximum().z - box.getMinimum().z;
-		
+
 		// calculate new size
 		if (useGrid) value = mLevel->unitToMeter((int32)value);
-		Ogre::Real scale = (value / length);
-		
+		Ogre::Real scale = (value / length) * 1.025f;		//###########################
+
 		mObjNode->setScale(scale, scale, scale);
 	}
-	
+
 	//--------------------------------------------------------------------------
 	void CBaseObject::setName(const char* name)
 	{
@@ -523,17 +538,17 @@ namespace stunts {
 		{
 			// Read first element from vector queue
 			boost::shared_ptr<CEvent> firstElement = this->m_eventQueue.front();
-	
+
 			// Remove first element from queue
 			this->m_eventQueue.pop();
-		
+
 			return firstElement;
 		}
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	* Add event to queue
 	*
@@ -546,10 +561,10 @@ namespace stunts {
 		this->m_eventQueue.push(element);
 		return;
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	* Process event from queue
 	*
@@ -561,16 +576,16 @@ namespace stunts {
 	{
 		// If no further element @ queue
 		if (this->m_eventQueue.empty() == true) return -1;
-		
+
 		// Get first element from queue
 		boost::shared_ptr<CEvent> task = this->getEvent();
-		
+
 		// Check what todo
 		// TODO: Implementierung der verschiedenen
 		// Tasks, die durch das Objekt abgearbeitet
 		// werden muessen!
-		
+
 		return true;
 	}
-	
+
 };

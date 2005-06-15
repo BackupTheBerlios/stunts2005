@@ -32,18 +32,18 @@ using boost::shared_ptr;
 
 namespace stunts
 {
-	
+
 	//--------------------------------------------------------------------------
 	CLevel::CLevel()
 	{
 		mIsLoaded = false;
 		mShouldLoadLevel = false;
 		mLevelFileName = "";
-		
+
 		// Setup default grid count size
 		mGridCountInX = 30;
 		mGridCountInZ = 30;
-		
+
 		registerVariables();
 	}
 
@@ -59,27 +59,27 @@ namespace stunts
 	void CLevel::registerVariables()
 	{
 		nrSettingsRegisterString(mLevelFileName, 	"level_file");
-		
+
 		nrSettingsRegister(bool, mShouldLoadLevel, 	"load_level");
 		nrSettingsRegister(bool, mIsLoaded, 		"level_is_loaded");
-	}	
-	
+	}
+
 	//--------------------------------------------------------------------------
 	void CLevel::deregisterVariables()
 	{
-		nrSettings.deregisterVariable("level_file");		
+		nrSettings.deregisterVariable("level_file");
 		nrSettings.deregisterVariable("load_level");
 		nrSettings.deregisterVariable("level_is_loaded");
-	}	
-	
+	}
+
 	//--------------------------------------------------------------------------
 	bool CLevel::loadLevel(const std::string& levelFile)
 	{
-		
+
 		nrLog.Log(NR_LOG_APP, "CLevel::loadLevel(): Start loading of a level from file \"%s\"", levelFile.c_str());
-				
+
 		// we open the file for parsing.
-		// Later we can open the file through the virtual file system if we had got more time 
+		// Later we can open the file through the virtual file system if we had got more time
 		// for development
 		shared_ptr<TiXmlDocument> mLevelDoc (new TiXmlDocument(levelFile.c_str()));
 		if (!mLevelDoc->LoadFile())
@@ -88,7 +88,7 @@ namespace stunts
 			return true;
 		}
 
-		// Load elements form the level file and handle with them in according way		
+		// Load elements form the level file and handle with them in according way
 		TiXmlElement* elem = NULL;
 		TiXmlElement* rootElem = mLevelDoc->FirstChildElement("level");
 
@@ -98,14 +98,14 @@ namespace stunts
 			nrLog.Log(NR_LOG_APP, "CLevel::loadLevel(): Level file containing not valid data");
 			return true;
 		}
-		
+
 		// get the path from the file name
 		mLevelFilePath = getPathFromFileName(levelFile);
 		mLevelFileName = levelFile;
-		
+
 		// remove all objects that we are have got at now
 		mObjects.clear();
-		
+
         // Get the gravity for this level
 		elem = rootElem->FirstChildElement("gravity");
 		if (elem)
@@ -116,41 +116,52 @@ namespace stunts
 		if (elem)
 			readTerrain(elem);
 
+//######################################
+//unproper!!
+
+// if you don't call the OGRE task
+// you cannot get the terrain height!
+
+//FIX THIS!
+
+		COgreTask::GetSingleton().taskUpdate();
+//######################################
+
 		// check now for object in the file
 		elem = rootElem->FirstChildElement("objects");
 		if (elem)
 			readObjects(elem);
-		
+
 		// check for the atmosphere
 		elem = rootElem->FirstChildElement("atmosphere");
 		if (elem)
 			readAtmosphere(elem);
-		
+
 		mIsLoaded = true;
-		
+
 		// Erstelle Gitter model
-		for (int32 i = 0; i < mGridCountInX; i++)
+/*		for (int32 i = 0; i < mGridCountInX; i++)
 			for (int32 j=0; j < mGridCountInZ; j++){
-		
+
 				char name[256];
 				sprintf(name, "Gitter_%d_%d", i,j);
 				fprintf(stderr, "%s\n", name);
-				
+
 				/// Create the mesh via the MeshManager
 				Ogre::MeshPtr msh = MeshManager::getSingleton().createManual(name, "General");
-		
+
 				/// Set bounding information (for culling)
 				Vector3 min = unitsToMeters(i,j);
 				Vector3 max = unitsToMeters(i+1,j+1);
 				min.y = 10.0f;
 				max.y = 10.0f;
-				
+
 				AxisAlignedBox aabb(min, max);
 				msh->_setBounds(aabb);
-				
+
 				/// Notify Mesh object that it has been loaded
 				msh->load();
-				
+
 				// Now add this into scene graph
 				char ename[256];
 				sprintf(ename, "%s_entity", name);
@@ -159,9 +170,8 @@ namespace stunts
 				SceneNode* mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
 				mSceneNode->attachObject( ent );
 				mSceneNode->showBoundingBox(true);
-		}
+		}*/
 
-				
 		return false;
 	}
 
@@ -169,34 +179,34 @@ namespace stunts
 	void CLevel::readGravity(TiXmlElement* elem)
 	{
 		nrLog.Log(NR_LOG_APP, "CLevel::readGravity(): Read the gravity value for the level");
-		
+
 		// The gravity node should contain only the text containing only a float number
 		// We can easely setup the gravity from the string by using the dator class
 		nrCDator<float32>	gravity(this->mGravity);
-		
+
 		// assign string to the gravity value
 		gravity = elem->Attribute("value");
-		
+
 	}
 	//--------------------------------------------------------------------------
 	void CLevel::readGridsize(TiXmlElement* elem)
 	{
-		
+
 		nrCDator<int32>		x(this->mGridCountInX);
 		nrCDator<int32>		z(this->mGridCountInZ);
-				
+
 		// assign string to the values
 		x = elem->Attribute("x");
 		z = elem->Attribute("z");
-		
+
 		nrLog.Log(NR_LOG_APP, "CLevel::readGridsize(): The track use grid of size %dx%d", (int32)x, (int32)z);
 	}
-	
+
 	//--------------------------------------------------------------------------
 	void CLevel::readAtmosphere(TiXmlElement* elem)
 	{
 		nrLog.Log(NR_LOG_APP, "CLevel::readAtmosphere(): Read atmosphere node form level file");
-	
+
 		// check for importing of a file
 		TiXmlElement*	smElem = elem->FirstChildElement("import");
 		if (smElem)
@@ -205,12 +215,12 @@ namespace stunts
 			mAtmosphere->importFromFile((mLevelFilePath + smElem->Attribute("file")).c_str(), mLevelFilePath);
 		}
 	}
-	
+
 	//--------------------------------------------------------------------------
 	void CLevel::readTerrain(TiXmlElement* elem)
 	{
 		nrLog.Log(NR_LOG_APP, "CLevel::readTerrain(): Read terrain node from level file");
-	
+
 		// check for importing of a file
 		TiXmlElement*	smElem = elem->FirstChildElement("import");
 		if (smElem)
@@ -219,52 +229,52 @@ namespace stunts
 			mTerrain.reset (new CTerrain (OgreTask()->mSceneMgr));
 			mTerrain->importFromFile((mLevelFilePath + smElem->Attribute("file")).c_str(), smElem->Attribute("root"));
 		}
-		
+
 	}
-	
+
 	//--------------------------------------------------------------------------
 	void CLevel::readObjects(TiXmlElement* elem)
 	{
 		nrLog.Log(NR_LOG_APP, "CLevel::readObjects(): Read objects definition of the level file");
-		
+
 		// Scan for all elements in this node
-		for (TiXmlElement* smElem = elem->FirstChildElement("object"); smElem != 0; 
+		for (TiXmlElement* smElem = elem->FirstChildElement("object"); smElem != 0;
 					smElem = smElem->NextSiblingElement("object"))
         {
-			
+
 			// if it is an object node, so load data from it
 			shared_ptr<CBaseObject>	obj(CObjectInstantiator::createInstance(smElem->Attribute("type")));
 			if (obj == NULL){
 				nrLog.Log(NR_LOG_APP, "CLevel::readObjects(): Non valid object type \"%s\"", smElem->Attribute("type"));
 				break;
 			}
-			
+
 			// set the level file
 			obj->mLevel = this;
-			
+
 			// Now let the object parse the settings by itself
 			if (obj->parseSettings(smElem, mLevelFilePath)){
 				nrLog.Log(NR_LOG_APP, "CLevel::readObjects(): Error by parsing object settings");
 				break;
 			}
-						
+
 			// store the object in a vector
 			this->mObjects.push_back(obj);
 		}
-		
+
 		// now import a file if one was specified
 		TiXmlElement*	smElem = elem->FirstChildElement("import");
 		if (smElem)
 			importTrackFile ((mLevelFilePath + smElem->Attribute("file")).c_str(), smElem->Attribute("root"));
-			
+
 	}
-	
+
 	//--------------------------------------------------------------------------
 	void CLevel::importTrackFile(const char* fileName, const char* root)
 	{
-		
+
 		nrLog.Log(NR_LOG_APP, "CLevel::importTrackFile(): Import a track file \"%s\" into the level", fileName);
-		
+
 		// open the document for loading
 		shared_ptr<TiXmlDocument>	mDoc (new TiXmlDocument(fileName));
 		if (!mDoc->LoadFile())
@@ -272,7 +282,7 @@ namespace stunts
 			nrLog.Log(NR_LOG_APP, "CLevel::importTrackFile(): Can not load the track file \"%s\"", fileName);
 			return;
 		}
-		
+
 		// get the root element
 		TiXmlElement*	elem = NULL;
 		TiXmlElement*	rootElem = mDoc->FirstChildElement(root);
@@ -281,7 +291,7 @@ namespace stunts
 			nrLog.Log(NR_LOG_APP, "CLevel::importTrackFile(): Not valid track file. Can not find root node \"%s\"", root);
 			return;
 		}
-		
+
 		// Get the grid size for this level
 		elem = rootElem->FirstChildElement("gridsize");
 		if (elem)
@@ -291,24 +301,31 @@ namespace stunts
 		elem = rootElem->FirstChildElement("objects");
 		if (elem)
 			readObjects(elem);
-		
-	}		
-	
+
+	}
+
 	//--------------------------------------------------------------------------
 	Ogre::Vector3 CLevel::unitsToMeters(int32 x, int32 z){
-		
+
 		Ogre::Vector3 vec;
-		
-		vec.x = (Terrain()->getWidthX() / Ogre::Real(mGridCountInX)) * Ogre::Real(x);
-		vec.y = Ogre::Real(0);
-		vec.z = (Terrain()->getWidthZ() / Ogre::Real(mGridCountInZ)) * Ogre::Real(z);
-		
+
+		if (mTerrain != NULL)
+		{
+			vec.x = (mTerrain->getWidthX() / Ogre::Real(mGridCountInX)) * Ogre::Real(x);
+			vec.y = Ogre::Real(0);
+			vec.z = (mTerrain->getWidthZ() / Ogre::Real(mGridCountInZ)) * Ogre::Real(z);
+		}
+
 		return vec;
 	}
 
 	//--------------------------------------------------------------------------
-	Ogre::Real CLevel::unitToMeter(int32 x){
-		return (Terrain()->getWidthX() / float(mGridCountInX)) * float(x);
+	Ogre::Real CLevel::unitToMeter(int32 x)
+	{
+		if (mTerrain != NULL)
+			return (Terrain()->getWidthX() / float(mGridCountInX)) * float(x);
+		else
+			return 1.0f;
 	}
 
 	//--------------------------------------------------------------------------
@@ -318,19 +335,19 @@ namespace stunts
 		getEngineTasks();
 
 		//create terrain (after the engine tasks have been gotten)
-		mTerrain.reset(new CTerrain (OgreTask()->mSceneMgr));
-			
+		//mTerrain.reset(new CTerrain (OgreTask()->mSceneMgr));
+
 		//return
 		return NR_OK;
 	}
-	
+
 
 	//--------------------------------------------------------------------------
 	nrResult CLevel::taskStart()
 	{
 		//activate input class
 		UserInput()->activate(true);
-		
+
 		return NR_OK;
 	}
 
@@ -344,7 +361,7 @@ namespace stunts
 			if (!loadLevel(mLevelFileName))
 				return NR_UNKNOWN_ERROR;
 		}
-				
+
 		return NR_OK;
 	}
 
@@ -362,10 +379,9 @@ namespace stunts
 		//get tasks
 		mOgreTask = boost::dynamic_pointer_cast<COgreTask, nrITask>(nrKernel.getTaskByName("OgreTask"));
 		mUserInput = boost::dynamic_pointer_cast<CUserInput, nrITask>(nrKernel.getTaskByName("UserInput"));
-		mPhysicsWorld = boost::dynamic_pointer_cast<CPhysicsWorld, nrITask>(nrKernel.getTaskByName("PhysicWorld"));
 
 		//check for errors
-		if (!mOgreTask || !mUserInput || !mPhysicsWorld)
+		if (!mOgreTask || !mUserInput)
 		{
 			nrLog.Log(NR_LOG_APP, "CLevel::getEngineTasks(): Error in getting\
 				Tasks");
@@ -376,31 +392,23 @@ namespace stunts
 			#endif
 
 			nrKernel.KillAllTasks();
-		}		
+		}
 	}
-	
-	
+
+
 	//--------------------------------------------------------------------------
 	boost::shared_ptr< COgreTask >  CLevel::OgreTask()
 	{
 		//COgreTask::GetSingletonPtr();
 		return mOgreTask;
 	}
-	
-	
+
+
 	//--------------------------------------------------------------------------
 	boost::shared_ptr< CUserInput >  CLevel::UserInput()
 	{
 		return mUserInput;
 	}
-	
-	
-	//--------------------------------------------------------------------------
-	boost::shared_ptr< CPhysicsWorld >  CLevel::PhysicsWorld()
-	{
-		return mPhysicsWorld;
-	}
-
 
 	//--------------------------------------------------------------------------
 	boost::shared_ptr< CTerrain >  CLevel::Terrain()

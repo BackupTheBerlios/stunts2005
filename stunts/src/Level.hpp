@@ -49,7 +49,6 @@ namespace stunts
 
 #include "External/tinyxml/tinyxml.h"
 
-#include "PhysicsWorld.hpp"
 #include "OgreTask.hpp"
 #include "UserInput.hpp"
 #include "Terrain.hpp"
@@ -70,42 +69,35 @@ namespace stunts
 
 			//! Register all used variables by the settings manager
 			void registerVariables();
-			
+
 			//! Remove all used variables from the settings manager
 			void deregisterVariables();
-									
+
 			/**
 			 * Loads the level by given XML-String
 			 * @param levelFile Filename of file containing XML-Data about the level
 			 * @return 0 if no error occurs otherwise 1
 			 **/
 			bool	loadLevel(const std::string& levelFile);
-			
+
 			/**
 			 * Get OgreTask
-			 * 
+			 *
 			 * @return smart pointer to OgreTask class
 			 */
 			boost::shared_ptr< COgreTask > 		OgreTask();
 
 			/**
 			 * Get UserInput
-			 * 
+			 *
 			 * @return smart pointer to UserInput class
 			 */
 			boost::shared_ptr< CUserInput > 	UserInput();
 
-			/**
-			 * Get PhysicsWorld
-			 * 
-			 * @return smart pointer to PhysicsWorld class
-			 */
-			boost::shared_ptr< CPhysicsWorld >	PhysicsWorld();
-
 
 			/**
 			 * Get Terrain
-			 * 
+			 *
 			 * @return smart pointer to Terrain class
 			 */
 			boost::shared_ptr< CTerrain >	Terrain();
@@ -113,19 +105,19 @@ namespace stunts
 
 			/**
 			 * Convert given GridUnits into Meters
-			 * @param x,z 2D-Grid-Position. 
+			 * @param x,z 2D-Grid-Position.
 			 * @return Vector containing the position vector. The returned vector has y set to 0
 			 * 			so you have to reset the y to right position.
 			 **/
 			Ogre::Vector3 unitsToMeters(int32 x, int32 z);
-			
+
 			/**
 			 * Convert given GridUnit into Meter
 			 * @param x Grid unit
 			 * @return Value in meters. Assume the terrain is quadratic
 			 **/
 			Ogre::Real unitToMeter(int32 x);
-			
+
 		protected:
 			virtual nrResult taskInit();
 			virtual nrResult taskStart();
@@ -140,40 +132,39 @@ namespace stunts
 
 			//! Parse the gravity value of the level file
 			void readGravity(TiXmlElement* elem);
-			
+
 			//! Parse the gridsize value of the level file
 			void readGridsize(TiXmlElement* elem);
 
 			//! Parse the terrain node of the xml file
 			void readTerrain(TiXmlElement* elem);
-			
+
 			//! Parse teh objects node of the level file
 			void readObjects(TiXmlElement* elem);
-			
+
 			//! Parse the atmosphere node of the file
 			void readAtmosphere(TiXmlElement* elem);
-			
+
 			//! import file containing data of the track
 			void importTrackFile(const char* fileName, const char* root = NULL);
-						
+
 			//member variables
 			boost::shared_ptr< COgreTask >			mOgreTask;
 			boost::shared_ptr< CUserInput > 		mUserInput;
-			boost::shared_ptr< CPhysicsWorld > 		mPhysicsWorld;
-			
+
 			boost::shared_ptr< Ogre::InputReader >	mInputDevice;
 			boost::shared_ptr< CTerrain > 			mTerrain;
 			boost::shared_ptr< CAtmosphere >		mAtmosphere;
-			
+
 			std::vector<boost::shared_ptr<CBaseObject> >	mObjects;
-			
+
 			float32						mGravity;
 			std::string					mLevelFileName;
 			std::string					mLevelFilePath;
-			
+
 			bool						mIsLoaded;
 			bool						mShouldLoadLevel;
-			
+
 			int32 						mGridCountInX;
 			int32 						mGridCountInZ;
 	};

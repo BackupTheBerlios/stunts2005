@@ -1,7 +1,7 @@
 /* Stunts 2005 - A remake of the game Stunts
  *
  * Copyright (C) 2005
- *                    Stunts 2005 Workgroup, 
+ *                    Stunts 2005 Workgroup,
  *                    http://developer.berlios.de/projects/stunts2005
  *
  * Maintainer:        Art Tevs
@@ -18,7 +18,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, 
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
  * USA.
  */
 
@@ -40,18 +40,18 @@ namespace stunts {
     	mWindow = NULL;
     	//mFrameListener = NULL;
    	}
-	
+
 	/**
 	* Destructor
 	**/
 	COgreTask::~COgreTask(){
-	
+
 		//delete OGRE root
 		NR_SAFE_DELETE(mRoot);
-	
+
 	}
-	
-	
+
+
 	/**
 	* Initialize Ogre Engine
 	**/
@@ -61,7 +61,7 @@ namespace stunts {
         mRoot = new Root();
 		if (!configure())return NR_UNKNOWN_ERROR;
 
-		// Load resources and 
+		// Load resources and
 		setupResources();
 
 		// Create camera and viewports
@@ -70,7 +70,7 @@ namespace stunts {
 
 
 		//setup input class
-		mInputDevice  =	
+		mInputDevice  =
 			boost::shared_ptr< Ogre::InputReader >
 				(PlatformManager::getSingleton().createInputReader());
 		mInputDevice->initialise(mWindow,true, true);
@@ -78,11 +78,11 @@ namespace stunts {
 
  		// Create the scene
         createScene();
-				
+
 		return NR_OK;
 	}
-	
-	
+
+
 	/**
 	* Start the Ogre Engine
 	**/
@@ -92,12 +92,12 @@ namespace stunts {
 		// create the timer interface
 		mTimer.reset (new nrCTimer(nrCClock::GetSingleton()));
 		nrCClock::GetSingleton().addObserver(mTimer);
-		
+
 		// OK
 		return NR_OK;
 	}
-	
-	
+
+
 	/**
 	* Update the Ogre Engine
 	**/
@@ -110,8 +110,8 @@ namespace stunts {
 
 		return NR_OK;
 	}
-	
-	
+
+
 	/**
 	* Stop Ogre
 	**/
@@ -120,7 +120,7 @@ namespace stunts {
 
 		// clean up
 		destroyScene();
-				
+
 		return NR_OK;
 	}
 
@@ -144,8 +144,8 @@ namespace stunts {
         //mWindow->getViewport(0)->setBackgroundColour(fadeColour);
 
 		// Load game data
-        mSceneMgr -> setWorldGeometry("../config/terrain.cfg");
-		
+        //mSceneMgr -> setWorldGeometry("../config/terrain.cfg");
+
         // Infinite far plane?
         if (mRoot->getRenderSystem()->getCapabilities()->hasCapability(RSC_INFINITE_FAR_PLANE))
         {
@@ -158,7 +158,7 @@ namespace stunts {
 
 	}
 
-	
+
 	/**
 	 * Destroy the scene
 	 **/
@@ -176,7 +176,7 @@ namespace stunts {
 
 		bool ok = mRoot->restoreConfig();
 		//bool ok = mRoot->showConfigDialog();
-		
+
 		//attention: plugins.cfg must be in the root folder or
 		//	a segfault will occur!
 		if (ok)
@@ -188,7 +188,7 @@ namespace stunts {
 			(mRoot->getSceneManager(ST_EXTERIOR_CLOSE));
         // Set default mipmap level (NB some APIs ignore this)
         TextureManager::getSingleton().setDefaultNumMipmaps(5);
-		
+
 		// Get Render System
 		mRenderer = mRoot->getRenderSystem();
 
@@ -235,7 +235,7 @@ namespace stunts {
             Real(vp->getActualWidth()) / Real(vp->getActualHeight()));
     }
 
-	
+
 	/**
 	 * Load all resources needed for our game/scene
 	 **/
@@ -261,7 +261,7 @@ namespace stunts {
                     archName, typeName, secName);
             }
         }
-		
+
 		// Initialise, parse scripts etc
 		ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 

@@ -88,8 +88,10 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	nrResult CUserInput::taskUpdate()
 	{
-		this->react(COgreTask::GetSingleton().mTimer->getFrameInterval());		//react here only in this example application
-								//	as no InteractiveObject is running
+		//react here only in this example application
+		//	as no InteractiveObject is running
+		this->react(COgreTask::GetSingleton().mTimer->getFrameInterval());
+
 		return NR_OK;
 	}
 
@@ -229,7 +231,14 @@ namespace stunts
 		mTranslateVectorTerrain = mCamera->getPosition();
 
 		bool rval;
-		rval = mTerrain->getHeight(mTranslateVectorTerrain);
+
+		if (mTerrain != NULL)
+			rval = mTerrain->getHeight(mTranslateVectorTerrain);
+		else
+		{
+			mTerrain = mLevel->Terrain();
+			rval = false;
+		}
 
 		if (rval && (mCamera->getPosition().y < (mTranslateVectorTerrain.y + 10)))
 		{

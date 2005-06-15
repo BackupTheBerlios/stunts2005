@@ -43,7 +43,7 @@ namespace stunts
 				Ogre::Ray(Ogre::Vector3(0.0f, 0.0f, 0.0f),
 				Ogre::Vector3::NEGATIVE_UNIT_Y))
             );
-			
+
 		mWidthX = 0.0f;
 		mWidthZ = 0.0f;
 	}
@@ -86,8 +86,8 @@ namespace stunts
 	{
 		return mWidthZ;
 	}
-	
-		
+
+
 	//--------------------------------------------------------------------------
 	bool CTerrain::importFromFile(const char* fileName, const char* rootNode){
 
@@ -145,12 +145,12 @@ namespace stunts
 		if (elem){
 			nrCDator<float> wx (mWidthX);
 			nrCDator<float> wz (mWidthZ);
-			
+
 			wx = std::string(elem->Attribute("widthX"));
 			wz = std::string(elem->Attribute("widthZ"));
-			
+
 		}
-		
+
 		return false;
 	}
 
