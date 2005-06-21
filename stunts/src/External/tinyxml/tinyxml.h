@@ -148,11 +148,11 @@ protected:
 	/*	Reads text. Returns a pointer past the given end tag.
 		Wickedly complex options, but it keeps the (sensitive) code in one place.
 	*/
-	static const char* ReadText(	const char* in,				// where to start
-									TIXML_STRING* text,			// the string read
-									bool ignoreWhiteSpace,		// whether to keep the white space
-									const char* endTag,			// what ends this text
-									bool ignoreCase );			// whether to ignore case in the end tag
+	static const char* ReadText(	const char* in,		// where to start
+				TIXML_STRING* text,		// the string read
+				bool ignoreWhiteSpace,		// whether to keep the white space
+				const char* endTag,		// what ends this text
+				bool ignoreCase );		// whether to ignore case in the end tag
 	virtual const char* Parse( const char* p ) = 0;
 
 	// If an entity has been found, transform it into a character.

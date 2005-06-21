@@ -5,7 +5,8 @@
  *                    http://developer.berlios.de/projects/stunts2005
  *
  * Maintainer:        Andreas Maurer <andi@andile.de
- *					Art Tevs <tevs@mpi-sb.mpg.de>
+ *                    Art Tevs <tevs@mpi-sb.mpg.de>
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -40,6 +41,7 @@ namespace stunts
 #include "Level.hpp"
 
 #include <queue>
+#include <vector>
 
 #include <OGRE/Ogre.h>
 
@@ -110,8 +112,23 @@ namespace stunts {
 			* @return false if the reading was successfull
 			**/
 			virtual bool importFromFile(const char* fileName, const std::string& xmlPath);
-					bool importFromFile(const std::string fileName, const std::string& xmlPath){ return importFromFile(fileName.c_str(), xmlPath); }
-				
+			bool importFromFile(const std::string fileName, const std::string& xmlPath){ return importFromFile(fileName.c_str(), xmlPath); }
+			
+	
+			/**
+			 * Import the object declaration from a file.
+			 * The file contains XML-Data will be parsed and all properties that are
+			 * supported by this object will be readed in. in the BaseObject-Version we will read only
+			 * "\<object\>" nodes. All derived classes should overwrite this method to allow reading
+			 * of data for specified object.
+			 * @param fileName Name of the file containing object data
+			 * @param xmlPath path where the XML file was found (needed for import tags)
+			 * @return false if the reading was successfull
+			 **/
+			virtual bool importFromWaypointFile(const char* fileName, const std::string& xmlPath);
+			bool importFromWaypointFile(const std::string fileName, const std::string& xmlPath){ return importFromWaypointFile(fileName.c_str(), xmlPath); }
+			
+			
 	
 			/**
 			 * Let import the settings of the object from a string. The string must be a readed 
@@ -123,8 +140,26 @@ namespace stunts {
 			 **/
 			virtual bool importFromString(const char* xmlSettings, const std::string& xmlPath);
 					bool importFromString(const std::string xmlSettings, const std::string& xmlPath){ return importFromString(xmlSettings.c_str(), xmlPath); }
-	
-				
+					
+					
+			bool parseWaypoints(TiXmlElement* node);
+			
+			
+			/**
+			 * To return one waypoints, coordinates ablosute given
+			 *
+			 * @param none
+			 *
+			 * @return Vector3
+			 */
+			Vector3 getWaypoint() ;
+			
+			
+			/**
+			 * Has waypoints?
+			 */
+			bool hasWaypoints();
+			
 			/**
 			* Create a new controller that does control this object. For human driven/interactive objects, like
 			* cars, camera or something else, the appropriate controller will be used.
@@ -143,7 +178,7 @@ namespace stunts {
 			
 			// Functions to get attributes
 			inline Vector3	Position() const		{ return m_position; };
-			inline Quaternion	Orientation() const		{ return m_orientation; };
+			inline Quaternion	Orientation() const	{ return m_orientation; };
 			
 			inline float	Speed() const			{ return m_speed; };
 			inline Vector3	SpeedVector() const		{ return m_speedVector; };
@@ -242,12 +277,12 @@ namespace stunts {
 			// the 2 lines can be uncommentated
 	
 			// CVectors of sound and geometry objects
-			//vector<CSound>		m_sound;
+			//vector<CSound>	m_sound;
 			//vector<CGeometry>	m_geometry;
 			
 			// Position and direction of the object
-			Vector3 			m_position;
-			Quaternion			m_orientation;
+			Vector3 		m_position;
+			Quaternion		m_orientation;
 			
 			// Speed value and speed vector
 			float			m_speed;
@@ -264,6 +299,9 @@ namespace stunts {
 			float			m_torque;
 			Vector3			m_torqueAxis;
 			
+			// Scale factor
+			Vector3			m_scale;
+			
 			// CVector of queue items
 			std::queue<boost::shared_ptr<CEvent> >	m_eventQueue;	
 	
@@ -274,7 +312,10 @@ namespace stunts {
 			CBaseControl*		mControl;
 			
 			//! Parent level for the objects
-			CLevel*				mLevel;
+			CLevel*			mLevel;
+			
+			// Vector for storing waypoints
+			std::vector<Vector3>		m_waypoints;
 			
 	};
 };

@@ -37,7 +37,8 @@ stunts_SOURCES = \
 	CGuiParser.cpp\
 	CGuiStartGame.cpp\
 	CGuiTask.cpp\
-	CGuiTex.cpp
+	CGuiTex.cpp \
+	Waypoint.cpp
 #	ObjectInstantiator.cpp
 
 
@@ -82,7 +83,8 @@ noinst_HEADERS = \
 	CGuiTex.h\
 	GuiActions.h\
 	GuiGfx.h\
-	GuiObjects.h
+	GuiObjects.h\
+	Waypoint.hpp
 
 # Set the include path found by configure
 INCLUDES = \

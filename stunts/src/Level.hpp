@@ -54,6 +54,7 @@ namespace stunts
 #include "Terrain.hpp"
 #include "BaseObject.hpp"
 #include "Atmosphere.hpp"
+#include "Waypoint.hpp"
 
 
 //------------------------------------------------------------------------------
@@ -124,6 +125,13 @@ namespace stunts
 			 **/
 			Ogre::Real unitToMeter(float32 x);
 			
+			/**
+			 * Put all waypoints of all objects together
+			 * @param
+			 * @return true=success / false=no success
+			 */
+			bool buildWaypointPath();
+			
 		protected:
 			virtual nrResult taskInit();
 			virtual nrResult taskStart();
@@ -173,6 +181,17 @@ namespace stunts
 
 			int32 						mGridCountInX;
 			int32 						mGridCountInZ;
+			
+			std::vector<boost::shared_ptr<CWaypoint> >	mWaypoints;
+			
+			// Debuggingfunction for printing waypoints
+			void drawWaypoint(Ogre::Vector3 pos);
+			void drawWaypoint(Ogre::Vector3 min, Ogre::Vector3 max);
+			
+			// Find nearest waypoint
+			boost::shared_ptr< CWaypoint > 			findNearestWaypoint(boost::shared_ptr<CWaypoint> waypointFrom, int ObjectId);
+			
+			
 	};
 
 };// namespace stunts

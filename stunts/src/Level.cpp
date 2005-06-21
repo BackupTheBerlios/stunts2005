@@ -27,6 +27,7 @@
 #include "Utils.hpp"
 
 #include "ObjectInstantiator.hpp"
+#include <math.h>
 
 using boost::shared_ptr;
 
@@ -139,8 +140,8 @@ namespace stunts
 
 		mIsLoaded = true;
 
-		// Erstelle Gitter model
-/*		for (int32 i = 0; i < mGridCountInX; i++)
+/*		// Erstelle Gitter model
+		for (int32 i = 0; i < mGridCountInX; i++)
 			for (int32 j=0; j < mGridCountInZ; j++){
 
 				char name[256];
@@ -169,10 +170,92 @@ namespace stunts
 				SceneNode* mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
 				mSceneNode->attachObject( ent );
 				mSceneNode->showBoundingBox(true);
-		}*/
+		}
+*/		
+		// Put BaseObject-Waypoints together
+		if (buildWaypointPath()) 
+			nrLog.Log(NR_LOG_APP, "CLevel::loadlevel(): Waypoint path successfully buildt");
+		else 
+			nrLog.Log(NR_LOG_APP, "CLevel::loadlevel(): Unable to build waypoint path");
 
 		return false;
 	}
+
+
+
+
+	//--------------------------------------------------------------------------
+	void CLevel::drawWaypoint(Ogre::Vector3 pos)
+	{
+		char name[256];
+		
+		sprintf(name, "Waypoint__%f__%f__%f__", pos.x,pos.y,pos.z);
+
+		/// Create the mesh via the MeshManager
+		Ogre::MeshPtr msh = MeshManager::getSingleton().createManual(name, "General");
+
+		/// Set bounding information (for culling)
+		Vector3 min = pos;
+		Vector3 max = pos;
+		max.y += 100.0f;
+		
+		AxisAlignedBox aabb(min, max);
+		msh->_setBounds(aabb);
+
+		/// Notify Mesh object that it has been loaded
+		msh->load();
+
+		// Now add this into scene graph
+		char ename[256];
+		sprintf(ename, "%s_entity", name);
+		Entity* ent;
+		ent 	= COgreTask::GetSingleton().mSceneMgr->createEntity(std::string(ename), std::string(name));
+		SceneNode* mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
+		mSceneNode->attachObject( ent );
+		mSceneNode->showBoundingBox(true);
+	};
+
+
+
+
+	//--------------------------------------------------------------------------
+	void CLevel::drawWaypoint(Ogre::Vector3 min, Ogre::Vector3 max)
+	{
+	
+		char name[256];
+		sprintf(name, "Waypoint2__from__%f__%f__%f__to__%f__%f__%f", min.x,min.y,min.z,max.x,max.y,max.z);
+		/*
+		// Create & Load the entity
+		Entity* ent;
+		ent  = COgreTask::GetSingleton().mSceneMgr->createEntity(name, "arrow.mesh");
+				
+		SceneNode* mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
+		mSceneNode->attachObject( ent );
+		mSceneNode->translate(min);*/
+		
+		
+		// Create the mesh via the MeshManager
+		Ogre::MeshPtr msh = MeshManager::getSingleton().createManual(name, "General");
+
+		// Set bounding information (for culling)
+		AxisAlignedBox aabb(min, max);
+		msh->_setBounds(aabb);
+
+		// Notify Mesh object that it has been loaded
+		msh->load();
+
+		// Now add this into scene graph
+		char ename[256];
+		sprintf(ename, "%s_entity", name);
+		Entity* ent;
+		ent 	= COgreTask::GetSingleton().mSceneMgr->createEntity(std::string(ename), std::string(name));
+		SceneNode* mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
+		mSceneNode->attachObject( ent );
+		mSceneNode->showBoundingBox(true);	
+	};
+
+
+
 
 	//--------------------------------------------------------------------------
 	void CLevel::readGravity(TiXmlElement* elem)
@@ -418,10 +501,126 @@ namespace stunts
 	{
 		return mTerrain;
 	}
+	
+	//--------------------------------------------------------------------------
+	boost::shared_ptr<CWaypoint> CLevel::findNearestWaypoint(boost::shared_ptr<CWaypoint> from, int ObjectId)
+	{
+		
+		// Variables to save nearest Waypoint, set it to far away
+		Ogre::Vector3 			dummy;
+		dummy.x 					= -10000.0;
+		dummy.y 					= -10000.0;
+		dummy.z 					= -10000.0;
+		boost::shared_ptr<CWaypoint> 	nearest;
+		nearest.reset(new CWaypoint(dummy, -1));
+		
+		
+		// Variable to save current Waypoint while going trough all
+		boost::shared_ptr<CWaypoint> 	current;
+		
+		
+		// Variables to save div. vectors for better performance :D
+		Ogre::Vector3 			nearestVector	= nearest->getVector();
+		Ogre::Vector3 			currentVector;
+		Ogre::Vector3 			fromVector	= from->getVector();
+		
+		
+		// Helpers
+		float sumFromCurrent = 0.0;
+		float sumFromNearest = 0.0;
+		
+		
+		// Go for each waypoint
+		int i = 0;
+		while (i < mWaypoints.size())
+		{
+			// Set current vector to one of vector
+			current				= mWaypoints[i];
+			
+			// Ignore the same object!
+			if ((!current->last)  && (current != from))//(current->getObjectId() != from->getObjectId()))
+			{
+				// The nearest vector is found, when the sum of the difference between
+				// the current and the from vector is smaller than the difference of
+				// the nearest and the from vector
+				
+				currentVector	= current->getVector();
+				sumFromCurrent	= fabs(currentVector.x - fromVector.x);
+				sumFromCurrent	+= fabs(currentVector.y - fromVector.y);
+				sumFromCurrent	+= fabs((currentVector.z - fromVector.z) * 5);
+				if ((sumFromCurrent < sumFromNearest) || (sumFromNearest == 0.0))
+				{
+					sumFromNearest = sumFromCurrent;
+					nearest = current;
+				};
+			};
+			
+			i++;
+		};
+		
+		
+		return nearest;
+	}
+	
+	//--------------------------------------------------------------------------
+	bool CLevel::buildWaypointPath()
+	{
+		// Go for each obejct
+		int i = 0;
+		boost::shared_ptr<CWaypoint> waypoint;
+		Ogre::Vector3 pos;
+		
+		boost::shared_ptr<CBaseObject> currentObject ;
+		while (currentObject = mObjects[i])
+		{
+			i++;
+			
+			// Go for each item of object
+			while (currentObject->hasWaypoints())
+			{
+				pos = currentObject->getWaypoint();
+				waypoint.reset(new CWaypoint(pos, i));
+				mWaypoints.push_back(waypoint);
+			};
+		};
+
+				
+		boost::shared_ptr<CWaypoint> current;
+		boost::shared_ptr<CWaypoint> nearest;
+		
+		// Debugging output
+		/*
+		i = 0;
+		while (i < mWaypoints.size())
+		{
+			current = mWaypoints[i];
+			this->drawWaypoint(current->getVector());
+			i++;
+		}*/
+		
+		i=0;
+		
+		// Startpoint
+		current = mWaypoints[0];
+		
+		// Go for all waypoints
+		while (i < mWaypoints.size())
+		{
+			nearest = this->findNearestWaypoint(current, current->getObjectId());
+			
+			//Save
+			current->next = nearest;
+			nearest->last = current;
+			
+			// Debugging output
+			//this->drawWaypoint(nearest->getVector(),current->getVector());
+			
+			i++;
+			current = nearest; //mWaypoints[i];
+		};
+		
+		// Check if any waypoints were found
+		if (i>1) return true;
+		return false;
+	};
 };
-
-
-
-
-
-

@@ -155,7 +155,9 @@ namespace stunts {
 		}
 
 		// variables
-		TiXmlElement* elem = NULL;
+		TiXmlElement* elem	= NULL;
+		TiXmlElement* elemWp	= NULL;
+		TiXmlElement* elemPos	= NULL;
 
 		// get the name of the object
 		elem = rootElem->FirstChildElement("name");
@@ -204,9 +206,27 @@ namespace stunts {
 
 
 		// check for scaling properties
-/*		elem = rootElem->FirstChildElement("stretch");
+		elem = rootElem->FirstChildElement("stretch");
 		if (elem)
 		{
+
+			float32 x = 0.0f;
+			float32 y = 0.0f;
+			float32 z = 0.0f;
+	
+			nrCDator<float32> _x(x);
+			nrCDator<float32> _y(y);
+			nrCDator<float32> _z(z);
+	
+			_x = std::string(elem->Attribute("x"));
+			_y = std::string(elem->Attribute("y"));
+			_z = std::string(elem->Attribute("z"));
+			
+			m_scale.x = (Ogre::Real)x;
+			m_scale.y = (Ogre::Real)y;
+			m_scale.z = (Ogre::Real)z;
+			
+			/*
 			const char* x = elem->Attribute("x");
 			const char* y = elem->Attribute("y");
 			const char* z = elem->Attribute("z");
@@ -218,8 +238,8 @@ namespace stunts {
 				mObjNode->scale(fx, fy, fz);
 			}catch(...){
 				return true;
-			}
-		}*/
+			}*/
+		}
 
 		// check whenever such kind of position tag exists
 		elem = rootElem->FirstChildElement("posX");
@@ -263,11 +283,145 @@ namespace stunts {
 		if (elem)
 			setOrientation(parseRotation(elem));
 
+		// Read waypoints
+		elem =  rootElem->FirstChildElement("waypoints");
+		if (elem) 
+		{
+			// Waypoint in level file
+			elemWp = (elem->FirstChildElement("file"));
+			if (elemWp)
+			{
+				const char* waypointFile = elemWp->GetText();
+				if (waypointFile){
+					nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): Load XML file \"%s\"",  waypointFile);
+					try
+					{	
+						importFromWaypointFile(xmlPath + waypointFile, xmlPath);
+	
+					} catch (...) 
+					{
+						nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): An error occurs by loading of the waypoint XML file");
+						return true;
+					}
+				}
+			} 
+		};
+
+		
 
 		nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): parsing is complete now");
 		return false;
 
 	}
+	
+	
+	//--------------------------------------------------------------------------
+	Ogre::Vector3 CBaseObject::getWaypoint() 
+	{
+		Ogre::Vector3 waypoint, waypointNew;
+		
+		// Get one element of vector
+		waypoint = m_waypoints.back();
+		
+		// Remove this element from vector
+		m_waypoints.pop_back();
+		
+		// Rotate
+		waypointNew = m_orientation * waypoint;
+		
+		// Scale
+		waypointNew.x *= m_scale.x;
+		waypointNew.y *= m_scale.y;
+		waypointNew.z *= m_scale.z;
+		
+		// put on position
+		waypointNew.x += this->m_position.x;
+		waypointNew.y += this->m_position.y;
+		waypointNew.z += this->m_position.z;
+		
+		return waypointNew;
+	};
+	
+	
+	
+	//--------------------------------------------------------------------------
+	bool CBaseObject::hasWaypoints()
+	{
+		if (this->m_waypoints.empty() == true) return false;
+		return true;
+	};
+	
+	
+	
+	//--------------------------------------------------------------------------
+	bool CBaseObject::parseWaypoints(TiXmlElement* node)
+	{
+		// Check for Entry
+		if (node == NULL)
+		{
+			nrLog.Log(NR_LOG_APP, "CBaseObject::parseWaypoints(): Error, no XML element found!");
+			return false;
+		};
+
+		// Transform format
+		Ogre::Vector3 pos(0.0f, 0.0f, 0.0f);
+
+		float32 x = 0.0f;
+		float32 y = 0.0f;
+		float32 z = 0.0f;
+
+		nrCDator<float32> _x(x);
+		nrCDator<float32> _y(y);
+		nrCDator<float32> _z(z);
+
+		_x = std::string(node->Attribute("x"));
+		_y = std::string(node->Attribute("y"));
+		_z = std::string(node->Attribute("z"));
+
+		pos.x = (Ogre::Real)x;
+		pos.y = (Ogre::Real)y;
+		pos.z = (Ogre::Real)z;
+		
+		// add to vector
+		this->m_waypoints.push_back(pos);
+		return true;
+		
+	}
+	
+	
+	
+	//--------------------------------------------------------------------------
+	bool CBaseObject::importFromWaypointFile(const char* fileName, const std::string& xmlPath)
+	{
+
+		// load the xml document
+		shared_ptr<TiXmlDocument> mDoc (new TiXmlDocument(fileName));
+		if (!mDoc->LoadFile())
+		{
+			nrLog.Log(NR_LOG_APP, "CBaseObject::importFromFile(): Can not load the file \"%s\"", fileName);
+			return true;
+		}
+
+		// Get the root element from the file
+		TiXmlElement* rootElem = mDoc->FirstChildElement("waypoints");
+
+		// Get first child & parse it
+		TiXmlElement* child = NULL;
+		child = rootElem->FirstChildElement("position");
+		parseWaypoints(child);
+		
+		// Go for other childs
+		while (child)
+		{
+			child = child->NextSiblingElement("position");
+			parseWaypoints(child);
+		}
+	}
+	
+	
+	
+	
+	
 
 	//--------------------------------------------------------------------------
 	bool CBaseObject::loadGeometry(TiXmlElement* geomElem, const std::string& xmlPath){
@@ -330,6 +484,9 @@ namespace stunts {
 
 		return parseSettings(rootElem, xmlPath);
 	}
+
+
+
 
 	//--------------------------------------------------------------------------
 	bool CBaseObject::importFromString(const char* xmlSettings, const std::string& xmlPath)
