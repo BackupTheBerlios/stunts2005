@@ -22,10 +22,7 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>_MESH_NAME__waypoints.xml</file>
+			</waypoints>
 		</object>

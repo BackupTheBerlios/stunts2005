@@ -24,13 +24,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>house_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- house -->
@@ -56,13 +54,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>house_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -88,13 +84,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- corner_big -->
@@ -120,13 +114,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>corner_big_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -152,13 +144,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- drive-up_bridge -->
@@ -184,13 +174,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>drive-up_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line_bridge -->
@@ -216,13 +204,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line_bridge -->
@@ -248,13 +234,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line_bridge -->
@@ -280,13 +264,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- drive-up_bridge -->
@@ -312,13 +294,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>drive-up_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -344,13 +324,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -376,13 +354,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -408,13 +384,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -440,13 +414,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -472,13 +444,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -504,13 +474,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- corner_big -->
@@ -536,13 +504,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>corner_big_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -568,13 +534,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- windmill -->
@@ -600,13 +564,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>windmill_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- windmill -->
@@ -632,13 +594,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>windmill_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -664,13 +624,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -696,13 +654,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -728,13 +684,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -760,13 +714,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- drive-up_bridge -->
@@ -792,13 +744,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>drive-up_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -824,13 +774,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line_bridge -->
@@ -856,13 +804,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -888,13 +834,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line_bridge -->
@@ -920,13 +864,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- hut -->
@@ -952,13 +894,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>hut_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -984,13 +924,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -1016,13 +954,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line_bridge -->
@@ -1048,13 +984,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- hut -->
@@ -1080,13 +1014,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>hut_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- corner_big -->
@@ -1112,13 +1044,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>corner_big_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -1144,13 +1074,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -1176,13 +1104,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -1208,13 +1134,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line_bridge -->
@@ -1240,13 +1164,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -1272,13 +1194,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tunnel_in_out -->
@@ -1304,13 +1224,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tunnel_in_out_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tunnel_in_out -->
@@ -1336,13 +1254,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tunnel_in_out_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -1368,13 +1284,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tunnel_in_out -->
@@ -1400,13 +1314,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tunnel_in_out_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tunnel_in_out -->
@@ -1432,13 +1344,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tunnel_in_out_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -1464,13 +1374,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -1496,13 +1404,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tunnel_in_out -->
@@ -1528,13 +1434,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tunnel_in_out_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tunnel_in_out -->
@@ -1560,13 +1464,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tunnel_in_out_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -1592,13 +1494,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -1624,13 +1524,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -1656,13 +1554,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- crossover -->
@@ -1688,13 +1584,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>crossover_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- jump -->
@@ -1720,13 +1614,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>jump_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- jump -->
@@ -1752,13 +1644,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>jump_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -1784,13 +1674,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -1816,13 +1704,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -1848,13 +1734,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- corner_big -->
@@ -1880,13 +1764,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>corner_big_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -1912,13 +1794,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- windmill -->
@@ -1944,13 +1824,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>windmill_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- skyscraper -->
@@ -1976,13 +1854,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>skyscraper_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- skyscraper -->
@@ -2008,13 +1884,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>skyscraper_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- skyscraper -->
@@ -2040,13 +1914,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>skyscraper_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- drive-up_bridge -->
@@ -2072,13 +1944,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>drive-up_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -2104,13 +1974,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- corner_big -->
@@ -2136,13 +2004,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>corner_big_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -2168,13 +2034,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- corner_big -->
@@ -2200,13 +2064,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>corner_big_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- hut -->
@@ -2232,13 +2094,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>hut_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- corner_big -->
@@ -2264,13 +2124,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>corner_big_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -2296,13 +2154,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -2328,13 +2184,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -2360,13 +2214,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tunnel_in_out -->
@@ -2392,13 +2244,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tunnel_in_out_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- hut -->
@@ -2424,13 +2274,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>hut_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- corner_big -->
@@ -2456,13 +2304,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>corner_big_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -2488,13 +2334,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -2520,13 +2364,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -2552,13 +2394,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -2584,13 +2424,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -2616,13 +2454,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tunnel_in_out -->
@@ -2648,13 +2484,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tunnel_in_out_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -2680,13 +2514,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -2712,13 +2544,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -2744,13 +2574,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -2776,13 +2604,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -2808,13 +2634,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -2840,13 +2664,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- drive-up_bridge -->
@@ -2872,13 +2694,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>drive-up_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- loop -->
@@ -2904,13 +2724,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>loop_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line_bridge -->
@@ -2936,13 +2754,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -2968,13 +2784,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- skyscraper -->
@@ -3000,13 +2814,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>skyscraper_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line_bridge -->
@@ -3032,13 +2844,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- skyscraper -->
@@ -3064,13 +2874,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>skyscraper_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- hut -->
@@ -3096,13 +2904,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>hut_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -3128,13 +2934,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line_bridge -->
@@ -3160,13 +2964,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- skyscraper -->
@@ -3192,13 +2994,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>skyscraper_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- hut -->
@@ -3224,13 +3024,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>hut_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- corner_big -->
@@ -3256,13 +3054,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>corner_big_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -3288,13 +3084,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- corner_bridge_big -->
@@ -3320,13 +3114,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>corner_bridge_big_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- skyscraper -->
@@ -3352,13 +3144,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>skyscraper_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- hut -->
@@ -3384,13 +3174,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>hut_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -3416,13 +3204,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -3448,13 +3234,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- jump -->
@@ -3480,13 +3264,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>jump_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- jump -->
@@ -3512,13 +3294,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>jump_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line -->
@@ -3544,13 +3324,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- drive-up_bridge -->
@@ -3576,13 +3354,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>drive-up_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line_bridge -->
@@ -3608,13 +3384,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line_bridge -->
@@ -3640,13 +3414,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- straight_line_bridge -->
@@ -3672,13 +3444,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>straight_line_bridge_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 		<object type="base">
 			<!-- tree -->
@@ -3704,13 +3474,11 @@
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
-			<!--waypoints>
-				<waypoint index="0">wpbegin</waypoint>
-				<waypoint index="1">wp1</waypoint>
-				<waypoint index="2">wp2</waypoint>
-				<waypoint index="3">wplast</waypoint>
-			</waypoints-->
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
 		</object>
+
 
 	</objects>
 </track>
