@@ -394,6 +394,8 @@ namespace stunts {
 	bool CBaseObject::importFromWaypointFile(const char* fileName, const std::string& xmlPath)
 	{
 
+		nrLog.Log(NR_LOG_APP, "CBaseObject::importFromWaypointFile(): Read Waypoint definitions from %s", fileName);
+		
 		// load the xml document
 		shared_ptr<TiXmlDocument> mDoc (new TiXmlDocument(fileName));
 		if (!mDoc->LoadFile())
@@ -414,7 +416,8 @@ namespace stunts {
 		while (child)
 		{
 			child = child->NextSiblingElement("position");
-			parseWaypoints(child);
+			if (child)
+				parseWaypoints(child);
 		}
 	}
 	

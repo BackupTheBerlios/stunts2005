@@ -594,15 +594,15 @@ namespace stunts
 		boost::shared_ptr<CWaypoint> last;
 		
 		// Debugging output
-		/*
-		i = 0;
+		
+		/*i = 0;
 		while (i < mWaypoints.size())
 		{
 			current = mWaypoints[i];
 			this->drawWaypoint(current->getVector());
 			i++;
-		}*/
-		
+		}
+		*/
 		i=0;
 		
 		// Startpoint
@@ -632,8 +632,6 @@ namespace stunts
 		
 		// Last waypoint
 		last = current;
-		
-		fprintf(stderr, "HALLO\n");
 		
 		// Save first and last waypoint for all waypoints
 		i = 0;
