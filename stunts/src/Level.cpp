@@ -570,10 +570,12 @@ namespace stunts
 		int i = 0;
 		boost::shared_ptr<CWaypoint> waypoint;
 		Ogre::Vector3 pos;
-		
 		boost::shared_ptr<CBaseObject> currentObject ;
-		while (currentObject = mObjects[i])
+		
+		
+		while (i < mObjects.size())
 		{
+		 	currentObject = mObjects[i];
 			i++;
 			
 			// Go for each item of object
@@ -604,6 +606,11 @@ namespace stunts
 		i=0;
 		
 		// Startpoint
+		if (mWaypoints.size() == 0){
+			nrLog.Log(NR_LOG_APP, "CLevel::buidlWaypointPath(): There was no waypoints found!!!");
+			return false;
+		}
+		
 		current = mWaypoints[0];
 		first	= current;
 		
@@ -626,8 +633,10 @@ namespace stunts
 		// Last waypoint
 		last = current;
 		
+		fprintf(stderr, "HALLO\n");
 		
 		// Save first and last waypoint for all waypoints
+		i = 0;
 		while (i < mWaypoints.size())
 		{
 			current = mWaypoints[0];
