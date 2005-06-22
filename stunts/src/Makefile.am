@@ -16,6 +16,7 @@ stunts_SOURCES = \
 	Level.cpp \
 	Terrain.cpp \
 	BaseObject.cpp\
+	InteractiveObject.cpp\
 	CarObject.cpp\
 	Wheel.cpp\
 	Engine.cpp\
@@ -38,7 +39,13 @@ stunts_SOURCES = \
 	CGuiStartGame.cpp\
 	CGuiTask.cpp\
 	CGuiTex.cpp \
-	Waypoint.cpp
+	Waypoint.cpp \
+	FileIO.cpp\
+	CFunction.cpp \
+	CKI.cpp \
+	CNeuralNetwork.cpp \
+	CNeurode.cpp
+
 #	ObjectInstantiator.cpp
 
 
@@ -84,7 +91,13 @@ noinst_HEADERS = \
 	GuiActions.h\
 	GuiGfx.h\
 	GuiObjects.h\
-	Waypoint.hpp
+	Waypoint.hpp\
+	FileIO.h\
+	CFunction.h \
+	CKI.h \
+	CNeuralNetwork.h \
+	CNeurode.h
+
 
 # Set the include path found by configure
 INCLUDES = \

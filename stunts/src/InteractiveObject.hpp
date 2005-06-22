@@ -1,7 +1,7 @@
 /* Stunts 2005 - A remake of the game Stunts
  *
  * Copyright (C) 2005
- *                    Stunts 2005 Workgroup, 
+ *                    Stunts 2005 Workgroup,
  *                    http://developer.berlios.de/projects/stunts2005
  *
  * Maintainer:        Andreas Maurer <andi@andile.de
@@ -18,22 +18,22 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, 
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
  * USA.
  */
 
 #ifndef CINTERACTIVEOBJECT_H
-#define CINTERACTIVEOBJECT_H 
+#define CINTERACTIVEOBJECT_H
 
 #include "BaseObject.hpp"
 
 namespace stunts {
-	
+
 	class CInteractiveObject : public CBaseObject
 	{
 		public:
 			CInteractiveObject();
-			
+
 			/**
 			* Constructor of BaseObject
 			*
@@ -41,8 +41,9 @@ namespace stunts {
 			*
 			* @return nothing
 			*/
-			CInteractiveObject(char* xmlSettingsString);
-			
+			//CInteractiveObject(char* xmlSettingsString);
+			CInteractiveObject(char* xmlSettingsString, const std::string& xmlPath);
+
 			/**
 			* Deconstructor of BaseObject
 			*
@@ -51,14 +52,14 @@ namespace stunts {
 			* @return nothing
 			*/
 			virtual ~CInteractiveObject();
-	
-	
+
+
 		protected:
 			// Userinput and AI classes
 			// TODO Uncomment if classes are implemented
 			//CUserInput	m_userInput;
 			//CAI		m_ai;
-			
+
 	};
 };
 #endif

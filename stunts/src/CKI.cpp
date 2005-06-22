@@ -1,14 +1,38 @@
 #include "CKI.h"
 
-	//--------- CKI 
+
+//this is only a dummy
+CKI::CKI()
+{
+
+}
+
+
+
+
+//--------- CKI
 
 CKI::CKI(CInteractiveObject Object,String Typ)
 {
 	levelOfSkill = 1;
 	levelOfAggressivity = 1;
 	levelOfReaction = 1;
-	
-	CNeuralNetwork::makeNeuralNetwork(Typ);
+
+
+
+
+	/*
+	-> CNeuralNetwork::makeNetwork();
+	so nicht, denn es wurde kein Objekt vom Network instanziiert
+	*/
+
+	CNeuralNetwork myNetwork(this);
+
+	myNetwork.makeNetwork();
+
+
+
+
 	controlObject=Object;
 }
 
@@ -44,7 +68,7 @@ int CKI::getLevelOfReaction()
 
 /* getNextWaypoint hast still to be put in !!
 	waypoint actualWP 	= scene::getNextWayPoint(startWP,0);
-	
+
 */
 
 void CKI::computeGear()
@@ -69,10 +93,10 @@ void CKI::computeStrategy()
 
 void CKI::computeDirection()
 {
-		
+
 }
-	
-void computeAcceleration()
+
+void CKI::computeAcceleration()
 {
 /*
 	if (CNeuralNetwork::highsteer() >= 0)
@@ -121,7 +145,7 @@ void computeAcceleration()
 // solange der WP hinter dem Auto liegt, springe einen Wegpunkt weiter, maximal aber 4, bzw zum letzten Wegpunkt.
 	do
 		{
-			WP = getNextWaypoint(actualWP,i); 
+			WP = getNextWaypoint(actualWP,i);
 			i++;
 		};
 	if (WP == scene::getNextWayPoint(last,0)) then actualWP = WP;

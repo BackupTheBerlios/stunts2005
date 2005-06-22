@@ -1,7 +1,7 @@
 /* Stunts 2005 - A remake of the game Stunts
  *
  * Copyright (C) 2005
- *                    Stunts 2005 Workgroup, 
+ *                    Stunts 2005 Workgroup,
  *                    http://developer.berlios.de/projects/stunts2005
  *
  * Maintainer:        Andreas Maurer <andi@andile.de
@@ -18,38 +18,39 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, 
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
  * USA.
  */
 
 #include "InteractiveObject.hpp"
 
 namespace stunts {
-	
+
 	CInteractiveObject::CInteractiveObject()
 	{
-	
+
 	}
-	
-	
+
+
 	/**
 	* Constructor of BaseObject
 	*
 	* @param char* xmlSettingsString, String with settings in XML format
-	* 
+	*
 	* @return nothing
-	* 
+	*
 	*/
-	CInteractiveObject::CInteractiveObject(char* xmlSettingsString) : CBaseObject(xmlSettingsString) 
+	//CInteractiveObject::CInteractiveObject(char* xmlSettingsString) : CBaseObject(xmlSettingsString, "")
+	CInteractiveObject::CInteractiveObject(char* xmlSettingsString, const std::string& xmlPath)
 	{
-		// We do not need to specify here more, bacause the base object will call the 
+		// We do not need to specify here more, bacause the base object will call the
 		// appropriate overrided parseSettings mehtod, where we are defining how to
 		// parse the settings
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	* Deconstrubtor of BaseObject
 	*
@@ -59,7 +60,7 @@ namespace stunts {
 	*/
 	CInteractiveObject::~CInteractiveObject()
 	{
-	
+
 	}
 };
 

@@ -8,21 +8,23 @@ class CKI;
 //---------- Includes ----------
 #include "Level.hpp"
 #include "InteractiveObject.hpp"
-#include "CNeutralNetwork.hpp"
-#include "CGearbox.hpp"
-#include "CMotor.hpp"
-#include "CCarObject.hpp"
-#include "CBaseObject.hpp"
+#include "CNeuralNetwork.h"
+#include "GearBox.hpp"
+#include "Engine.hpp"
+#include "CarObject.hpp"
+#include "BaseObject.hpp"
 //---------- /Includes ---------
 
 using namespace std;
+using namespace stunts;
 
 class CKI {
 
  public:
 	// Default constructor and destructor
-     	
-	CKI(CInteractiveObject Object,String Typ);
+
+	CKI();
+	CKI(CInteractiveObject Object, String Typ);
 	virtual ~CKI();
 
 	// Execution
@@ -40,7 +42,7 @@ class CKI {
  private:
 
 	CInteractiveObject controlObject;
-	waypoint computeNextWayPoint();
+	//waypoint computeNextWayPoint();
 
 	int levelOfSkill;
 	int levelOfAggressivity;
