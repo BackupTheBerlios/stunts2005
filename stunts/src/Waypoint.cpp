@@ -71,6 +71,26 @@ namespace stunts
 	
 	int CWaypoint::getObjectId()
 	{
-		return objectId;
+		return this->objectId;
 	};
+	
+	void CWaypoint::setNext(boost::shared_ptr<CWaypoint> waypoint)
+	{
+		this->next = waypoint;
+	}
+	
+	void CWaypoint::setPrev(boost::shared_ptr<CWaypoint> waypoint)
+	{
+		this->prev = waypoint;
+	}
+	
+	void CWaypoint::setFirst(boost::shared_ptr<CWaypoint> waypoint)
+	{
+		this->first = waypoint;
+	}
+	
+	void CWaypoint::setLast(boost::shared_ptr<CWaypoint> waypoint)
+	{
+		this->last = waypoint;
+	}
 };

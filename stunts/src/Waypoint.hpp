@@ -57,6 +57,18 @@ namespace stunts
 			// Get pointer to last Waypoint
 			boost::shared_ptr<CWaypoint> getLast();
 			
+			// Set next waypoint
+			void setNext(boost::shared_ptr<CWaypoint> waypoint);
+			
+			// Set previous waypoint
+			void setPrev(boost::shared_ptr<CWaypoint> waypoint);
+			
+			// Set first waypoint
+			void setFirst(boost::shared_ptr<CWaypoint> waypoint);
+			
+			// Set last waypoint
+			void setLast(boost::shared_ptr<CWaypoint> waypoint);
+			
 			// Set coordinates of Vector
 			void setVector(Ogre::Vector3 pos);
 			
@@ -67,13 +79,17 @@ namespace stunts
 			int getObjectId();
 			
 			
-		//protected:
+		protected:
 			// Different waypoint-pointers
 			boost::shared_ptr<CWaypoint> 	next;
 			boost::shared_ptr<CWaypoint> 	prev;
 			boost::shared_ptr<CWaypoint> 	first;
 			boost::shared_ptr<CWaypoint> 	last;
+			
+			// Position
 			Ogre::Vector3			pos;
+			
+			// Corresponding object
 			int 				objectId;
 	};
 };

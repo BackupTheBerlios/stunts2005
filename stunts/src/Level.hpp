@@ -184,12 +184,18 @@ namespace stunts
 			
 			std::vector<boost::shared_ptr<CWaypoint> >	mWaypoints;
 			
-			// Debuggingfunction for printing waypoints
+			// Debuggingfunctions for printing waypoints
 			void drawWaypoint(Ogre::Vector3 pos);
-			void drawWaypoint(Ogre::Vector3 min, Ogre::Vector3 max);
+			void drawWaypoint(Ogre::Vector3 min, Ogre::Vector3 max, int i);
 			
 			// Find nearest waypoint
 			boost::shared_ptr< CWaypoint > 			findNearestWaypoint(boost::shared_ptr<CWaypoint> waypointFrom, int ObjectId);
+			
+			// Get first waypoint
+			boost::shared_ptr<CWaypoint> getFirstWaypoint();
+			
+			// Get next Waypoint
+			boost::shared_ptr<CWaypoint> getNextWaypoint(boost::shared_ptr<CWaypoint> waypoint);
 			
 			
 	};

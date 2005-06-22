@@ -219,11 +219,11 @@ namespace stunts
 
 
 	//--------------------------------------------------------------------------
-	void CLevel::drawWaypoint(Ogre::Vector3 min, Ogre::Vector3 max)
+	void CLevel::drawWaypoint(Ogre::Vector3 min, Ogre::Vector3 max, int i)
 	{
 	
 		char name[256];
-		sprintf(name, "Waypoint2__from__%f__%f__%f__to__%f__%f__%f", min.x,min.y,min.z,max.x,max.y,max.z);
+		sprintf(name, "Waypoint2__%i__from__%f__%f__%f__to__%f__%f__%f", i, min.x,min.y, min.z, max.x, max.y, max.z);
 		/*
 		// Create & Load the entity
 		Entity* ent;
@@ -538,12 +538,13 @@ namespace stunts
 			current				= mWaypoints[i];
 			
 			// Ignore the same object!
-			if ((!current->last)  && (current != from))//(current->getObjectId() != from->getObjectId()))
+			if ((!current->getPrev())  && (current != from))
 			{
 				// The nearest vector is found, when the sum of the difference between
 				// the current and the from vector is smaller than the difference of
-				// the nearest and the from vector
-				
+				// the nearest and the from vector. Height is factor 5, so that a bridge 
+				// over a street is more far away and the waypoints of the street under it
+				// will be ignored
 				currentVector	= current->getVector();
 				sumFromCurrent	= fabs(currentVector.x - fromVector.x);
 				sumFromCurrent	+= fabs(currentVector.y - fromVector.y);
@@ -587,6 +588,8 @@ namespace stunts
 				
 		boost::shared_ptr<CWaypoint> current;
 		boost::shared_ptr<CWaypoint> nearest;
+		boost::shared_ptr<CWaypoint> first;
+		boost::shared_ptr<CWaypoint> last;
 		
 		// Debugging output
 		/*
@@ -602,6 +605,7 @@ namespace stunts
 		
 		// Startpoint
 		current = mWaypoints[0];
+		first	= current;
 		
 		// Go for all waypoints
 		while (i < mWaypoints.size())
@@ -609,18 +613,47 @@ namespace stunts
 			nearest = this->findNearestWaypoint(current, current->getObjectId());
 			
 			//Save
-			current->next = nearest;
-			nearest->last = current;
+			current->setNext(nearest);
+			nearest->setPrev(current);
 			
 			// Debugging output
-			//this->drawWaypoint(nearest->getVector(),current->getVector());
+			// this->drawWaypoint(nearest->getVector(),current->getVector(), i);
 			
 			i++;
 			current = nearest; //mWaypoints[i];
 		};
 		
+		// Last waypoint
+		last = current;
+		
+		
+		// Save first and last waypoint for all waypoints
+		while (i < mWaypoints.size())
+		{
+			current = mWaypoints[0];
+			current->setLast(last);
+			current->setFirst(first);
+			i++;
+		};
+		
 		// Check if any waypoints were found
-		if (i>1) return true;
+		if (mWaypoints.size() > 1) return true;
 		return false;
+	};
+	
+	
+	//---------------------------------------------------------------------------
+	boost::shared_ptr<CWaypoint> CLevel::getFirstWaypoint()
+	{
+		if (mWaypoints.size() > 1) return mWaypoints[0];
+	};
+	
+	
+	
+	//---------------------------------------------------------------------------
+	boost::shared_ptr<CWaypoint> CLevel::getNextWaypoint(boost::shared_ptr<CWaypoint> waypoint)
+	{
+		waypoint = waypoint->getNext();
+		if (waypoint) return waypoint;
 	};
 };
