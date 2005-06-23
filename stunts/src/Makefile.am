@@ -96,13 +96,14 @@ noinst_HEADERS = \
 	CFunction.h \
 	CKI.h \
 	CNeuralNetwork.h \
-	CNeurode.h 
+	CNeurode.h
 
 
 # Set the include path found by configure
 INCLUDES = \
 	@NRENGINE_CPPFLAGS@ \
 	@OGRE_CPPFLAGS@ \
+	@OGREODE_CPPFLAGS@ \
 	@ODE_CPPFLAGS@ \
 	@BOOST_CPPFLAGS@ \
 	@FMOD_CPPFLAGS@ \
@@ -112,6 +113,7 @@ INCLUDES = \
 stunts_LDFLAGS = \
 	@NRENGINE_LIBS@ \
 	@OGRE_LIBS@ \
+	@OGREODE_LIBS@ \
 	@ODE_LIBS@ \
 	@BOOST_LIBS@ \
 	@FMOD_LIBS@ \
