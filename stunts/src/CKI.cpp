@@ -1,39 +1,27 @@
 #include "CKI.h"
 
-
-//this is only a dummy
-CKI::CKI()
-{
-
-}
-
-
-
-
-//--------- CKI
-
-CKI::CKI(CInteractiveObject Object,String Typ)
+	//--------- CKI 
+/**
+* legt eine KI für ein interaktives Objekt an
+* setzt Standardwerte 
+*/
+CKI::CKI(CInteractiveObject* Object,String Typ)
 {
 	levelOfSkill = 1;
 	levelOfAggressivity = 1;
 	levelOfReaction = 1;
-
-
-
-
-	/*
-	-> CNeuralNetwork::makeNetwork();
-	so nicht, denn es wurde kein Objekt vom Network instanziiert
-	*/
-
-	CNeuralNetwork myNetwork(this);
-
-	myNetwork.makeNetwork();
-
-
-
-
+	
 	controlObject=Object;
+}
+
+CKI::CKI()
+{
+	levelOfSkill = 1;
+	levelOfAggressivity = 1;
+	levelOfReaction = 1;
+	
+	CNeuralNetwork::makeNeuralNetwork(Typ);
+//	controlObject=Object;
 }
 
 	//--------- ~CKI() ---------
@@ -41,20 +29,30 @@ CKI::~CKI()
 {
 }
 
-
-// Execution
+/**
+* wird aufgerufen, wenn KI handeln soll
+* die Subfunktionen senden dabei die Signale an das InteractiveObject
+*/
 void CKI::executeKI(float delaySeconds)
 {
-	computeGear();
 	computeStrategy();
+	
+	waypoint computeNextWayPoint();
+	
+	computeGear();
 	computeDirection();
 	computeAcceleration();
 }
 
 
-//    setLevelOfSkill		(int levelSkill);
-//	setLevelOfAggressivity	(int levelAggro);
-//	setLevelOfReaction	(int levelReac);
+void CKI::setLevelOfSkill (int levelSkill)
+{	this->levelOfSkill = levelSkill;	}
+
+void CKI::setLevelOfAggressivity (int levelAggro)
+{	this->levelOfAggressivity = levelAggro;	}
+
+void CKI::setLevelOfReaction (int levelReac)
+{	this->levelOfReaction = levelReac;	}
 
 int CKI::getLevelOfSkill()
 {	return levelOfSkill;	}
@@ -66,61 +64,83 @@ int CKI::getLevelOfReaction()
 {	return levelOfReaction;	}
 
 
-/* getNextWaypoint hast still to be put in !!
-	waypoint actualWP 	= scene::getNextWayPoint(startWP,0);
 
+
+/**
+* soll mal die KI verändern, verbessern, anpassen können
 */
-
-void CKI::computeGear()
-{
-/*
-	if (CMotor::rpm < CMotor::MaxRPM)
-		then
-		{
-			CGearBox::shiftUp();
-			//### falsch rum
-		}
-		else
-		{
-			CGearBox::shiftDown();
-		};
-*/
-}
-
 void CKI::computeStrategy()
 {
 }
 
-void CKI::computeDirection()
+/* getNextWaypoint hast still to be put in !!
+	waypoint actualWP 	= scene.getNextWayPoint(startWP,0);
+*/
+/**
+* soll anhand von dem WayPoint vector den bestimmen, der am nächsten ist
+* oder getNextWayPoint liefert von sich den besten WayPoint
+*/
+waypoint computeNextWayPoint()
 {
-
 }
 
+void CKI::computeGear()
+{
+/*
+	//### muss man debuggen aber müsste sonst klappen
+	if (controlObject->CMotor.rpm < controlObject->CMotor.MaxRPM)
+		then
+		{
+			controlObject->CGearBox.shiftDown();
+		}
+		else
+		{
+			CGearBox::shiftUp();
+		};
+*/
+}
+
+/**
+* soll anhand der aktuellen Position und der Position des NextWaypoints
+* einen Winkel berechnen, der angibt, ob man links oder rechts muss.
+* dieser wird dann in "SteerAngle" gespeichert.
+*/
+void CKI::computeDirection()
+{
+		
+}
+
+/**
+* anhand der 
+*/
 void CKI::computeAcceleration()
 {
 /*
-	if (CNeuralNetwork::highsteer() >= 0)
+	//### noch prüfen ob die funktionen alle Ergebnisse liefern
+	if (CNeuralNetwork.highsteer() >= 0)
 	{
-		if (CNeuralNetwork::highspeed() >= 0 )
+		if (CNeuralNetwork.highspeed() >= 0 )
 		{
-  			CCarObject::brake( CNeuralNetwork::highsteer()*CNeuralNetwork::highspeed() );
+  			controlObject->CCarObject.brake( CNeuralNetwork.highsteer() * controlObject->CNeuralNetwork.highspeed() );
      	}
 		else
 		{
-  			CCarObject::brake( CNeuralNetwork::highsteer()*( 1-CNeuralNetwork::highspeed() ) );
+  			controlObject->CCarObject.brake( CNeuralNetwork.highsteer()*( 1 - CNeuralNetwork.highspeed() ) );
      	}
 	}
 	else
 	{
-		if (CNeuralNetwork::highsteer() >= 0)
+		if (CNeuralNetwork.highsteer() >= 0)
 		{
-			CMotor::accellerate( -(CNeuralNetwork::highspeed()) ); //highspeed is negative!
+			controlObject->CMotor.accellerate( -(CNeuralNetwork.highspeed()) ); //highspeed is negative!
 		}
 		else
 		{
-			CMotor::accellerate( CNeuralNetwork::highsteer()*CNeuralNetwork::highspeed() ); // highspeed and highsteer are negative!
+			controlObject->CMotor.accellerate( CNeuralNetwork.highsteer() * CNeuralNetwork.highspeed() ); // highspeed and highsteer are negative!
 		}
 	}
+*/
+}
 
 //-----------------------------------------
 // ---------computeNextWayPoint------------
@@ -145,7 +165,7 @@ void CKI::computeAcceleration()
 // solange der WP hinter dem Auto liegt, springe einen Wegpunkt weiter, maximal aber 4, bzw zum letzten Wegpunkt.
 	do
 		{
-			WP = getNextWaypoint(actualWP,i);
+			WP = getNextWaypoint(actualWP,i); 
 			i++;
 		};
 	if (WP == scene::getNextWayPoint(last,0)) then actualWP = WP;

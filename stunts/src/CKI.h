@@ -6,34 +6,35 @@ class CKI;
 #include "CNeuralNetwork.h"
 
 //---------- Includes ----------
-#include "Level.hpp"
-#include "InteractiveObject.hpp"
 #include "CNeuralNetwork.h"
-#include "GearBox.hpp"
-#include "Engine.hpp"
-#include "CarObject.hpp"
-#include "BaseObject.hpp"
+//#include "Level.hpp"
+//#include "InteractiveObject.hpp"
+//#include "Gearbox.hpp"
+//#include "Engine.hpp"
+//#include "CCarObject.hpp"
+//#include "BaseObject.hpp"
 //---------- /Includes ---------
 
 using namespace std;
-using namespace stunts;
 
 class CKI {
 
  public:
 	// Default constructor and destructor
-
+     	
+	CKI(CInteractiveObject* Object,String Typ);
 	CKI();
-	CKI(CInteractiveObject Object, String Typ);
 	virtual ~CKI();
 
 	// Execution
-
 	void executeKI (float delaySeconds);
-//    setLevelOfSkill		(int levelSkill);
-//	setLevelOfAggressivity	(int levelAggro);
-//	setLevelOfReaction	(int levelReac);
+	
+	// setter
+    void setLevelOfSkill		(int levelSkill);
+	void setLevelOfAggressivity	(int levelAggro);
+	void setLevelOfReaction	(int levelReac);
 
+	// getter
 	int getLevelOfSkill();
 	int getLevelOfAggressivity();
 	int getLevelOfReaction();
@@ -41,16 +42,20 @@ class CKI {
 
  private:
 
-	CInteractiveObject controlObject;
-	//waypoint computeNextWayPoint();
+	CInteractiveObject* controlObject;
+	CNeuralNetwork* net;
 
 	int levelOfSkill;
 	int levelOfAggressivity;
 	int levelOfReaction;
 	int SteerAngle;
 
-	void computeGear();
+
 	void computeStrategy();
+	
+	waypoint computeNextWayPoint();
+	
+	void computeGear();
 	void computeDirection();
 	void computeAcceleration();
 };
