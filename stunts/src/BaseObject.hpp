@@ -1,7 +1,7 @@
 /* Stunts 2005 - A remake of the game Stunts
  *
  * Copyright (C) 2005
- *                    Stunts 2005 Workgroup, 
+ *                    Stunts 2005 Workgroup,
  *                    http://developer.berlios.de/projects/stunts2005
  *
  * Maintainer:        Andreas Maurer <andi@andile.de
@@ -19,7 +19,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, 
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
  * USA.
  */
 
@@ -31,7 +31,7 @@
 //--- predeclare this class
 //------------------------------------------------------------------------------
 
-namespace stunts 
+namespace stunts
 {
 	class CBaseObject;
 }
@@ -57,28 +57,28 @@ namespace stunts {
 		public:
 			//! The level is a friend, because it can load the objects and so it needs full access to the object
 			friend class CLevel;
-			
+
 			/**
 			 * Default constructor
 			 **/
 			CBaseObject();
-			
+
 			/**
 			* Constructor of BaseObject
 			*
 			* @param char* xmlSettingsString, String with settings in XML format
 			* @param xmlPath path where the XML file was found (needed for import tags)
-			* 
+			*
 			* @return nothing
 			*/
 			CBaseObject(char* xmlSettingsString, const std::string& xmlPath);
-							
+
 			// Deconstructor
 			virtual ~CBaseObject();
-		
-	
-	
-		
+
+
+
+
 			/**
 			* This will create an object by its type name. Each object used in the game is derived
 			* from this class. So we provide here a function with which one you do not have to
@@ -89,19 +89,19 @@ namespace stunts {
 			* object type is supported
 			**/
 			static CBaseObject*	createInstance(std::string objType);
-	
-	
-	
-	
+
+
+
+
 			/**
 			* Set the name for this object. Each object must have unique name.
 			* @param name Unique name for the object
 			**/
 			void setName(const char* name);
-	
-	
-				
-				
+
+
+
+
 			/**
 			* Import the object declaration from a file.
 			* The file contains XML-Data will be parsed and all properties that are
@@ -114,8 +114,8 @@ namespace stunts {
 			**/
 			virtual bool importFromFile(const char* fileName, const std::string& xmlPath);
 			bool importFromFile(const std::string fileName, const std::string& xmlPath){ return importFromFile(fileName.c_str(), xmlPath); }
-			
-	
+
+
 			/**
 			 * Import the object declaration from a file.
 			 * The file contains XML-Data will be parsed and all properties that are
@@ -128,11 +128,11 @@ namespace stunts {
 			 **/
 			virtual bool importFromWaypointFile(const char* fileName, const std::string& xmlPath);
 			bool importFromWaypointFile(const std::string fileName, const std::string& xmlPath){ return importFromWaypointFile(fileName.c_str(), xmlPath); }
-			
-			
-	
+
+
+
 			/**
-			 * Let import the settings of the object from a string. The string must be a readed 
+			 * Let import the settings of the object from a string. The string must be a readed
 			 * XML-File that has got the description of the object. Each derived class should
 			 * overwrite this function, to be able to read it's own declarations
 			 * @param xmlSettings String containing XML-Settings (incl. Root-Tag)
@@ -141,11 +141,11 @@ namespace stunts {
 			 **/
 			virtual bool importFromString(const char* xmlSettings, const std::string& xmlPath);
 					bool importFromString(const std::string xmlSettings, const std::string& xmlPath){ return importFromString(xmlSettings.c_str(), xmlPath); }
-					
-					
+
+
 			bool parseWaypoints(TiXmlElement* node);
-			
-			
+
+
 			/**
 			 * To return one waypoints, coordinates ablosute given
 			 *
@@ -154,13 +154,13 @@ namespace stunts {
 			 * @return Vector3
 			 */
 			Vector3 getWaypoint();
-			
-			
+
+
 			/**
 			 * Has waypoints?
 			 */
 			bool hasWaypoints();
-			
+
 			/**
 			* Create a new controller that does control this object. For human driven/interactive objects, like
 			* cars, camera or something else, the appropriate controller will be used.
@@ -172,33 +172,33 @@ namespace stunts {
 			* @return false if such controller could not be bound or if such one does not exists
 			**/
 			virtual bool bindController(const char* name);
-			
-	
+
+
 			static	const char* getObjectTypeSt() 	{ return "base"; }
 			virtual const char* getObjectType() 	{ return CBaseObject::getObjectTypeSt(); }
-			
+
 			// Functions to get attributes
 			inline Vector3	Position() const		{ return m_position; };
 			inline Quaternion	Orientation() const	{ return m_orientation; };
-			
+
 			inline float	Speed() const			{ return m_speed; };
 			inline Vector3	SpeedVector() const		{ return m_speedVector; };
-			
+
 			inline float	Mass() const			{ return m_mass; };
 			inline Vector3	MassPoint() const		{ return m_masspoint; };
-			
+
 			inline float	FrictionCoefficient() const	{ return m_frictionCoefficient; };
-			
+
 			inline float	Torque() const			{ return m_torque; };
 			inline Vector3	TorqueAxis() const		{ return m_torqueAxis; };
-			
+
 			// Functions to set object attributes
 			void	setPosition		(Vector3 pos);
 			void	setOrientation	(Quaternion orient);
 			void	setMass			(float mass);
 			void	setMassPoint	(Vector3 massPoint);
 			void	setFriction		(float coeff);
-			
+
 			/**
 			* Get event from queue
 			*
@@ -207,16 +207,16 @@ namespace stunts {
 			* @return CEvent, Instance of the first item of the queue
 			*/
 			boost::shared_ptr<CEvent>	getEvent();
-						
+
 			/**
 			* Add event to queue
 			*
 			* @params CEvent Add new item to queue
 			*
 			* @return nothing
-			*/	
+			*/
 			void	addEvent(boost::shared_ptr<CEvent> element);
-			
+
 			/**
 			* Process event from queue
 			*
@@ -225,20 +225,20 @@ namespace stunts {
 			* @return 0: ok, -1:Error: No further elements in queue, aso;
 			*/
 			int	process();
-			
-			
+
+
 		protected:
 			//------------------ Methods --------------------------------------
-			
+
 			/**
 			 * Parse settings of the object by defining the root node of an XML-Tree.
 			 * Using here the tinyxml-parser.
 			 * @param rootElem Pointer to the tinyxml-Element node
 			 * @param xmlPath path where the XML file was found (needed for import tags)
 			 * @return false if reading was successful
-			 **/	
+			 **/
 			virtual bool parseSettings(TiXmlElement* rootElem, const std::string& xmlPath);
-			
+
 			/**
 			 * This will load the geometry node from the settings.
 			 * The geometry node does contain information, about the used .mesh
@@ -257,7 +257,7 @@ namespace stunts {
 			 * Otehrwise the object's transforming behavior is not intuitive
 			 **/
 			void correctObjectsOrigin();
-			
+
 			/**
 			 * Scale the object according to the given proprtion value and the axis.
 			 * First we get the bounding box of the object (mesh must be already loaded).
@@ -269,55 +269,55 @@ namespace stunts {
 			 * @param useGrid if true the given value will be interpreted as grid unit
 			 **/
 			void scaleObjectProportionaly(char axis, float32 value, bool useGrid);
-			
+
 			//------------------ Variables --------------------------------------
 			Ogre::Entity*		mEntity;
 			Ogre::SceneNode*	mObjNode;
-			
+
 			// TODO: These Classes must be included, then
 			// the 2 lines can be uncommentated
-	
+
 			// CVectors of sound and geometry objects
 			//vector<CSound>	m_sound;
 			//vector<CGeometry>	m_geometry;
-			
+
 			// Position and direction of the object
 			Vector3 		m_position;
 			Quaternion		m_orientation;
-			
+
 			// Speed value and speed vector
 			float			m_speed;
 			Vector3			m_speedVector;
-			
+
 			// Mass value and masspoint vector
 			float			m_mass;
 			Vector3			m_masspoint;
-	
-			// Friction Coefficient (dt: Reibungskoeffizient)		
+
+			// Friction Coefficient (dt: Reibungskoeffizient)
 			float			m_frictionCoefficient;
-			
+
 			// Torque value and torqueAxis vector
 			float			m_torque;
 			Vector3			m_torqueAxis;
-			
+
 			// Scale factor
 			Vector3			m_scale;
-			
+
 			// CVector of queue items
-			std::queue<boost::shared_ptr<CEvent> >	m_eventQueue;	
-	
+			std::queue<boost::shared_ptr<CEvent> >	m_eventQueue;
+
 			//! String storing the name
 			std::string		mName;
-				
+
 			//! Controller of this object
 			CBaseControl*		mControl;
-			
+
 			//! Parent level for the objects
 			CLevel*			mLevel;
-			
+
 			// Vector for storing waypoints
 			std::vector<Vector3>		m_waypoints;
-			
+
 	};
 };
 

@@ -155,7 +155,7 @@ namespace stunts
 				Vector3 max = unitsToMeters(i+1,j+1);
 				min.y = 10.0f;
 				max.y = 10.0f;
-				
+
 				AxisAlignedBox aabb(min, max);
 				msh->_setBounds(aabb);
 
@@ -171,11 +171,11 @@ namespace stunts
 				mSceneNode->attachObject( ent );
 				mSceneNode->showBoundingBox(true);
 		}
-*/		
+*/
 		// Put BaseObject-Waypoints together
-		if (buildWaypointPath()) 
+		if (buildWaypointPath())
 			nrLog.Log(NR_LOG_APP, "CLevel::loadlevel(): Waypoint path successfully buildt");
-		else 
+		else
 			nrLog.Log(NR_LOG_APP, "CLevel::loadlevel(): Unable to build waypoint path");
 
 		return false;
@@ -188,7 +188,7 @@ namespace stunts
 	void CLevel::drawWaypoint(Ogre::Vector3 pos, int i)
 	{
 		char name[256];
-		
+
 		sprintf(name, "Waypoint__%i__%f__%f__%f__", i, pos.x,pos.y,pos.z);
 
 		/// Create the mesh via the MeshManager
@@ -198,7 +198,7 @@ namespace stunts
 		Vector3 min = pos;
 		Vector3 max = pos;
 		max.y += 100.0f;
-		
+
 		AxisAlignedBox aabb(min, max);
 		msh->_setBounds(aabb);
 
@@ -221,19 +221,19 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	void CLevel::drawWaypoint(Ogre::Vector3 min, Ogre::Vector3 max, int i)
 	{
-	
+
 		char name[256];
 		sprintf(name, "Waypoint2__%i__from__%f__%f__%f__to__%f__%f__%f", i, min.x,min.y, min.z, max.x, max.y, max.z);
 		/*
 		// Create & Load the entity
 		Entity* ent;
 		ent  = COgreTask::GetSingleton().mSceneMgr->createEntity(name, "arrow.mesh");
-				
+
 		SceneNode* mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
 		mSceneNode->attachObject( ent );
 		mSceneNode->translate(min);*/
-		
-		
+
+
 		// Create the mesh via the MeshManager
 		Ogre::MeshPtr msh = MeshManager::getSingleton().createManual(name, "General");
 
@@ -251,7 +251,7 @@ namespace stunts
 		ent 	= COgreTask::GetSingleton().mSceneMgr->createEntity(std::string(ename), std::string(name));
 		SceneNode* mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
 		mSceneNode->attachObject( ent );
-		mSceneNode->showBoundingBox(true);	
+		mSceneNode->showBoundingBox(true);
 	};
 
 
@@ -446,6 +446,15 @@ namespace stunts
 			mShouldLoadLevel = false;
 			if (!loadLevel(mLevelFileName))
 				return NR_UNKNOWN_ERROR;
+			else
+			{
+				//load the pyhsics world
+//float mMoveSpeed = 25;
+float time_step = 0.01;
+
+				mPhysicsExecution.reset(new OgreOde::ForwardFixedQuickStepper(time_step));
+				mPhysicsExecution->setAutomatic(OgreOde::Stepper::AutoMode_PostFrame,mOgreTask->mRoot);
+			}
 		}
 
 		return NR_OK;
@@ -501,11 +510,11 @@ namespace stunts
 	{
 		return mTerrain;
 	}
-	
+
 	//--------------------------------------------------------------------------
 	boost::shared_ptr<CWaypoint> CLevel::findNearestWaypoint(boost::shared_ptr<CWaypoint> from, int nr)
 	{
-		
+
 		// Variables to save nearest Waypoint, set it to far away
 		Ogre::Vector3 			dummy;
 		dummy.x 					= -10000.0;
@@ -513,63 +522,63 @@ namespace stunts
 		dummy.z 					= -10000.0;
 		boost::shared_ptr<CWaypoint> 	nearest;
 		nearest.reset(new CWaypoint(dummy, -1));
-		
-		
+
+
 		// Variable to save current Waypoint while going trough all
 		boost::shared_ptr<CWaypoint> 	current;
-		
-		
+
+
 		// Variables to save div. vectors for better performance :D
 		Ogre::Vector3 			nearestVector	= nearest->getVector();
 		Ogre::Vector3 			currentVector;
 		Ogre::Vector3 			fromVector	= from->getVector();
-		
-		
+
+
 		// Helpers
 		float sumFromCurrent = 0.0f;
 		float sumFromNearest = 0.0f;
 		bool goOn;
-		
+
 		// Go for each waypoint
 		int i = 0;
 		while (i < mWaypoints.size())
 		{
 			// Set current vector to one of vector
 			current				= mWaypoints[i];
-			
+
 			goOn = true;
-			
+
 			if (current->getPrev())			goOn = false;
 			if (current == from)			goOn = false;
 			if (((from->getFirst() == current)&& (nr < 10)))	goOn = false;
-			
+
 			// Ignore the same object!
 			if (goOn == true)
 			{
 				// The nearest vector is found, when the sum of the difference between
 				// the current and the from vector is smaller than the difference of
-				// the nearest and the from vector. Height is factor 5, so that a bridge 
+				// the nearest and the from vector. Height is factor 5, so that a bridge
 				// over a street is more far away and the waypoints of the street under it
 				// will be ignored
 				currentVector	 = current->getVector();
 				sumFromCurrent	 = fabs(currentVector.x - fromVector.x);
 				sumFromCurrent	+= fabs(currentVector.y - fromVector.y);
 				sumFromCurrent	+= fabs((currentVector.z - fromVector.z) * 3);
-				
+
 				if ((sumFromCurrent < sumFromNearest) || (sumFromNearest == 0.0f))
 				{
 					sumFromNearest = sumFromCurrent;
 					nearest = current;
 				};
 			};
-			
+
 			i++;
 		};
-		
-		
+
+
 		return nearest;
 	}
-	
+
 	//--------------------------------------------------------------------------
 	bool CLevel::buildWaypointPath()
 	{
@@ -578,13 +587,13 @@ namespace stunts
 		boost::shared_ptr<CWaypoint> waypoint;
 		Ogre::Vector3 pos;
 		boost::shared_ptr<CBaseObject> currentObject ;
-		
-		
+
+
 		while (i < mObjects.size())
 		{
 		 	currentObject = mObjects[i];
 			i++;
-			
+
 			// Go for each item of object
 			while (currentObject->hasWaypoints())
 			{
@@ -594,12 +603,12 @@ namespace stunts
 			};
 		};
 
-		
+
 		boost::shared_ptr<CWaypoint> current;
 		boost::shared_ptr<CWaypoint> nearest;
 		boost::shared_ptr<CWaypoint> first;
 		boost::shared_ptr<CWaypoint> last;
-		
+
 		// Debugging output
 		i = 0;
 		while (i < mWaypoints.size())
@@ -609,41 +618,41 @@ namespace stunts
 			i++;
 		}
 		i=0;
-		
+
 		// Startpoint
 		if (mWaypoints.size() == 0){
 			nrLog.Log(NR_LOG_APP, "CLevel::buidlWaypointPath(): There were no waypoints found!!!");
 			return false;
 		}
-		
+
 		current = mWaypoints[0];
 		first	= current;
-		
+
 		bool goOn = true;
-		
+
 		// Go for all waypoints
 		while (goOn == true)
 		{
 			nearest = this->findNearestWaypoint(current, i);
-			
+
 			//Save
 			current->setNext(nearest);
 			nearest->setPrev(current);
 			nearest->setFirst(first);
-			
+
 			// Debugging output
 			this->drawWaypoint(nearest->getVector(),current->getVector(), i);
-			
+
 			i++;
-			current = nearest; 
-			
-			if (i >= mWaypoints.size()-1) 	goOn = false; 
+			current = nearest;
+
+			if (i >= mWaypoints.size()-1) 	goOn = false;
 			if (first == current) 		goOn = false;
 		};
-		
+
 		// Last waypoint
 		last = current;
-		
+
 		// Save last waypoint for all waypoints
 		i = 0;
 		while (i < mWaypoints.size())
@@ -652,21 +661,21 @@ namespace stunts
 			current->setLast(last);
 			i++;
 		};
-		
+
 		// Check if any waypoints were found
 		if (mWaypoints.size() > 1) return true;
 		return false;
 	};
-	
-	
+
+
 	//---------------------------------------------------------------------------
 	boost::shared_ptr<CWaypoint> CLevel::getFirstWaypoint()
 	{
 		if (mWaypoints.size() > 1) return mWaypoints[0];
 	};
-	
-	
-	
+
+
+
 	//---------------------------------------------------------------------------
 	boost::shared_ptr<CWaypoint> CLevel::getNextWaypoint(boost::shared_ptr<CWaypoint> waypoint, int nr = 1)
 	{
@@ -679,5 +688,5 @@ namespace stunts
 		};
 		return waypoint;
 	};
-	
+
 };

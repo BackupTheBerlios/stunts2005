@@ -31,6 +31,7 @@
 //------------------------------------------------------------------------------
 //--- predeclare this class
 //------------------------------------------------------------------------------
+
 namespace stunts
 {
 	class CLevel;
@@ -46,6 +47,9 @@ namespace stunts
 #include <OGRE/OgreException.h>
 
 #include <nrEngine/nrEngine.h>
+
+#include <OgreOde_Core/OgreOde_Core.h>
+#include <OgreOde_Prefab/OgreOde_Prefab.h>
 
 #include "External/tinyxml/tinyxml.h"
 
@@ -118,20 +122,20 @@ namespace stunts
 			 * @return Value in meters. Assume the terrain is quadratic
 			 **/
 			Ogre::Real unitToMeter(int32 x);
-			
+
 			/**
 			 * Same as unitToMeter, but convert from float unit value, to float meter value.
 			 * This can help to prevent roundings errors by converting the values
 			 **/
 			Ogre::Real unitToMeter(float32 x);
-			
+
 			/**
 			 * Put all waypoints of all objects together
 			 * @param
 			 * @return true=success / false=no success
 			 */
 			bool buildWaypointPath();
-			
+
 		protected:
 			virtual nrResult taskInit();
 			virtual nrResult taskStart();
@@ -181,23 +185,32 @@ namespace stunts
 
 			int32 						mGridCountInX;
 			int32 						mGridCountInZ;
-			
+
 			std::vector<boost::shared_ptr<CWaypoint> >	mWaypoints;
-			
+
+			//
+			boost::shared_ptr<OgreOde::World> mPhysicsWorld;
+			boost::shared_ptr<OgreOde::Stepper> mPhysicsExecution;
+			Real _time_step;
+
+			//boost::shared_ptr<OgreOde_Prefab::Vehicle> _vehicle;
+			//boost::shared_ptr<OgreOde::TerrainGeometry> _terrain;
+
+
 			// Debuggingfunctions for printing waypoints
 			void drawWaypoint(Ogre::Vector3 pos, int i);
 			void drawWaypoint(Ogre::Vector3 min, Ogre::Vector3 max, int i);
-			
+
 			// Find nearest waypoint
 			boost::shared_ptr< CWaypoint > 			findNearestWaypoint(boost::shared_ptr<CWaypoint> waypointFrom, int ObjectId);
-			
+
 			// Get first waypoint
 			boost::shared_ptr<CWaypoint> getFirstWaypoint();
-			
+
 			// Get next i Waypoint
 			boost::shared_ptr<CWaypoint> getNextWaypoint(boost::shared_ptr<CWaypoint> waypoint, int nr);
-			
-			
+
+
 	};
 
 };
