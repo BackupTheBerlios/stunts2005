@@ -200,7 +200,8 @@ namespace stunts
 			
 	};
 
-};// namespace stunts
+};
+// namespace stunts
 
 #endif //_LEVEL_HPP_
 

@@ -95,13 +95,13 @@ void CKI::computeGear()
 {
 
 	//### muss man debuggen aber müsste sonst klappen
-	if (controlObject->m_Engine->m_rpm < controlObject->m_Engine->m_maxRpm)
+	if (controlObject->getEngine()->getRpm() < controlObject->getEngine()->getMaxRpm())
 	{
-		controlObject->m_Gear->shiftDown();
+		controlObject->shiftDown();
 	}
 	else
 	{
-		controlObject->m_Gear->shiftUp();
+		controlObject->shiftUp();
 	};
 
 }
@@ -166,12 +166,12 @@ void CKI::computeAcceleration()
 	{
 		if (net->isHighSpeed() >= 0)
 		{
-			controlObject->m_Engine->accellerate( -1.f * (net->isHighSpeed()) ); //highspeed is negative!
+			controlObject->accellerate( -1.f * (net->isHighSpeed()) ); //highspeed is negative!
 		}
 		else
 		{
 			// highspeed and highsteer are negative!
-			controlObject->m_Engine->accellerate( net->isHighSteer() * net->isHighSpeed() );
+			controlObject->accellerate( net->isHighSteer() * net->isHighSpeed() );
 		}
 	}
 

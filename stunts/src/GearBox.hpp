@@ -33,52 +33,61 @@ namespace stunts {
 	{
 		public:
 			/** 
-			* Constructor of GearBox
-			*
-			* @param numberOfGears Number of Gears
-			* @param gearTransmission Vector of transmission for each gear
-			*
-			* @return nothing
-			*/
+			 * Constructor of GearBox
+			 *
+			 * @param numberOfGears Number of Gears
+			 * @param gearTransmission Vector of transmission for each gear
+			 *
+			 * @return nothing
+			 */
 			
 			CGearBox(int numberOfGears, std::vector<float> gearTransmission);
 		
 	
 			/**
-			* Deconstructor of Gearbox
-			*
-			* @param none
-			*
-			* @return nothing
-			*/
+			 * Deconstructor of Gearbox
+			 *
+			 * @param none
+			 *
+			 * @return nothing
+			 */
 			~CGearBox();
 			
 			/**
-			* Function to shift up
-			*
-			* @param none
-			*
-			* @return true: success; false: if not
-			*/
+			 * Function to shift up
+			 *
+			 * @param none
+			 *
+			 * @return true: success; false: if not
+			 */
 			bool			shiftUp();
 	
 			/**
-			* Function to shift down
-			*
-			* @param none
-			*
-			* @return true: success; false: if not
-			*/
+			 * Function to shift down
+			 *
+			 * @param none
+			 *
+			 * @return true: success; false: if not
+			 */
 			bool			shiftDown();
 	
 			/**
-			* Function to get current gearTransmission
-			*
-			* @param none
-			*
-			* @return transmission of current gear
-			*/
+			 * Function to get current gearTransmission
+			 *
+			 * @param none
+			 *
+			 * @return transmission of current gear
+			 */
 			float			getTransmission();
+			
+			/**
+			 * Function to get current gear
+			 *
+			 * @param none
+			 *
+			 * @return current gear
+			 */
+			inline	int	getGear()	{ return m_currentGear; }
 			
 		protected:
 			// Contains current selected gear

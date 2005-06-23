@@ -15,7 +15,7 @@ stunts_SOURCES = \
 	CSoundSystem.cpp \
 	Level.cpp \
 	Terrain.cpp \
-	BaseObject.cpp\
+	BaseObject.cpp \
 	InteractiveObject.cpp\
 	CarObject.cpp\
 	Wheel.cpp\
@@ -62,7 +62,7 @@ noinst_HEADERS = \
 	OgreTimer.hpp\
 	CSound.hpp \
 	CSoundSystem.hpp \
-	BaseObject.hpp\
+	BaseObject.hpp
 	InteractiveObject.hpp\
 	CarObject.hpp\
 	Wheel.hpp\
@@ -96,7 +96,7 @@ noinst_HEADERS = \
 	CFunction.h \
 	CKI.h \
 	CNeuralNetwork.h \
-	CNeurode.h
+	CNeurode.h 
 
 
 # Set the include path found by configure

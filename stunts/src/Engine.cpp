@@ -80,6 +80,7 @@ namespace stunts {
 	{
 		if (this->m_rpm <= this->m_minRpm) return false;
 		if (this->m_rpm >= this->m_maxRpm)  return false;
+		this->m_rpm +=25;
 	};
 };
 

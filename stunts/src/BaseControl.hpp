@@ -63,6 +63,6 @@ namespace stunts {
 			static const char* getControlType() { return "BaseControl"; }
 		 
 	};
-}
+};
 
 #endif

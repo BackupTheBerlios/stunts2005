@@ -63,11 +63,27 @@ namespace stunts {
 			bool 		steer(float gasPedal);
 			
 			
-			static	const char* getObjectTypeSt() 	{ return "car"; }
-					const char* getObjectType() 	{ return CCarObject::getObjectTypeSt(); }
+			static	const char* getObjectTypeSt() 		{ return "car"; }
+			const char* getObjectType() 			{ return CCarObject::getObjectTypeSt(); }
 
+			// Pointer to gearbox and engine
+			boost::shared_ptr<CGearBox>	getGearbox() 	{ return m_Gear; }
+			boost::shared_ptr<CEngine>	getEngine()	{ return m_Engine; }
+			
+			// Functions for gearbox 
+			bool				shiftUp()	{ return this->m_Gear->shiftUp(); }
+			bool				shiftDown()	{ return this->m_Gear->shiftDown(); }
+			
+			
+			// Funktions for engine
+			inline	bool				accellerate(float throttle)
+				{ return this->m_Engine->accellerate(throttle); }
+			inline	int	getRpm()	{ return this->m_Engine->getRpm(); }
+			inline	int	getMinRpm()	{ return this->m_Engine->getMinRpm(); }
+			inline	int	getMaxRpm()	{ return this->m_Engine->getMaxRpm(); }
+			
 
-	//	protected:
+		protected:
 			//------------------ Methods --------------------------------------
 			//! @see CBaseObject::parseSettings()
 			bool parseSettings(TiXmlElement* rootElem, const std::string& xmlPath);
@@ -84,7 +100,7 @@ namespace stunts {
 			std::vector<boost::shared_ptr<CWheel> >	wheels;
 
 			// brakepedal value
-			bool		m_brake;
+			float		m_brake;
 	};
 };	
 #endif

@@ -22,9 +22,8 @@ class CKI {
 
  public:
 	// Default constructor and destructor
-     	
 	CKI(CCarObject* Object,String Typ);
-//	CKI();
+
 	virtual ~CKI();
 
 	// Execution
@@ -54,7 +53,7 @@ class CKI {
 
 	void computeStrategy();
 	
-	shared_ptr<CWawaypoint> waypoint;
+	boost::shared_ptr<CWaypoint> waypoint;
 	
 	void computeGear();
 	void computeDirection();

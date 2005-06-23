@@ -30,7 +30,8 @@
 //------------------------------------------------------------------------------
 //--- predeclare this class
 //------------------------------------------------------------------------------
-namespace stunts
+
+namespace stunts 
 {
 	class CBaseObject;
 }
@@ -152,7 +153,7 @@ namespace stunts {
 			 *
 			 * @return Vector3
 			 */
-			Vector3 getWaypoint() ;
+			Vector3 getWaypoint();
 			
 			
 			/**

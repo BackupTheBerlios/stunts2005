@@ -63,7 +63,12 @@ namespace stunts {
 			*/
 			bool	accellerate(float throttle);
 			
-	//	protected:
+			// Functions to return rpm values
+			inline	int	getRpm()	{ return this->m_rpm; }
+			inline	int	getMinRpm()	{ return this->m_minRpm; }
+			inline	int	getMaxRpm()	{ return this->m_maxRpm; }
+			
+		protected:
 			// Current rpm of engine
 			int	m_rpm;
 	
