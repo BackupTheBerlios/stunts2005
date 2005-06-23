@@ -58,7 +58,7 @@ namespace stunts {
 			if (node->Attribute("unit") != NULL){
 				// If we have got grid units, so convert them and store
 				if (!strcmp(node->Attribute("unit"), "gridUnits"))
-					fvalue = level->unitToMeter((int32)fval);
+					fvalue = level->unitToMeter((float32)fval);
 			}
 
 		}
