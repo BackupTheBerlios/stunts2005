@@ -503,7 +503,7 @@ namespace stunts
 	}
 	
 	//--------------------------------------------------------------------------
-	boost::shared_ptr<CWaypoint> CLevel::findNearestWaypoint(boost::shared_ptr<CWaypoint> from, int ObjectId)
+	boost::shared_ptr<CWaypoint> CLevel::findNearestWaypoint(boost::shared_ptr<CWaypoint> from, int nr)
 	{
 		
 		// Variables to save nearest Waypoint, set it to far away
@@ -528,7 +528,7 @@ namespace stunts
 		// Helpers
 		float sumFromCurrent = 0.0f;
 		float sumFromNearest = 0.0f;
-		
+		bool goOn;
 		
 		// Go for each waypoint
 		int i = 0;
@@ -537,18 +537,25 @@ namespace stunts
 			// Set current vector to one of vector
 			current				= mWaypoints[i];
 			
+			goOn = true;
+			
+			if (current->getPrev())			goOn = false;
+			if (current == from)			goOn = false;
+			if (((from->getFirst() == current)&& (nr < 10)))	goOn = false;
+			
 			// Ignore the same object!
-			if ((!current->getPrev())  && (current != from))
+			if (goOn == true)
 			{
 				// The nearest vector is found, when the sum of the difference between
 				// the current and the from vector is smaller than the difference of
 				// the nearest and the from vector. Height is factor 5, so that a bridge 
 				// over a street is more far away and the waypoints of the street under it
 				// will be ignored
-				currentVector	= current->getVector();
-				sumFromCurrent	= fabs(currentVector.x - fromVector.x);
+				currentVector	 = current->getVector();
+				sumFromCurrent	 = fabs(currentVector.x - fromVector.x);
 				sumFromCurrent	+= fabs(currentVector.y - fromVector.y);
 				sumFromCurrent	+= fabs((currentVector.z - fromVector.z) * 3);
+				
 				if ((sumFromCurrent < sumFromNearest) || (sumFromNearest == 0.0f))
 				{
 					sumFromNearest = sumFromCurrent;
@@ -587,7 +594,7 @@ namespace stunts
 			};
 		};
 
-				
+		
 		boost::shared_ptr<CWaypoint> current;
 		boost::shared_ptr<CWaypoint> nearest;
 		boost::shared_ptr<CWaypoint> first;
@@ -612,32 +619,37 @@ namespace stunts
 		current = mWaypoints[0];
 		first	= current;
 		
+		bool goOn = true;
+		
 		// Go for all waypoints
-		while (i < mWaypoints.size())
+		while (goOn == true)
 		{
-			nearest = this->findNearestWaypoint(current, current->getObjectId());
+			nearest = this->findNearestWaypoint(current, i);
 			
 			//Save
 			current->setNext(nearest);
 			nearest->setPrev(current);
+			nearest->setFirst(first);
 			
 			// Debugging output
 			this->drawWaypoint(nearest->getVector(),current->getVector(), i);
 			
 			i++;
 			current = nearest; 
+			
+			if (i >= mWaypoints.size()-1) 	goOn = false; 
+			if (first == current) 		goOn = false;
 		};
 		
 		// Last waypoint
 		last = current;
 		
-		// Save first and last waypoint for all waypoints
+		// Save last waypoint for all waypoints
 		i = 0;
 		while (i < mWaypoints.size())
 		{
-			current = mWaypoints[0];
+			current = mWaypoints[i];
 			current->setLast(last);
-			current->setFirst(first);
 			i++;
 		};
 		
