@@ -1,4 +1,4 @@
-s/* Stunts 2005 - A remake of the game Stunts
+/* Stunts 2005 - A remake of the game Stunts
  *
  * Copyright (C) 2005
  *                    Stunts 2005 Workgroup,
