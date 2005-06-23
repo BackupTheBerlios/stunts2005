@@ -194,8 +194,8 @@ namespace stunts
 			// Get first waypoint
 			boost::shared_ptr<CWaypoint> getFirstWaypoint();
 			
-			// Get next Waypoint
-			boost::shared_ptr<CWaypoint> getNextWaypoint(boost::shared_ptr<CWaypoint> waypoint);
+			// Get next i Waypoint
+			boost::shared_ptr<CWaypoint> getNextWaypoint(boost::shared_ptr<CWaypoint> waypoint, int nr);
 			
 			
 	};

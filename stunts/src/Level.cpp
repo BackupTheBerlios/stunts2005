@@ -598,7 +598,7 @@ namespace stunts
 		while (i < mWaypoints.size())
 		{
 			current = mWaypoints[i];
-			this->drawWaypoint(current->getVector());
+			// this->drawWaypoint(current->getVector());
 			i++;
 		}
 		i=0;
@@ -613,7 +613,7 @@ namespace stunts
 		first	= current;
 		
 		// Go for all waypoints
-		while (i < 10)//mWaypoints.size())
+		while (i < mWaypoints.size())
 		{
 			nearest = this->findNearestWaypoint(current, current->getObjectId());
 			
@@ -622,10 +622,10 @@ namespace stunts
 			nearest->setPrev(current);
 			
 			// Debugging output
-			this->drawWaypoint(nearest->getVector(),current->getVector(), i);
+			// this->drawWaypoint(nearest->getVector(),current->getVector(), i);
 			
 			i++;
-			current = nearest; //mWaypoints[i];
+			current = nearest; 
 		};
 		
 		// Last waypoint

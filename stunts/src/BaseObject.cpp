@@ -321,25 +321,26 @@ namespace stunts {
 		Ogre::Vector3 waypoint, waypointNew;
 		
 		// Get one element of vector
-		waypoint = m_waypoints.back();
+		waypoint = this->m_waypoints.back();
 		
 		// Remove this element from vector
-		m_waypoints.pop_back();
-		
-		// Rotate
-		waypointNew = m_orientation * waypoint;
+		this->m_waypoints.pop_back();
 		
 		// Scale
-		waypointNew.x *= m_scale.x;
-		waypointNew.y *= m_scale.y;
-		waypointNew.z *= m_scale.z;
+		waypoint.x *= this->m_scale.x;
+		waypoint.y *= this->m_scale.y;
+		waypoint.z *= this->m_scale.z;
+		
+		// Rotate
+		waypointNew = this->m_orientation * waypoint;
+		waypoint = waypointNew;
 		
 		// put on position
-		waypointNew.x += this->m_position.x;
-		waypointNew.y += this->m_position.y;
-		waypointNew.z += this->m_position.z;
+		waypoint.x += this->m_position.x;
+		waypoint.y += this->m_position.y;
+		waypoint.z += this->m_position.z;
 		
-		return waypointNew;
+		return waypoint;
 	};
 	
 	
