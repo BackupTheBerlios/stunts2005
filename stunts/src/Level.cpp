@@ -526,8 +526,8 @@ namespace stunts
 		
 		
 		// Helpers
-		float sumFromCurrent = 0.0;
-		float sumFromNearest = 0.0;
+		float sumFromCurrent = 0.0f;
+		float sumFromNearest = 0.0f;
 		
 		
 		// Go for each waypoint
@@ -548,8 +548,8 @@ namespace stunts
 				currentVector	= current->getVector();
 				sumFromCurrent	= fabs(currentVector.x - fromVector.x);
 				sumFromCurrent	+= fabs(currentVector.y - fromVector.y);
-				sumFromCurrent	+= fabs((currentVector.z - fromVector.z) * 5);
-				if ((sumFromCurrent < sumFromNearest) || (sumFromNearest == 0.0))
+				sumFromCurrent	+= fabs((currentVector.z - fromVector.z) * 3);
+				if ((sumFromCurrent < sumFromNearest) || (sumFromNearest == 0.0f))
 				{
 					sumFromNearest = sumFromCurrent;
 					nearest = current;
@@ -594,20 +594,18 @@ namespace stunts
 		boost::shared_ptr<CWaypoint> last;
 		
 		// Debugging output
-		
-		/*i = 0;
+		i = 0;
 		while (i < mWaypoints.size())
 		{
 			current = mWaypoints[i];
 			this->drawWaypoint(current->getVector());
 			i++;
 		}
-		*/
 		i=0;
 		
 		// Startpoint
 		if (mWaypoints.size() == 0){
-			nrLog.Log(NR_LOG_APP, "CLevel::buidlWaypointPath(): There was no waypoints found!!!");
+			nrLog.Log(NR_LOG_APP, "CLevel::buidlWaypointPath(): There were no waypoints found!!!");
 			return false;
 		}
 		
@@ -615,7 +613,7 @@ namespace stunts
 		first	= current;
 		
 		// Go for all waypoints
-		while (i < mWaypoints.size())
+		while (i < 10)//mWaypoints.size())
 		{
 			nearest = this->findNearestWaypoint(current, current->getObjectId());
 			
@@ -624,7 +622,7 @@ namespace stunts
 			nearest->setPrev(current);
 			
 			// Debugging output
-			// this->drawWaypoint(nearest->getVector(),current->getVector(), i);
+			this->drawWaypoint(nearest->getVector(),current->getVector(), i);
 			
 			i++;
 			current = nearest; //mWaypoints[i];
@@ -658,9 +656,16 @@ namespace stunts
 	
 	
 	//---------------------------------------------------------------------------
-	boost::shared_ptr<CWaypoint> CLevel::getNextWaypoint(boost::shared_ptr<CWaypoint> waypoint)
+	boost::shared_ptr<CWaypoint> CLevel::getNextWaypoint(boost::shared_ptr<CWaypoint> waypoint, int nr = 1)
 	{
-		waypoint = waypoint->getNext();
-		if (waypoint) return waypoint;
+		for (int i = 0; i < nr; i++)
+		{
+			if (waypoint->getNext())
+			{
+				waypoint = waypoint->getNext();
+			};
+		};
+		return waypoint;
 	};
+	
 };
