@@ -3,7 +3,7 @@
 	//--------- CKI 
 /**
 * legt eine KI für ein interaktives Objekt an
-* setzt Standardwerte 
+* setzt Standardwerte
 */
 CKI::CKI(CInteractiveObject* Object,String Typ)
 {
