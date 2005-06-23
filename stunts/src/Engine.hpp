@@ -63,7 +63,7 @@ namespace stunts {
 			*/
 			bool	accellerate(float throttle);
 			
-		protected:
+	//	protected:
 			// Current rpm of engine
 			int	m_rpm;
 	

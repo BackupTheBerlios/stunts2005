@@ -3,10 +3,10 @@
 
 CNeuralNetwork::CNeuralNetwork(CKI* KI)
 {
-	if(KI != NULL)
+//	if(KI != NULL)
 		this->ki = KI;
-	else
-		this->ki = new CKI;
+//	else
+//		this->ki = new CKI;
 }
 
 CNeuralNetwork::~CNeuralNetwork()

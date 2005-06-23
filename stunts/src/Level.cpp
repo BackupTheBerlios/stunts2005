@@ -185,11 +185,11 @@ namespace stunts
 
 
 	//--------------------------------------------------------------------------
-	void CLevel::drawWaypoint(Ogre::Vector3 pos)
+	void CLevel::drawWaypoint(Ogre::Vector3 pos, int i)
 	{
 		char name[256];
 		
-		sprintf(name, "Waypoint__%f__%f__%f__", pos.x,pos.y,pos.z);
+		sprintf(name, "Waypoint__%i__%f__%f__%f__", i, pos.x,pos.y,pos.z);
 
 		/// Create the mesh via the MeshManager
 		Ogre::MeshPtr msh = MeshManager::getSingleton().createManual(name, "General");
@@ -598,7 +598,7 @@ namespace stunts
 		while (i < mWaypoints.size())
 		{
 			current = mWaypoints[i];
-			// this->drawWaypoint(current->getVector());
+			this->drawWaypoint(current->getVector(), i);
 			i++;
 		}
 		i=0;
@@ -622,7 +622,7 @@ namespace stunts
 			nearest->setPrev(current);
 			
 			// Debugging output
-			// this->drawWaypoint(nearest->getVector(),current->getVector(), i);
+			this->drawWaypoint(nearest->getVector(),current->getVector(), i);
 			
 			i++;
 			current = nearest; 

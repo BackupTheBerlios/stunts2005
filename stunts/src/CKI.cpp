@@ -5,15 +5,18 @@
 * legt eine KI für ein interaktives Objekt an
 * setzt Standardwerte
 */
-CKI::CKI(CInteractiveObject* Object,String Typ)
+CKI::CKI(CCarObject* Object,String Typ)
 {
 	levelOfSkill = 1;
 	levelOfAggressivity = 1;
 	levelOfReaction = 1;
 	
-	controlObject=Object;
+	controlObject = Object;
+	
+	net = new CNeuralNetwork(this);
 }
 
+/*
 CKI::CKI()
 {
 	levelOfSkill = 1;
@@ -23,10 +26,11 @@ CKI::CKI()
 	CNeuralNetwork::makeNeuralNetwork(Typ);
 //	controlObject=Object;
 }
-
+*/
 	//--------- ~CKI() ---------
 CKI::~CKI()
 {
+	net = NULL;
 }
 
 /**
@@ -37,7 +41,7 @@ void CKI::executeKI(float delaySeconds)
 {
 	computeStrategy();
 	
-	waypoint computeNextWayPoint();
+//	waypoint computeNextWayPoint();
 	
 	computeGear();
 	computeDirection();
@@ -80,24 +84,26 @@ void CKI::computeStrategy()
 * soll anhand von dem WayPoint vector den bestimmen, der am nächsten ist
 * oder getNextWayPoint liefert von sich den besten WayPoint
 */
+/*
 waypoint computeNextWayPoint()
 {
 }
+*/
+
 
 void CKI::computeGear()
 {
-/*
+
 	//### muss man debuggen aber müsste sonst klappen
-	if (controlObject->CMotor.rpm < controlObject->CMotor.MaxRPM)
-		then
-		{
-			controlObject->CGearBox.shiftDown();
-		}
-		else
-		{
-			CGearBox::shiftUp();
-		};
-*/
+	if (controlObject->m_Engine->m_rpm < controlObject->m_Engine->m_maxRpm)
+	{
+		controlObject->m_Gear->shiftDown();
+	}
+	else
+	{
+		controlObject->m_Gear->shiftUp();
+	};
+
 }
 
 /**
@@ -107,46 +113,10 @@ void CKI::computeGear()
 */
 void CKI::computeDirection()
 {
-		
-}
+	
 
-/**
-* anhand der 
-*/
-void CKI::computeAcceleration()
-{
 /*
-	//### noch prüfen ob die funktionen alle Ergebnisse liefern
-	if (CNeuralNetwork.highsteer() >= 0)
-	{
-		if (CNeuralNetwork.highspeed() >= 0 )
-		{
-  			controlObject->CCarObject.brake( CNeuralNetwork.highsteer() * controlObject->CNeuralNetwork.highspeed() );
-     	}
-		else
-		{
-  			controlObject->CCarObject.brake( CNeuralNetwork.highsteer()*( 1 - CNeuralNetwork.highspeed() ) );
-     	}
-	}
-	else
-	{
-		if (CNeuralNetwork.highsteer() >= 0)
-		{
-			controlObject->CMotor.accellerate( -(CNeuralNetwork.highspeed()) ); //highspeed is negative!
-		}
-		else
-		{
-			controlObject->CMotor.accellerate( CNeuralNetwork.highsteer() * CNeuralNetwork.highspeed() ); // highspeed and highsteer are negative!
-		}
-	}
-*/
-}
-
-//-----------------------------------------
-// ---------computeNextWayPoint------------
-//-----------------------------------------
-
-/* see above at variable Declaration-----------------------------------
+//see above at variable Declaration-----------------------------------
 	waypoint computeNextWayPoint()
 	{
 
@@ -165,13 +135,45 @@ void CKI::computeAcceleration()
 // solange der WP hinter dem Auto liegt, springe einen Wegpunkt weiter, maximal aber 4, bzw zum letzten Wegpunkt.
 	do
 		{
-			WP = getNextWaypoint(actualWP,i); 
+			WP = getNextWaypoint(actualWP,i);
 			i++;
 		};
 	if (WP == scene::getNextWayPoint(last,0)) then actualWP = WP;
 	}
+----------------------- bis hier hin auskommentiert, da Funktionen fehlen
+*/
+}
 
+/**
+* 
+*/
+void CKI::computeAcceleration()
+{
 
------------------------ bis hier hin auskommentiert, da Funktionen fehlen*/
+	//### noch prüfen ob die funktionen alle Ergebnisse liefern
+	if (net->isHighSteer() >= 0)
+	{
+		if (net->isHighSpeed() >= 0 )
+		{
+  			controlObject->brake( net->isHighSteer() * net->isHighSpeed() );
+     		}
+		else
+		{
+  			controlObject->brake( net->isHighSteer() * ( 1.f - net->isHighSpeed() ) );
+     		}
+	}
+	else
+	{
+		if (net->isHighSpeed() >= 0)
+		{
+			controlObject->m_Engine->accellerate( -1.f * (net->isHighSpeed()) ); //highspeed is negative!
+		}
+		else
+		{
+			// highspeed and highsteer are negative!
+			controlObject->m_Engine->accellerate( net->isHighSteer() * net->isHighSpeed() );
+		}
+	}
 
 }
+

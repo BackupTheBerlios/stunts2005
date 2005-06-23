@@ -68,5 +68,13 @@ namespace stunts {
 		// Ok now let the base object parse it's settings
 		return CBaseObject::parseSettings(rootElem, xmlPath);
 	}
+	bool 		CCarObject::brake(float brakePedal)
+	{
+	
+	};
+	bool 		CCarObject::steer(float steer)
+	{
+	
+	};
 
 };	

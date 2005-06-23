@@ -59,15 +59,15 @@ namespace stunts {
 			*/
 			~CCarObject();
 	
-			bool 		brake();
-			bool 		steer();
+			bool 		brake(float brakePedal);
+			bool 		steer(float gasPedal);
 			
 			
 			static	const char* getObjectTypeSt() 	{ return "car"; }
 					const char* getObjectType() 	{ return CCarObject::getObjectTypeSt(); }
 
 
-		protected:
+	//	protected:
 			//------------------ Methods --------------------------------------
 			//! @see CBaseObject::parseSettings()
 			bool parseSettings(TiXmlElement* rootElem, const std::string& xmlPath);
