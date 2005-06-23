@@ -7,7 +7,7 @@ _POS_X_	_POS_Z_	_ROT_Y_ _SCALE_AXIS_ _MESH_NAME_
 1	9	0	z	tree
 2	9	0	z	corner_big
 4	9	1	z	straight_line
-5	9	3	z	drive-up_bridge
+5	9	1	z	drive-up_bridge
 6	9	1	z	straight_line_bridge
 7	9	1	z	straight_line_bridge
 8	9	1	z	straight_line_bridge
