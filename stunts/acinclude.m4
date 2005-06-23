@@ -1,54 +1,54 @@
 #
 # Synopsis
-# 
+#
 # ACX_PTHREAD([ACTION-IF-FOUND[, ACTION-IF-NOT-FOUND]])
-# 
+#
 # Description
-# 
+#
 # This macro figures out how to build C programs using POSIX
 # threads. It sets the PTHREAD_LIBS output variable to the threads
 # library and linker flags, and the PTHREAD_CFLAGS output variable to
 # any special C compiler flags that are needed. (The user can also force
 # certain compiler flags/libs to be tested by setting these environment
 # variables.)
-# 
+#
 # Also sets PTHREAD_CC to any special C compiler that is needed for
 # multi-threaded programs (defaults to the value of CC otherwise). (This
 # is necessary on AIX to use the special cc_r compiler alias.)
-# 
+#
 # NOTE: You are assumed to not only compile your program with these
 # flags, but also link it with them as well. e.g. you should link with
 # $PTHREAD_CC $CFLAGS $PTHREAD_CFLAGS $LDFLAGS ... $PTHREAD_LIBS $LIBS
-# 
+#
 # If you are only building threads programs, you may wish to use these
 # variables in your default LIBS, CFLAGS, and CC:
-# 
+#
 #        LIBS="$PTHREAD_LIBS $LIBS"
 #        CFLAGS="$CFLAGS $PTHREAD_CFLAGS"
 #        CC="$PTHREAD_CC"
-# 
+#
 # In addition, if the PTHREAD_CREATE_JOINABLE thread-attribute
 # constant has a nonstandard name, defines PTHREAD_CREATE_JOINABLE to
 # that name (e.g. PTHREAD_CREATE_UNDETACHED on AIX).
-# 
+#
 # ACTION-IF-FOUND is a list of shell commands to run if a threads
 # library is found, and ACTION-IF-NOT-FOUND is a list of commands to run
 # it if it is not found. If ACTION-IF-FOUND is not specified, the
 # default action will define HAVE_PTHREAD.
-# 
+#
 # Please let the authors know if this macro fails on any platform, or
 # if you have any other suggestions or comments. This macro was based on
 # work by SGJ on autoconf scripts for FFTW (www.fftw.org) (with help
 # from M. Frigo), as well as ac_pthread and hb_pthread macros posted by
 # Alejandro Forero Cuervo to the autoconf macro repository. We are also
 # grateful for the helpful feedback of numerous users.
-# 
+#
 # Version
-# 
+#
 # 1.10 (last modified: 2004-06-16)
-# 
+#
 # Author
-# 
+#
 # Steven G. Johnson <stevenj@alum.mit.edu>
 #
 AC_DEFUN([ACX_PTHREAD], [
@@ -248,13 +248,13 @@ fi
 AC_LANG_RESTORE
 ])dnl ACX_PTHREAD
 
-# 
+#
 # Synopsis
-# 
+#
 # AX_CHECK_GL
-# 
+#
 # Description
-# 
+#
 # Check for an OpenGL implementation. If GL is found, the required
 # compiler and linker flags are included in the output variables
 # "GL_CFLAGS" and "GL_LIBS", respectively. This macro adds the configure
@@ -263,15 +263,15 @@ AC_LANG_RESTORE
 # Apple's OpenGL framework is used, the symbol
 # "HAVE_APPLE_OPENGL_FRAMEWORK" is defined. If no GL implementation is
 # found, "no_gl" is set to "yes".
-# 
+#
 # Version
-# 
+#
 # 1.6
-# 
+#
 # Author
-# 
+#
 # Braden McDaniel <braden@endoframe.com>
-# 
+#
 # M4 Source Code
 #
 AC_DEFUN([AX_CHECK_GL],
@@ -354,9 +354,9 @@ AC_SUBST([GL_LIBS])
 
 #
 # Synopsis
-# 
+#
 # AX_CHECK_GLU
-# 
+#
 # Description
 #
 # Check for GLU. If GLU is found, the required preprocessor and linker
@@ -366,13 +366,13 @@ AC_SUBST([GL_LIBS])
 # Apple's OpenGL framework should be used on Mac OS X. If Apple's OpenGL
 # framework is used, the symbol "HAVE_APPLE_OPENGL_FRAMEWORK" is
 # defined. If no GLU implementation is found, "no_glu" is set to "yes".
-# 
+#
 # Version
 #
 # 1.1
-# 
+#
 # Author
-# 
+#
 # Braden McDaniel <braden@endoframe.com>
 #
 AC_DEFUN([AX_CHECK_GLU],
@@ -432,19 +432,19 @@ AC_SUBST([GLU_LIBS])
 # Synopsis
 #
 # AX_CHECK_NRENGINE
-# 
+#
 # Version
-# 
+#
 # 1.0     0.0.00   :   fw
-# 
+#
 # Author
-# 
-# Florian Winter <fw@graphics.cs.uni-sb.de> 
+#
+# Florian Winter <fw@graphics.cs.uni-sb.de>
 #  copyright: (C) 2003 Florian Winter
 #  license: Wayne?
-# 
+#
 # Description
-# 
+#
 # Check for nrEngine
 #
 AC_DEFUN([AX_CHECK_NRENGINE],
@@ -510,19 +510,19 @@ AC_SUBST([NRENGINE_LIBS])
 # Synopsis
 #
 # AX_CHECK_ODE
-# 
+#
 # Version
-# 
-# 1.6     0.5.58   :   braden 
-# 
+#
+# 1.6     0.5.58   :   braden
+#
 # Author
-# 
-# Braden McDaniel <braden@endoframe.com> 
-#  copyright: (C) 2003 Braden McDaniel 
-#  license: GNU GPL 
-# 
+#
+# Braden McDaniel <braden@endoframe.com>
+#  copyright: (C) 2003 Braden McDaniel
+#  license: GNU GPL
+#
 # Description
-# 
+#
 # Check for ODE. If ODE is found, the required compiler and linker
 # flags are included in the output variables "ODE_CFLAGS" and
 # "ODE_LIBS", respectively.If ODE is not found, "no_ode" is set to "yes".
@@ -574,19 +574,19 @@ AC_SUBST([ODE_LIBS])
 # Synopsis
 #
 # AX_CHECK_FMOD
-# 
+#
 # Version
-# 
+#
 # 1.6     0.5.58   :   fw
-# 
+#
 # Author
-# 
-# Braden McDaniel <braden@endoframe.com> 
-#  copyright: (C) 2003 Braden McDaniel 
-#  license: GNU GPL 
-# 
+#
+# Braden McDaniel <braden@endoframe.com>
+#  copyright: (C) 2003 Braden McDaniel
+#  license: GNU GPL
+#
 # Description
-# 
+#
 #
 AC_DEFUN([AX_CHECK_FMOD],
 [
@@ -634,7 +634,7 @@ dnl RS_BOOST([MINIMUM-VERSION], [ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND])
 dnl Test for the Boost C++ libraries of a particular version (or newer)
 dnl Defines:
 dnl   BOOST_CPPFLAGS to the set of flags required to compiled Boost
-AC_DEFUN([RS_BOOST], 
+AC_DEFUN([RS_BOOST],
 [
   AC_SUBST(BOOST_CPPFLAGS)
   AC_SUBST(BOOST_LIBS)
@@ -726,7 +726,7 @@ dnl RS_BOOST_THREAD([ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND])
 dnl Test for the Boost thread library
 dnl Defines
 dnl   BOOST_LDFLAGS to the set of flags required to compile boost_thread
-AC_DEFUN([RS_BOOST_THREAD], 
+AC_DEFUN([RS_BOOST_THREAD],
 [
     AC_REQUIRE([RS_BOOST])
   AC_MSG_CHECKING([whether we can use boost_thread library])
@@ -737,8 +737,8 @@ AC_DEFUN([RS_BOOST_THREAD],
   OLD_LIBS="$LIBS"
   LIBS="-lboost_thread-$boost_libsuff_r"
     AC_TRY_COMPILE(
-	    [ 
-		#include <boost/thread.hpp> 
+	    [
+		#include <boost/thread.hpp>
 		bool bRet = 0;
 		void thdfunc() { bRet = 1; }
 	    ],
@@ -746,12 +746,12 @@ AC_DEFUN([RS_BOOST_THREAD],
 		boost::thread thrd(&thdfunc);
 		thrd.join();
 		return bRet == 1;
-	    ], 
+	    ],
 	    [
 		AC_MSG_RESULT([yes])
 		ifelse([$1], , :, [$1])
 	    ],
-	    [ 
+	    [
 		AC_MSG_RESULT([no])
 		ifelse([$2], , :, [$2])
 	    ])
@@ -764,12 +764,12 @@ AC_DEFUN([RS_BOOST_THREAD],
     LIBS="$OLD_LIBS"
     AC_LANG_RESTORE
 ])
-	    
+
 dnl RS_BOOST_DATETIME([ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND])
 dnl Test for the Boost datetime library
 dnl Defines
 dnl   BOOST_LDFLAGS to the set of flags required to compile boost_datetime
-AC_DEFUN([RS_BOOST_DATETIME], 
+AC_DEFUN([RS_BOOST_DATETIME],
 [
     AC_REQUIRE([RS_BOOST])
   AC_MSG_CHECKING([whether we can use boost_datetime library])
@@ -780,19 +780,19 @@ AC_DEFUN([RS_BOOST_DATETIME],
   OLD_LIBS="$LIBS"
   LIBS="-lboost_date_time-$boost_libsuff"
     AC_TRY_COMPILE(
-	    [ 
-		#include <boost/date_time/gregorian/gregorian.hpp> 
+	    [
+		#include <boost/date_time/gregorian/gregorian.hpp>
 	    ],
 	    [
 		using namespace boost::gregorian;
 		date d = from_string("1978-01-27");
 		return d == boost::gregorian::date(1978, Jan, 27);
-	    ], 
+	    ],
 	    [
 		AC_MSG_RESULT([yes])
 		ifelse([$1], , :, [$1])
 	    ],
-	    [ 
+	    [
 		AC_MSG_RESULT([no])
 		ifelse([$2], , :, [$2])
 	    ])
@@ -807,12 +807,12 @@ AC_DEFUN([RS_BOOST_DATETIME],
     LIBS=$OLD_LIBS
     AC_LANG_RESTORE
 ])
-	    
+
 dnl RS_BOOST_REGEX([ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND])
 dnl Test for the Boost regex library
 dnl Defines
 dnl   BOOST_LDFLAGS to the set of flags required to compile boost_datetime
-AC_DEFUN([RS_BOOST_REGEX], 
+AC_DEFUN([RS_BOOST_REGEX],
 [
     AC_REQUIRE([RS_BOOST])
   AC_MSG_CHECKING([whether we can use boost_regex library])
@@ -823,8 +823,8 @@ AC_DEFUN([RS_BOOST_REGEX],
   OLD_LIBS="$LIBS"
   LIBS="-lboost_regex-$boost_libsuff_r"
     AC_TRY_COMPILE(
-	    [ 
-		#include <boost/regex.hpp> 
+	    [
+		#include <boost/regex.hpp>
 	    ],
 	    [
 		using namespace boost;
@@ -833,12 +833,12 @@ AC_DEFUN([RS_BOOST_REGEX],
 		    return 0;
 
 		return what[1]=="27" && what[2]=="01" && what[3]=="78";
-	    ], 
+	    ],
 	    [
 		AC_MSG_RESULT([yes])
 		ifelse([$1], , :, [$1])
 	    ],
-	    [ 
+	    [
 		AC_MSG_RESULT([no])
 		ifelse([$2], , :, [$2])
 	    ])
@@ -858,7 +858,7 @@ dnl RS_BOOST_PROGRAM_OPTIONS([ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND])
 dnl Test for the Boost program options library
 dnl Defines
 dnl   BOOST_LDFLAGS to the set of flags required to compile boost_datetime
-AC_DEFUN([RS_BOOST_PROGRAM_OPTIONS], 
+AC_DEFUN([RS_BOOST_PROGRAM_OPTIONS],
 [
     AC_REQUIRE([RS_BOOST])
   AC_MSG_CHECKING([whether we can use boost_program_options library])
@@ -869,18 +869,18 @@ AC_DEFUN([RS_BOOST_PROGRAM_OPTIONS],
   OLD_LIBS="$LIBS"
   LIBS="-lboost_program_options-$boost_libsuff_r"
     AC_TRY_COMPILE(
-	    [ 
-		#include <boost/program_options.hpp> 
+	    [
+		#include <boost/program_options.hpp>
 	    ],
 	    [
 		using namespace boost::program_options;
 		return 0;
-	    ], 
+	    ],
 	    [
 		AC_MSG_RESULT([yes])
 		ifelse([$1], , :, [$1])
 	    ],
-	    [ 
+	    [
 		AC_MSG_RESULT([no])
 		ifelse([$2], , :, [$2])
 	    ])
@@ -900,7 +900,7 @@ dnl RS_BOOST_SERIALIZATION([ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND])
 dnl Test for the Boost serialization library
 dnl Defines
 dnl   BOOST_LDFLAGS to the set of flags required to compile boost_datetime
-AC_DEFUN([RS_BOOST_SERIALIZATION], 
+AC_DEFUN([RS_BOOST_SERIALIZATION],
 [
     AC_REQUIRE([RS_BOOST])
   AC_MSG_CHECKING([whether we can use boost_serialization library])
@@ -911,18 +911,18 @@ AC_DEFUN([RS_BOOST_SERIALIZATION],
   OLD_LIBS="$LIBS"
   LIBS="-lboost_serialization"
     AC_TRY_COMPILE(
-	    [ 
-		#include <boost/serialization/export.hpp> 
+	    [
+		#include <boost/serialization/export.hpp>
 	    ],
 	    [
 		using namespace boost::serialization;
 		return 0;
-	    ], 
+	    ],
 	    [
 		AC_MSG_RESULT([yes])
 		ifelse([$1], , :, [$1])
 	    ],
-	    [ 
+	    [
 		AC_MSG_RESULT([no])
 		ifelse([$2], , :, [$2])
 	    ])
@@ -942,19 +942,19 @@ AC_DEFUN([RS_BOOST_SERIALIZATION],
 # Synopsis
 #
 # AX_CHECK_OGRE
-# 
+#
 # Version
-# 
+#
 # 1.6     0.5.58   :   fw
-# 
+#
 # Author
-# 
-# Braden McDaniel <fw@graphics.cs.uni-sb.de> 
+#
+# Braden McDaniel <fw@graphics.cs.uni-sb.de>
 #  copyright: (C) 2003 Florian Winter
-#  license: GNU GPL 
-# 
+#  license: GNU GPL
+#
 # Description
-# 
+#
 # Check for Ogre
 #
 AC_DEFUN([AX_CHECK_OGRE],
@@ -996,4 +996,61 @@ AC_DEFUN([AX_CHECK_OGRE],
 
 AC_SUBST([OGRE_CPPFLAGS])
 AC_SUBST([OGRE_LIBS])
+])dnl
+
+
+#
+# Synopsis
+#
+# AX_CHECK_OGREODE
+#
+# Description
+#
+# Check for OgreODE
+#
+AC_DEFUN([AX_CHECK_OGREODE],
+[
+  AC_ARG_WITH([ogreode],
+            [AC_HELP_STRING([--with-ogreode],
+                            [specify OGREODE path])])
+  OGREODE_LIBS=""
+  OGREODE_CPPFLAGS="-DGCC_3_1 -DEXT_HASH"
+  if test -n "$with_ogreode"; then
+    OGREODE_LIBS="-L$with_ogreode/lib"
+    OGREODE_CPPFLAGS="${OGREODE_CPPFLAGS} -I$with_ogreode/include"
+  fi
+
+  ax_save_CPPFLAGS="${CPPFLAGS}"
+  CPPFLAGS="${OGREODE_CPPFLAGS} ${CPPFLAGS}"
+
+  AC_CACHE_CHECK([for OGREODE library], [ax_cv_check_ogreode_libogreode],
+  [ax_cv_check_ogreode_libogreode="no"
+  ax_save_LIBS="${LIBS}"
+  LIBS="${OGREODE_LIBS} -lOgreMain -lOgreOde_Core -lOgreOde_Prefab"
+    AC_TRY_LINK([
+#include <OGRE/Ogre.h>
+#include <OgreOde_Core/OgreOde_Core.h>
+#include <OgreOde_Prefab/OgreOde_Prefab.h>
+  ],
+    [
+	Ogre::Root* root = new Ogre::Root();
+	OgreOde::Stepper* stepper = new OgreOde::ForwardFixedQuickStepper(0.01);
+	stepper->setAutomatic(OgreOde::Stepper::AutoMode_PostFrame,root)
+	],
+    [ax_cv_check_ogreode_libogreode="${OGREODE_LIBS} -lOgreOde_Core -lOgreOde_Prefab"; break])
+
+  LIBS=${ax_save_LIBS}
+  ])
+  CPPFLAGS="${ax_save_CPPFLAGS}"
+
+  if test "X${ax_cv_check_ogreode_libogreode}" = "Xno"; then
+    no_ogreode="yes"
+    OGREODE_CPPFLAGS=""
+    OGREODE_LIBS=""
+  else
+    OGREODE_LIBS="${ax_cv_check_ogreode_libogreode} ${OGREODE_LIBS}"
+  fi
+
+AC_SUBST([OGREODE_CPPFLAGS])
+AC_SUBST([OGREODE_LIBS])
 ])dnl
