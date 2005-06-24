@@ -103,9 +103,9 @@
 			<!-- if type=bottom then the given height [in given units] will be added to the terrains's ground -->
 			<posX unit="gridUnits">2.5</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">9</posZ>
+			<posZ unit="gridUnits">9.5</posZ>
 
-			<proportion axis="z" size="2" units="gridUnits" />
+			<proportion axis="z" size="1.76" units="gridUnits" />
 			<stretch x="2.0" y="2.0" z="2.0" />
 
 			<geometry>
@@ -495,7 +495,7 @@
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">9.5</posZ>
 
-			<proportion axis="z" size="1.8" units="gridUnits" />
+			<proportion axis="z" size="1.76" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
@@ -1035,7 +1035,7 @@
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">16.5</posZ>
 
-			<proportion axis="z" size="1.8" units="gridUnits" />
+			<proportion axis="z" size="1.76" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
@@ -2115,7 +2115,7 @@
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">19.5</posZ>
 
-			<proportion axis="z" size="1.8" units="gridUnits" />
+			<proportion axis="z" size="1.76" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
@@ -3045,7 +3045,7 @@
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">26.5</posZ>
 
-			<proportion axis="z" size="1.8" units="gridUnits" />
+			<proportion axis="z" size="1.76" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
@@ -3105,7 +3105,7 @@
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">26.5</posZ>
 
-			<proportion axis="z" size="1.8" units="gridUnits" />
+			<proportion axis="z" size="1.76" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
