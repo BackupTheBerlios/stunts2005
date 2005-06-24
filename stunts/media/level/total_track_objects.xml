@@ -101,12 +101,12 @@
 			<!-- if the unit isn't set, its default is meters-->
 			<!-- if a position has a bottom type, it's on the terrain's ground -->
 			<!-- if type=bottom then the given height [in given units] will be added to the terrains's ground -->
-			<posX unit="gridUnits">2</posX>
+			<posX unit="gridUnits">2.5</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">9</posZ>
 
-			<proportion axis="z" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
+			<proportion axis="z" size="2" units="gridUnits" />
+			<stretch x="2.0" y="2.0" z="2.0" />
 
 			<geometry>
 				<file>corner_big.mesh</file>
@@ -155,7 +155,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -175,7 +175,7 @@
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
 			<waypoints>
-				<file>drive_up_bridge_waypoints.xml</file>
+				<file>drive-up_bridge_waypoints.xml</file>
 			</waypoints>
 		</object>
 
@@ -295,7 +295,7 @@
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
 			<waypoints>
-				<file>drive_up_bridge_waypoints.xml</file>
+				<file>drive-up_bridge_waypoints.xml</file>
 			</waypoints>
 		</object>
 
@@ -491,11 +491,11 @@
 			<!-- if the unit isn't set, its default is meters-->
 			<!-- if a position has a bottom type, it's on the terrain's ground -->
 			<!-- if type=bottom then the given height [in given units] will be added to the terrains's ground -->
-			<posX unit="gridUnits">16</posX>
+			<posX unit="gridUnits">16.5</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">9</posZ>
+			<posZ unit="gridUnits">9.5</posZ>
 
-			<proportion axis="z" size="1" units="gridUnits" />
+			<proportion axis="z" size="1.8" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
@@ -745,7 +745,7 @@
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
 			<waypoints>
-				<file>drive_up_bridge_waypoints.xml</file>
+				<file>drive-up_bridge_waypoints.xml</file>
 			</waypoints>
 		</object>
 
@@ -1031,11 +1031,11 @@
 			<!-- if the unit isn't set, its default is meters-->
 			<!-- if a position has a bottom type, it's on the terrain's ground -->
 			<!-- if type=bottom then the given height [in given units] will be added to the terrains's ground -->
-			<posX unit="gridUnits">2</posX>
+			<posX unit="gridUnits">2.5</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">16</posZ>
+			<posZ unit="gridUnits">16.5</posZ>
 
-			<proportion axis="z" size="1" units="gridUnits" />
+			<proportion axis="z" size="1.8" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
@@ -1565,7 +1565,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1741,7 +1741,7 @@
 
 
 		<object type="base">
-			<!-- corner_big -->
+			<!-- corner_small -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -1755,17 +1755,17 @@
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">17</posZ>
 
-			<proportion axis="z" size="1" units="gridUnits" />
+			<proportion axis="z" size="0.8" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
-				<file>corner_big.mesh</file>
+				<file>corner_small.mesh</file>
 			</geometry>
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
 			<waypoints>
-				<file>corner_big_waypoints.xml</file>
+				<file>corner_small_waypoints.xml</file>
 			</waypoints>
 		</object>
 
@@ -1925,7 +1925,7 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
-			<rotate x="0" y="1" z="0" unit="quarters" value="4" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
 
 			<!-- the track objects are places in grid units -->
 			<!-- if the unit isn't set, its default is meters-->
@@ -1945,7 +1945,7 @@
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
 			<waypoints>
-				<file>drive_up_bridge_waypoints.xml</file>
+				<file>drive-up_bridge_waypoints.xml</file>
 			</waypoints>
 		</object>
 
@@ -1981,7 +1981,7 @@
 
 
 		<object type="base">
-			<!-- corner_big -->
+			<!-- corner_small -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -1995,17 +1995,17 @@
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">19</posZ>
 
-			<proportion axis="z" size="1" units="gridUnits" />
+			<proportion axis="z" size="0.8" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
-				<file>corner_big.mesh</file>
+				<file>corner_small.mesh</file>
 			</geometry>
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
 			<waypoints>
-				<file>corner_big_waypoints.xml</file>
+				<file>corner_small_waypoints.xml</file>
 			</waypoints>
 		</object>
 
@@ -2041,7 +2041,7 @@
 
 
 		<object type="base">
-			<!-- corner_big -->
+			<!-- corner_small -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
@@ -2055,17 +2055,17 @@
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">19</posZ>
 
-			<proportion axis="z" size="1" units="gridUnits" />
+			<proportion axis="z" size="0.8" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
-				<file>corner_big.mesh</file>
+				<file>corner_small.mesh</file>
 			</geometry>
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
 			<waypoints>
-				<file>corner_big_waypoints.xml</file>
+				<file>corner_small_waypoints.xml</file>
 			</waypoints>
 		</object>
 
@@ -2111,11 +2111,11 @@
 			<!-- if the unit isn't set, its default is meters-->
 			<!-- if a position has a bottom type, it's on the terrain's ground -->
 			<!-- if type=bottom then the given height [in given units] will be added to the terrains's ground -->
-			<posX unit="gridUnits">16</posX>
+			<posX unit="gridUnits">16.5</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">19</posZ>
+			<posZ unit="gridUnits">19.5</posZ>
 
-			<proportion axis="z" size="1" units="gridUnits" />
+			<proportion axis="z" size="1.8" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
@@ -2295,17 +2295,17 @@
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">20</posZ>
 
-			<proportion axis="z" size="1" units="gridUnits" />
+			<proportion axis="z" size="0.8" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
-				<file>corner_big.mesh</file>
+				<file>corner_small.mesh</file>
 			</geometry>
 
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
 			<waypoints>
-				<file>corner_big_waypoints.xml</file>
+				<file>corner_small_waypoints.xml</file>
 			</waypoints>
 		</object>
 
@@ -2695,7 +2695,7 @@
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
 			<waypoints>
-				<file>drive_up_bridge_waypoints.xml</file>
+				<file>drive-up_bridge_waypoints.xml</file>
 			</waypoints>
 		</object>
 
@@ -3041,11 +3041,11 @@
 			<!-- if the unit isn't set, its default is meters-->
 			<!-- if a position has a bottom type, it's on the terrain's ground -->
 			<!-- if type=bottom then the given height [in given units] will be added to the terrains's ground -->
-			<posX unit="gridUnits">12</posX>
+			<posX unit="gridUnits">12.5</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">26</posZ>
+			<posZ unit="gridUnits">26.5</posZ>
 
-			<proportion axis="z" size="1" units="gridUnits" />
+			<proportion axis="z" size="1.8" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
@@ -3101,11 +3101,11 @@
 			<!-- if the unit isn't set, its default is meters-->
 			<!-- if a position has a bottom type, it's on the terrain's ground -->
 			<!-- if type=bottom then the given height [in given units] will be added to the terrains's ground -->
-			<posX unit="gridUnits">24</posX>
+			<posX unit="gridUnits">23.5</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">26</posZ>
+			<posZ unit="gridUnits">26.5</posZ>
 
-			<proportion axis="z" size="1" units="gridUnits" />
+			<proportion axis="z" size="1.8" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
@@ -3355,7 +3355,7 @@
 			<!-- waypoints can be set as invisible objects in 3d studio -->
 			<!-- names like "wpbegin" are the names of the 3ds objects -->
 			<waypoints>
-				<file>drive_up_bridge_waypoints.xml</file>
+				<file>drive-up_bridge_waypoints.xml</file>
 			</waypoints>
 		</object>
 
@@ -3419,18 +3419,15 @@
 			</waypoints>
 		</object>
 
-
+<!--
 		<object type="base">
-			<!-- straight_line_bridge -->
+			
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 
 			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 
-			<!-- the track objects are places in grid units -->
-			<!-- if the unit isn't set, its default is meters-->
-			<!-- if a position has a bottom type, it's on the terrain's ground -->
-			<!-- if type=bottom then the given height [in given units] will be added to the terrains's ground -->
+			
 			<posX unit="gridUnits">23</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">27</posZ>
@@ -3442,13 +3439,11 @@
 				<file>straight_line_bridge.mesh</file>
 			</geometry>
 
-			<!-- waypoints can be set as invisible objects in 3d studio -->
-			<!-- names like "wpbegin" are the names of the 3ds objects -->
 			<waypoints>
 				<file>straight_line_bridge_waypoints.xml</file>
 			</waypoints>
 		</object>
-
+-->
 
 		<object type="base">
 			<!-- tree -->

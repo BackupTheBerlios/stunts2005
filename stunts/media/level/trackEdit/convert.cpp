@@ -153,9 +153,12 @@ int main()
 		currentTemplateString.replace(
 			currentTemplateString.find(_SCALE_AXIS_, 0),
 			strlen(_SCALE_AXIS_), scaleA);
-		currentTemplateString.replace(
+		for (int i = 0; i < 2; i++)
+		{
+			currentTemplateString.replace(
 			currentTemplateString.find(_MESH_NAME_, 0),
 			strlen(_MESH_NAME_), meshName);
+		};
 
 		//append this template
 		totalTrackString+=currentTemplateString + "\n" + "\n";
