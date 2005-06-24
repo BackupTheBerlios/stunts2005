@@ -109,6 +109,14 @@ namespace stunts
 
 
 			/**
+			 * Get PhysicsExecution
+			 *
+			 * @return smart pointer to PhysicsExecution class
+			 */
+			boost::shared_ptr<OgreOde::Stepper> PhysicsExecution();
+
+
+			/**
 			 * Convert given GridUnits into Meters
 			 * @param x,z 2D-Grid-Position.
 			 * @return Vector containing the position vector. The returned vector has y set to 0
@@ -191,7 +199,6 @@ namespace stunts
 			//
 			boost::shared_ptr<OgreOde::World> mPhysicsWorld;
 			boost::shared_ptr<OgreOde::Stepper> mPhysicsExecution;
-			Real _time_step;
 
 			//boost::shared_ptr<OgreOde_Prefab::Vehicle> _vehicle;
 			//boost::shared_ptr<OgreOde::TerrainGeometry> _terrain;

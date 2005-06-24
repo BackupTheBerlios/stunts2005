@@ -76,6 +76,7 @@ namespace stunts
 			mInputDevice = mLevel->OgreTask()->mInputDevice;
 			mCamera = mLevel->OgreTask()->mCamera;
 			mTerrain = mLevel->Terrain();
+			mPhysicsExecution = mLevel->PhysicsExecution();
 		}
 
 		//return
@@ -123,6 +124,18 @@ namespace stunts
 		Ogre::Degree mRotX;
 		Ogre::Degree mRotY;
 		//
+
+
+		//move car
+		if(mInputDevice->isKeyDown(KC_U)) mPhysicsExecution->pause(false);
+		if(mInputDevice->isKeyDown(KC_P)) mPhysicsExecution->pause(true);
+
+		if(!mPhysicsExecution->isPaused())
+		{
+			//_vehicle->setInputs(mInputDevice->isKeyDown(KC_J),mInputDevice->isKeyDown(KC_L),mInputDevice->isKeyDown(KC_I),mInputDevice->isKeyDown(KC_K));
+			//_vehicle->update(delaySeconds);
+		}
+
 
 
 		if (mInputDevice->isKeyDown(Ogre::KC_A))

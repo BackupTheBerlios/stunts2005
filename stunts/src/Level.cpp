@@ -420,6 +420,12 @@ namespace stunts
 		//get all tasks and set member attributes
 		getEngineTasks();
 
+		//create the mPhysicsExecution member
+//float mMoveSpeed = 25;
+float time_step = 0.01;
+		mPhysicsExecution.reset(new OgreOde::ForwardFixedQuickStepper(time_step));
+
+
 		//create terrain (after the engine tasks have been gotten)
 		//mTerrain.reset(new CTerrain (OgreTask()->mSceneMgr));
 
@@ -449,11 +455,24 @@ namespace stunts
 			else
 			{
 				//load the pyhsics world
-//float mMoveSpeed = 25;
-float time_step = 0.01;
+				mPhysicsWorld.reset(new OgreOde::World(mOgreTask->mSceneMgr.get()));
+//TODO: please load the values from the XML file!!
+				mPhysicsWorld->setGravity(Vector3(0,-9.80665,0));
+				mPhysicsWorld->setCFM(10e-5);
+				mPhysicsWorld->setERP(0.8);
+				mPhysicsWorld->setAutoSleep(true);
+				mPhysicsWorld->setContactCorrectionVelocity(1.0);
 
-				mPhysicsExecution.reset(new OgreOde::ForwardFixedQuickStepper(time_step));
-				mPhysicsExecution->setAutomatic(OgreOde::Stepper::AutoMode_PostFrame,mOgreTask->mRoot);
+				if (mOgreTask->mRoot != NULL)
+					mPhysicsExecution->setAutomatic(OgreOde::Stepper::AutoMode_PostFrame,mOgreTask->mRoot);
+
+				//_vehicle = new OgreOde_Prefab::Vehicle("Jeep");
+				//_vehicle->load("SimpleScenes.ogreode");
+
+				//_terrain = new OgreOde::TerrainGeometry(config_file,_world->getDefaultSpace());
+				//_terrain->setHeightListener(this);
+
+				//_world->setCollisionListener(this);
 			}
 		}
 
@@ -509,6 +528,12 @@ float time_step = 0.01;
 	boost::shared_ptr< CTerrain >  CLevel::Terrain()
 	{
 		return mTerrain;
+	}
+
+	//--------------------------------------------------------------------------
+	boost::shared_ptr<OgreOde::Stepper> CLevel::PhysicsExecution()
+	{
+		return mPhysicsExecution;
 	}
 
 	//--------------------------------------------------------------------------
