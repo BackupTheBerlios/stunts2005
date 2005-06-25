@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiObject.h,v 1.2 2005/06/12 19:43:45 elowar Exp $ */
+/* CVS $Id: CGuiObject.h,v 1.3 2005/06/25 00:59:10 psyborg Exp $ */
 
 /** @file
  *  Abstract base class for GUI objects (widgets) for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.2 $
- *  @date    CVS $Date: 2005/06/12 19:43:45 $
+ *  @version CVS $Revision: 1.3 $
+ *  @date    CVS $Date: 2005/06/25 00:59:10 $
  */
 
 
@@ -15,6 +15,7 @@
 
 
 #include <string>
+#include <OGRE/Ogre.h>
 
 class CGuiParser; // for friend declaration below
 
@@ -28,6 +29,9 @@ class CGuiObject {
 
 public:
 
+	CGuiObject(): mOverlayElement(0) {}
+
+	
 	/** Update and draw object.
 	 *  Draw object and take steps for mouse detection if the mouse has moved.
 	 *  Also process input and highlight if the object is in focus.
@@ -52,6 +56,8 @@ private:
 /* @note Slightly unclean method to make the parser's life easier. */
 friend class CGuiParser;
 
+	Ogre::OverlayElement* mOverlayElement;
+	
 };
 
 

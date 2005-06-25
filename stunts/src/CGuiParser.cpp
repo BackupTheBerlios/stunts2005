@@ -1,4 +1,4 @@
-/* CVS $Id: CGuiParser.cpp,v 1.2 2005/06/12 19:43:45 elowar Exp $ */
+/* CVS $Id: CGuiParser.cpp,v 1.3 2005/06/25 00:59:10 psyborg Exp $ */
 
 /** @file
  *  (Dummy) GUI parser for Stunts 2005.
@@ -7,14 +7,15 @@
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.2 $
- *  @date    CVS $Date: 2005/06/12 19:43:45 $
+ *  @version CVS $Revision: 1.3 $
+ *  @date    CVS $Date: 2005/06/25 00:59:10 $
  */
 
 
 #include "CGuiParser.h"
 using std::string;
 using std::map;
+
 
 /** (Dummy) Generates a standard start/exit page. */
 CGuiPage* CGuiParser::ParsePage( string PageName, string Data ) {
@@ -31,14 +32,16 @@ CGuiPage* CGuiParser::ParsePage( string PageName, string Data ) {
 	// CGuiMulti) here for faster execution when there is only one image.
 
 	CGuiMulti* Background = new CGuiMulti( mContext );
-
-	Background->mGfx[ "default" ] =
-		new CGuiTex( mContext, "media/graphics/gui/GuiDemoBG.jpg" );
+//	Background->mOverlayElement = Ogre::OverlayManager::getSingleton().createOverlayElement("Panel", "background");
+	
+	Background->mGfx[ "default" ] = new CGuiTex( mContext, "media/graphics/gui/GuiDemoBG.jpg" );
 	Background->mPos[0] = 0; Background->mPos[1] = 0;
 
 	// start button
 
 	CGuiButton* Start = new CGuiButton( mContext, 1 );
+//	Start->mOverlayElement = Ogre::OverlayManager::getSingleton().createOverlayElement("Panel", "start");
+
 	DummyPage->mMaxId++;
 
 	Start->mGfx[ "default" ] =
@@ -52,6 +55,8 @@ CGuiPage* CGuiParser::ParsePage( string PageName, string Data ) {
 	// exit button
 
 	CGuiButton* Exit = new CGuiButton( mContext, 2 );
+//	Exit->mOverlayElement = Ogre::OverlayManager::getSingleton().createOverlayElement("Panel", "exit");
+
 	DummyPage->mMaxId++;
 
 	Exit->mGfx[ "default" ] =

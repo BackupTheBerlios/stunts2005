@@ -1,0 +1,23 @@
+
+material Stunts/GuiBackground
+{
+	technique
+	{
+		pass
+		{
+			// Disable lighting
+			lighting off
+
+			// Do not write into Depth Buffer
+			depth_write off
+
+			texture_unit
+			{
+				texture GuiDemoBG.jpg
+				colour_op_ex blend_manual src_current src_texture 0.8 0.5
+			}
+		}
+	}
+}
+
+

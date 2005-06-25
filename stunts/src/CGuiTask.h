@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.h,v 1.3 2005/06/12 22:32:29 psyborg Exp $ */
+/* CVS $Id: CGuiTask.h,v 1.4 2005/06/25 00:59:10 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.3 $
- *  @date    CVS $Date: 2005/06/12 22:32:29 $
+ *  @version CVS $Revision: 1.4 $
+ *  @date    CVS $Date: 2005/06/25 00:59:10 $
  */
 
 
@@ -15,6 +15,8 @@
 
 
 #include <nrEngine/nrEngine.h>
+
+#include <OGRE/Ogre.h>
 
 #include "CGuiPage.h"
 #include "CGuiParser.h" // parser is actually used here
@@ -35,14 +37,14 @@ class CGuiTask : public nrISingletonTask<CGuiTask> {
 
 public:
 
-	CGuiTask() { mContext = 0; }
+	CGuiTask();// { mContext = 0; }
 	 
 	/** Constructor initializing render context.
 	 *  @note Please note that all other attributes will not be initialized
 	 *        until @c taskInit() is called.
 	 *  @param  Context  Render context to be used by GUI.
      */
-	CGuiTask( int32 Context ) { mContext = Context; }
+	//CGuiTask( int32 Context ); { mContext = Context; }
 
 	/** Destructor. */
 	virtual ~CGuiTask();
@@ -88,6 +90,9 @@ private:
 
 	int32 mContext; /**< render context handle */
 
+
+	Ogre::Overlay*		mOverlay;
+		
 };
 
 

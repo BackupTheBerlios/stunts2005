@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiParser.h,v 1.3 2005/06/12 22:32:29 psyborg Exp $ */
+/* CVS $Id: CGuiParser.h,v 1.4 2005/06/25 00:59:10 psyborg Exp $ */
 
 /** @file
  *  GUI parser for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.3 $
- *  @date    CVS $Date: 2005/06/12 22:32:29 $
+ *  @version CVS $Revision: 1.4 $
+ *  @date    CVS $Date: 2005/06/25 00:59:10 $
  */
 
 
@@ -21,6 +21,35 @@
 #include "GuiActions.h"
 #include "GuiObjects.h"
 #include "GuiGfx.h"
+
+#include <OGRE/Ogre.h>
+
+#if 0
+class CGuiOgreElementFactory : public Ogre::OverlayElementFactory
+{
+public:
+	Ogre::OverlayElement* createOverlayElement (const Ogre::String &instanceName)
+	{
+		if (instanceName == "button")
+			return new CGuiButton;
+		else if (instanceName == "multi")
+			return new CGuiMulti;
+		else
+			return NULL;
+	}
+	
+	void destroyOverlayElement (Ogre::OverlayElement *pElement)
+	{
+		delete pElement;
+	}
+
+	const Ogre::String & getTypeName (void) const
+	{
+		return Ogre::String("stunts_gui");
+	}
+
+};
+#endif
 
 //#include "xmlParser/xmlParser.h"
 class XMLNode{

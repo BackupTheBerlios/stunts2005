@@ -635,13 +635,13 @@ float time_step = 0.01;
 		boost::shared_ptr<CWaypoint> last;
 
 		// Debugging output
-		i = 0;
+		/*i = 0;
 		while (i < mWaypoints.size())
 		{
 			current = mWaypoints[i];
 			this->drawWaypoint(current->getVector(), i);
 			i++;
-		}
+		}*/
 		i=0;
 
 		// Startpoint
@@ -666,7 +666,7 @@ float time_step = 0.01;
 			nearest->setFirst(first);
 
 			// Debugging output
-			this->drawWaypoint(nearest->getVector(),current->getVector(), i);
+			//this->drawWaypoint(nearest->getVector(),current->getVector(), i);
 
 			i++;
 			current = nearest;

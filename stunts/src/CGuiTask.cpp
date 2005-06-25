@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.cpp,v 1.3 2005/06/12 22:32:29 psyborg Exp $ */
+/* CVS $Id: CGuiTask.cpp,v 1.4 2005/06/25 00:59:10 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.3 $
- *  @date    CVS $Date: 2005/06/12 22:32:29 $
+ *  @version CVS $Revision: 1.4 $
+ *  @date    CVS $Date: 2005/06/25 00:59:10 $
  */
 
 
@@ -14,6 +14,19 @@
 using std::istream;
 using std::map;
 using std::string;
+
+#include <OGRE/OgreOverlayElementFactory.h>
+
+CGuiTask::CGuiTask() : mContext(0), mOverlay(0)
+{
+	// get Ogre's Overlay element
+	//mOverlay = Ogre::OverlayManager::getSingleton().create("StuntsMenu");
+	mOverlay = Ogre::OverlayManager::getSingleton().getByName("Stunts/Menu");
+
+	if (mOverlay == NULL)
+		nrLog.Log(NR_LOG_APP, "CGuiTask::taskStart(): No Overlay Element could be created!");
+		
+}
 
 
 /** Destructor. Clean up heap objects. */
@@ -83,7 +96,7 @@ nrResult CGuiTask::taskInit() {
 
 
 /** Actions upon starting of task by engine. */
-nrResult CGuiTask::taskStart() {
+nrResult CGuiTask::taskStart() {		
 	return NR_OK;
 }
 
@@ -94,6 +107,11 @@ nrResult CGuiTask::taskStart() {
  */
 nrResult CGuiTask::taskUpdate() {
 
+	if (mActive)
+		mOverlay->show();
+	else
+		mOverlay->hide();
+		
 	if( mActive && mCurrent != NULL )
 		mCurrent->pageUpdate();
 	
@@ -104,5 +122,6 @@ nrResult CGuiTask::taskUpdate() {
 /** Actions upon stopping of task by engine. */
 nrResult CGuiTask::taskStop() {
 	mActive = false;
+
 	return NR_OK;
 }
