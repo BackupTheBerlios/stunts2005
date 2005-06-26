@@ -119,8 +119,8 @@ namespace stunts
 		// app specific
 		Ogre::Vector3 mTranslateVector(0.0f, 0.0f, 0.0f);
 		Ogre::Vector3 mTranslateVectorTerrain(0.0f, 0.0f, 0.0f);
-		float mMoveScale = 100.0f  * delaySeconds;// in fact!
-		Ogre::Degree mRotScale(120.0f * delaySeconds);// in fact!
+		float mMoveScale = 100.0f  * delaySeconds;
+		Ogre::Degree mRotScale(120.0f * delaySeconds);
 		Ogre::Degree mRotX;
 		Ogre::Degree mRotY;
 		//
@@ -132,6 +132,7 @@ namespace stunts
 
 		if(!mPhysicsExecution->isPaused())
 		{
+			//mLevel
 			//_vehicle->setInputs(mInputDevice->isKeyDown(KC_J),mInputDevice->isKeyDown(KC_L),mInputDevice->isKeyDown(KC_I),mInputDevice->isKeyDown(KC_K));
 			//_vehicle->update(delaySeconds);
 		}

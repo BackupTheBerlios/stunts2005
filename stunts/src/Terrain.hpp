@@ -52,16 +52,18 @@ namespace stunts
 //------------------------------------------------------------------------------
 namespace stunts
 {
-	class CTerrain
+	class CTerrain : public OgreOde::TerrainGeometryHeightListener
 	{
 
 	public:
 
-		CTerrain(boost::shared_ptr< Ogre::SceneManager > sceneMgr);
+		CTerrain(boost::shared_ptr< CLevel > level);
 
 		virtual ~CTerrain();
 
 		bool getHeight(Ogre::Vector3& position);
+
+		Ogre::Real heightAt(const Ogre::Vector3& position);
 
 
 		/**
@@ -76,23 +78,26 @@ namespace stunts
 		 * Return the width in x-direction of terrain in meters
 		 **/
 		float getWidthX();
-		
+
 		/**
 		 * Return the width in z-direction of terrain in meters
 		 **/
 		float getWidthZ();
-		
-		
+
+
 	protected:
-		void Init();
+		void Init(std::string terrainFile);
 
 		boost::shared_ptr< Ogre::RaySceneQuery> mRaySceneQuery;
 
 		boost::shared_ptr< Ogre::SceneManager >	mSceneMgr;
-		
+		boost::shared_ptr< CLevel > mLevel;
+
+		boost::shared_ptr<OgreOde::TerrainGeometry> mTerrain;
+
 		float mWidthX;
 		float mWidthZ;
-		
+
 	};
 }
 

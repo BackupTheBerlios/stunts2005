@@ -128,11 +128,13 @@ namespace stunts
 		COgreTask::GetSingleton().taskUpdate();
 //######################################
 
+std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
 		// check now for object in the file
 		elem = rootElem->FirstChildElement("objects");
 		if (elem)
 			readObjects(elem);
 
+std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
 		// check for the atmosphere
 		elem = rootElem->FirstChildElement("atmosphere");
 		if (elem)
@@ -172,6 +174,7 @@ namespace stunts
 				mSceneNode->showBoundingBox(true);
 		}
 */
+std::cout << "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" << std::endl;
 		// Put BaseObject-Waypoints together
 		if (buildWaypointPath())
 			nrLog.Log(NR_LOG_APP, "CLevel::loadlevel(): Waypoint path successfully buildt");
@@ -308,7 +311,7 @@ namespace stunts
 		if (smElem)
 		{
 			//create terrain (after the engine tasks have been gotten)
-			mTerrain.reset (new CTerrain (OgreTask()->mSceneMgr));
+			mTerrain.reset (new CTerrain ( boost::shared_ptr<CLevel>(this) ));
 			mTerrain->importFromFile((mLevelFilePath + smElem->Attribute("file")).c_str(), smElem->Attribute("root"));
 		}
 
@@ -450,12 +453,19 @@ float time_step = 0.01;
 		// if we are forced to load the level file
 		if (mShouldLoadLevel && mLevelFileName.length() > 0){
 			mShouldLoadLevel = false;
+
+			//load the pyhsics world
+			mPhysicsWorld.reset(new OgreOde::World(mOgreTask->mSceneMgr.get()));
+				mPhysicsWorld->setGravity(Vector3(0,-9.80665,0));
+				mPhysicsWorld->setCFM(10e-5);
+				mPhysicsWorld->setERP(0.8);
+				mPhysicsWorld->setAutoSleep(true);
+				mPhysicsWorld->setContactCorrectionVelocity(1.0);
+
 			if (!loadLevel(mLevelFileName))
 				return NR_UNKNOWN_ERROR;
 			else
 			{
-				//load the pyhsics world
-				mPhysicsWorld.reset(new OgreOde::World(mOgreTask->mSceneMgr.get()));
 //TODO: please load the values from the XML file!!
 				mPhysicsWorld->setGravity(Vector3(0,-9.80665,0));
 				mPhysicsWorld->setCFM(10e-5);
@@ -466,13 +476,8 @@ float time_step = 0.01;
 				if (mOgreTask->mRoot != NULL)
 					mPhysicsExecution->setAutomatic(OgreOde::Stepper::AutoMode_PostFrame,mOgreTask->mRoot);
 
-				//_vehicle = new OgreOde_Prefab::Vehicle("Jeep");
-				//_vehicle->load("SimpleScenes.ogreode");
 
-				//_terrain = new OgreOde::TerrainGeometry(config_file,_world->getDefaultSpace());
-				//_terrain->setHeightListener(this);
-
-				//_world->setCollisionListener(this);
+				mPhysicsWorld->setCollisionListener(this);
 			}
 		}
 
@@ -534,6 +539,12 @@ float time_step = 0.01;
 	boost::shared_ptr<OgreOde::Stepper> CLevel::PhysicsExecution()
 	{
 		return mPhysicsExecution;
+	}
+
+	//--------------------------------------------------------------------------
+	boost::shared_ptr<OgreOde::World> CLevel::PhysicsWorld()
+	{
+		return mPhysicsWorld;
 	}
 
 	//--------------------------------------------------------------------------
@@ -713,5 +724,17 @@ float time_step = 0.01;
 		};
 		return waypoint;
 	};
+
+
+	//handle ODE collision
+	bool CLevel::collision(OgreOde::Contact* contact)
+	{
+		if(!OgreOde_Prefab::Vehicle::handleTyreCollision(contact))
+		{
+			contact->setBouncyness(0.0);
+			contact->setCoulombFriction(18.0);
+		}
+		return true;
+	}
 
 };

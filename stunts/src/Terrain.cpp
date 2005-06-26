@@ -34,10 +34,10 @@ using namespace boost;
 namespace stunts
 {
 
-	CTerrain::CTerrain(boost::shared_ptr< Ogre::SceneManager > sceneMgr)
+	CTerrain::CTerrain(boost::shared_ptr< CLevel > level)
 	{
-
-		mSceneMgr = sceneMgr;
+		mSceneMgr = level->OgreTask()->mSceneMgr;
+		mLevel = level;
 		mRaySceneQuery = boost::shared_ptr< Ogre::RaySceneQuery>
 			(mSceneMgr->createRayQuery(
 				Ogre::Ray(Ogre::Vector3(0.0f, 0.0f, 0.0f),
@@ -52,24 +52,29 @@ namespace stunts
 	{
 	}
 
-	void CTerrain::Init()
+	void CTerrain::Init(std::string terrainFile)
 	{
+		//collision functionality
 		mRaySceneQuery = boost::shared_ptr< Ogre::RaySceneQuery>
 			(mSceneMgr->createRayQuery(
 				Ogre::Ray(Ogre::Vector3(0.0f, 0.0f, 0.0f),
 				Ogre::Vector3::NEGATIVE_UNIT_Y))
             );
-			
+
+		//OgreODE terrain
+		mTerrain.reset(new OgreOde::TerrainGeometry(terrainFile, mLevel->
+			PhysicsWorld()->getDefaultSpace()));
+		mTerrain->setHeightListener(this);
 	}
 
 
 	bool CTerrain::getHeight(Ogre::Vector3& pos)
 	{
-		
+
         // clamp to terrain
         static Ogre::Ray updateRay;
         updateRay.setOrigin(pos);
-        
+
 		// check in down direction
 		updateRay.setDirection(Ogre::Vector3::NEGATIVE_UNIT_Y);
         mRaySceneQuery->setRay(updateRay);
@@ -91,9 +96,20 @@ namespace stunts
         	pos.y = i->worldFragment->singleIntersection.y;
         	return true;
         }
-		
+
         return false;
 	}
+
+
+	//handle ODE height query
+	Ogre::Real CTerrain::heightAt(const Ogre::Vector3& position)
+	{
+		Ogre::Vector3 newPosition = position;
+		getHeight(newPosition);
+
+		return newPosition.y;
+	}
+
 
 	//--------------------------------------------------------------------------
 	float CTerrain::getWidthX()
@@ -146,8 +162,8 @@ namespace stunts
 				// Setup new terrain
 				try {
 					nrLog.Log(NR_LOG_APP, "CTerrain::importFromFile(): Use \"%s\" as terrain configuration file", file.c_str());
-					mSceneMgr -> setWorldGeometry(file);					
-					Init();
+					mSceneMgr -> setWorldGeometry(file);
+					Init(file);
 				}catch(...){
 					nrLog.Log(NR_LOG_APP, "CTerrain::importFromFile(): \"%s\" file was not found", file.c_str());
 					return true;
@@ -172,7 +188,6 @@ namespace stunts
 
 		return false;
 	}
-
 
 }	//namespace stunts
 

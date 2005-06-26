@@ -66,7 +66,7 @@ namespace stunts
 //------------------------------------------------------------------------------
 namespace stunts
 {
-	class CLevel : public nrITask
+	class CLevel : public nrITask, public OgreOde::CollisionListener
 	{
 		public:
 			CLevel();
@@ -114,6 +114,14 @@ namespace stunts
 			 * @return smart pointer to PhysicsExecution class
 			 */
 			boost::shared_ptr<OgreOde::Stepper> PhysicsExecution();
+
+
+			/**
+			 * Get PhysicsWorld
+			 *
+			 * @return smart pointer to PhysicsWorld class
+			 */
+			boost::shared_ptr<OgreOde::World> PhysicsWorld();
 
 
 			/**
@@ -200,16 +208,12 @@ namespace stunts
 			boost::shared_ptr<OgreOde::World> mPhysicsWorld;
 			boost::shared_ptr<OgreOde::Stepper> mPhysicsExecution;
 
-			//boost::shared_ptr<OgreOde_Prefab::Vehicle> _vehicle;
-			//boost::shared_ptr<OgreOde::TerrainGeometry> _terrain;
-
-
 			// Debuggingfunctions for printing waypoints
 			void drawWaypoint(Ogre::Vector3 pos, int i);
 			void drawWaypoint(Ogre::Vector3 min, Ogre::Vector3 max, int i);
 
 			// Find nearest waypoint
-			boost::shared_ptr< CWaypoint > 			findNearestWaypoint(boost::shared_ptr<CWaypoint> waypointFrom, int ObjectId);
+			boost::shared_ptr< CWaypoint >  findNearestWaypoint(boost::shared_ptr<CWaypoint> waypointFrom, int ObjectId);
 
 			// Get first waypoint
 			boost::shared_ptr<CWaypoint> getFirstWaypoint();
@@ -217,7 +221,8 @@ namespace stunts
 			// Get next i Waypoint
 			boost::shared_ptr<CWaypoint> getNextWaypoint(boost::shared_ptr<CWaypoint> waypoint, int nr);
 
-
+			// ODE collision
+			bool collision(OgreOde::Contact* contact);
 	};
 
 };
