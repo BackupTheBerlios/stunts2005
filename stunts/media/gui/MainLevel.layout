@@ -2,8 +2,8 @@
 <GUILayout>
 	<Window Type="DefaultWindow" Name="Menu_Level">
 		<Window Type="TaharezLook/FrameWindow" Name="Menu_Level_Win">
-			<Property Name="Position" Value="x:0.2 y:0.3" />
-			<Property Name="Size" Value="w:0.5 h:0.3" />
+			<Property Name="Position" Value="x:0.25 y:0.33" />
+			<Property Name="Size" Value="w:0.6 h:0.4" />
 			<Property Name="Alpha" Value="0.600000" />
 			<Property Name="Text" Value="Stunts 2005" />
 			<Window Type="TaharezLook/Editbox" Name="Main/Level/LevelFile">
