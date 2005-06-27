@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<GUILayout>
+	<Window Type="DefaultWindow" Name="Menu_Level">
+		<Window Type="TaharezLook/FrameWindow" Name="Menu_Level_Win">
+			<Property Name="Position" Value="x:0.2 y:0.3" />
+			<Property Name="Size" Value="w:0.6 h:0.4" />
+			<Property Name="Alpha" Value="0.600000" />
+			<Property Name="Text" Value="Stunts 2005" />
+			<Window Type="TaharezLook/Editbox" Name="Main/Level/LevelFile">
+				<Property Name="RelativeRect" Value="l:0.305000 t:0.301667 r:0.689999 b:0.396667" />
+			</Window>
+
+			<Window Type="TaharezLook/Button" Name="Main/Level/OK">
+				<Property Name="RelativeRect" Value="l:0.295000 t:0.615000 r:0.698750 b:0.715000" />
+				<Property Name="Text" Value="OK" />
+			</Window>
+
+		</Window>
+
+		<Window Type="TaharezLook/StaticText" Name="Menu_Level_LogoText">
+			<Property Name="Alpha" Value="0.500000" />
+			<Property Name="RelativeRect" Value="l:0.035000 t:0.030000 r:0.961251 b:0.090000" />
+			<Property Name="Text" Value="Stunts2005 powered by Ogre3D, nrEngine, CEGUI, FMod, ODE, Tinyxml" />
+		</Window>
+		
+	</Window>
+</GUILayout>

@@ -6,16 +6,21 @@
 			<Property Name="Size" Value="w:0.6 h:0.4" />
 			<Property Name="Alpha" Value="0.600000" />
 			<Property Name="Text" Value="Stunts 2005" />
-			<Window Type="TaharezLook/Button" Name="Start">
+			<Window Type="TaharezLook/Button" Name="Main/Start">
 				<Property Name="RelativeRect" Value="l:0.305000 t:0.241667 r:0.689999 b:0.336667" />
 				<Property Name="Text" Value="Start" />
 			</Window>
 
-			<Window Type="TaharezLook/Button" Name="Quit">
-				<Property Name="RelativeRect" Value="l:0.295000 t:0.615000 r:0.698750 b:0.715000" />
+			<Window Type="TaharezLook/Button" Name="Main/Quit">
+				<Property Name="RelativeRect" Value="l:0.305000 t:0.445000 r:0.698750 b:0.535000" />
 				<Property Name="Text" Value="Quit" />
 			</Window>
 
+			<Window Type="TaharezLook/Button" Name="Main/Level">
+				<Property Name="RelativeRect" Value="l:0.305000 t:0.645000 r:0.698750 b:0.735000" />
+				<Property Name="Text" Value="Level" />
+			</Window>
+			
 		</Window>
 
 		<Window Type="TaharezLook/StaticText" Name="LogoText">
