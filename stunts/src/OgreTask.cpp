@@ -25,9 +25,9 @@
 
 #include "OgreTask.hpp"
 
-using namespace Ogre;
-
 namespace stunts {
+
+	using namespace Ogre;
 
 	/**
 	* Constructor
@@ -106,7 +106,7 @@ namespace stunts {
 	{
 		// render one frame and check if Ogre should quit
 		if (!mRoot->renderOneFrame()){
-			nrKernel.KillAllTasks();
+		//	nrKernel.KillAllTasks();
 		}
 
 		return NR_OK;
@@ -239,6 +239,8 @@ namespace stunts {
         // Alter the camera aspect ratio to match the viewport
         mCamera->setAspectRatio(
             Real(vp->getActualWidth()) / Real(vp->getActualHeight()));
+
+		vp->setOverlaysEnabled(true);
     }
 
 

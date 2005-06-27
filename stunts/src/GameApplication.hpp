@@ -36,9 +36,10 @@
 
 namespace stunts {
 
-  /** The main application of the game.
+  /** The main application of the game. Run as Singleton, so we can access to
+   * quit method from outside.
    */
-  class GameApplication {
+  class GameApplication : public nrISingleton<GameApplication> {
   public:
     /** Construct a new %GameApplication.
      */

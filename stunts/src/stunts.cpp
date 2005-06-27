@@ -26,8 +26,11 @@
 #include "stunts.hpp"
 
 int main() {
-  stunts::GameApplication app;
+//  stunts::GameApplication app;
+  stunts::GameApplication::Instantiate();
   
-  app.initialize();
-  app.run();
+  stunts::GameApplication::GetSingleton().initialize();
+  stunts::GameApplication::GetSingleton().run();
+
+  stunts::GameApplication::Release();
 }

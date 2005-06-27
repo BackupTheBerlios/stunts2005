@@ -24,6 +24,8 @@
 
 #include "UserInput.hpp"
 
+#include "CGuiTask.h"
+
 namespace stunts
 {
 	//--------------------------------------------------------------------------
@@ -111,7 +113,7 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	void CUserInput::react(float delaySeconds)
 	{
-		if (!mInputDevice || !mActivated)
+		if (!mInputDevice || !mActivated || CGuiTask::GetSingleton().Active())
 			return;
 
 		mInputDevice->capture();
@@ -190,12 +192,6 @@ namespace stunts
         if (mInputDevice->isKeyDown(Ogre::KC_LEFT))
         {
             mCamera->yaw(mRotScale);
-        }
-
-        if( mInputDevice->isKeyDown(Ogre::KC_ESCAPE))
-        {
-        	//end game
-	        nrKernel.KillAllTasks();
         }
 
 

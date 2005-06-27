@@ -25,11 +25,8 @@ stunts_SOURCES = \
 	AICarControl.cpp\
 	HumanControl.cpp\
 	Atmosphere.cpp\
-	External/tinyxml/tinyxml.cpp\
-	External/tinyxml/tinystr.cpp\
-	External/tinyxml/tinyxmlerror.cpp\
-	External/tinyxml/tinyxmlparser.cpp\
 	Utils.cpp\
+	CGuiTask.cpp\
 	CGuiAddInt.cpp\
 	CGuiButton.cpp\
 	CGuiExitGui.cpp\
@@ -37,18 +34,20 @@ stunts_SOURCES = \
 	CGuiPage.cpp\
 	CGuiParser.cpp\
 	CGuiStartGame.cpp\
-	CGuiTask.cpp\
 	CGuiTex.cpp \
 	Waypoint.cpp \
 	FileIO.cpp\
 	CFunction.cpp \
 	CKI.cpp \
 	CNeuralNetwork.cpp \
-	CNeurode.cpp
+	CNeurode.cpp \
+	External/tinyxml/tinyxml.cpp\
+	External/tinyxml/tinystr.cpp\
+	External/tinyxml/tinyxmlerror.cpp\
+	External/tinyxml/tinyxmlparser.cpp
 
 #	ObjectInstantiator.cpp
-
-
+	
 # Add here all headers that are needed to build myapp
 # These headers will not be installed, but included in the dist
 noinst_HEADERS = \

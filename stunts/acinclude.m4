@@ -1054,3 +1054,31 @@ AC_DEFUN([AX_CHECK_OGREODE],
 AC_SUBST([OGREODE_CPPFLAGS])
 AC_SUBST([OGREODE_LIBS])
 ])dnl
+
+
+AC_DEFUN([CHECK_CEGUI], [
+    PKG_CHECK_MODULES(CEGUI, CEGUI, 
+            [build_cegui_sample=true], [build_cegui_sample=false])
+    if test x$build_cegui_sample = xtrue; then
+     AC_SUBST(CEGUI_CFLAGS)
+        AC_SUBST(CEGUI_LIBS)
+        AC_MSG_RESULT([CEGUI available, Gui can be used])
+    else
+        AC_MSG_RESULT([CEGUI not installed. Please correct this!!!])
+    fi
+	    AM_CONDITIONAL([BUILD_CEGUI_SAMPLE], [test x$build_cegui_sample = xtrue])
+])dnl
+
+
+AC_DEFUN([CHECK_CEGUI_OGRE], [
+    PKG_CHECK_MODULES(CEGUI_OGRE, CEGUI-OGRE,
+            [build_cegui_ogre_sample=true], [build_cegui_ogre_sample=false])
+    if test x$build_cegui_ogre_sample = xtrue; then
+     AC_SUBST(CEGUI_OGRE_CFLAGS)
+        AC_SUBST(CEGUI_OGRE_LIBS)
+        AC_MSG_RESULT([Ogre's CEGUI-Renderer was found])
+    else
+        AC_MSG_RESULT([No Ogre Renderer for CEGUI - Library found. Check if you Ogre installation is complete!!!])
+    fi
+	    AM_CONDITIONAL([BUILD_CEGUI_OGRE_SAMPLE], [test x$build_cegui_ogre_sample = xtrue])
+])dnl

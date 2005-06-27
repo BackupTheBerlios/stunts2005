@@ -458,7 +458,7 @@ namespace stunts
 			//load the level and its physics
 			if (loadLevel(mLevelFileName))
 				return NR_UNKNOWN_ERROR;
-			else
+			//else
 			{
 				//initialize ODE if the level ist loaded
 				InitializeODE();

@@ -48,9 +48,9 @@ namespace stunts
 
 #include "External/tinyxml/tinyxml.h"
 
-using namespace Ogre;
-
 namespace stunts {
+
+	using namespace Ogre;
 
 	class CBaseObject
 	{

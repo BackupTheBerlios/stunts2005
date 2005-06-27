@@ -99,7 +99,7 @@ namespace stunts
 
 		// set level variables. JUST FOR TESTING, this should be done by GUI
 		nrSettings.get("level_file") = std::string("../media/level/Level.xml");
-		nrSettings.get("load_level") = std::string("1");
+		nrSettings.get("load_level") = std::string("0");
 
 		// Setup InGame-Clock
 		shared_ptr<nrITimeSource> timer (new COgreTimer());
@@ -112,12 +112,15 @@ namespace stunts
 
 		// add GUI task
 		CGuiTask::Instantiate();
+		CGuiTask::GetSingleton().setWindow(COgreTask::GetSingleton().mWindow);
+		CGuiTask::GetSingleton().setSceneManager(COgreTask::GetSingleton().mSceneMgr.get());
 		CGuiTask::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_ULTRA_LOW);
-
+		
 		// this is how you load a page!
-		CGuiTask::GetSingleton().addPage( "dummy", "" );
-		CGuiTask::GetSingleton().selectPage( "dummy" );
-		CGuiTask::GetSingleton().rActive() = false;
+		CGuiTask::GetSingleton().addPage( "Main", "" );
+		CGuiTask::GetSingleton().addPage( "MainLevel", "" );
+		CGuiTask::GetSingleton().selectPage( "Main" );
+		CGuiTask::GetSingleton().rActive() = true;
 
         return true;
 	}
