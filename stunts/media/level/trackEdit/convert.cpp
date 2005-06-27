@@ -93,11 +93,12 @@ int main()
 	//read formatted string
 	char* currentTrackChars = trackChars;
 
-	char* posX = new char[16];			memset(posX, 0, 16);
-	char* posZ = new char[16];			memset(posZ, 0, 16);
-	char* rotY = new char[16];			memset(rotY, 0, 16);
+	char* posX = new char[16];		memset(posX, 0, 16);
+	char* posZ = new char[16];		memset(posZ, 0, 16);
+	char* rotY = new char[16];		memset(rotY, 0, 16);
 	char* scaleA = new char[16];		memset(scaleA, 0, 16);
-	char* meshName = new char[260];	memset(meshName, 0, 260);
+	char* scaleValue = new char[16];	memset(scaleValue, 0, 16);
+	char* meshName = new char[260];		memset(meshName, 0, 260);
 
 	string currentTemplateString;
 	string totalTrackString;
@@ -123,7 +124,7 @@ int main()
 			break;
 
 		//scan line
-		sscanf(currentTrackChars, "%s%s%s%s%s", posX, posZ, rotY, scaleA, meshName);
+		sscanf(currentTrackChars, "%s%s%s%s%s%s", posX, posZ, rotY, scaleA, scaleValue, meshName);
 
 		//one line down
 		currentTrackChars = strchr(currentTrackChars, 10);
@@ -136,6 +137,7 @@ int main()
 		const char* _POS_X_ = "_POS_X_";
 		const char* _POS_Z_ = "_POS_Z_";
 		const char* _SCALE_AXIS_ = "_SCALE_AXIS_";
+		const char* _SCALE_VALUE_ = "_SCALE_VALUE_";
 		const char* _MESH_NAME_ = "_MESH_NAME_";
 
 		currentTemplateString.replace(
@@ -153,6 +155,9 @@ int main()
 		currentTemplateString.replace(
 			currentTemplateString.find(_SCALE_AXIS_, 0),
 			strlen(_SCALE_AXIS_), scaleA);
+		currentTemplateString.replace(
+			currentTemplateString.find(_SCALE_VALUE_, 0),
+			strlen(_SCALE_VALUE_), scaleValue);
 		for (int i = 0; i < 2; i++)
 		{
 			currentTemplateString.replace(

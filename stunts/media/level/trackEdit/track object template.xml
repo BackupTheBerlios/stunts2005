@@ -13,7 +13,7 @@
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">_POS_Z_</posZ>
 
-			<proportion axis="_SCALE_AXIS_" size="1" units="gridUnits" />
+			<proportion axis="_SCALE_AXIS_" size="_SCALE_VALUE_" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 
 			<geometry>
