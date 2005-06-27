@@ -64,6 +64,8 @@ namespace stunts
 		//OgreODE terrain
 		mTerrain.reset(new OgreOde::TerrainGeometry(terrainFile, mLevel->
 			PhysicsWorld()->getDefaultSpace()));
+
+
 		mTerrain->setHeightListener(this);
 	}
 

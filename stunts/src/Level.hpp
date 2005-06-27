@@ -69,6 +69,12 @@ namespace stunts
 	class CLevel : public nrITask, public OgreOde::CollisionListener
 	{
 		public:
+			//only to test here
+			boost::shared_ptr<OgreOde_Prefab::Vehicle> mVehicle;
+
+
+
+
 			CLevel();
 			virtual ~CLevel();
 
@@ -221,8 +227,10 @@ namespace stunts
 			// Get next i Waypoint
 			boost::shared_ptr<CWaypoint> getNextWaypoint(boost::shared_ptr<CWaypoint> waypoint, int nr);
 
-			// ODE collision
+			// ODE
 			bool collision(OgreOde::Contact* contact);
+
+			void InitializeODE();
 	};
 
 };

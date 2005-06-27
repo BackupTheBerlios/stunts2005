@@ -59,7 +59,8 @@ namespace stunts {
 
 		// Setup Ogre-Engine
         mRoot = new Root();
-		if (!configure())return NR_UNKNOWN_ERROR;
+		if (!configure())
+			return NR_UNKNOWN_ERROR;
 
 		// Load resources and
 		setupResources();
@@ -186,9 +187,16 @@ namespace stunts {
 		// Create scene manager
 		mSceneMgr = boost::shared_ptr< Ogre::SceneManager >
 			(mRoot->getSceneManager(ST_EXTERIOR_CLOSE));
-		
+
 		// Get Render System
 		mRenderer = mRoot->getRenderSystem();
+
+		// Setup boundig box padding value
+		MeshManager::getSingleton().setBoundsPaddingFactor(0.0f);
+
+		// Set default mipmap level (NB some APIs ignore this)
+        TextureManager::getSingleton().setDefaultNumMipmaps(5);
+
 
 		// Setup Rendering Options
 		//mRenderer->setShadingType(SO_GOURAUD);
@@ -196,13 +204,7 @@ namespace stunts {
 		//mRenderer->setNormaliseNormals(true);
 
 		// Setup some Ogre-Properties
-		
-		// Setup boundig box padding value
-		MeshManager::getSingleton().setBoundsPaddingFactor(0.0f);
-		
-		// Set default mipmap level (NB some APIs ignore this)
-        TextureManager::getSingleton().setDefaultNumMipmaps(5);
-		
+
 		return ok;
     }
 
@@ -223,8 +225,6 @@ namespace stunts {
         mCamera->setNearClipDistance( 1 );
         mCamera->setFarClipDistance( 1000 );
     }
-
-
 
 
 	/**

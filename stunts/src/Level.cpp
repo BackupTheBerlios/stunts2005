@@ -128,13 +128,11 @@ namespace stunts
 		COgreTask::GetSingleton().taskUpdate();
 //######################################
 
-std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
 		// check now for object in the file
 		elem = rootElem->FirstChildElement("objects");
 		if (elem)
 			readObjects(elem);
 
-std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
 		// check for the atmosphere
 		elem = rootElem->FirstChildElement("atmosphere");
 		if (elem)
@@ -174,10 +172,9 @@ std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
 				mSceneNode->showBoundingBox(true);
 		}
 */
-std::cout << "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" << std::endl;
 		// Put BaseObject-Waypoints together
 		if (buildWaypointPath())
-			nrLog.Log(NR_LOG_APP, "CLevel::loadlevel(): Waypoint path successfully buildt");
+			nrLog.Log(NR_LOG_APP, "CLevel::loadlevel(): Waypoint path successfully built");
 		else
 			nrLog.Log(NR_LOG_APP, "CLevel::loadlevel(): Unable to build waypoint path");
 
@@ -424,9 +421,9 @@ std::cout << "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" << std::endl;
 		getEngineTasks();
 
 		//create the mPhysicsExecution member
-//float mMoveSpeed = 25;
-float time_step = 0.01;
+		float time_step = 0.01;
 		mPhysicsExecution.reset(new OgreOde::ForwardFixedQuickStepper(time_step));
+		//mPhysicsExecution.reset(new OgreOde::ExactVariableQuickStepper(time_step));
 
 
 		//create terrain (after the engine tasks have been gotten)
@@ -451,33 +448,20 @@ float time_step = 0.01;
 	nrResult CLevel::taskUpdate()
 	{
 		// if we are forced to load the level file
-		if (mShouldLoadLevel && mLevelFileName.length() > 0){
+		if (mShouldLoadLevel && (mLevelFileName.length() > 0) &&
+			(mOgreTask->mSceneMgr != NULL)){
 			mShouldLoadLevel = false;
 
-			//load the pyhsics world
+			//(re-)set the Physics World
 			mPhysicsWorld.reset(new OgreOde::World(mOgreTask->mSceneMgr.get()));
-				mPhysicsWorld->setGravity(Vector3(0,-9.80665,0));
-				mPhysicsWorld->setCFM(10e-5);
-				mPhysicsWorld->setERP(0.8);
-				mPhysicsWorld->setAutoSleep(true);
-				mPhysicsWorld->setContactCorrectionVelocity(1.0);
 
-			if (!loadLevel(mLevelFileName))
+			//load the level and its physics
+			if (loadLevel(mLevelFileName))
 				return NR_UNKNOWN_ERROR;
 			else
 			{
-//TODO: please load the values from the XML file!!
-				mPhysicsWorld->setGravity(Vector3(0,-9.80665,0));
-				mPhysicsWorld->setCFM(10e-5);
-				mPhysicsWorld->setERP(0.8);
-				mPhysicsWorld->setAutoSleep(true);
-				mPhysicsWorld->setContactCorrectionVelocity(1.0);
-
-				if (mOgreTask->mRoot != NULL)
-					mPhysicsExecution->setAutomatic(OgreOde::Stepper::AutoMode_PostFrame,mOgreTask->mRoot);
-
-
-				mPhysicsWorld->setCollisionListener(this);
+				//initialize ODE if the level ist loaded
+				InitializeODE();
 			}
 		}
 
@@ -704,7 +688,7 @@ float time_step = 0.01;
 	};
 
 
-	//---------------------------------------------------------------------------
+	//--------------------------------------------------------------------------
 	boost::shared_ptr<CWaypoint> CLevel::getFirstWaypoint()
 	{
 		if (mWaypoints.size() > 1) return mWaypoints[0];
@@ -712,7 +696,7 @@ float time_step = 0.01;
 
 
 
-	//---------------------------------------------------------------------------
+	//--------------------------------------------------------------------------
 	boost::shared_ptr<CWaypoint> CLevel::getNextWaypoint(boost::shared_ptr<CWaypoint> waypoint, int nr = 1)
 	{
 		for (int i = 0; i < nr; i++)
@@ -726,6 +710,7 @@ float time_step = 0.01;
 	};
 
 
+	//--------------------------------------------------------------------------
 	//handle ODE collision
 	bool CLevel::collision(OgreOde::Contact* contact)
 	{
@@ -737,4 +722,26 @@ float time_step = 0.01;
 		return true;
 	}
 
+
+	//--------------------------------------------------------------------------
+	void CLevel::InitializeODE()
+	{
+//TODO: please load the values from the XML file!!
+		mPhysicsWorld->setGravity(Vector3(0,-9.80665,0));
+		mPhysicsWorld->setCFM(10e-5);
+		mPhysicsWorld->setERP(0.8);
+		mPhysicsWorld->setAutoSleep(true);
+		mPhysicsWorld->setContactCorrectionVelocity(1.0);
+
+
+		mPhysicsWorld->setCollisionListener(this);
+
+		//TEST vehiclee here
+		mVehicle.reset(new OgreOde_Prefab::Vehicle("Jeep"));
+		mVehicle->load("jeep_ode.xml");
+
+		Vector3 v_pos(100,100,100);
+		mVehicle->setPosition(v_pos);
+
+	}
 };

@@ -78,7 +78,7 @@ namespace stunts
 			boost::shared_ptr< Ogre::Camera >		mCamera;
 			boost::shared_ptr< CTerrain >			mTerrain;
 
-			boost::shared_ptr<OgreOde::Stepper> mPhysicsExecution;
+			boost::shared_ptr<OgreOde::Stepper> mPhysicsExecution;	//foreign
 
 			bool mActivated;
 

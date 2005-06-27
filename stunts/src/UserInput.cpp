@@ -127,14 +127,19 @@ namespace stunts
 
 
 		//move car
-		if(mInputDevice->isKeyDown(KC_U)) mPhysicsExecution->pause(false);
-		if(mInputDevice->isKeyDown(KC_P)) mPhysicsExecution->pause(true);
+		//if(mInputDevice->isKeyDown(KC_U)) mPhysicsExecution->pause(false);
+		//if(mInputDevice->isKeyDown(KC_P)) mPhysicsExecution->pause(true);
 
-		if(!mPhysicsExecution->isPaused())
+		if((mLevel->mVehicle != NULL))// && !mPhysicsExecution->isPaused())
 		{
 			//mLevel
-			//_vehicle->setInputs(mInputDevice->isKeyDown(KC_J),mInputDevice->isKeyDown(KC_L),mInputDevice->isKeyDown(KC_I),mInputDevice->isKeyDown(KC_K));
-			//_vehicle->update(delaySeconds);
+			mLevel->mVehicle->setInputs(mInputDevice->isKeyDown(KC_J),mInputDevice->isKeyDown(KC_L),mInputDevice->isKeyDown(KC_I),mInputDevice->isKeyDown(KC_K));
+			mLevel->mVehicle->update(delaySeconds);
+
+			mLevel->PhysicsWorld()->synchronise();
+			mLevel->PhysicsWorld()->getDefaultSpace()->collide();
+			mLevel->PhysicsWorld()->quickStep(delaySeconds);
+			mLevel->PhysicsWorld()->clearContacts();
 		}
 
 

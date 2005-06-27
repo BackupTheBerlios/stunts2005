@@ -34,9 +34,10 @@ namespace stunts {
 	//--------------------------------------------------------------------------
 	CCarObject::CCarObject():CBaseObject()
 	{
-// TODO please load the settings from the XML file
+		// TODO please load the settings from the XML file
 		//mVehicle.reset(new OgreOde_Prefab::Vehicle("Jeep"));
 		//mVehicle->load("jeep_ode.xml");
+
 	}
 	//--------------------------------------------------------------------------
 	CCarObject::CCarObject(char* xmlSettingsString, const std::string& xmlPath) :

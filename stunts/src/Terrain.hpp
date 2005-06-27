@@ -84,7 +84,6 @@ namespace stunts
 		 **/
 		float getWidthZ();
 
-
 	protected:
 		void Init(std::string terrainFile);
 
