@@ -15,6 +15,22 @@ material Street/teer
 		}
 	}
 }
+material Street/teer
+{
+	technique
+	{
+		pass
+		{
+		ambient 0.584314 0.584314 0.584314
+            	diffuse 0.584314 0.584314 0.584314
+            	emissive 0.0 0.0 0.0
+			texture_unit
+			{
+				texture sand.jpg
+			}
+		}
+	}
+}
 
 
 material Street/redwhite
