@@ -531,6 +531,14 @@ namespace stunts
 		return mPhysicsWorld;
 	}
 
+
+	//--------------------------------------------------------------------------
+	std::vector<boost::shared_ptr<CBaseObject> >& CLevel::Objects()
+	{
+		return mObjects;
+	}
+ 
+
 	//--------------------------------------------------------------------------
 	boost::shared_ptr<CWaypoint> CLevel::findNearestWaypoint(boost::shared_ptr<CWaypoint> from, int nr)
 	{

@@ -131,6 +131,14 @@ namespace stunts
 
 
 			/**
+			 * Get Objects
+			 *
+			 * @return Objects
+			 */
+			std::vector<boost::shared_ptr<CBaseObject> >& Objects();
+ 
+
+			/**
 			 * Convert given GridUnits into Meters
 			 * @param x,z 2D-Grid-Position.
 			 * @return Vector containing the position vector. The returned vector has y set to 0

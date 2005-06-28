@@ -90,7 +90,7 @@ namespace stunts {
 			**/
 			static CBaseObject*	createInstance(std::string objType);
 
-
+ 
 
 
 			/**
@@ -100,6 +100,11 @@ namespace stunts {
 			void setName(const char* name);
 
 
+			/**
+			* Get the name for this object. Each object must have unique name.
+			* @return
+			**/
+			inline std::string getName() {return mName;};
 
 
 			/**

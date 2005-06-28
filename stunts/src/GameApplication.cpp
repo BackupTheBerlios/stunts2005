@@ -84,9 +84,11 @@ namespace stunts
 
 		shared_ptr<CLevel> 		level_task(new CLevel());
 		shared_ptr<CUserInput> 	user_input(new CUserInput(level_task));
+		shared_ptr<CKI> 		ki_task(new CKI(level_task));
 
 
 		//set priorities
+		ki_task->   setTaskPriority(NR_PRIORITY_VERY_HIGH);
 		user_input->setTaskPriority(NR_PRIORITY_VERY_HIGH);
 		level_task->setTaskPriority(NR_PRIORITY_VERY_LOW);
 
@@ -109,6 +111,8 @@ namespace stunts
 		// want use timer before Ogre
 		nrCClock::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_FIRST);
 
+		// Add the AI to the Kernel
+		nrKernel.AddTask(ki_task);
 
 		// add GUI task
 		CGuiTask::Instantiate();

@@ -32,6 +32,7 @@
 #include "Level.hpp"
 #include "UserInput.hpp"
 #include "OgreTask.hpp"
+#include "CKI.h"
 
 
 namespace stunts {

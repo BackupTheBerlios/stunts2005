@@ -1,6 +1,8 @@
 #include "CNeurode.h"
 #include <iostream>
 
+namespace stunts
+{
 	CNeurode::CNeurode(int n)
 	{
 		this->function = neurode_EXP;
@@ -40,7 +42,7 @@
 			//printf("addInput %f an Stelle %i\n",*weight ,(weights.size()-1) );
 		}
 		else{
-			//einfügen der Inputs
+			//einf?gen der Inputs
  			weights.at(n-1) = weight;
 		
 			Inputs.at(n-1) = Input;
@@ -81,4 +83,4 @@
   	
    		output = f_x;
 	}
-
+}
