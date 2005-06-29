@@ -67,17 +67,17 @@ namespace stunts
 				*/
 			//Inputs
 			CNeurode* reactN = new CNeurode(0, neurode_LINEAR);
-			float react = 1.f;
+			float react = ki->getLevelOfReaction();
 			reactN->addInput(0, NULL, &react);
 			reactN->runNeurode();
 	
 			CNeurode* steerangelN = new CNeurode(0, neurode_LINEAR);
-			float steerangel = 1.f;
+			float steerangel = ki->steerAngle();
 			steerangelN->addInput(0, NULL, &steerangel);
 			steerangelN->runNeurode();
 	
 			CNeurode* aggresN = new CNeurode(0, neurode_LINEAR);
-			float aggres = 1.f;
+			float aggres = ki->getLevelOfAggressivity();
 			aggresN->addInput(0, NULL, &aggres);
 			aggresN->runNeurode();
 	
@@ -87,21 +87,21 @@ namespace stunts
 			steerNeurodeAnd11->addInput(1, reactN, &(steerAnd11[1]));
 			steerNeurodeAnd11->addInput(2, steerangelN, &(steerAnd11[2]));
 			steerNeurodeAnd11->runNeurode();
-			printf("and11 = %f\n", (steerNeurodeAnd11->getOutput()));
+			//printf("and11 = %f\n", (steerNeurodeAnd11->getOutput()));
 	
 			steerNeurodeAndnot12 = new CNeurode(2);
 			steerNeurodeAndnot12->addInput(0, NULL, &(steerAndnot12[0]));
 			steerNeurodeAndnot12->addInput(1, steerangelN, &(steerAndnot12[1]));
 			steerNeurodeAndnot12->addInput(2, aggresN, &(steerAndnot12[2]));
 			steerNeurodeAndnot12->runNeurode();
-			printf("andnot12 = %f\n", (steerNeurodeAndnot12->getOutput()));
+			//printf("andnot12 = %f\n", (steerNeurodeAndnot12->getOutput()));
 	
 			steerNeurodeOr21 = new CNeurode(2, neurode_EXP);
 			steerNeurodeOr21->addInput(0, NULL, &(steerOr21[0]));
 			steerNeurodeOr21->addInput(1, steerNeurodeAnd11, &(steerOr21[1]));
 			steerNeurodeOr21->addInput(2, steerNeurodeAndnot12, &(steerOr21[2]));
 			steerNeurodeOr21->runNeurode();
-			printf("or21 = %f\n", (steerNeurodeOr21->getOutput()));
+			//printf("or21 = %f\n", (steerNeurodeOr21->getOutput()));
 		}
 	
 		if(function == SPEED)
@@ -122,7 +122,7 @@ namespace stunts
 			*/
 			//Inputs
 			CNeurode* reactN = new CNeurode(0, neurode_LINEAR);
-			float react = 1.f;
+			float react = ki->getLevelOfReaction();
 			reactN->addInput(0, NULL, &react);
 			reactN->runNeurode();
 	
@@ -132,7 +132,7 @@ namespace stunts
 			speedN->runNeurode();
 	
 			CNeurode* aggresN = new CNeurode(0, neurode_LINEAR);
-			float aggres = 1.f;
+			float aggres = ki->getLevelOfAggressivity();
 			aggresN->addInput(0, NULL, &aggres);
 			aggresN->runNeurode();
 	
@@ -142,21 +142,21 @@ namespace stunts
 			speedNeurodeAnd11->addInput(1, reactN, &(speedAnd11[1]));
 			speedNeurodeAnd11->addInput(2, speedN, &(speedAnd11[2]));
 			speedNeurodeAnd11->runNeurode();
-			printf("and11 = %f\n", (speedNeurodeAnd11->getOutput()));
+			//printf("and11 = %f\n", (speedNeurodeAnd11->getOutput()));
 	
 			speedNeurodeAndnot12 = new CNeurode(2);
 			speedNeurodeAndnot12->addInput(0, NULL, &(speedAndnot12[0]));
 			speedNeurodeAndnot12->addInput(1, speedN, &(speedAndnot12[1]));
 			speedNeurodeAndnot12->addInput(2, aggresN, &(speedAndnot12[2]));
 			speedNeurodeAndnot12->runNeurode();
-			printf("andnot12 = %f\n", (speedNeurodeAndnot12->getOutput()));
+			//printf("andnot12 = %f\n", (speedNeurodeAndnot12->getOutput()));
 	
 			speedNeurodeOr21 = new CNeurode(2, neurode_EXP);
 			speedNeurodeOr21->addInput(0, NULL, &(speedOr21[0]));
 			speedNeurodeOr21->addInput(1, speedNeurodeAnd11, &(speedOr21[1]));
 			speedNeurodeOr21->addInput(2, speedNeurodeAndnot12, &(speedOr21[2]));
 			speedNeurodeOr21->runNeurode();
-			printf("or21 = %f\n", (speedNeurodeOr21->getOutput()));
+			//printf("or21 = %f\n", (speedNeurodeOr21->getOutput()));
 	
 		}
 	}
@@ -190,7 +190,7 @@ namespace stunts
 	
 			if(FUNCTION_NEW || !fIO->Open(dat, FILE_READ_MODE))
 			{
-				printf("\n###   make steer.ai\n");
+			//	printf("\n###   make steer.ai\n");
 				fIO->Open(dat, FILE_WRITE_MODE);
 				fIO->PushHeader("steerAnd11");
 				steerAnd11[0] = -1.f;
@@ -212,7 +212,7 @@ namespace stunts
 			}
 			else
 			{
-				printf("\n###   read steer.ai\n");
+				//printf("\n###   read steer.ai\n");
 				fIO->Open(dat, FILE_READ_MODE);
 	
 				fIO->GotoHeader("steerAnd11");
@@ -238,7 +238,7 @@ namespace stunts
 	
 			if(FUNCTION_NEW || !fIO->Open(dat, FILE_READ_MODE))
 			{
-				printf("\n###   make speed.ai\n");
+				//printf("\n###   make speed.ai\n");
 				fIO->Open(dat, FILE_WRITE_MODE);
 				fIO->PushHeader("speedAnd11");
 				speedAnd11[0] = -50.f;
@@ -260,12 +260,12 @@ namespace stunts
 			}
 			else
 			{
-				printf("\n###   read speed.ai\n");
+				//printf("\n###   read speed.ai\n");
 				fIO->Open(dat, FILE_READ_MODE);
 	
 				fIO->GotoHeader("speedAnd11");
 				fIO->PopRecord(speedAnd11);
-				printf("speedAnd[0]=%f  [1]=%f  [2]=%f\n",speedAnd11[0],speedAnd11[1],speedAnd11[2]);
+				//printf("speedAnd[0]=%f  [1]=%f  [2]=%f\n",speedAnd11[0],speedAnd11[1],speedAnd11[2]);
 	
 				fIO->GotoHeader("speedAndnot12");
 				fIO->PopRecord(speedAndnot12);

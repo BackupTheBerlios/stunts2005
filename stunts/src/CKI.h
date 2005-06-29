@@ -46,6 +46,7 @@ namespace stunts
 #include "Engine.hpp"
 #include "CarObject.hpp"
 #include "BaseObject.hpp"
+
  
  
 namespace stunts
@@ -73,10 +74,16 @@ namespace stunts
 			int getLevelOfSkill();
 			int getLevelOfAggressivity();
 			int getLevelOfReaction();
+			
+			inline float steerAngle()
+				{return msteerAngle;};
 		 
 			virtual const char* taskGetName() {return "KITask";}
 							
 		protected:
+		
+			static const bool debug_ki = false;
+		
 			virtual nrResult taskInit();
 			virtual nrResult taskStart();
 			virtual nrResult taskUpdate();
@@ -86,18 +93,19 @@ namespace stunts
 			boost::shared_ptr< CLevel >						mLevel;
 			std::vector<boost::shared_ptr<CBaseObject> >	mObjects;
 			boost::shared_ptr<CCarObject>					controlObject;
+			boost::shared_ptr<CWaypoint>					waypoint;
 
 			CNeuralNetwork* net;
 		
+			float msteerAngle;
+			
 			int levelOfSkill;
 			int levelOfAggressivity;
 			int levelOfReaction;
-			int SteerAngle;
 		
 		
 			void computeStrategy();
 			
-			boost::shared_ptr<CWaypoint> waypoint;
 			
 			void computeGear();
 			void computeDirection();

@@ -32,6 +32,14 @@ namespace stunts
 	CKI::CKI(boost::shared_ptr< CLevel > level)
 	{
 		mLevel = level;
+		
+		levelOfSkill = 1;
+		levelOfAggressivity = 1;
+		levelOfReaction = 1;
+		
+//		controlObject.reset(Object);
+		
+		net = new CNeuralNetwork(this);
 	}
 
 
@@ -76,7 +84,7 @@ namespace stunts
 		}
 		else
 		{
-			std::cout << ".KI.";
+			if(debug_ki)  std::cout << ".KI.";
 			//react here only in this example application
 			//	as no InteractiveObject is running
 			this->executeKI(COgreTask::GetSingleton().mTimer->getFrameInterval());
@@ -133,9 +141,9 @@ namespace stunts
 		
 	//	waypoint computeNextWayPoint();
 		
-		//computeGear();
+		computeGear();
 		computeDirection();
-		//computeAcceleration();
+		computeAcceleration();
 	}
 	
 	
@@ -183,7 +191,7 @@ namespace stunts
 	
 	void CKI::computeGear()
 	{
-	
+	/*
 		//### muss man debuggen aber m?sste sonst klappen
 		if (controlObject->getEngine()->getRpm() < controlObject->getEngine()->getMaxRpm())
 		{
@@ -193,18 +201,47 @@ namespace stunts
 		{
 			controlObject->shiftUp();
 		};
-	
+	*/
 	}
 	
 	/**
 	* soll anhand der aktuellen Position und der Position des NextWaypoints
 	* einen Winkel berechnen, der angibt, ob man links oder rechts muss.
-	* dieser wird dann in "SteerAngle" gespeichert.
+	* dieser wird dann in "steerAngle" gespeichert.
 	*/
 	void CKI::computeDirection()
 	{
-		
 	
+		waypoint = mLevel->getFirstWaypoint();
+		
+		
+		if(waypoint != NULL)
+		{
+		//	Ogre::Vector3 o_pos = controlObject->Position();
+			Ogre::Vector3 o_pos = mLevel->mVehicle->getPosition();
+			if(debug_ki)  std::cout << "\n  o_pos\n" << o_pos;
+			
+			
+			Ogre::Vector3 w_dir = waypoint->getVector() - (o_pos);
+			if(debug_ki)  std::cout << "\n  w_dir\n" << w_dir;
+			
+			Ogre::Quaternion o_dir = controlObject->Orientation();
+			if(debug_ki)  std::cout << "\n  o_dir\n" << o_dir;
+		//	Ogre::Quaternion o_dir = mLevel->mVehicle->Orientation();
+			
+			Ogre::Vector3* dir = new Vector3(1.f, 0.f, 0.f);
+			Ogre::Vector3 d = *dir;
+			
+			Ogre::Vector3 my_richtung = (o_dir * d);
+			if(debug_ki)  std::cout << "\n  my_richtung\n" << my_richtung;
+			
+			msteerAngle = my_richtung.dotProduct(w_dir);
+			
+			
+			//mLevel->getNextWaypoint(waypoint);
+		}
+		
+		
 	/*
 	//see above at variable Declaration-----------------------------------
 		waypoint computeNextWayPoint()
@@ -234,34 +271,44 @@ namespace stunts
 	*/
 	}
 	
+	
+	
 	/**
 	* 
 	*/
 	void CKI::computeAcceleration()
 	{
-	
+		if(debug_ki)  std::cout << "\n\n   compAcc  \n\n";
+		
+		net->makeNetwork();
+		
 		//### noch pr?fen ob die funktionen alle Ergebnisse liefern
 		if (net->isHighSteer() >= 0)
 		{
 			if (net->isHighSpeed() >= 0 )
 			{
-				controlObject->brake( net->isHighSteer() * net->isHighSpeed() );
-				}
+//				controlObject->brake( net->isHighSteer() * net->isHighSpeed() );
+				if(debug_ki)  std::cout << "brake " << ( net->isHighSteer() * net->isHighSpeed() ) << std::endl;
+			}
 			else
 			{
-				controlObject->brake( net->isHighSteer() * ( 1.f - net->isHighSpeed() ) );
-				}
+				//steer [0..1] * (1+ speed [-1..0[ ) => [0..1[
+//				controlObject->brake( net->isHighSteer() * ( 1.f + net->isHighSpeed() ) );
+				if(debug_ki)  std::cout << "brake " << ( net->isHighSteer() * ( 1.f + net->isHighSpeed() ) ) << std::endl;
+			}
 		}
 		else
 		{
 			if (net->isHighSpeed() >= 0)
 			{
-				controlObject->accellerate( -1.f * (net->isHighSpeed()) ); //highspeed is negative!
+//				controlObject->accellerate( -1.f * (net->isHighSpeed()) ); //highspeed is negative!
+				if(debug_ki)  std::cout << "accellerate " << ( -1.f * (net->isHighSpeed()) ) << std::endl;
 			}
 			else
 			{
 				// highspeed and highsteer are negative!
-				controlObject->accellerate( net->isHighSteer() * net->isHighSpeed() );
+//				controlObject->accellerate( net->isHighSteer() * net->isHighSpeed() );
+				if(debug_ki)  std::cout << "accellerate " << ( net->isHighSteer() * net->isHighSpeed() ) << std::endl;
 			}
 		}
 	

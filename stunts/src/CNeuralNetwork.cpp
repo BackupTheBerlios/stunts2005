@@ -6,10 +6,7 @@ namespace stunts
 	
 	CNeuralNetwork::CNeuralNetwork(CKI* KI)
 	{
-	//	if(KI != NULL)
-			this->ki = KI;
-	//	else
-	//		this->ki = new CKI;
+		this->ki = KI;
 	}
 	
 	CNeuralNetwork::~CNeuralNetwork()
@@ -26,8 +23,8 @@ namespace stunts
 		functionSteer->setInputs();
 		functionSteer->makeFunction();
 		
-		printf("Speed = %f\n", *functionSpeed->getOutput());
-		printf("Steer = %f\n", *functionSteer->getOutput());
+	//	printf("Speed = %f\n", *functionSpeed->getOutput());
+	//	printf("Steer = %f\n", *functionSteer->getOutput());
 	}
 	
 	float CNeuralNetwork::isHighSteer()
