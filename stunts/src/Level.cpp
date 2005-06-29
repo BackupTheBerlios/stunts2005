@@ -537,7 +537,7 @@ namespace stunts
 	{
 		return mObjects;
 	}
- 
+
 
 	//--------------------------------------------------------------------------
 	boost::shared_ptr<CWaypoint> CLevel::findNearestWaypoint(boost::shared_ptr<CWaypoint> from, int nr)
@@ -747,9 +747,57 @@ namespace stunts
 		//TEST vehiclee here
 		mVehicle.reset(new OgreOde_Prefab::Vehicle("Jeep"));
 		mVehicle->load("jeep_ode.xml");
+		//mVehicle.reset(new OgreOde_Prefab::Vehicle("Subaru"));
+		//mVehicle->load("subaru_ode.xml");
 
-		Vector3 v_pos(100,100,100);
+		//set position to the vehicle
+		Vector3 v_pos(150,5,150);
 		mVehicle->setPosition(v_pos);
+		//mVehicle->getSceneNode()->setScale(3.0f ,3.0f ,3.0f);
+
+
+		//ADD TEST PHSSICS OBJECT
+		//load mesh
+		SceneNode *track_node = mOgreTask->mSceneMgr->getRootSceneNode()->createChildSceneNode("jump");
+		Entity *track_mesh = mOgreTask->mSceneMgr->createEntity("jump","jump.mesh");
+		track_node->attachObject(track_mesh);
+
+		//move node
+		track_node->setPosition(Vector3(120,3.5,120));
+
+		//get geometry
+		OgreOde::EntityInformer ei(track_mesh);
+
+		int meshVertexCount = ei.getVertexCount();
+		int meshIndexCount = ei.getIndexCount();
+
+		Ogre::Vector3* meshVertices = (Ogre::Vector3*)ei.getVertices();
+		int* meshIndices = (int*)ei.getIndices();
+
+		//move vertices
+		for (int c=0; c<meshVertexCount; c++)
+		{
+			meshVertices[c] += Vector3(120,3.5,120);
+		}
+
+		//create new geometry
+		OgreOde::TriangleMeshGeometry* geom =
+			new OgreOde::TriangleMeshGeometry(meshVertices, meshVertexCount,
+			meshIndices, meshIndexCount, mPhysicsWorld->getDefaultSpace());
+
+
+
+		// Create a box for ODE and attach it to the Ogre version
+		SceneNode *crate_node = mOgreTask->mSceneMgr->getRootSceneNode()->createChildSceneNode("crate");
+		Entity *crate_mesh = mOgreTask->mSceneMgr->createEntity("crate","crate.mesh");
+		crate_node->attachObject(crate_mesh);
+		crate_node->setPosition(Vector3(150,20,120));
+
+		OgreOde::Body* body;
+		//OgreOde::TriangleMeshGeometry *crate_geom;
+		OgreOde::EntityInformer ei2(crate_mesh);
+
+		body = ei2.createSingleDynamicBox(0.02, mPhysicsWorld->getDefaultSpace());
 
 	}
 };

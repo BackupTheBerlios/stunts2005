@@ -449,35 +449,16 @@ namespace stunts {
 			const char* file = elem->GetText();
 			if (file){
 				nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): Load mesh file \"%s\"", file);
-				try{
+				try
+				{
 					// Create & Load the entity
 					mEntity 	= COgreTask::GetSingleton().mSceneMgr->createEntity(mName, std::string(file));
 					mObjNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode(mName);
 
 					mObjNode->attachObject( mEntity );
-
-					// create collision model
-					//static int i=0;
-					//if ((i==0) && (file != NULL) && (strcmp(file, "drive-up_bridge.mesh") == 0))
-					{
-						//std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-						//i=1;
-						//OgreOde::EntityInformer entityInformer(mEntity);
-						//mCollisionMesh.reset(
-						//	entityInformer.createStaticTriangleMesh(mLevel->PhysicsWorld()->getDefaultSpace())
-						//	);
-
-
-            // Create a box for ODE and attach it to the Ogre version
-            //OgreOde::Body* body = new OgreOde::Body();
-            //mObjNode->attachObject(body);
-            //body->setMass(OgreOde::BoxMass(0.5,Vector3(1.5,1.5,1.5)));
-
-            //OgreOde::BoxGeometry* geom = new OgreOde::BoxGeometry(Vector3(1.5,1.5,1.5),mLevel->PhysicsWorld()->getDefaultSpace());
-            //geom->setBody(body);
-
-					}
-				}catch (...){
+				}
+				catch (...)
+				{
 					nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): An error occurs by loading of the geometry node");
 					return true;
 				}
