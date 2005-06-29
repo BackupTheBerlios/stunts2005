@@ -4,7 +4,7 @@
 		 e.g. tonnes and offset the center of gravity by half (a metre) to make it more stable
 		 This puts the CoG somewhere around the wheel hubs, which is probably reasonably
 		 realistic for a sports-car -->
-    <vehicle name="subaru">
+    <vehicle name="Subaru">
 
         <body mesh="scooby_body.mesh">
 		  <mass value="1.5" x="0" y="-0.5" z="0" />

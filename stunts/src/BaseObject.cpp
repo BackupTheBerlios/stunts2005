@@ -145,8 +145,8 @@ namespace stunts {
 	//--------------------------------------------------------------------------
 	bool CBaseObject::parseSettings(TiXmlElement* rootElem, const std::string& xmlPath)
 	{
-		std::cout << "Level:" << (mLevel != NULL) << std::endl;
-		std::cout << "Terrain:" << (mLevel->Terrain() != NULL) << std::endl;
+		//std::cout << "Level:" << (mLevel != NULL) << std::endl;
+		//std::cout << "Terrain:" << (mLevel->Terrain() != NULL) << std::endl;
 
 
 		nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): Start parsing the settings");
@@ -215,19 +215,19 @@ namespace stunts {
 			float32 x = 0.0f;
 			float32 y = 0.0f;
 			float32 z = 0.0f;
-	
+
 			nrCDator<float32> _x(x);
 			nrCDator<float32> _y(y);
 			nrCDator<float32> _z(z);
-	
+
 			_x = std::string(elem->Attribute("x"));
 			_y = std::string(elem->Attribute("y"));
 			_z = std::string(elem->Attribute("z"));
-			
+
 			m_scale.x = (Ogre::Real)x;
 			m_scale.y = (Ogre::Real)y;
 			m_scale.z = (Ogre::Real)z;
-			
+
 			/*
 			const char* x = elem->Attribute("x");
 			const char* y = elem->Attribute("y");
@@ -270,12 +270,12 @@ namespace stunts {
 
 		// Here we correct the node's position to the underlying grid model
 		Vector3 newPos = Position() + pos;
-		
+
 		// Auskommentiert, da diese kleine Verschiebung zu falschen Ergebnissen führt
 		//if (mObjNode && mEntity){
 		//	const AxisAlignedBox& aabb = mEntity->getBoundingBox();
 		//	newPos.x += mObjNode->getScale().x  * (aabb.getMaximum().x - aabb.getMinimum().x) / 2.0f;
-		//	newPos.z += mObjNode->getScale().z  * (aabb.getMaximum().z - aabb.getMinimum().z) / 2.0f;		
+		//	newPos.z += mObjNode->getScale().z  * (aabb.getMaximum().z - aabb.getMinimum().z) / 2.0f;
 		//}
 		setPosition(newPos);
 
@@ -287,7 +287,7 @@ namespace stunts {
 
 		// Read waypoints
 		elem =  rootElem->FirstChildElement("waypoints");
-		if (elem) 
+		if (elem)
 		{
 			// Waypoint in level file
 			elemWp = (elem->FirstChildElement("file"));
@@ -297,65 +297,65 @@ namespace stunts {
 				if (waypointFile){
 					nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): Load XML file \"%s\"",  waypointFile);
 					try
-					{	
+					{
 						importFromWaypointFile(xmlPath + waypointFile, xmlPath);
-	
-					} catch (...) 
+
+					} catch (...)
 					{
 						nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): An error occurs by loading of the waypoint XML file");
 						return true;
 					}
 				}
-			} 
+			}
 		};
 
-		
+
 
 		nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): parsing is complete now");
 		return false;
 
 	}
-	
-	
+
+
 	//--------------------------------------------------------------------------
-	Ogre::Vector3 CBaseObject::getWaypoint() 
+	Ogre::Vector3 CBaseObject::getWaypoint()
 	{
 		Ogre::Vector3 waypoint, waypointNew;
-		
+
 		// Get one element of vector
 		waypoint = this->m_waypoints.back();
-		
+
 		// Remove this element from vector
 		this->m_waypoints.pop_back();
-		
+
 		// Scale
 		waypoint.x *= this->m_scale.x;
 		waypoint.y *= this->m_scale.y;
 		waypoint.z *= this->m_scale.z;
-		
+
 		// Rotate
 		waypointNew = this->m_orientation * waypoint;
 		waypoint = waypointNew;
-		
+
 		// put on position
 		waypoint.x += this->m_position.x;
 		waypoint.y += this->m_position.y;
 		waypoint.z += this->m_position.z;
-		
+
 		return waypoint;
 	};
-	
-	
-	
+
+
+
 	//--------------------------------------------------------------------------
 	bool CBaseObject::hasWaypoints()
 	{
 		if (this->m_waypoints.empty() == true) return false;
 		return true;
 	};
-	
-	
-	
+
+
+
 	//--------------------------------------------------------------------------
 	bool CBaseObject::parseWaypoints(TiXmlElement* node)
 	{
@@ -384,21 +384,21 @@ namespace stunts {
 		pos.x = (Ogre::Real)x;
 		pos.y = (Ogre::Real)y;
 		pos.z = (Ogre::Real)z;
-		
+
 		// add to vector
 		this->m_waypoints.push_back(pos);
 		return true;
-		
+
 	}
-	
-	
-	
+
+
+
 	//--------------------------------------------------------------------------
 	bool CBaseObject::importFromWaypointFile(const char* fileName, const std::string& xmlPath)
 	{
 
 		nrLog.Log(NR_LOG_APP, "CBaseObject::importFromWaypointFile(): Read Waypoint definitions from %s", fileName);
-		
+
 		// load the xml document
 		shared_ptr<TiXmlDocument> mDoc (new TiXmlDocument(fileName));
 		if (!mDoc->LoadFile())
@@ -414,7 +414,7 @@ namespace stunts {
 		TiXmlElement* child = NULL;
 		child = rootElem->FirstChildElement("position");
 		parseWaypoints(child);
-		
+
 		// Go for other childs
 		while (child)
 		{
@@ -423,11 +423,11 @@ namespace stunts {
 				parseWaypoints(child);
 		}
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	//--------------------------------------------------------------------------
 	bool CBaseObject::loadGeometry(TiXmlElement* geomElem, const std::string& xmlPath){
@@ -452,9 +452,31 @@ namespace stunts {
 				try{
 					// Create & Load the entity
 					mEntity 	= COgreTask::GetSingleton().mSceneMgr->createEntity(mName, std::string(file));
-					mObjNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
-					//mObjNode	= mRootNode->createChildNode()
-					mObjNode->attachObject( mEntity );					
+					mObjNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode(mName);
+
+					mObjNode->attachObject( mEntity );
+
+					// create collision model
+					//static int i=0;
+					//if ((i==0) && (file != NULL) && (strcmp(file, "drive-up_bridge.mesh") == 0))
+					{
+						//std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+						//i=1;
+						//OgreOde::EntityInformer entityInformer(mEntity);
+						//mCollisionMesh.reset(
+						//	entityInformer.createStaticTriangleMesh(mLevel->PhysicsWorld()->getDefaultSpace())
+						//	);
+
+
+            // Create a box for ODE and attach it to the Ogre version
+            //OgreOde::Body* body = new OgreOde::Body();
+            //mObjNode->attachObject(body);
+            //body->setMass(OgreOde::BoxMass(0.5,Vector3(1.5,1.5,1.5)));
+
+            //OgreOde::BoxGeometry* geom = new OgreOde::BoxGeometry(Vector3(1.5,1.5,1.5),mLevel->PhysicsWorld()->getDefaultSpace());
+            //geom->setBody(body);
+
+					}
 				}catch (...){
 					nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): An error occurs by loading of the geometry node");
 					return true;
@@ -539,7 +561,7 @@ namespace stunts {
 	void CBaseObject::correctObjectsOrigin()
 	{
 		return;
-		
+
 		// only if can access to the geometry
 		if (!mObjNode || !mEntity) return;
 
@@ -636,7 +658,7 @@ namespace stunts {
 		// calculate new size
 		if (useGrid) value = mLevel->unitToMeter(value);
 		Ogre::Real scale = (value / length);
-		
+
 		mObjNode->setScale(scale, scale, scale);
 	}
 
