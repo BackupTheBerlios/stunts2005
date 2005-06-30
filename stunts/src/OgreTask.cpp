@@ -158,8 +158,9 @@ namespace stunts {
         mCamera->setOrientation(Quaternion(-0.3486, 0.0122, 0.9365, 0.0329));
 
 		//set shadows
+        //mSceneMgr->setShadowTechnique( SHADOWTYPE_TEXTURE_MODULATIVE );
 		//mSceneMgr->setShadowTechnique(SHADOWTYPE_STENCIL_MODULATIVE);
-		//mSceneMgr->setShadowColour(ColourValue(0.5,0.5,0.5));
+		//mSceneMgr->setShadowColour(ColourValue(0.5,0.2,0.2));
 
 	}
 

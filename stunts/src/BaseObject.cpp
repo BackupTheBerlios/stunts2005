@@ -297,7 +297,7 @@ namespace stunts {
 					nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): Load XML file \"%s\"",  waypointFile);
 					try
 					{
-						importFromWaypointFile(xmlPath + waypointFile, xmlPath);
+						importFromWaypointFile(std::string("../media/waypoints/") + waypointFile, xmlPath);
 
 					} catch (...)
 					{
@@ -453,7 +453,7 @@ namespace stunts {
 					// Create & Load the entity
 					mEntity 	= COgreTask::GetSingleton().mSceneMgr->createEntity(mName, std::string(file));
 					mObjNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode(mName);
-
+					//mEntity->setCastShadows( true );
 					mObjNode->attachObject( mEntity );
 				}
 				catch (...)
