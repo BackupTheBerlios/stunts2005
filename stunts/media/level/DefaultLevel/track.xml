@@ -568,6 +568,32 @@
 				<file>windmill_waypoints.xml</file>
 			</waypoints>
 		</object>
+			<object type="base">
+			<!-- windmill_sail -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<!-- if type=bottom then the given height [in given units] will be added to the terrains's ground -->
+			<posX unit="gridUnits">7</posX>
+			<posY type="bottom">10.2</posY>
+			<posZ unit="gridUnits">10</posZ>
+
+			<proportion axis="x" size="1" units="gridUnits" />
+			<stretch x="1.0" y="1.0" z="1.0" />
+
+			<geometry>
+				<file>sails.mesh</file>
+			</geometry>
+
+			
+			
+		</object>
+
 
 
 		<object type="base">
