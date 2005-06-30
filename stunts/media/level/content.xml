@@ -1,0 +1,10 @@
+<!-- Here we store information about all levels, that can be found here -->
+<levels>
+	<level>
+		<!-- Name of the level -->
+		<name name="The Default Level" path="DefaultLevel" />
+		<author name="Psyborg" datestr="Do, 30 Jun, 16:55" />
+		<thumbnail count="1" file="thumb_%i.png" />
+		
+	</level>
+</levels>
