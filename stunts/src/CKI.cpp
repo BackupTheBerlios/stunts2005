@@ -69,6 +69,8 @@ namespace stunts
 	{
 		if (controlObject == NULL)
 		{
+			controlObject.reset( (CCarObject*) mLevel->getCar(0).get() );
+			/*
 			mObjects = mLevel->Objects();
 
 			if(mObjects.size() != 0)
@@ -82,6 +84,7 @@ namespace stunts
 					}
 				}
 			}
+			*/
 		}
 		else
 		{
@@ -225,30 +228,30 @@ namespace stunts
 		
 		if ((waypoint != NULL) && (mLevel->mVehicle != NULL))
 		{
-		//	Ogre::Vector3 o_pos = controlObject->Position();
-			Ogre::Vector3 o_pos = mLevel->mVehicle->getPosition();
-		//	if(debug_ki)  std::cout << "\n  o_pos\n" << o_pos;
+			Ogre::Vector3 o_pos = controlObject->Position();
+		//	Ogre::Vector3 o_pos = mLevel->mVehicle->getPosition();
+			if(debug_ki)  std::cout << "\n  o_pos\n" << o_pos;
 
 
 			Ogre::Vector3 w_dir = waypoint->getVector() - (o_pos);
-		//	if(debug_ki)  std::cout << "\n  w_dir\n" << w_dir;
+			if(debug_ki)  std::cout << "\n  w_dir\n" << w_dir;
 		
 		
 			Ogre::Quaternion o_dir = controlObject->Orientation();
-		//	if(debug_ki)  std::cout << "\n  o_dir\n" << o_dir;
+			if(debug_ki)  std::cout << "\n  o_dir\n" << o_dir;
 		//	Ogre::Quaternion o_dir = mLevel->mVehicle->Orientation();
 
 			Ogre::Vector3* dir = new Vector3(1.f, 0.f, 0.f);
 			Ogre::Vector3 d = *dir;
 
 			Ogre::Vector3 my_richtung = (o_dir * d);
-		//	if(debug_ki)  std::cout << "\n  my_richtung\n" << my_richtung;
+			if(debug_ki)  std::cout << "\n  my_richtung\n" << my_richtung;
 			
 			my_richtung.normalise();
 			w_dir.normalise();
 			
 			msteerAngle = my_richtung.dotProduct(w_dir);
-		//	if(debug_ki)  std::cout << msteerAngle << endl;
+			if(debug_ki)  std::cout << msteerAngle << endl;
 			
 		
 		
