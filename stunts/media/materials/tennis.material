@@ -1,0 +1,53 @@
+material Material #52/Material_#28
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.588 0.588 0.588
+            diffuse 0.588 0.588 0.588
+            specular 0.9 0.9 0.9 0.0
+            emissive 0.0 0.0 0.0
+            texture_unit
+            {
+                texture filet.jpg 
+            }
+        }
+    }
+}
+
+material Material #52/Material_#25
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.588 0.588 0.588
+            diffuse 0.588 0.588 0.588
+            specular 0.9 0.9 0.9 0.0
+            emissive 0.0 0.0 0.0
+            texture_unit
+            {
+                texture tcourt.jpg
+            }
+        }
+    }
+}
+
+material Material_#54
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.588 0.588 0.588
+            diffuse 0.588 0.588 0.588
+            specular 0.9 0.9 0.9 0.0
+            emissive 0.0 0.0 0.0
+            texture_unit
+            {
+                texture bmetal.jpg 
+            }
+        }
+    }
+}
