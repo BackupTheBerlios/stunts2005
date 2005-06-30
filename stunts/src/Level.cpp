@@ -826,7 +826,11 @@ namespace stunts
 			if (currentObject->getName() == "AICar")
 			{
 				// Check if another AI Car exists, if true, then log it
-				if (!this->mAICar) this->mAICar = currentObject;
+				if (!this->mAICar) 
+				{
+					this->mAICar = currentObject;
+					this->mVehicle = ((CCarObject* )currentObject.get())->mVehicle;
+				}
 				else nrLog.Log(NR_LOG_APP, "CLevel::searchCars(): There already exists an AI Car!");
 			}
 			

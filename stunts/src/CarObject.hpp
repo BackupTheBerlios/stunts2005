@@ -102,6 +102,7 @@ namespace stunts {
 			//------------------ Variables --------------------------------------
 
 			//ODE description of the car
+		public:
 			boost::shared_ptr<OgreOde_Prefab::Vehicle> 	mVehicle;
 	};
 };

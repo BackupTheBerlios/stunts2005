@@ -168,6 +168,9 @@ namespace stunts
 		}
 		else
 		{
+			if(debug_ki)  std::cout << "waypoint " << waypoint->getVector(); 
+			
+			
 			if( waypoint->getNext() != NULL )
 			{
 				float w_dis = ( waypoint->getVector() - waypoint->getNext()->getVector() ).length();
@@ -226,10 +229,9 @@ namespace stunts
 	void CKI::computeDirection()
 	{
 		
-		if ((waypoint != NULL) && (mLevel->mVehicle != NULL))
+		if (waypoint != NULL)
 		{
 			Ogre::Vector3 o_pos = controlObject->Position();
-		//	Ogre::Vector3 o_pos = mLevel->mVehicle->getPosition();
 			if(debug_ki)  std::cout << "\n  o_pos\n" << o_pos;
 
 
@@ -239,13 +241,12 @@ namespace stunts
 		
 			Ogre::Quaternion o_dir = controlObject->Orientation();
 			if(debug_ki)  std::cout << "\n  o_dir\n" << o_dir;
-		//	Ogre::Quaternion o_dir = mLevel->mVehicle->Orientation();
 
 			Ogre::Vector3* dir = new Vector3(1.f, 0.f, 0.f);
 			Ogre::Vector3 d = *dir;
 
 			Ogre::Vector3 my_richtung = (o_dir * d);
-			if(debug_ki)  std::cout << "\n  my_richtung\n" << my_richtung;
+			if(debug_ki)  std::cout << "\n  my_richtung\n" << my_richtung << std::endl;
 			
 			my_richtung.normalise();
 			w_dir.normalise();
@@ -306,13 +307,13 @@ namespace stunts
 		{
 			if (net->isHighSpeed() >= 0 )
 			{
-//				controlObject->brake( net->isHighSteer() * net->isHighSpeed() );
+				controlObject->brake( net->isHighSteer() * net->isHighSpeed() );
 				if(debug_ki)  std::cout << "brake " << ( net->isHighSteer() * net->isHighSpeed() ) << std::endl;
 			}
 			else
 			{
 				//steer [0..1] * (1+ speed [-1..0[ ) => [0..1[
-//				controlObject->brake( net->isHighSteer() * ( 1.f + net->isHighSpeed() ) );
+				controlObject->brake( net->isHighSteer() * ( 1.f + net->isHighSpeed() ) );
 				if(debug_ki)  std::cout << "brake " << ( net->isHighSteer() * ( 1.f + net->isHighSpeed() ) ) << std::endl;
 			}
 		}
@@ -320,13 +321,13 @@ namespace stunts
 		{
 			if (net->isHighSpeed() >= 0)
 			{
-//				controlObject->accellerate( -1.f * (net->isHighSpeed()) ); //highspeed is negative!
+				controlObject->accellerate( -1.f * (net->isHighSpeed()) ); //highspeed is negative!
 				if(debug_ki)  std::cout << "accellerate " << ( -1.f * (net->isHighSpeed()) ) << std::endl;
 			}
 			else
 			{
 				// highspeed and highsteer are negative!
-//				controlObject->accellerate( net->isHighSteer() * net->isHighSpeed() );
+				controlObject->accellerate( net->isHighSteer() * net->isHighSpeed() );
 				if(debug_ki)  std::cout << "accellerate " << ( net->isHighSteer() * net->isHighSpeed() ) << std::endl;
 			}
 		}
