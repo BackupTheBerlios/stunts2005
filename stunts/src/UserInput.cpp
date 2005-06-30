@@ -78,7 +78,6 @@ namespace stunts
 			mInputDevice = mLevel->OgreTask()->mInputDevice;
 			mCamera = mLevel->OgreTask()->mCamera;
 			mTerrain = mLevel->Terrain();
-			mPhysicsExecution = mLevel->PhysicsExecution();
 		}
 
 		//return

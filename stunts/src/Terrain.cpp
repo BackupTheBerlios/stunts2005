@@ -46,6 +46,9 @@ namespace stunts
 
 		mWidthX = 0.0f;
 		mWidthZ = 0.0f;
+
+		//reset physics members
+		mFriction = 18.0f;
 	}
 
 	CTerrain::~CTerrain()
@@ -179,13 +182,22 @@ namespace stunts
 
 		// read the size of the terrain out
 		elem = rootElem->FirstChildElement("size");
-		if (elem){
+		if (elem)
+		{
 			nrCDator<float> wx (mWidthX);
 			nrCDator<float> wz (mWidthZ);
 
 			wx = std::string(elem->Attribute("widthX"));
 			wz = std::string(elem->Attribute("widthZ"));
+		}
 
+		// read the friction of the terrain out
+		elem = rootElem->FirstChildElement("physics");
+		if (elem)
+		{
+			nrCDator<float> friction(this->mFriction);
+
+			friction = std::string(elem->Attribute("friction"));
 		}
 
 		return false;

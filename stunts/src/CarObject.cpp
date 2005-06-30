@@ -37,7 +37,6 @@ namespace stunts {
 		// TODO please load the settings from the XML file
 		//mVehicle.reset(new OgreOde_Prefab::Vehicle("Jeep"));
 		//mVehicle->load("jeep_ode.xml");
-
 	}
 	//--------------------------------------------------------------------------
 	CCarObject::CCarObject(char* xmlSettingsString, const std::string& xmlPath) :
@@ -58,7 +57,6 @@ namespace stunts {
 	//--------------------------------------------------------------------------
 	bool CCarObject::parseSettings(TiXmlElement* rootElem, const std::string& xmlPath)
 	{
-
 		if (rootElem == NULL){
 			nrLog.Log(NR_LOG_APP, "CCarObject::parseSettings(): Not valid XML-Element given");
 			return true;
@@ -69,7 +67,24 @@ namespace stunts {
 		TiXmlElement* smElem = NULL;
 
 		// Ok now let the base object parse it's settings
-		return CBaseObject::parseSettings(rootElem, xmlPath);
+		if (CBaseObject::parseSettings(rootElem, xmlPath))
+			return true;
+
+		// load cars
+		if (mName.compare("AICar") == 0)
+		{
+			mVehicle.reset(new OgreOde_Prefab::Vehicle("Jeep1"));
+			mVehicle->load("jeep_ode.xml","Jeep");
+			mVehicle->setPosition(m_position);
+		}
+		else if (mName.compare("HumanPlayerCar") == 0)
+		{
+			mVehicle.reset(new OgreOde_Prefab::Vehicle("Subaru1"));
+			mVehicle->load("subaru_ode.xml","Subaru");
+			mVehicle->setPosition(m_position);
+		}
+
+		return false;
 	}
 	bool CCarObject::brake(float brakePedal)
 	{

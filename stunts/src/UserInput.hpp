@@ -21,7 +21,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
  * USA.
  */
- 
+
 
 #ifndef _CUSERINPUT_H_
 #define _CUSERINPUT_H_
@@ -77,8 +77,6 @@ namespace stunts
 			boost::shared_ptr< Ogre::InputReader >	mInputDevice;
 			boost::shared_ptr< Ogre::Camera >		mCamera;
 			boost::shared_ptr< CTerrain >			mTerrain;
-
-			boost::shared_ptr<OgreOde::Stepper> mPhysicsExecution;	//foreign
 
 			bool mActivated;
 

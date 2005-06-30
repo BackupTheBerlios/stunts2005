@@ -148,7 +148,6 @@ namespace stunts {
 		//std::cout << "Level:" << (mLevel != NULL) << std::endl;
 		//std::cout << "Terrain:" << (mLevel->Terrain() != NULL) << std::endl;
 
-
 		nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): Start parsing the settings");
 
 		if (rootElem == NULL){
@@ -491,7 +490,7 @@ namespace stunts {
 		}
 
 
-		return parseSettings(rootElem, xmlPath);
+		return CBaseObject::parseSettings(rootElem, xmlPath);
 	}
 
 
@@ -521,7 +520,7 @@ namespace stunts {
 		}
 
 
-		return parseSettings(rootElem, xmlPath);
+		return CBaseObject::parseSettings(rootElem, xmlPath);
 	}
 
 	//--------------------------------------------------------------------------

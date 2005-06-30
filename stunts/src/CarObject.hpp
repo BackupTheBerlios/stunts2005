@@ -56,8 +56,8 @@ namespace stunts {
 			* @params none
 			*
 			* @return none
-			*/                  
-			~CCarObject();                
+			*/
+			~CCarObject();
 
 			bool 		brake(float brakePedal);
 			bool 		steer(float gasPedal);
@@ -65,7 +65,7 @@ namespace stunts {
 
 			static	const char* getObjectTypeSt() 		{ return "car"; }
 			const char* getObjectType() 			{ return CCarObject::getObjectTypeSt(); }
-       
+
 			// Pointer to gearbox and engine
 			boost::shared_ptr<CGearBox>	getGearbox() 	{ return m_Gear; }
 			boost::shared_ptr<CEngine>	getEngine()	{ return m_Engine; }

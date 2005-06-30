@@ -45,6 +45,14 @@ namespace stunts
 		mGridCountInX = 30;
 		mGridCountInZ = 30;
 
+		//reset physics members
+		mGravity = 9.80665;
+		mCFM = 10e-5;
+		mERP = 0.8;
+		mCCV = 1.0;
+
+		mTerrainFriction = 18.0;
+
 		registerVariables();
 	}
 
@@ -107,26 +115,23 @@ namespace stunts
 		// remove all objects that we are have got at now
 		mObjects.clear();
 
-        // Get the gravity for this level
-		elem = rootElem->FirstChildElement("gravity");
+        // Get the physics values for this level
+		elem = rootElem->FirstChildElement("physics");
 		if (elem)
-			readGravity(elem);
+			readPhysics(elem);
 
-		// check for terrain file
+		// initialize ODE (after the global level settings and
+		//	before the terrain or the objects)
+		InitializeODE();
+
+		// check for terrain file and get its friction
 		elem = rootElem->FirstChildElement("terrain");
 		if (elem)
 			readTerrain(elem);
 
-//######################################
-//unproper!!
-
-// if you don't call the OGRE task
-// you cannot get the terrain height!
-
-//FIX THIS!
-
+		// initialize Ogre (fefore the objects are loaded, so they can get
+		//	the terrain height)
 		COgreTask::GetSingleton().taskUpdate();
-//######################################
 
 		// check now for object in the file
 		elem = rootElem->FirstChildElement("objects");
@@ -258,17 +263,22 @@ namespace stunts
 
 
 	//--------------------------------------------------------------------------
-	void CLevel::readGravity(TiXmlElement* elem)
+	void CLevel::readPhysics(TiXmlElement* elem)
 	{
-		nrLog.Log(NR_LOG_APP, "CLevel::readGravity(): Read the gravity value for the level");
+		nrLog.Log(NR_LOG_APP, "CLevel::readPhysics(): Read the physics values for the level");
 
-		// The gravity node should contain only the text containing only a float number
+		// The gravity node should contain only the text of a float number
 		// We can easely setup the gravity from the string by using the dator class
 		nrCDator<float32>	gravity(this->mGravity);
+		nrCDator<float32>	cfm(this->mCFM);
+		nrCDator<float32>	erp(this->mERP);
+		nrCDator<float32>	ccv(this->mCCV);
 
 		// assign string to the gravity value
-		gravity = elem->Attribute("value");
-
+		gravity = elem->Attribute("gravity");
+		cfm = elem->Attribute("CFM");
+		erp = elem->Attribute("ERP");
+		ccv = elem->Attribute("CCV");
 	}
 	//--------------------------------------------------------------------------
 	void CLevel::readGridsize(TiXmlElement* elem)
@@ -312,6 +322,8 @@ namespace stunts
 			mTerrain->importFromFile((mLevelFilePath + smElem->Attribute("file")).c_str(), smElem->Attribute("root"));
 		}
 
+		//get its friction
+		mTerrainFriction = mTerrain->getFriction();
 	}
 
 	//--------------------------------------------------------------------------
@@ -420,12 +432,6 @@ namespace stunts
 		//get all tasks and set member attributes
 		getEngineTasks();
 
-		//create the mPhysicsExecution member
-		float time_step = 0.01;
-		mPhysicsExecution.reset(new OgreOde::ForwardFixedQuickStepper(time_step));
-		//mPhysicsExecution.reset(new OgreOde::ExactVariableQuickStepper(time_step));
-
-
 		//create terrain (after the engine tasks have been gotten)
 		//mTerrain.reset(new CTerrain (OgreTask()->mSceneMgr));
 
@@ -452,17 +458,9 @@ namespace stunts
 			(mOgreTask->mSceneMgr != NULL)){
 			mShouldLoadLevel = false;
 
-			//(re-)set the Physics World
-			mPhysicsWorld.reset(new OgreOde::World(mOgreTask->mSceneMgr.get()));
-
 			//load the level and its physics
 			if (loadLevel(mLevelFileName))
 				return NR_UNKNOWN_ERROR;
-			//else
-			{
-				//initialize ODE if the level ist loaded
-				InitializeODE();
-			}
 		}
 
 		return NR_OK;
@@ -517,12 +515,6 @@ namespace stunts
 	boost::shared_ptr< CTerrain >  CLevel::Terrain()
 	{
 		return mTerrain;
-	}
-
-	//--------------------------------------------------------------------------
-	boost::shared_ptr<OgreOde::Stepper> CLevel::PhysicsExecution()
-	{
-		return mPhysicsExecution;
 	}
 
 	//--------------------------------------------------------------------------
@@ -725,7 +717,7 @@ namespace stunts
 		if(!OgreOde_Prefab::Vehicle::handleTyreCollision(contact))
 		{
 			contact->setBouncyness(0.0);
-			contact->setCoulombFriction(18.0);
+			contact->setCoulombFriction(mTerrainFriction);
 		}
 		return true;
 	}
@@ -734,24 +726,27 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	void CLevel::InitializeODE()
 	{
-//TODO: please load the values from the XML file!!
-		mPhysicsWorld->setGravity(Vector3(0,-9.80665,0));
-		mPhysicsWorld->setCFM(10e-5);
-		mPhysicsWorld->setERP(0.8);
-		mPhysicsWorld->setAutoSleep(true);
-		mPhysicsWorld->setContactCorrectionVelocity(1.0);
+		//(re-)set the Physics World
+		mPhysicsWorld.reset(new OgreOde::World(mOgreTask->mSceneMgr.get()));
 
+		//set its parameters
+		mPhysicsWorld->setGravity(Vector3(0,-mGravity,0));
+		mPhysicsWorld->setCFM(mCFM);
+		mPhysicsWorld->setERP(mERP);
+		mPhysicsWorld->setAutoSleep(true);
+		mPhysicsWorld->setContactCorrectionVelocity(mCCV);
 
 		mPhysicsWorld->setCollisionListener(this);
 
+
 		//TEST vehiclee here
-		mVehicle.reset(new OgreOde_Prefab::Vehicle("Jeep"));
-		mVehicle->load("jeep_ode.xml");
+//		mVehicle.reset(new OgreOde_Prefab::Vehicle("Jeep"));
+//		mVehicle->load("jeep_ode.xml");
 		//mVehicle.reset(new OgreOde_Prefab::Vehicle("Subaru"));
 		//mVehicle->load("subaru_ode.xml");
 
 		//set position to the vehicle
-		Vector3 v_pos(150,5,150);
+/*		Vector3 v_pos(150,5,150);
 		mVehicle->setPosition(v_pos);
 		//mVehicle->getSceneNode()->setScale(3.0f ,3.0f ,3.0f);
 
@@ -798,6 +793,6 @@ namespace stunts
 		OgreOde::EntityInformer ei2(crate_mesh);
 
 		body = ei2.createSingleDynamicBox(0.02, mPhysicsWorld->getDefaultSpace());
-
+*/
 	}
 };

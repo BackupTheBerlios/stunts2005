@@ -84,6 +84,11 @@ namespace stunts
 		 **/
 		float getWidthZ();
 
+		/**
+		 * Return the coulomb friction of the terrain
+		*/
+		inline float32 getFriction(){return mFriction;};
+
 	protected:
 		void Init(std::string terrainFile);
 
@@ -92,11 +97,13 @@ namespace stunts
 		boost::shared_ptr< Ogre::SceneManager >	mSceneMgr;
 		boost::shared_ptr< CLevel > mLevel;
 
-		boost::shared_ptr<OgreOde::TerrainGeometry> mTerrain;
-
 		float mWidthX;
 		float mWidthZ;
 
+
+		// OgreODE
+		boost::shared_ptr<OgreOde::TerrainGeometry> mTerrain;
+		float32 mFriction;
 	};
 }
 

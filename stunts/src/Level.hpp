@@ -115,14 +115,6 @@ namespace stunts
 
 
 			/**
-			 * Get PhysicsExecution
-			 *
-			 * @return smart pointer to PhysicsExecution class
-			 */
-			boost::shared_ptr<OgreOde::Stepper> PhysicsExecution();
-
-
-			/**
 			 * Get PhysicsWorld
 			 *
 			 * @return smart pointer to PhysicsWorld class
@@ -136,7 +128,7 @@ namespace stunts
 			 * @return Objects
 			 */
 			std::vector<boost::shared_ptr<CBaseObject> >& Objects();
- 
+
 
 			/**
 			 * Convert given GridUnits into Meters
@@ -165,7 +157,7 @@ namespace stunts
 			 * @return true=success / false=no success
 			 */
 			bool buildWaypointPath();
-			
+
 			// Find nearest waypoint
 			boost::shared_ptr< CWaypoint >  findNearestWaypoint(boost::shared_ptr<CWaypoint> waypointFrom, int ObjectId);
 
@@ -187,8 +179,8 @@ namespace stunts
 			 */
 			void getEngineTasks();
 
-			//! Parse the gravity value of the level file
-			void readGravity(TiXmlElement* elem);
+			//! Parse the physics values of the level file
+			void readPhysics(TiXmlElement* elem);
 
 			//! Parse the gridsize value of the level file
 			void readGridsize(TiXmlElement* elem);
@@ -215,7 +207,6 @@ namespace stunts
 
 			std::vector<boost::shared_ptr<CBaseObject> >	mObjects;
 
-			float32						mGravity;
 			std::string					mLevelFileName;
 			std::string					mLevelFilePath;
 
@@ -227,18 +218,22 @@ namespace stunts
 
 			std::vector<boost::shared_ptr<CWaypoint> >	mWaypoints;
 
-			//
-			boost::shared_ptr<OgreOde::World> mPhysicsWorld;
-			boost::shared_ptr<OgreOde::Stepper> mPhysicsExecution;
-
 			// Debuggingfunctions for printing waypoints
 			void drawWaypoint(Ogre::Vector3 pos, int i);
 			void drawWaypoint(Ogre::Vector3 min, Ogre::Vector3 max, int i);
 
 
-			// ODE
-			bool collision(OgreOde::Contact* contact);
+			// OgreODE
+			boost::shared_ptr<OgreOde::World> mPhysicsWorld;
 
+			float32						mGravity;
+			float32						mCFM;
+			float32						mERP;
+			float32						mCCV;
+
+			float32						mTerrainFriction;
+
+			bool collision(OgreOde::Contact* contact);
 			void InitializeODE();
 	};
 

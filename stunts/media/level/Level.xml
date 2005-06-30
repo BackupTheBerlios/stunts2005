@@ -1,7 +1,7 @@
 <!-- this is a level -->
 <level>
 
-	<gravity value="9.81" />
+	<physics gravity="9.80665" CFM="10e-5" ERP="0.8" CCV="1.0"/>
 
 	<terrain>
 		<import root="terrain" file="Terrain4.xml" />
@@ -10,19 +10,22 @@
 	<objects>
 		<object type="car">
 			<name>HumanPlayerCar</name>
-			<import file="CarBMW.xml" />
+			<import file="jeep.xml" />
 			<control name="Human" />
 
 			<posX unit="gridUnits">10</posX>
 			<posY unit="gridUnits" type="bottom">0</posY>
 			<posZ unit="gridUnits">13</posZ>
-
 		</object>
 
 		<object type="car">
 			<name>AICar</name>
-			<import file="CarBMW.xml" />
+			<import file="subaru.xml" />
 			<control name="AICar" />
+
+			<posX unit="gridUnits">13</posX>
+			<posY unit="gridUnits" type="bottom">0</posY>
+			<posZ unit="gridUnits">10</posZ>
 		</object>
 
 		<!-- this imports all track objects -->
