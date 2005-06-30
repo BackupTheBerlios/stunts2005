@@ -70,40 +70,38 @@ namespace stunts
 	{
 		public:
 			//only to test here
-			boost::shared_ptr<OgreOde_Prefab::Vehicle> mVehicle;
-
-
+			boost::shared_ptr<OgreOde_Prefab::Vehicle> 	mVehicle;
 
 
 			CLevel();
 			virtual ~CLevel();
 
 			//! Register all used variables by the settings manager
-			void registerVariables();
+			void 						registerVariables();
 
 			//! Remove all used variables from the settings manager
-			void deregisterVariables();
+			void 						deregisterVariables();
 
 			/**
 			 * Loads the level by given XML-String
 			 * @param levelFile Filename of file containing XML-Data about the level
 			 * @return 0 if no error occurs otherwise 1
 			 **/
-			bool	loadLevel(const std::string& levelFile);
+			bool						loadLevel(const std::string& levelFile);
 
 			/**
 			 * Get OgreTask
 			 *
 			 * @return smart pointer to OgreTask class
 			 */
-			boost::shared_ptr< COgreTask > 		OgreTask();
+			boost::shared_ptr< COgreTask > 			OgreTask();
 
 			/**
 			 * Get UserInput
 			 *
 			 * @return smart pointer to UserInput class
 			 */
-			boost::shared_ptr< CUserInput > 	UserInput();
+			boost::shared_ptr< CUserInput > 		UserInput();
 
 
 			/**
@@ -111,7 +109,7 @@ namespace stunts
 			 *
 			 * @return smart pointer to Terrain class
 			 */
-			boost::shared_ptr< CTerrain >	Terrain();
+			boost::shared_ptr< CTerrain >			Terrain();
 
 
 			/**
@@ -119,7 +117,7 @@ namespace stunts
 			 *
 			 * @return smart pointer to PhysicsWorld class
 			 */
-			boost::shared_ptr<OgreOde::World> PhysicsWorld();
+			boost::shared_ptr<OgreOde::World> 		PhysicsWorld();
 
 
 			/**
@@ -127,7 +125,7 @@ namespace stunts
 			 *
 			 * @return Objects
 			 */
-			std::vector<boost::shared_ptr<CBaseObject> >& Objects();
+			std::vector<boost::shared_ptr<CBaseObject> >& 	Objects();
 
 
 			/**
@@ -136,20 +134,23 @@ namespace stunts
 			 * @return Vector containing the position vector. The returned vector has y set to 0
 			 * 			so you have to reset the y to right position.
 			 **/
-			Ogre::Vector3 unitsToMeters(int32 x, int32 z);
+			Ogre::Vector3 					unitsToMeters(int32 x, int32 z);
+
 
 			/**
 			 * Convert given GridUnit into Meter
 			 * @param x Grid unit
 			 * @return Value in meters. Assume the terrain is quadratic
 			 **/
-			Ogre::Real unitToMeter(int32 x);
+			Ogre::Real 					unitToMeter(int32 x);
+
 
 			/**
 			 * Same as unitToMeter, but convert from float unit value, to float meter value.
 			 * This can help to prevent roundings errors by converting the values
 			 **/
-			Ogre::Real unitToMeter(float32 x);
+			Ogre::Real 					unitToMeter(float32 x);
+
 
 			/**
 			 * Put all waypoints of all objects together
@@ -158,50 +159,70 @@ namespace stunts
 			 */
 			bool buildWaypointPath();
 
+
 			// Find nearest waypoint
-			boost::shared_ptr< CWaypoint >  findNearestWaypoint(boost::shared_ptr<CWaypoint> waypointFrom, int ObjectId);
+			boost::shared_ptr< CWaypoint >  		findNearestWaypoint(boost::shared_ptr<CWaypoint> waypointFrom, int ObjectId);
+
 
 			// Get first waypoint
-			boost::shared_ptr<CWaypoint> getFirstWaypoint();
+			boost::shared_ptr<CWaypoint> 			getFirstWaypoint();
+
 
 			// Get next i Waypoint
-			boost::shared_ptr<CWaypoint> getNextWaypoint(boost::shared_ptr<CWaypoint> waypoint, int nr);
+			boost::shared_ptr<CWaypoint> 			getNextWaypoint(boost::shared_ptr<CWaypoint> waypoint, int nr);
+			
+			
+			/**
+			 * Search car with given Name
+			 * 
+			 * @param int whichCar (0 == CAR_AI, 1 == CAR_HUMAN)
+			 *
+			 * @return Smart pointer to object
+			 */
+			boost::shared_ptr<CBaseObject> 			getCar(int whichCar);
 
 		protected:
-			virtual nrResult taskInit();
-			virtual nrResult taskStart();
-			virtual nrResult taskUpdate();
-			virtual nrResult taskStop();
-			virtual const char* taskGetName() {return "LevelTask";}
+			virtual nrResult 				taskInit();
+			virtual nrResult 				taskStart();
+			virtual nrResult 				taskUpdate();
+			virtual nrResult 				taskStop();
+			virtual const char* 				taskGetName() {return "LevelTask";}
 
 			/**
 			 * get all tasks to initialize own member variables.
 			 */
-			void getEngineTasks();
+			void 						getEngineTasks();
+
 
 			//! Parse the physics values of the level file
-			void readPhysics(TiXmlElement* elem);
+			void 						readPhysics(TiXmlElement* elem);
+
 
 			//! Parse the gridsize value of the level file
-			void readGridsize(TiXmlElement* elem);
+			void 						readGridsize(TiXmlElement* elem);
+
 
 			//! Parse the terrain node of the xml file
-			void readTerrain(TiXmlElement* elem);
+			void 						readTerrain(TiXmlElement* elem);
+
 
 			//! Parse teh objects node of the level file
-			void readObjects(TiXmlElement* elem);
+			void 						readObjects(TiXmlElement* elem);
+
 
 			//! Parse the atmosphere node of the file
-			void readAtmosphere(TiXmlElement* elem);
+			void 						readAtmosphere(TiXmlElement* elem);
+
 
 			//! import file containing data of the track
-			void importTrackFile(const char* fileName, const char* root = NULL);
+			void 						importTrackFile(const char* fileName, const char* root = NULL);
+
 
 			//member variables
 			boost::shared_ptr< COgreTask >			mOgreTask;
 			boost::shared_ptr< CUserInput > 		mUserInput;
 
-			boost::shared_ptr< Ogre::InputReader >	mInputDevice;
+			boost::shared_ptr< Ogre::InputReader >		mInputDevice;
 			boost::shared_ptr< CTerrain > 			mTerrain;
 			boost::shared_ptr< CAtmosphere >		mAtmosphere;
 
@@ -218,13 +239,14 @@ namespace stunts
 
 			std::vector<boost::shared_ptr<CWaypoint> >	mWaypoints;
 
+
 			// Debuggingfunctions for printing waypoints
 			void drawWaypoint(Ogre::Vector3 pos, int i);
 			void drawWaypoint(Ogre::Vector3 min, Ogre::Vector3 max, int i);
 
 
 			// OgreODE
-			boost::shared_ptr<OgreOde::World> mPhysicsWorld;
+			boost::shared_ptr<OgreOde::World> 		mPhysicsWorld;
 
 			float32						mGravity;
 			float32						mCFM;
@@ -235,6 +257,15 @@ namespace stunts
 
 			bool collision(OgreOde::Contact* contact);
 			void InitializeODE();
+			
+			
+			// Pointer to user / ai car object
+			boost::shared_ptr<CBaseObject>			mAICar;
+			boost::shared_ptr<CBaseObject>			mHumanCar;
+			
+			// Function to search for cars in BaseObjects vector
+			void						searchCars();
+			
 	};
 
 };

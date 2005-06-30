@@ -183,6 +183,9 @@ namespace stunts
 		else
 			nrLog.Log(NR_LOG_APP, "CLevel::loadlevel(): Unable to build waypoint path");
 
+		// Search for cars
+		searchCars();
+
 		return false;
 	}
 
@@ -794,5 +797,45 @@ namespace stunts
 
 		body = ei2.createSingleDynamicBox(0.02, mPhysicsWorld->getDefaultSpace());
 */
+	}
+
+
+
+	//--------------------------------------------------------------------------
+	boost::shared_ptr<CBaseObject> CLevel::getCar(int whichCar)
+	{
+		const int CAR_AI	= 0;
+		const int CAR_HUMAN	= 1;
+		
+		if      (whichCar == CAR_AI)    return this->mAICar;
+		else if (whichCar == CAR_HUMAN) return this->mHumanCar;
+	}
+	
+	
+	
+	//--------------------------------------------------------------------------	
+	void CLevel::searchCars()
+	{
+		shared_ptr<CBaseObject> currentObject;
+		int i = 0;
+		while (i < mObjects.size())
+		{
+		 	currentObject = mObjects[i];
+			i++;
+			
+			if (currentObject->getName() == "AICar")
+			{
+				// Check if another AI Car exists, if true, then log it
+				if (!this->mAICar) this->mAICar = currentObject;
+				else nrLog.Log(NR_LOG_APP, "CLevel::searchCars(): There already exists an AI Car!");
+			}
+			
+			if (currentObject->getName() == "HumanPlayerCar")
+			{
+				// Check if another AI Car exists, if true, then log it
+				if (!this->mHumanCar) this->mHumanCar = currentObject;
+				else nrLog.Log(NR_LOG_APP, "CLevel::searchCars(): There already exists an Human Player Car!");
+			}
+		}
 	}
 };
