@@ -73,28 +73,19 @@ namespace stunts {
 		// load cars
 		if (mName.compare("AICar") == 0)
 		{
-			mVehicle.reset(new OgreOde_Prefab::Vehicle("Jeep1"));
+			mVehicle.reset(new OgreOde_Prefab::Vehicle("AICar"));
 			mVehicle->load("jeep_ode.xml","Jeep");
 			mVehicle->setPosition(m_position);
 		}
 		else if (mName.compare("HumanPlayerCar") == 0)
 		{
-			mVehicle.reset(new OgreOde_Prefab::Vehicle("Subaru1"));
+			mVehicle.reset(new OgreOde_Prefab::Vehicle("HumanPlayerCar"));
 			mVehicle->load("subaru_ode.xml","Subaru");
 			mVehicle->setPosition(m_position);
 		}
 
 		return false;
 	}
-	bool CCarObject::brake(float brakePedal)
-	{
-		this->m_brake = brakePedal;
-	};
 
-
-	bool CCarObject::steer(float steer)
-	{
-
-	};
 
 };

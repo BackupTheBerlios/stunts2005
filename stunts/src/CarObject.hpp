@@ -59,32 +59,39 @@ namespace stunts {
 			*/
 			~CCarObject();
 
-			bool 		brake(float brakePedal);
-			bool 		steer(float gasPedal);
+			
+			bool 				steer(float gasPedal);
 
 
-			static	const char* getObjectTypeSt() 		{ return "car"; }
-			const char* getObjectType() 			{ return CCarObject::getObjectTypeSt(); }
+			static	const char* getObjectTypeSt() 
+					{ return "car"; }
+			const char* 	getObjectType()   
+					{ return CCarObject::getObjectTypeSt(); }
 
-			// Pointer to gearbox and engine
-			boost::shared_ptr<CGearBox>	getGearbox() 	{ return m_Gear; }
-			boost::shared_ptr<CEngine>	getEngine()	{ return m_Engine; }
 
-			// Functions for gearbox
-			bool				shiftUp()	{ return this->m_Gear->shiftUp(); }
-			bool				shiftDown()	{ return this->m_Gear->shiftDown(); }
+			// Functions for gearbox & engine
+			inline void	shiftUp()
+					{ this->mVehicle->getEngine()->changeUp();				}
+			inline void	shiftDown()
+					{ this->mVehicle->getEngine()->changeDown();				}
+			inline void	setGear(unsigned int i)
+					{ this->mVehicle->getEngine()->setGear(i);				}
+			inline void 	setAutoBox(bool automatic)
+					{ this->mVehicle->getEngine()->setAutoBox(automatic);			}
 
 
 			// Funktions for engine
-			inline	bool				accellerate(float throttle)
-				{ return this->m_Engine->accellerate(throttle); }
-			inline	int	getRpm()	{ return this->m_Engine->getRpm(); }
-			inline	int	getMinRpm()	{ return this->m_Engine->getMinRpm(); }
-			inline	int	getMaxRpm()	{ return this->m_Engine->getMaxRpm(); }
-
+			inline void	accellerate(float throttle)
+					{ this->mVehicle->getEngine()->setInputs(throttle, 0.0);		}
+			inline void 	brake(float brake)
+					{ this->mVehicle->getEngine()->setInputs(0.0, brake);			}
+			inline void 	accellerate_brake(bool throttle, bool brake)
+					{ this->mVehicle->getEngine()->setInputs(throttle, brake); 		}
+			
+			
 			//ODE object
-			inline	boost::shared_ptr<OgreOde_Prefab::Vehicle>	ODEVehicle()
-				{ return this->mVehicle; }
+			inline boost::shared_ptr<OgreOde_Prefab::Vehicle>	ODEVehicle()
+					{ return this->mVehicle; 						}
 
 
 		protected:
@@ -94,20 +101,8 @@ namespace stunts {
 
 			//------------------ Variables --------------------------------------
 
-			// Gearbox of car
-			boost::shared_ptr<CGearBox>	m_Gear;
-
-			// Engine of car
-			boost::shared_ptr<CEngine>	m_Engine;
-
-			// Vector with carwheels
-			std::vector<boost::shared_ptr<CWheel> >	wheels;
-
-			// brakepedal value
-			float		m_brake;
-
 			//ODE description of the car
-			boost::shared_ptr<OgreOde_Prefab::Vehicle> mVehicle;
+			boost::shared_ptr<OgreOde_Prefab::Vehicle> 	mVehicle;
 	};
 };
 #endif
