@@ -34,6 +34,7 @@ namespace stunts
 		~CNeuralNetwork();
 		
 		void makeNetwork();
+		void runNetwork();
 		float isHighSteer();
 		float isHighSpeed();
 	};

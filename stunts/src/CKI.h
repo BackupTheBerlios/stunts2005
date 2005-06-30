@@ -66,23 +66,22 @@ namespace stunts
 			void executeKI (float delaySeconds);
 			
 			// setter
-			void setLevelOfSkill		(int levelSkill);
-			void setLevelOfAggressivity	(int levelAggro);
-			void setLevelOfReaction	(int levelReac);
+			void CKI::setLevelOfSkill (float levelSkill)		{this->levelOfSkill = levelSkill;}
+			void CKI::setLevelOfAggressivity (float levelAggro)	{this->levelOfAggressivity = levelAggro;}
+			void CKI::setLevelOfReaction (float levelReac)		{this->levelOfReaction = levelReac;}
 		 
 			// getter
-			int getLevelOfSkill();
-			int getLevelOfAggressivity();
-			int getLevelOfReaction();
+			float* CKI::getLevelOfSkill()			{	return &levelOfSkill;	}
+			float* CKI::getLevelOfAggressivity()	{	return &levelOfAggressivity;	}
+			float* CKI::getLevelOfReaction()		{	return &levelOfReaction;	}
 			
-			inline float steerAngle()
-				{return msteerAngle;};
+			float* steerAngle()	{return &msteerAngle;};
 		 
 			virtual const char* taskGetName() {return "KITask";}
 							
 		protected:
 		
-			static const bool debug_ki = false;
+			static const bool debug_ki = true;
 		
 			virtual nrResult taskInit();
 			virtual nrResult taskStart();
@@ -99,11 +98,13 @@ namespace stunts
 		
 			float msteerAngle;
 			
-			int levelOfSkill;
-			int levelOfAggressivity;
-			int levelOfReaction;
+			float levelOfSkill;
+			float levelOfAggressivity;
+			float levelOfReaction;
 		
 		
+			void actualizeWaypoint();
+			
 			void computeStrategy();
 			
 			

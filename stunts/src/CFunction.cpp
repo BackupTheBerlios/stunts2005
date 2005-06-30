@@ -66,33 +66,30 @@ namespace stunts
 				steerOr21.push_back(1.f);
 				*/
 			//Inputs
-			CNeurode* reactN = new CNeurode(0, neurode_LINEAR);
-			float react = ki->getLevelOfReaction();
-			reactN->addInput(0, NULL, &react);
-			reactN->runNeurode();
+			steerReactN = new CNeurode(0, neurode_LINEAR);
+			steerReactN->addInput(0, NULL, ki->getLevelOfReaction() );
+			steerReactN->runNeurode();
 	
-			CNeurode* steerangelN = new CNeurode(0, neurode_LINEAR);
-			float steerangel = ki->steerAngle();
-			steerangelN->addInput(0, NULL, &steerangel);
-			steerangelN->runNeurode();
+			steerSteerangelN = new CNeurode(0, neurode_LINEAR);
+			steerSteerangelN->addInput(0, NULL, ( ki->steerAngle() ));
+			steerSteerangelN->runNeurode();
 	
-			CNeurode* aggresN = new CNeurode(0, neurode_LINEAR);
-			float aggres = ki->getLevelOfAggressivity();
-			aggresN->addInput(0, NULL, &aggres);
-			aggresN->runNeurode();
+			steerAggresN = new CNeurode(0, neurode_LINEAR);
+			steerAggresN->addInput(0, NULL, ki->getLevelOfAggressivity());
+			steerAggresN->runNeurode();
 	
 			//Verrechnung
 			steerNeurodeAnd11 = new CNeurode(2);
 			steerNeurodeAnd11->addInput(0, NULL, &(steerAnd11[0]));
-			steerNeurodeAnd11->addInput(1, reactN, &(steerAnd11[1]));
-			steerNeurodeAnd11->addInput(2, steerangelN, &(steerAnd11[2]));
+			steerNeurodeAnd11->addInput(1, steerReactN, &(steerAnd11[1]));
+			steerNeurodeAnd11->addInput(2, steerSteerangelN, &(steerAnd11[2]));
 			steerNeurodeAnd11->runNeurode();
 			//printf("and11 = %f\n", (steerNeurodeAnd11->getOutput()));
 	
 			steerNeurodeAndnot12 = new CNeurode(2);
 			steerNeurodeAndnot12->addInput(0, NULL, &(steerAndnot12[0]));
-			steerNeurodeAndnot12->addInput(1, steerangelN, &(steerAndnot12[1]));
-			steerNeurodeAndnot12->addInput(2, aggresN, &(steerAndnot12[2]));
+			steerNeurodeAndnot12->addInput(1, steerSteerangelN, &(steerAndnot12[1]));
+			steerNeurodeAndnot12->addInput(2, steerAggresN, &(steerAndnot12[2]));
 			steerNeurodeAndnot12->runNeurode();
 			//printf("andnot12 = %f\n", (steerNeurodeAndnot12->getOutput()));
 	
@@ -121,33 +118,31 @@ namespace stunts
 			speedOr21.push_back(1.f);
 			*/
 			//Inputs
-			CNeurode* reactN = new CNeurode(0, neurode_LINEAR);
-			float react = ki->getLevelOfReaction();
-			reactN->addInput(0, NULL, &react);
-			reactN->runNeurode();
+			speedReactN = new CNeurode(0, neurode_LINEAR);
+			speedReactN->addInput(0, NULL, ki->getLevelOfReaction());
+			speedReactN->runNeurode();
 	
-			CNeurode* speedN = new CNeurode(0, neurode_LINEAR);
+			speedSpeedN = new CNeurode(0, neurode_LINEAR);
 			float speed = 50.f;
-			speedN->addInput(0, NULL, &speed);
-			speedN->runNeurode();
+			speedSpeedN->addInput(0, NULL, &speed);
+			speedSpeedN->runNeurode();
 	
-			CNeurode* aggresN = new CNeurode(0, neurode_LINEAR);
-			float aggres = ki->getLevelOfAggressivity();
-			aggresN->addInput(0, NULL, &aggres);
-			aggresN->runNeurode();
+			speedAggresN = new CNeurode(0, neurode_LINEAR);
+			speedAggresN->addInput(0, NULL, ki->getLevelOfAggressivity());
+			speedAggresN->runNeurode();
 	
 			//Verrechnung, Aufstellung des Netzes
 			speedNeurodeAnd11 = new CNeurode(2);
 			speedNeurodeAnd11->addInput(0, NULL, &(speedAnd11[0]));
-			speedNeurodeAnd11->addInput(1, reactN, &(speedAnd11[1]));
-			speedNeurodeAnd11->addInput(2, speedN, &(speedAnd11[2]));
+			speedNeurodeAnd11->addInput(1, speedReactN, &(speedAnd11[1]));
+			speedNeurodeAnd11->addInput(2, speedSpeedN, &(speedAnd11[2]));
 			speedNeurodeAnd11->runNeurode();
 			//printf("and11 = %f\n", (speedNeurodeAnd11->getOutput()));
 	
 			speedNeurodeAndnot12 = new CNeurode(2);
 			speedNeurodeAndnot12->addInput(0, NULL, &(speedAndnot12[0]));
-			speedNeurodeAndnot12->addInput(1, speedN, &(speedAndnot12[1]));
-			speedNeurodeAndnot12->addInput(2, aggresN, &(speedAndnot12[2]));
+			speedNeurodeAndnot12->addInput(1, speedSpeedN, &(speedAndnot12[1]));
+			speedNeurodeAndnot12->addInput(2, speedAggresN, &(speedAndnot12[2]));
 			speedNeurodeAndnot12->runNeurode();
 			//printf("andnot12 = %f\n", (speedNeurodeAndnot12->getOutput()));
 	
@@ -158,6 +153,30 @@ namespace stunts
 			speedNeurodeOr21->runNeurode();
 			//printf("or21 = %f\n", (speedNeurodeOr21->getOutput()));
 	
+		}
+	}
+	
+	
+	void CFunction::runFunction()
+	{
+		if(function == STEER)
+		{
+			steerReactN->runNeurode();
+			steerSteerangelN->runNeurode();
+			steerAggresN->runNeurode();
+			steerNeurodeAnd11->runNeurode();
+			steerNeurodeAndnot12->runNeurode();
+			steerNeurodeOr21->runNeurode();
+		}
+	
+		if(function == SPEED)
+		{
+			speedReactN->runNeurode();
+			speedSpeedN->runNeurode();
+			speedAggresN->runNeurode();
+			speedNeurodeAnd11->runNeurode();
+			speedNeurodeAndnot12->runNeurode();
+			speedNeurodeOr21->runNeurode();
 		}
 	}
 	

@@ -27,13 +27,19 @@ namespace stunts
 	//	printf("Steer = %f\n", *functionSteer->getOutput());
 	}
 	
+	void CNeuralNetwork::runNetwork()
+	{	
+		functionSteer->runFunction();
+		functionSpeed->runFunction();
+	}
+	
 	float CNeuralNetwork::isHighSteer()
 	{
-		return *functionSpeed->getOutput();
+		return *functionSteer->getOutput();
 	}
 	
 	float CNeuralNetwork::isHighSpeed()
 	{
-		return *functionSteer->getOutput();
+		return *functionSpeed->getOutput();
 	}
 }

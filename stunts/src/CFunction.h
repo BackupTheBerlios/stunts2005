@@ -36,9 +36,15 @@ namespace stunts
 		vector<float> steerAnd11;
 		vector<float> steerAndnot12;
 		vector<float> steerOr21;*/
+		
 		float* steerAnd11;
 		float* steerAndnot12;
 		float* steerOr21;
+		
+		CNeurode* steerReactN;
+		CNeurode* steerSteerangelN;
+		CNeurode* steerAggresN;
+		
 		CNeurode* steerNeurodeAnd11;
 		CNeurode* steerNeurodeAndnot12;
 		CNeurode* steerNeurodeOr21;
@@ -51,6 +57,11 @@ namespace stunts
 		float* speedAnd11;
 		float* speedAndnot12;
 		float* speedOr21;
+		
+		CNeurode* speedReactN;
+		CNeurode* speedSpeedN;
+		CNeurode* speedAggresN;
+	
 		CNeurode* speedNeurodeAnd11;
 		CNeurode* speedNeurodeAndnot12;
 		CNeurode* speedNeurodeOr21;
@@ -60,6 +71,7 @@ namespace stunts
 		~CFunction();
 		
 		void makeFunction();
+		void runFunction();
 		float* getOutput();
 		void setInputs();
 	};

@@ -40,6 +40,7 @@ namespace stunts
 //		controlObject.reset(Object);
 
 		net = new CNeuralNetwork(this);
+		net->makeNetwork();
 	}
 
 
@@ -84,7 +85,6 @@ namespace stunts
 		}
 		else
 		{
-			if(debug_ki)  std::cout << ".KI.";
 			//react here only in this example application
 			//	as no InteractiveObject is running
 			this->executeKI(COgreTask::GetSingleton().mTimer->getFrameInterval());
@@ -137,6 +137,10 @@ namespace stunts
 	*/
 	void CKI::executeKI(float delaySeconds)
 	{
+		actualizeWaypoint();
+		net->runNetwork();
+		
+		
 		computeStrategy();
 
 	//	waypoint computeNextWayPoint();
@@ -145,50 +149,57 @@ namespace stunts
 		computeDirection();
 		computeAcceleration();
 	}
-
-
-	void CKI::setLevelOfSkill (int levelSkill)
-	{	this->levelOfSkill = levelSkill;	}
-
-	void CKI::setLevelOfAggressivity (int levelAggro)
-	{	this->levelOfAggressivity = levelAggro;	}
-
-	void CKI::setLevelOfReaction (int levelReac)
-	{	this->levelOfReaction = levelReac;	}
-
-	int CKI::getLevelOfSkill()
-	{	return levelOfSkill;	}
-
-	int CKI::getLevelOfAggressivity()
-	{	return levelOfAggressivity;	}
-
-	int CKI::getLevelOfReaction()
-	{	return levelOfReaction;	}
-
+	
 
 
 
 	/**
-	* soll mal die KI ver?ndern, verbessern, anpassen k?nnen
+	* nimmt, wenn es sein muss den naechsten Waypoint
+	*/
+	void CKI::actualizeWaypoint()
+	{	
+		if(waypoint == NULL)
+		{
+			waypoint = mLevel->getFirstWaypoint();
+			return;
+		}
+		else
+		{
+			if( waypoint->getNext() != NULL )
+			{
+				float w_dis = ( waypoint->getVector() - waypoint->getNext()->getVector() ).length();
+				
+				float dis_1 = ( waypoint->getVector() - controlObject->Position() ).length();
+				float dis_2 = ( waypoint->getNext()->getVector() - controlObject->Position() ).length();
+				
+				//falls nextWaypoint naeher liegt als der jetzige, nimm naechsten
+				if(true)//(dis_2 < dis_1)
+				{
+					waypoint = waypoint->getNext();
+					return;
+				}
+				
+				//falls nah genug am Waypoint, schau auf naechsten
+				if(dis_1 < w_dis)
+				{
+					waypoint = waypoint->getNext();
+					return;
+				}
+			}
+		}
+	}
+	
+	
+	
+	/**
+	* soll mal die KI veraendern, verbessern, anpassen koennen
 	*/
 	void CKI::computeStrategy()
 	{
 	}
-
-	/* getNextWaypoint hast still to be put in !!
-		waypoint actualWP 	= scene.getNextWayPoint(startWP,0);
-	*/
-	/**
-	* soll anhand von dem WayPoint vector den bestimmen, der am n?chsten ist
-	* oder getNextWayPoint liefert von sich den besten WayPoint
-	*/
-	/*
-	waypoint computeNextWayPoint()
-	{
-	}
-	*/
-
-
+	
+	
+	
 	void CKI::computeGear()
 	{
 	/*
@@ -211,34 +222,36 @@ namespace stunts
 	*/
 	void CKI::computeDirection()
 	{
-
-		waypoint = mLevel->getFirstWaypoint();
-
-
+		
 		if ((waypoint != NULL) && (mLevel->mVehicle != NULL))
 		{
 		//	Ogre::Vector3 o_pos = controlObject->Position();
 			Ogre::Vector3 o_pos = mLevel->mVehicle->getPosition();
-			if(debug_ki)  std::cout << "\n  o_pos\n" << o_pos;
+		//	if(debug_ki)  std::cout << "\n  o_pos\n" << o_pos;
 
 
 			Ogre::Vector3 w_dir = waypoint->getVector() - (o_pos);
-			if(debug_ki)  std::cout << "\n  w_dir\n" << w_dir;
-
+		//	if(debug_ki)  std::cout << "\n  w_dir\n" << w_dir;
+		
+		
 			Ogre::Quaternion o_dir = controlObject->Orientation();
-			if(debug_ki)  std::cout << "\n  o_dir\n" << o_dir;
+		//	if(debug_ki)  std::cout << "\n  o_dir\n" << o_dir;
 		//	Ogre::Quaternion o_dir = mLevel->mVehicle->Orientation();
 
 			Ogre::Vector3* dir = new Vector3(1.f, 0.f, 0.f);
 			Ogre::Vector3 d = *dir;
 
 			Ogre::Vector3 my_richtung = (o_dir * d);
-			if(debug_ki)  std::cout << "\n  my_richtung\n" << my_richtung;
-
+		//	if(debug_ki)  std::cout << "\n  my_richtung\n" << my_richtung;
+			
+			my_richtung.normalise();
+			w_dir.normalise();
+			
 			msteerAngle = my_richtung.dotProduct(w_dir);
-
-
-			//mLevel->getNextWaypoint(waypoint);
+		//	if(debug_ki)  std::cout << msteerAngle << endl;
+			
+		
+		
 		}
 
 
@@ -279,9 +292,12 @@ namespace stunts
 	void CKI::computeAcceleration()
 	{
 		if(debug_ki)  std::cout << "\n\n   compAcc  \n\n";
-
-		net->makeNetwork();
-
+		
+		
+		if(debug_ki)  std::cout << "steer  "<< net->isHighSteer()  << std::endl;
+		if(debug_ki)  std::cout << "speed  "<< net->isHighSpeed()  << std::endl;
+		
+		
 		//### noch pr?fen ob die funktionen alle Ergebnisse liefern
 		if (net->isHighSteer() >= 0)
 		{
