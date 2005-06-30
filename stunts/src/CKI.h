@@ -47,42 +47,42 @@ namespace stunts
 #include "CarObject.hpp"
 #include "BaseObject.hpp"
 
- 
- 
+
+
 namespace stunts
-{ 
+{
 
 	class CKI : public nrITask
 	{
-	
+
 		 public:
 			// Default constructor and destructor
 			CKI(CCarObject* Object, String Typ);
 			CKI(boost::shared_ptr< CLevel > level);
-		
+
 			virtual ~CKI();
-		
+
 			// Execution
 			void executeKI (float delaySeconds);
-			
+
 			// setter
 			void CKI::setLevelOfSkill (float levelSkill)		{this->levelOfSkill = levelSkill;}
 			void CKI::setLevelOfAggressivity (float levelAggro)	{this->levelOfAggressivity = levelAggro;}
 			void CKI::setLevelOfReaction (float levelReac)		{this->levelOfReaction = levelReac;}
-		 
+
 			// getter
 			float* CKI::getLevelOfSkill()			{	return &levelOfSkill;	}
 			float* CKI::getLevelOfAggressivity()	{	return &levelOfAggressivity;	}
 			float* CKI::getLevelOfReaction()		{	return &levelOfReaction;	}
-			
+
 			float* steerAngle()	{return &msteerAngle;};
-		 
+
 			virtual const char* taskGetName() {return "KITask";}
-							
+
 		protected:
-		
-			static const bool debug_ki = true;
-		
+
+			static const bool debug_ki = false;	//CM
+
 			virtual nrResult taskInit();
 			virtual nrResult taskStart();
 			virtual nrResult taskUpdate();
@@ -95,25 +95,25 @@ namespace stunts
 			boost::shared_ptr<CWaypoint>					waypoint;
 
 			CNeuralNetwork* net;
-		
+
 			float msteerAngle;
-			
+
 			float levelOfSkill;
 			float levelOfAggressivity;
 			float levelOfReaction;
-		
-		
+
+
 			void actualizeWaypoint();
-			
+
 			void computeStrategy();
-			
-			
+
+
 			void computeGear();
 			void computeDirection();
 			void computeAcceleration();
 	};
 }
-	
-	
+
+
 #endif
 

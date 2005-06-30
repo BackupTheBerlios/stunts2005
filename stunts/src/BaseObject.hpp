@@ -90,7 +90,7 @@ namespace stunts {
 			**/
 			static CBaseObject*	createInstance(std::string objType);
 
- 
+
 
 
 			/**
@@ -275,6 +275,7 @@ namespace stunts {
 			 **/
 			void scaleObjectProportionaly(char axis, float32 value, bool useGrid);
 
+
 			//------------------ Variables --------------------------------------
 			Ogre::Entity*		mEntity;
 			Ogre::SceneNode*	mObjNode;
@@ -284,7 +285,13 @@ namespace stunts {
 
 			// CVectors of sound and geometry objects
 			//vector<CSound>	m_sound;
-			//vector<CGeometry>	m_geometry;
+
+			//geometry data
+			OgreOde::EntityInformer* mEntityInformer;
+			Ogre::Vector3* mMeshVertices;
+			int* mMeshIndices;
+			int mMeshVertexCount;
+			int mMeshIndexCount;
 
 			// Position and direction of the object
 			Vector3 		m_position;
@@ -322,7 +329,6 @@ namespace stunts {
 
 			// Vector for storing waypoints
 			std::vector<Vector3>		m_waypoints;
-
 	};
 };
 

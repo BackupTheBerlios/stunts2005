@@ -133,9 +133,11 @@ namespace stunts
 
 		if((mLevel->mVehicle != NULL))// && !mPhysicsExecution->isPaused())
 		{
+			float speedFactor = 1.0f;
+
 			//mLevel
 			mLevel->mVehicle->setInputs(mInputDevice->isKeyDown(KC_J),mInputDevice->isKeyDown(KC_L),mInputDevice->isKeyDown(KC_I),mInputDevice->isKeyDown(KC_K));
-			mLevel->mVehicle->update(delaySeconds);
+			mLevel->mVehicle->update(delaySeconds * speedFactor);
 
 			mLevel->PhysicsWorld()->synchronise();
 			mLevel->PhysicsWorld()->getDefaultSpace()->collide();

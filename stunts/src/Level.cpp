@@ -751,31 +751,31 @@ namespace stunts
 		//set position to the vehicle
 /*		Vector3 v_pos(150,5,150);
 		mVehicle->setPosition(v_pos);
-		//mVehicle->getSceneNode()->setScale(3.0f ,3.0f ,3.0f);
+		//mVehicle->getSceneNode()->setScale(3.0f ,3.0f ,3.0f);*/
 
 
-		//ADD TEST PHSSICS OBJECT
+		//ADD TEST PHYSICS OBJECT
 		//load mesh
-		SceneNode *track_node = mOgreTask->mSceneMgr->getRootSceneNode()->createChildSceneNode("jump");
-		Entity *track_mesh = mOgreTask->mSceneMgr->createEntity("jump","jump.mesh");
+/*		SceneNode *track_node = mOgreTask->mSceneMgr->getRootSceneNode()->createChildSceneNode("jump1");
+		Entity *track_mesh = mOgreTask->mSceneMgr->createEntity("jump1","jump.mesh");
 		track_node->attachObject(track_mesh);
 
 		//move node
-		track_node->setPosition(Vector3(120,3.5,120));
+		track_node->setPosition(Vector3(120,3.4,120));
 
 		//get geometry
-		OgreOde::EntityInformer ei(track_mesh);
+		OgreOde::EntityInformer ei1(track_mesh);
 
-		int meshVertexCount = ei.getVertexCount();
-		int meshIndexCount = ei.getIndexCount();
+		int meshVertexCount = ei1.getVertexCount();
+		int meshIndexCount = ei1.getIndexCount();
 
-		Ogre::Vector3* meshVertices = (Ogre::Vector3*)ei.getVertices();
-		int* meshIndices = (int*)ei.getIndices();
+		Ogre::Vector3* meshVertices = (Ogre::Vector3*)ei1.getVertices();
+		int* meshIndices = (int*)ei1.getIndices();
 
 		//move vertices
 		for (int c=0; c<meshVertexCount; c++)
 		{
-			meshVertices[c] += Vector3(120,3.5,120);
+			meshVertices[c] += Vector3(120,3.4,120);
 		}
 
 		//create new geometry
@@ -785,7 +785,39 @@ namespace stunts
 
 
 
-		// Create a box for ODE and attach it to the Ogre version
+		//load mesh
+		track_node = mOgreTask->mSceneMgr->getRootSceneNode()->createChildSceneNode("jump2");
+		track_mesh = mOgreTask->mSceneMgr->createEntity("jump2","jump.mesh");
+		track_node->attachObject(track_mesh);
+
+		//move node
+		track_node->setPosition(Vector3(420,3.4,420));
+
+		//get geometry
+		OgreOde::EntityInformer ei2(track_mesh);
+
+		meshVertexCount = ei2.getVertexCount();
+		meshIndexCount = ei2.getIndexCount();
+
+		meshVertices = (Ogre::Vector3*)ei2.getVertices();
+		meshIndices = (int*)ei2.getIndices();
+
+		//move vertices
+		for (int c=0; c<meshVertexCount; c++)
+		{
+			meshVertices[c] += Vector3(420,3.4,420);
+		}
+
+		//create new geometry
+		geom =
+			new OgreOde::TriangleMeshGeometry(meshVertices, meshVertexCount,
+			meshIndices, meshIndexCount, mPhysicsWorld->getDefaultSpace());*/
+
+
+
+
+
+/*		// Create a box for ODE and attach it to the Ogre version
 		SceneNode *crate_node = mOgreTask->mSceneMgr->getRootSceneNode()->createChildSceneNode("crate");
 		Entity *crate_mesh = mOgreTask->mSceneMgr->createEntity("crate","crate.mesh");
 		crate_node->attachObject(crate_mesh);
@@ -806,14 +838,14 @@ namespace stunts
 	{
 		const int CAR_AI	= 0;
 		const int CAR_HUMAN	= 1;
-		
+
 		if      (whichCar == CAR_AI)    return this->mAICar;
 		else if (whichCar == CAR_HUMAN) return this->mHumanCar;
 	}
-	
-	
-	
-	//--------------------------------------------------------------------------	
+
+
+
+	//--------------------------------------------------------------------------
 	void CLevel::searchCars()
 	{
 		shared_ptr<CBaseObject> currentObject;
@@ -822,18 +854,18 @@ namespace stunts
 		{
 		 	currentObject = mObjects[i];
 			i++;
-			
+
 			if (currentObject->getName() == "AICar")
 			{
 				// Check if another AI Car exists, if true, then log it
-				if (!this->mAICar) 
+				if (!this->mAICar)
 				{
 					this->mAICar = currentObject;
 					this->mVehicle = ((CCarObject* )currentObject.get())->mVehicle;
 				}
 				else nrLog.Log(NR_LOG_APP, "CLevel::searchCars(): There already exists an AI Car!");
 			}
-			
+
 			if (currentObject->getName() == "HumanPlayerCar")
 			{
 				// Check if another AI Car exists, if true, then log it

@@ -116,6 +116,14 @@ namespace stunts {
 		mLevel = NULL;
 		mObjNode = NULL;
 		mEntity = NULL;
+
+		mMeshVertices = NULL;
+		mMeshIndices = NULL;
+		mEntityInformer = NULL;
+		mMeshVertexCount = 0;
+		mMeshIndexCount = 0;
+
+
 		setName(createName().c_str());
 		setPosition(Vector3(0,0,0));
 	}
@@ -126,6 +134,14 @@ namespace stunts {
 		mLevel = NULL;
 		mObjNode = NULL;
 		mEntity = NULL;
+
+		mMeshVertices = NULL;
+		mMeshIndices = NULL;
+		mEntityInformer = NULL;
+		mMeshVertexCount = 0;
+		mMeshIndexCount = 0;
+
+
 		setName(createName().c_str());
 
 		// call the import from string function which will call the right
@@ -139,6 +155,13 @@ namespace stunts {
 	{
 		// RemoveObject from memory
 		// TODO
+
+		//delete the geometry
+		if (mEntityInformer)
+			delete mEntityInformer;
+		mMeshVertices = NULL;
+		mMeshIndices = NULL;
+		mEntityInformer = NULL;
 	}
 
 
@@ -190,6 +213,11 @@ namespace stunts {
 
 		// NOTE: The geometry has to be parsed before, so we can access to created nodes
 		Ogre::Vector3 pos(0.0f, 0.0f, 0.0f);
+
+		// Read rotation out
+		elem = rootElem->FirstChildElement("rotate");
+		if (elem)
+			setOrientation(parseRotation(elem));
 
 		// read proportion values
 		elem = rootElem->FirstChildElement("proportion");
@@ -279,10 +307,59 @@ namespace stunts {
 		setPosition(newPos);
 
 
-		// Read rotation out
-		elem = rootElem->FirstChildElement("rotate");
-		if (elem)
-			setOrientation(parseRotation(elem));
+		//apply the transformations to the raw geometry
+		if ((mMeshVertices != NULL) && (mMeshVertexCount > 0))
+		{
+			for (int c=0; c<mMeshVertexCount; c++)
+			{
+				mMeshVertices[c] = this->m_orientation * mMeshVertices[c];
+				mMeshVertices[c] += m_position;
+				mMeshVertices[c] *= this->m_scale;
+			}
+		}
+
+		std::cout << "Geometry:" << std::endl
+			<< "(mMeshVertices != NULL): " << (mMeshVertices != NULL)
+			<< "  mMeshVertexCount: " << mMeshVertexCount << std::endl;
+
+		//create new (raw) geometry
+		if ((mMeshVertices != NULL) && (mMeshVertexCount > 0))
+		{
+			std::cout << "Geometry:" << std::endl
+				<< "vcount: " << mMeshVertexCount
+				<< "  this->m_scale: " << this->m_scale
+				<< "  m_position: " << m_position << std::endl;
+
+
+
+			/*if (mMeshVertexCount < 2000)
+			{
+				//get geometry
+				OgreOde::EntityInformer ei1(mEntity);
+
+				int meshVertexCount = ei1.getVertexCount();
+				int meshIndexCount = ei1.getIndexCount();
+
+				Ogre::Vector3* meshVertices = (Ogre::Vector3*)ei1.getVertices();
+				int* meshIndices = (int*)ei1.getIndices();
+
+				//move vertices
+				for (int c=0; c<meshVertexCount; c++)
+				{
+					meshVertices[c] += mObjNode->getPosition();
+				}
+
+				//create new geometry
+				OgreOde::TriangleMeshGeometry* geom =
+					new OgreOde::TriangleMeshGeometry(meshVertices, meshVertexCount,
+					meshIndices, meshIndexCount, mLevel->PhysicsWorld()->getDefaultSpace());
+			}*/
+
+
+			//OgreOde::TriangleMeshGeometry* geom =
+			//	new OgreOde::TriangleMeshGeometry(mMeshVertices, mMeshVertexCount,
+			//	mMeshIndices, mMeshIndexCount, mLevel->PhysicsWorld()->getDefaultSpace());
+		}
 
 		// Read waypoints
 		elem =  rootElem->FirstChildElement("waypoints");
@@ -391,7 +468,6 @@ namespace stunts {
 	}
 
 
-
 	//--------------------------------------------------------------------------
 	bool CBaseObject::importFromWaypointFile(const char* fileName, const std::string& xmlPath)
 	{
@@ -424,10 +500,6 @@ namespace stunts {
 	}
 
 
-
-
-
-
 	//--------------------------------------------------------------------------
 	bool CBaseObject::loadGeometry(TiXmlElement* geomElem, const std::string& xmlPath){
 
@@ -455,6 +527,15 @@ namespace stunts {
 					mObjNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode(mName);
 					//mEntity->setCastShadows( true );
 					mObjNode->attachObject( mEntity );
+
+					//get raw geometry
+					mEntityInformer = new OgreOde::EntityInformer(mEntity);
+
+					mMeshVertexCount = mEntityInformer->getVertexCount();
+					mMeshIndexCount = mEntityInformer->getIndexCount();
+
+					mMeshVertices = (Ogre::Vector3*)mEntityInformer->getVertices();
+					mMeshIndices = (int*)mEntityInformer->getIndices();
 				}
 				catch (...)
 				{
@@ -466,6 +547,7 @@ namespace stunts {
 
 		return false;
 	}
+
 
 	//--------------------------------------------------------------------------
 	bool CBaseObject::importFromFile(const char* fileName, const std::string& xmlPath)
@@ -494,8 +576,6 @@ namespace stunts {
 	}
 
 
-
-
 	//--------------------------------------------------------------------------
 	bool CBaseObject::importFromString(const char* xmlSettings, const std::string& xmlPath)
 	{
@@ -522,6 +602,7 @@ namespace stunts {
 
 		return CBaseObject::parseSettings(rootElem, xmlPath);
 	}
+
 
 	//--------------------------------------------------------------------------
 	bool CBaseObject::bindController(const char* name){
@@ -560,8 +641,16 @@ namespace stunts {
 		pos.z = lengthZ/2.0f;//-(box.getMinimum().z + lengthZ / 2.0f);
 
 
+		//apply this to the scene node
 		mObjNode->translate(pos, Ogre::Node::TS_PARENT);
 		mObjNode->showBoundingBox(true);
+
+		//apply this to the raw geometry
+		if ((mMeshVertices != NULL) && (mMeshVertexCount > 0))
+		{
+			for (int c=0; c<mMeshVertexCount; c++)
+				mMeshVertices[c] += pos;
+		}
 
 //		setPosition(mObjNode->getPosition() + pos);
 #if 0
@@ -620,6 +709,8 @@ namespace stunts {
 #endif
 
 	}
+
+
 	//--------------------------------------------------------------------------
 	void CBaseObject::scaleObjectProportionaly(char axis, float32 value, bool useGrid)
 	{
@@ -642,11 +733,14 @@ namespace stunts {
 		mObjNode->setScale(scale, scale, scale);
 	}
 
+
 	//--------------------------------------------------------------------------
 	void CBaseObject::setName(const char* name)
 	{
 		this->mName = name;
 	}
+
+
 	//--------------------------------------------------------------------------
 	void CBaseObject::setPosition(Vector3 pos)
 	{
@@ -654,6 +748,8 @@ namespace stunts {
 		if (mObjNode)
 			mObjNode->setPosition(pos);
 	}
+
+
 	//--------------------------------------------------------------------------
 	void CBaseObject::setOrientation(Quaternion orient)
 	{
@@ -661,16 +757,22 @@ namespace stunts {
 		if (mObjNode)
 			mObjNode->setOrientation(orient);
 	}
+
+
 	//--------------------------------------------------------------------------
 	void CBaseObject::setMass (float mass)
 	{
 		this->m_mass = mass;
 	}
+
+
 	//--------------------------------------------------------------------------
 	void CBaseObject::setMassPoint(Vector3 massPoint)
 	{
 		this->m_masspoint = massPoint;
 	}
+
+
 	//--------------------------------------------------------------------------
 	void CBaseObject::setFriction(float coeff)
 	{
