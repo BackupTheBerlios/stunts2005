@@ -89,7 +89,12 @@ namespace stunts
 		
 		//! Store all lights as a node in the scene graph
 		std::vector<Ogre::SceneNode*>	mLightNode;
-					
+		std::vector<Ogre::Light*>		mLights;
+		
+		//! Store the sun image
+		Ogre::BillboardSet*			mSunBillboardSet;
+		Ogre::Billboard*			mSunBillboard;
+		
 	};	
 }
 

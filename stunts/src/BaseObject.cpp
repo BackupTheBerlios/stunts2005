@@ -153,15 +153,34 @@ namespace stunts {
 	//--------------------------------------------------------------------------
 	CBaseObject::~CBaseObject()
 	{
+		
 		// RemoveObject from memory
-		// TODO
-
+		if (mObjNode)
+		{
+			try {
+			
+				mObjNode->detachAllObjects();				
+				COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->removeAndDestroyChild(mName);
+				
+				mObjNode = NULL;
+			}catch(...){
+			
+			}
+			
+		}
+		
+		if (mEntity){
+			COgreTask::GetSingleton().mSceneMgr->removeEntity(mEntity);
+			mEntity = NULL;
+		}
+		
 		//delete the geometry
 		if (mEntityInformer)
 			delete mEntityInformer;
 		mMeshVertices = NULL;
 		mMeshIndices = NULL;
 		mEntityInformer = NULL;
+
 	}
 
 
@@ -519,11 +538,11 @@ namespace stunts {
 		if (elem){
 			const char* file = elem->GetText();
 			if (file){
-				nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): Load mesh file \"%s\"", file);
+				nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): Load for object %s mesh file \"%s\"", mName.c_str(), file);
 				try
 				{
 					// Create & Load the entity
-					mEntity 	= COgreTask::GetSingleton().mSceneMgr->createEntity(mName, std::string(file));
+					mEntity 	= COgreTask::GetSingleton().mSceneMgr->createEntity(mName + "_Entity", std::string(file));
 					mObjNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode(mName);
 					//mEntity->setCastShadows( true );
 					mObjNode->attachObject( mEntity );
@@ -539,6 +558,8 @@ namespace stunts {
 				}
 				catch (...)
 				{
+					mEntity = NULL;
+					mObjNode = NULL;
 					nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): An error occurs by loading of the geometry node");
 					return true;
 				}
@@ -622,7 +643,7 @@ namespace stunts {
 	void CBaseObject::correctObjectsOrigin()
 	{
 		return;
-
+#if 0
 		// only if can access to the geometry
 		if (!mObjNode || !mEntity) return;
 
@@ -644,70 +665,7 @@ namespace stunts {
 		//apply this to the scene node
 		mObjNode->translate(pos, Ogre::Node::TS_PARENT);
 		mObjNode->showBoundingBox(true);
-
-		//apply this to the raw geometry
-		if ((mMeshVertices != NULL) && (mMeshVertexCount > 0))
-		{
-			for (int c=0; c<mMeshVertexCount; c++)
-				mMeshVertices[c] += pos;
-		}
-
-//		setPosition(mObjNode->getPosition() + pos);
-#if 0
-		// Now access Ogre's vertices and correct their position;
-		for (unsigned short i=0; i < mEntity->getMesh()->getNumSubMeshes(); i++)
-		{
-			SubMesh* sub_mesh = mEntity->getMesh()->getSubMesh(i);
-			VertexData* v_data = NULL;
-
-			// get the pointer to vertex data
-			if (sub_mesh->useSharedVertices)
-				v_data = mEntity->getMesh()->sharedVertexData;
-			else
-				v_data = sub_mesh->vertexData;
-
-			// get the pointer to vertex data
-			if (sub_mesh->useSharedVertices)
-				v_data = mEntity->getMesh()->sharedVertexData;
-			else
-				v_data = sub_mesh->vertexData;
-
-			// get pointer to vertices
-			const Ogre::VertexElement* posElem = v_data->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
-			Ogre::HardwareVertexBufferSharedPtr vbuf = v_data->vertexBufferBinding->getBuffer(posElem->getSource());
-			unsigned char* vertex = static_cast<unsigned char*>(vbuf->lock(Ogre::HardwareBuffer::HBL_NORMAL));
-			float* pReal;
-
-			for(size_t j = 0; j < v_data->vertexCount; ++j, vertex += vbuf->getVertexSize())
-			{
-				posElem->baseVertexPointerToElement(vertex, &pReal);
-
-				*pReal += pos.x; pReal ++;
-				*pReal += pos.y; pReal ++;
-				*pReal += pos.z; pReal ++;
-			}
-			vbuf->unlock();
-		}
-
-
-			// get pointer to vertices
-			const Ogre::VertexElement* posElem = v_data->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
-			Ogre::HardwareVertexBufferSharedPtr vbuf = v_data->vertexBufferBinding->getBuffer(posElem->getSource());
-			unsigned char* vertex = static_cast<unsigned char*>(vbuf->lock(Ogre::HardwareBuffer::HBL_NORMAL));
-			float* pReal;
-
-			for(size_t j = 0; j < v_data->vertexCount; ++j, vertex += vbuf->getVertexSize())
-			{
-				posElem->baseVertexPointerToElement(vertex, &pReal);
-
-				*pReal += pos.x; pReal ++;
-				*pReal += pos.y; pReal ++;
-				*pReal += pos.z; pReal ++;
-			}
-			vbuf->unlock();
-		}
 #endif
-
 	}
 
 

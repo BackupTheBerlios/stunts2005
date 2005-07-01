@@ -1,20 +1,32 @@
 <?xml version="1.0" ?>
 <GUILayout>
-	<Window Type="DefaultWindow" Name="Menu_Level">
-		<Window Type="TaharezLook/FrameWindow" Name="Menu_Level_Win">
-			<Property Name="Position" Value="x:0.25 y:0.33" />
-			<Property Name="Size" Value="w:0.6 h:0.4" />
+	<Window Type="DefaultGUISheet" Name="Menu_Level">
+		<Window Type="DefaultWindow" Name="Menu_Level_Win">
+			<Property Name="Position" Value="x:0.05 y:0.13" />
+			<Property Name="Size" Value="w:0.9 h:0.9" />
 			<Property Name="Alpha" Value="0.600000" />
 			<Property Name="Text" Value="Stunts 2005" />
+			
+
+			<!--
 			<Window Type="TaharezLook/Editbox" Name="Main/Level/LevelFile">
 				<Property Name="RelativeRect" Value="l:0.305000 t:0.301667 r:0.689999 b:0.396667" />
 			</Window>
-
+			-->
+			
+			<!-- OK button which choose the level from the list -->
 			<Window Type="TaharezLook/Button" Name="Main/Level/OK">
-				<Property Name="RelativeRect" Value="l:0.295000 t:0.615000 r:0.698750 b:0.715000" />
+				<Property Name="AbsolutePosition" Value="x:75 y:300" />
+				<Property Name="AbsoluteSize" Value="w:150 h:20" />					
 				<Property Name="Text" Value="OK" />
 			</Window>
 
+			<!-- List showing all available levels -->			
+			<Window Type="TaharezLook/Listbox" Name="Main/Level/LevelList">
+				<Property Name="AbsolutePosition" Value="x:0.0 y:0.0" />
+				<Property Name="AbsoluteSize" Value="w:300.0 h:250.0" />
+			</Window>
+            
 		</Window>
 
 		<Window Type="TaharezLook/StaticText" Name="Menu_Level_LogoText">

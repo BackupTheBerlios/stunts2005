@@ -52,6 +52,8 @@ namespace stunts {
 	{
 		// RemoveObject from memory
 		// TODO
+		mVehicle.reset();
+
 	}
 
 	//--------------------------------------------------------------------------

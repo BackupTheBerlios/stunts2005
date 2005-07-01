@@ -16,4 +16,12 @@
 		<thumbnail count="1" file="thumb_%i.png" />
 		
 	</level>
+	
+	<level>
+		<name name="Test" path="TestLevel2" />
+		<author name="Psyborg" datestr="Do, 30 Jun, 16:55" />
+		<thumbnail count="1" file="thumb_%i.png" />
+		
+	</level>
+	
 </levels>

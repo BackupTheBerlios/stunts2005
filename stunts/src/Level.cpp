@@ -25,6 +25,7 @@
 
 #include "Level.hpp"
 #include "Utils.hpp"
+#include "OgreTask.hpp"
 
 #include "ObjectInstantiator.hpp"
 #include <math.h>
@@ -37,9 +38,6 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	CLevel::CLevel()
 	{
-		mIsLoaded = false;
-		mShouldLoadLevel = false;
-		mLevelFileName = "";
 
 		// Setup default grid count size
 		mGridCountInX = 30;
@@ -53,33 +51,49 @@ namespace stunts
 
 		mTerrainFriction = 18.0;
 
-		registerVariables();
 	}
 
 
 	//--------------------------------------------------------------------------
 	CLevel::~CLevel()
 	{
-		deregisterVariables();
+	
+		// delete the input
+		mUserInput.reset();
+		
+		// delete all waypoints
+		for (unsigned int i=0; i < mWaypoints.size(); i++)
+		{
+			mWaypoints[i].reset();
+		}
+		
+		
+		// First we need to delete all used objects
+		for (unsigned int i=0; i < mObjects.size(); i++)
+		{
+			(mObjects[i]).reset();
+		}
+		
+		// now remove all cars
+		mHumanCar.reset();
+		mAICar.reset();
+				
+		// Now remove terrain and atmosphere
+		mTerrain.reset();
+		mAtmosphere.reset();
+
+		// and now delete the physics
+//		mPhysicsWorld.reset();
+		if (mPhysicsWorld){
+		//	delete mPhysicsWorld;
+			mPhysicsWorld = NULL;
+		}
+		
+		// Now clear the rest of the scene
+		//COgreTask::GetSingleton().mSceneMgr->clearScene();
+		
 	}
 
-
-	//--------------------------------------------------------------------------
-	void CLevel::registerVariables()
-	{
-		nrSettingsRegisterString(mLevelFileName, 	"level_file");
-
-		nrSettingsRegister(bool, mShouldLoadLevel, 	"load_level");
-		nrSettingsRegister(bool, mIsLoaded, 		"level_is_loaded");
-	}
-
-	//--------------------------------------------------------------------------
-	void CLevel::deregisterVariables()
-	{
-		nrSettings.deregisterVariable("level_file");
-		nrSettings.deregisterVariable("load_level");
-		nrSettings.deregisterVariable("level_is_loaded");
-	}
 
 	//--------------------------------------------------------------------------
 	bool CLevel::loadLevel(const std::string& levelFile)
@@ -143,7 +157,7 @@ namespace stunts
 		if (elem)
 			readAtmosphere(elem);
 
-		mIsLoaded = true;
+		//mIsLoaded = true;
 
 /*		// Erstelle Gitter model
 		for (int32 i = 0; i < mGridCountInX; i++)
@@ -195,6 +209,7 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	void CLevel::drawWaypoint(Ogre::Vector3 pos, int i)
 	{
+		/*
 		char name[256];
 
 		sprintf(name, "Waypoint__%i__%f__%f__%f__", i, pos.x,pos.y,pos.z);
@@ -221,6 +236,7 @@ namespace stunts
 		SceneNode* mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
 		mSceneNode->attachObject( ent );
 		mSceneNode->showBoundingBox(true);
+		*/
 	};
 
 
@@ -252,6 +268,7 @@ namespace stunts
 		// Notify Mesh object that it has been loaded
 		msh->load();
 
+		/*
 		// Now add this into scene graph
 		char ename[256];
 		sprintf(ename, "%s_entity", name);
@@ -260,6 +277,7 @@ namespace stunts
 		SceneNode* mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
 		mSceneNode->attachObject( ent );
 		mSceneNode->showBoundingBox(true);
+		*/
 	};
 
 
@@ -321,7 +339,7 @@ namespace stunts
 		if (smElem)
 		{
 			//create terrain (after the engine tasks have been gotten)
-			mTerrain.reset (new CTerrain ( boost::shared_ptr<CLevel>(this) ));
+			mTerrain.reset (new CTerrain (this));
 			mTerrain->importFromFile((mLevelFilePath + smElem->Attribute("file")).c_str(), smElem->Attribute("root"));
 		}
 
@@ -430,89 +448,78 @@ namespace stunts
 	}
 
 	//--------------------------------------------------------------------------
-	nrResult CLevel::taskInit()
+	nrResult CLevel::start()
 	{
 		//get all tasks and set member attributes
-		getEngineTasks();
+		//getEngineTasks();
 
-		//create terrain (after the engine tasks have been gotten)
-		//mTerrain.reset(new CTerrain (OgreTask()->mSceneMgr));
+		mUserInput.reset (new CUserInput(this));
+		mUserInput->setTaskPriority(NR_PRIORITY_VERY_HIGH);
+		nrKernel.AddTask(mUserInput);
+		nrKernel.StartTask(mUserInput->getTaskID());
+		
+		//activate input class
+		mUserInput->activate(true);
 
-		//return
 		return NR_OK;
 	}
 
 
 	//--------------------------------------------------------------------------
-	nrResult CLevel::taskStart()
+	nrResult CLevel::update()
 	{
 		//activate input class
-		UserInput()->activate(true);
+		mUserInput->activate(true);
 
 		return NR_OK;
 	}
 
 
 	//--------------------------------------------------------------------------
-	nrResult CLevel::taskUpdate()
+	nrResult CLevel::stop()
 	{
-		// if we are forced to load the level file
-		if (mShouldLoadLevel && (mLevelFileName.length() > 0) &&
-			(mOgreTask->mSceneMgr != NULL)){
-			mShouldLoadLevel = false;
-
-			//load the level and its physics
-			if (loadLevel(mLevelFileName))
-				return NR_UNKNOWN_ERROR;
-		}
-
+		mUserInput->activate(false);		
+		nrKernel.RemoveTask(mUserInput->getTaskID());
+		mUserInput.reset();
+		
 		return NR_OK;
 	}
-
-
-	//--------------------------------------------------------------------------
-	nrResult CLevel::taskStop()
-	{
-		return NR_OK;
-	}
-
+		
 
 	//--------------------------------------------------------------------------
-	void CLevel::getEngineTasks()
+	/*void CLevel::getEngineTasks()
 	{
 		//get tasks
-		mOgreTask = boost::dynamic_pointer_cast<COgreTask, nrITask>(nrKernel.getTaskByName("OgreTask"));
-		mUserInput = boost::dynamic_pointer_cast<CUserInput, nrITask>(nrKernel.getTaskByName("UserInput"));
+		//mOgreTask = boost::dynamic_pointer_cast<COgreTask, nrITask>(nrKernel.getTaskByName("OgreTask"));
 
-		//check for errors
-		if (!mOgreTask || !mUserInput)
+		if (!mUserInput)
 		{
-			nrLog.Log(NR_LOG_APP, "CLevel::getEngineTasks(): Error in getting\
-				Tasks");
+			mUserInput = boost::dynamic_pointer_cast<CUserInput, nrITask>(nrKernel.getTaskByName("UserInput"));
 
-			#ifdef ENABLE_DEBUG_MESSAGES
-				std::cout << "CLevel::getEngineTasks(): Error in getting\
-					Tasks" << std::endl;
-			#endif
-
-			nrKernel.KillAllTasks();
+			//check for errors
+			if (!mUserInput)
+			{
+				nrLog.Log(NR_LOG_APP, "CLevel::getEngineTasks(): Error in getting Tasks");
+				nrKernel.KillAllTasks();
+			}
 		}
-	}
+		
+	}*/
 
 
 	//--------------------------------------------------------------------------
-	boost::shared_ptr< COgreTask >  CLevel::OgreTask()
-	{
+	//boost::shared_ptr< COgreTask >  CLevel::OgreTask()
+	//{
 		//COgreTask::GetSingletonPtr();
-		return mOgreTask;
-	}
+	//	return mOgreTask;
+	//}
 
 
 	//--------------------------------------------------------------------------
-	boost::shared_ptr< CUserInput >  CLevel::UserInput()
+	/*boost::shared_ptr< CUserInput >  CLevel::UserInput()
 	{
 		return mUserInput;
-	}
+	}*/
 
 	//--------------------------------------------------------------------------
 	boost::shared_ptr< CTerrain >  CLevel::Terrain()
@@ -521,10 +528,10 @@ namespace stunts
 	}
 
 	//--------------------------------------------------------------------------
-	boost::shared_ptr<OgreOde::World> CLevel::PhysicsWorld()
+	/*boost::shared_ptr<OgreOde::World> CLevel::PhysicsWorld()
 	{
 		return mPhysicsWorld;
-	}
+	}*/
 
 
 	//--------------------------------------------------------------------------
@@ -730,7 +737,8 @@ namespace stunts
 	void CLevel::InitializeODE()
 	{
 		//(re-)set the Physics World
-		mPhysicsWorld.reset(new OgreOde::World(mOgreTask->mSceneMgr.get()));
+		//mPhysicsWorld.reset(new OgreOde::World(COgreTask::GetSingleton().mSceneMgr));
+		mPhysicsWorld = new OgreOde::World(COgreTask::GetSingleton().mSceneMgr);
 
 		//set its parameters
 		mPhysicsWorld->setGravity(Vector3(0,-mGravity,0));

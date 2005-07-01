@@ -24,6 +24,7 @@
 
 #include "Terrain.hpp"
 #include "Utils.hpp"
+#include "OgreTask.hpp"
 
 #include <boost/shared_ptr.hpp>
 #include <nrEngine/nrEngine.h>
@@ -34,12 +35,12 @@ using namespace boost;
 namespace stunts
 {
 
-	CTerrain::CTerrain(boost::shared_ptr< CLevel > level)
+	CTerrain::CTerrain(CLevel* level)
 	{
-		mSceneMgr = level->OgreTask()->mSceneMgr;
+		//mSceneMgr = COgreTask::GetSingleton().mSceneMgr;
 		mLevel = level;
 		mRaySceneQuery = boost::shared_ptr< Ogre::RaySceneQuery>
-			(mSceneMgr->createRayQuery(
+			(COgreTask::GetSingleton().mSceneMgr->createRayQuery(
 				Ogre::Ray(Ogre::Vector3(0.0f, 0.0f, 0.0f),
 				Ogre::Vector3::NEGATIVE_UNIT_Y))
             );
@@ -53,13 +54,18 @@ namespace stunts
 
 	CTerrain::~CTerrain()
 	{
+		
+		mRaySceneQuery.reset();
+		
+		mTerrain.reset();
+		
 	}
 
 	void CTerrain::Init(std::string terrainFile)
 	{
 		//collision functionality
 		mRaySceneQuery = boost::shared_ptr< Ogre::RaySceneQuery>
-			(mSceneMgr->createRayQuery(
+			(COgreTask::GetSingleton().mSceneMgr->createRayQuery(
 				Ogre::Ray(Ogre::Vector3(0.0f, 0.0f, 0.0f),
 				Ogre::Vector3::NEGATIVE_UNIT_Y))
             );
@@ -167,7 +173,7 @@ namespace stunts
 				// Setup new terrain
 				try {
 					nrLog.Log(NR_LOG_APP, "CTerrain::importFromFile(): Use \"%s\" as terrain configuration file", file.c_str());
-					mSceneMgr -> setWorldGeometry(file);
+					COgreTask::GetSingleton().mSceneMgr -> setWorldGeometry(file);
 					Init(file);
 				}catch(...){
 					nrLog.Log(NR_LOG_APP, "CTerrain::importFromFile(): \"%s\" file was not found", file.c_str());

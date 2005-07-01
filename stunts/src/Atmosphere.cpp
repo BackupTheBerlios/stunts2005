@@ -37,11 +37,44 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	CAtmosphere::CAtmosphere()
 	{
+		mSunBillboardSet = 0;
+		mSunBillboard = 0;
 	}
 
 	//--------------------------------------------------------------------------
 	CAtmosphere::~CAtmosphere()
 	{
+		
+		// delete all nodes
+		for (unsigned int i=0; i < mLightNode.size(); i++)
+			if (mLightNode[i])
+			{
+				mLightNode[i]->detachAllObjects();				
+				COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->removeAndDestroyChild(mLightNode[i]->getName());
+				
+				mLightNode[i] = NULL;
+			}
+		
+		mLightNode.clear();
+		
+		// now delete all lights
+		for (unsigned int i=0; i < mLights.size(); i++)
+			if (mLights[i])
+			{
+				COgreTask::GetSingleton().mSceneMgr->removeLight(mLights[i]);
+				mLights[i] = NULL;
+			}
+			
+		mLights.clear();
+		
+			
+		// delete the billboards
+		if (mSunBillboardSet)
+		{
+			mSunBillboardSet->clear();
+			COgreTask::GetSingleton().mSceneMgr->removeBillboardSet(mSunBillboardSet);
+		}
+		
 	}
 
 	
@@ -236,9 +269,9 @@ namespace stunts
 						mLightNode->setPosition(position);
 						
 						// create billboard set
-						BillboardSet* bbs = COgreTask::GetSingleton().mSceneMgr->createBillboardSet(std::string(namestr) + "_billboards", 1);
-						bbs->setMaterialName(matname);
-						Billboard* bs = bbs->createBillboard(0.0f,0.0f,0.0f, diffuse);
+						mSunBillboardSet = COgreTask::GetSingleton().mSceneMgr->createBillboardSet(std::string(namestr) + "_billboards", 1);
+						mSunBillboardSet->setMaterialName(matname);
+						mSunBillboard = mSunBillboardSet->createBillboard(0.0f,0.0f,0.0f, diffuse);
 
 						// get size of teh billboard
 						const char* width = sElem->Attribute("width");
@@ -247,15 +280,18 @@ namespace stunts
 						float widthf = width ? lexical_cast<float>(width) : 1.0f;
 						float heightf = height ? lexical_cast<float>(height) : 1.0f;
 
-						bs->setDimensions(widthf, heightf);
+						mSunBillboard->setDimensions(widthf, heightf);
 						
 						// attach
-						mLightNode->attachObject(bbs);
+						mLightNode->attachObject(mSunBillboardSet);
 						
 						// Now copy the node to the list of light nodes
 						this->mLightNode.push_back(mLightNode);
 					}
 				}
+				
+				// store the light
+				mLights.push_back(light);
 				
 			} catch(...){
 				nrLog.Log(NR_LOG_APP, "CAtmosphere::readLights(): Can not create/setup light");

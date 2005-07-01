@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.h,v 1.5 2005/06/27 01:19:18 psyborg Exp $ */
+/* CVS $Id: CGuiTask.h,v 1.6 2005/07/01 19:38:38 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.5 $
- *  @date    CVS $Date: 2005/06/27 01:19:18 $
+ *  @version CVS $Revision: 1.6 $
+ *  @date    CVS $Date: 2005/07/01 19:38:38 $
  */
 
 
@@ -119,6 +119,7 @@ namespace stunts
 		/* Event Handler */
 		bool handleQuit(const CEGUI::EventArgs& e);
 		bool handleStart(const CEGUI::EventArgs& e);
+		bool handleUnload(const CEGUI::EventArgs& e);
 		bool handleLevel(const CEGUI::EventArgs& e);
 		bool handleLevelOK(const CEGUI::EventArgs& e);
 		

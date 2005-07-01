@@ -24,6 +24,7 @@
 
 
 #include "GameApplication.hpp"
+#include "LevelManager.hpp"
 
 #include "OgreTimer.hpp"
 #include "CGuiTask.h"
@@ -42,6 +43,7 @@ namespace stunts
 	GameApplication::~GameApplication()
 	{
 		CGuiTask::Release();
+		CLevelManager::Release();
 		COgreTask::Release();
 
 		// kill all tasks if there are any
@@ -82,26 +84,19 @@ namespace stunts
 		//create tasks
 		COgreTask::Instantiate();
 
-		shared_ptr<CLevel> 		level_task(new CLevel());
-		shared_ptr<CUserInput> 	user_input(new CUserInput(level_task));
-		shared_ptr<CKI> 		ki_task(new CKI(level_task));
+		//shared_ptr<CLevel> 		level_task(new CLevel());
+		//shared_ptr<CUserInput> 	user_input(new CUserInput(level_task));
+		//shared_ptr<CKI> 		ki_task(new CKI(level_task));
 
 
 		//set priorities
-		ki_task->   setTaskPriority(NR_PRIORITY_VERY_HIGH);
-		user_input->setTaskPriority(NR_PRIORITY_VERY_HIGH);
-		level_task->setTaskPriority(NR_PRIORITY_VERY_LOW);
-
+		//ki_task->   setTaskPriority(NR_PRIORITY_VERY_HIGH);
+		
 		// Add singletons to the kernel
-		COgreTask::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_NORMAL);
+		COgreTask::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_LAST);
 
 		//add tasks to the kernel
-		nrKernel.AddTask(user_input);
-		nrKernel.AddTask(level_task);
-
-		// set level variables. JUST FOR TESTING, this should be done by GUI
-		nrSettings.get("level_file") = std::string("../media/level/DefaultLevel/level.xml");
-		nrSettings.get("load_level") = std::string("0");
+		//nrKernel.AddTask(user_input);
 
 		// Setup InGame-Clock
 		shared_ptr<nrITimeSource> timer (new COgreTimer());
@@ -112,12 +107,18 @@ namespace stunts
 		nrCClock::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_FIRST);
 
 		// Add the AI to the Kernel
-		nrKernel.AddTask(ki_task);
+		//nrKernel.AddTask(ki_task);
 
+		// Create Level Manager
+		CLevelManager::Instantiate();
+		CLevelManager::GetSingleton().loadLevelDescriptions("../media/level/content.xml");
+		CLevelManager::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_LOW);
+		
+		
 		// add GUI task
 		CGuiTask::Instantiate();
 		CGuiTask::GetSingleton().setWindow(COgreTask::GetSingleton().mWindow);
-		CGuiTask::GetSingleton().setSceneManager(COgreTask::GetSingleton().mSceneMgr.get());
+		CGuiTask::GetSingleton().setSceneManager(COgreTask::GetSingleton().mSceneMgr);
 		CGuiTask::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_ULTRA_LOW);
 		
 		// this is how you load a page!
@@ -125,6 +126,11 @@ namespace stunts
 		CGuiTask::GetSingleton().addPage( "MainLevel", "" );
 		CGuiTask::GetSingleton().selectPage( "Main" );
 		CGuiTask::GetSingleton().rActive() = true;
+
+
+		// set level variables. JUST FOR TESTING, this should be done by GUI
+		nrSettings.get("level_file") = std::string("The Default Level");
+		nrSettings.get("load_level") = std::string("0");
 
         return true;
 	}

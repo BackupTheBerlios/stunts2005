@@ -23,6 +23,7 @@
  */
 
 #include "UserInput.hpp"
+#include "OgreTask.hpp"
 
 #include "CGuiTask.h"
 
@@ -31,10 +32,13 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	//--- CUserInput()
 	//--------------------------------------------------------------------------
-	CUserInput::CUserInput(boost::shared_ptr< CLevel > level)
+	CUserInput::CUserInput(CLevel* level)
 	{
 		mLevel = level;
 		mActivated = false;		//initially this input device is disabled
+		
+		mInputDevice = NULL;
+		mCamera = NULL;
 	}
 
 
@@ -43,7 +47,7 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	CUserInput::~CUserInput()
 	{
-
+		mLevel = NULL;
 	}
 
 
@@ -61,14 +65,13 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	nrResult CUserInput::taskStart()
 	{
+		if (!COgreTask::isValid())
 		
 		/*
 				std::cout << "escape  (init)  "<< (unsigned int)Ogre::KC_ESCAPE <<"\n";
 				std::cout << "camRight  (init)  "<< (unsigned int)Ogre::KC_D <<"\n";
 		*/
 				
-				
-		if (!(mLevel->OgreTask()))
 		{
 			nrLog.Log(NR_LOG_APP, "CUserInput::taskStart(): Error in getting\
 				OgreTask");
@@ -91,9 +94,9 @@ namespace stunts
 			*/
 			if(true)
 			{
-				mInputDevice = mLevel->OgreTask()->mInputDevice;
-				mCamera = mLevel->OgreTask()->mCamera;
-				mTerrain = mLevel->Terrain();
+			mInputDevice = COgreTask::GetSingleton().mInputDevice;
+			mCamera = COgreTask::GetSingleton().mCamera;
+			mTerrain = mLevel->Terrain();
 				
 				
 				// Generating default map
@@ -245,8 +248,8 @@ namespace stunts
 			static int mNumScreenShots=0;
 			char tmp[20];
 			sprintf(tmp, "screenshot_%d.png", ++mNumScreenShots);
-            mLevel->OgreTask()->mWindow->writeContentsToFile(tmp);
-			mLevel->OgreTask()->mWindow->setDebugText(String("Wrote ") + tmp);
+            COgreTask::GetSingleton().mWindow->writeContentsToFile(tmp);
+			COgreTask::GetSingleton().mWindow->setDebugText(String("Wrote ") + tmp);
         }
 /*
 		if (mInputDevice->isKeyDown((Ogre::KeyCode)Ogre::KC_R))

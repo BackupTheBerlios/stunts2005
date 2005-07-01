@@ -35,8 +35,9 @@ namespace stunts {
 	COgreTask::COgreTask(){
 		//reset attributes
     	mRoot = NULL;
-    	//mCamera = NULL;
-    	//mSceneMgr = NULL;
+    	mCamera = NULL;
+    	mSceneMgr = NULL;
+    	mInputDevice = NULL;
     	mWindow = NULL;
     	//mFrameListener = NULL;
    	}
@@ -45,8 +46,7 @@ namespace stunts {
 	* Destructor
 	**/
 	COgreTask::~COgreTask(){
-
-		//delete OGRE root
+		
 		NR_SAFE_DELETE(mRoot);
 
 	}
@@ -71,9 +71,8 @@ namespace stunts {
 
 
 		//setup input class
-		mInputDevice  =
-			boost::shared_ptr< Ogre::InputReader >
-				(PlatformManager::getSingleton().createInputReader());
+		//mInputDevice.reset(PlatformManager::getSingleton().createInputReader());
+		mInputDevice = PlatformManager::getSingleton().createInputReader();
 		mInputDevice->initialise(mWindow,true, true);
 
 
@@ -170,7 +169,11 @@ namespace stunts {
 	 **/
 	void COgreTask::destroyScene()
 	{
-
+		
+		mSceneMgr->clearScene();
+		
+		mSceneMgr->removeCamera(mCamera);
+		
 	}
 
 
@@ -190,8 +193,8 @@ namespace stunts {
 			mWindow = mRoot->initialise(true, "Stunts2005");
         }
 		// Create scene manager
-		mSceneMgr = boost::shared_ptr< Ogre::SceneManager >
-			(mRoot->getSceneManager(ST_EXTERIOR_CLOSE));
+		//mSceneMgr.reset(mRoot->getSceneManager(ST_EXTERIOR_CLOSE));
+		mSceneMgr = mRoot->getSceneManager(ST_EXTERIOR_CLOSE);
 
 		// Get Render System
 		mRenderer = mRoot->getRenderSystem();
@@ -220,8 +223,8 @@ namespace stunts {
     void COgreTask::createCamera()
     {
         // Create the camera
-        mCamera = boost::shared_ptr< Ogre::Camera >
-        	(mSceneMgr->createCamera("PlayerCam"));
+        //mCamera.reset(mSceneMgr->createCamera("PlayerCam"));
+        mCamera = mSceneMgr->createCamera("PlayerCam");
 
         // Position it at 500 in Z direction
         mCamera->setPosition(Vector3(128,25,128));
@@ -238,7 +241,7 @@ namespace stunts {
 	void COgreTask::createViewports()
     {
         // Create one viewport, entire window
-        Viewport* vp = mWindow->addViewport(mCamera.get());
+        Viewport* vp = mWindow->addViewport(mCamera);
         vp->setBackgroundColour(ColourValue(0,0,0));
 
         // Alter the camera aspect ratio to match the viewport

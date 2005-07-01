@@ -57,7 +57,7 @@ namespace stunts
 
 	public:
 
-		CTerrain(boost::shared_ptr< CLevel > level);
+		CTerrain(CLevel* level);
 
 		virtual ~CTerrain();
 
@@ -94,9 +94,10 @@ namespace stunts
 
 		boost::shared_ptr< Ogre::RaySceneQuery> mRaySceneQuery;
 
-		boost::shared_ptr< Ogre::SceneManager >	mSceneMgr;
-		boost::shared_ptr< CLevel > mLevel;
-
+		//boost::shared_ptr< Ogre::SceneManager >	mSceneMgr;
+		//boost::shared_ptr< CLevel > mLevel;
+		CLevel*							mLevel;
+		
 		float mWidthX;
 		float mWidthZ;
 

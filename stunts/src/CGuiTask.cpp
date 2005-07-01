@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.cpp,v 1.5 2005/06/27 01:19:18 psyborg Exp $ */
+/* CVS $Id: CGuiTask.cpp,v 1.6 2005/07/01 19:38:38 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.5 $
- *  @date    CVS $Date: 2005/06/27 01:19:18 $
+ *  @version CVS $Revision: 1.6 $
+ *  @date    CVS $Date: 2005/07/01 19:38:38 $
  */
 
 
@@ -20,6 +20,7 @@ using std::string;
 #include <OGRE/OgreCEGUIRenderer.h>
 
 #include "GameApplication.hpp"
+#include "LevelManager.hpp"
 
 namespace stunts
 {
@@ -95,7 +96,7 @@ namespace stunts
 	
 	void CGuiTask::mouseMoved (Ogre::MouseEvent *e)
 	{
-		CEGUI::System::getSingleton().injectMouseMove(
+		mGUISystem->injectMouseMove(
 				e->getRelX() * mGUIRenderer->getWidth(),
 				e->getRelY() * mGUIRenderer->getHeight());
 		e->consume();
@@ -108,14 +109,14 @@ namespace stunts
 	
 	void CGuiTask::mousePressed (Ogre::MouseEvent *e)
 	{
-		CEGUI::System::getSingleton().injectMouseButtonDown(
+		mGUISystem->injectMouseButtonDown(
 			convertOgreButtonToCegui(e->getButtonID()));
 		e->consume();
 	}
 	
 	void CGuiTask::mouseReleased (Ogre::MouseEvent *e)
 	{
-		CEGUI::System::getSingleton().injectMouseButtonUp(
+		mGUISystem->injectMouseButtonUp(
 			convertOgreButtonToCegui(e->getButtonID()));
 		e->consume();
 	}
@@ -129,14 +130,14 @@ namespace stunts
 			return;
 		}
 	
-		CEGUI::System::getSingleton().injectKeyDown(e->getKey());
-		CEGUI::System::getSingleton().injectChar(e->getKeyChar());
+		mGUISystem->injectKeyDown(e->getKey());
+		mGUISystem->injectChar(e->getKeyChar());
 		e->consume();
 	}
 	
 	void CGuiTask::keyReleased(Ogre::KeyEvent* e)
 	{
-		CEGUI::System::getSingleton().injectKeyUp(e->getKey());
+		mGUISystem->injectKeyUp(e->getKey());
 		e->consume();
 	}
 	
@@ -280,10 +281,17 @@ namespace stunts
 			->subscribeEvent(
 				CEGUI::PushButton::EventClicked, 
 				CEGUI::Event::Subscriber(&CGuiTask::handleQuit, this));
+
         wmgr.getWindow((CEGUI::utf8*)"Main/Start")
 			->subscribeEvent(
 				CEGUI::PushButton::EventClicked, 
 				CEGUI::Event::Subscriber(&CGuiTask::handleStart, this));
+
+        wmgr.getWindow((CEGUI::utf8*)"Main/Unload")
+			->subscribeEvent(
+				CEGUI::PushButton::EventClicked, 
+				CEGUI::Event::Subscriber(&CGuiTask::handleUnload, this));
+
         wmgr.getWindow((CEGUI::utf8*)"Main/Level")
 			->subscribeEvent(
 				CEGUI::PushButton::EventClicked, 
@@ -294,8 +302,9 @@ namespace stunts
 				CEGUI::PushButton::EventClicked, 
 				CEGUI::Event::Subscriber(&CGuiTask::handleLevelOK, this));
 
-		CEGUI::Window* editBox = wmgr.getWindow((CEGUI::utf8*)"Main/Level/LevelFile");
+		/*CEGUI::Window* editBox = wmgr.getWindow((CEGUI::utf8*)"Main/Level/LevelFile");
 		editBox->setText(CEGUI::String(string(nrSettings.get("level_file")).c_str()));
+		*/
 		
 		return NR_OK;
 	}
@@ -350,6 +359,13 @@ namespace stunts
 		return true;
 	}
 
+	bool CGuiTask::handleUnload(const CEGUI::EventArgs& e)
+	{
+		CLevelManager::GetSingleton().unload();
+				
+		return true;
+	}
+
 	bool CGuiTask::handleLevel(const CEGUI::EventArgs& e)
 	{
 		selectPage("MainLevel");
@@ -360,8 +376,9 @@ namespace stunts
 	bool CGuiTask::handleLevelOK(const CEGUI::EventArgs& e)
 	{
 		CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
-		CEGUI::Window* editBox = wmgr.getWindow((CEGUI::utf8*)"Main/Level/LevelFile");
+		/*CEGUI::Window* editBox = wmgr.getWindow((CEGUI::utf8*)"Main/Level/LevelFile");
 		nrSettings.get("level_file") = std::string(editBox->getText().c_str());
+		*/
 		selectPage("Main");
 		
 		return true;

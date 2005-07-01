@@ -59,7 +59,7 @@ namespace stunts
 	class CUserInput : public nrITask
 	{
 		public:
-			CUserInput(boost::shared_ptr< CLevel > level);
+			CUserInput(CLevel* level);
 			virtual ~CUserInput();
 			void react(float delaySeconds);
 			void activate(bool activated);
@@ -82,10 +82,12 @@ namespace stunts
 			virtual nrResult taskStop();
 
 
-			boost::shared_ptr< CLevel >				mLevel;
-
-			boost::shared_ptr< Ogre::InputReader >	mInputDevice;
-			boost::shared_ptr< Ogre::Camera >		mCamera;
+			CLevel*					mLevel;
+			Ogre::InputReader*		mInputDevice;
+			Ogre::Camera*			mCamera;
+			
+			//boost::shared_ptr< Ogre::InputReader >	mInputDevice;
+			//boost::shared_ptr< Ogre::Camera >		mCamera;
 			boost::shared_ptr< CTerrain >			mTerrain;
 			
 			

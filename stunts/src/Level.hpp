@@ -66,7 +66,7 @@ namespace stunts
 //------------------------------------------------------------------------------
 namespace stunts
 {
-	class CLevel : public nrITask, public OgreOde::CollisionListener
+	class CLevel : public OgreOde::CollisionListener
 	{
 		public:
 			//only to test here
@@ -76,12 +76,6 @@ namespace stunts
 			CLevel();
 			virtual ~CLevel();
 
-			//! Register all used variables by the settings manager
-			void 						registerVariables();
-
-			//! Remove all used variables from the settings manager
-			void 						deregisterVariables();
-
 			/**
 			 * Loads the level by given XML-String
 			 * @param levelFile Filename of file containing XML-Data about the level
@@ -89,19 +83,13 @@ namespace stunts
 			 **/
 			bool						loadLevel(const std::string& levelFile);
 
-			/**
-			 * Get OgreTask
-			 *
-			 * @return smart pointer to OgreTask class
-			 */
-			boost::shared_ptr< COgreTask > 			OgreTask();
 
 			/**
 			 * Get UserInput
 			 *
 			 * @return smart pointer to UserInput class
 			 */
-			boost::shared_ptr< CUserInput > 		UserInput();
+			//boost::shared_ptr< CUserInput > 		UserInput();
 
 
 			/**
@@ -117,8 +105,8 @@ namespace stunts
 			 *
 			 * @return smart pointer to PhysicsWorld class
 			 */
-			boost::shared_ptr<OgreOde::World> 		PhysicsWorld();
-
+			//boost::shared_ptr<OgreOde::World> 		PhysicsWorld();
+			OgreOde::World*								PhysicsWorld(){return mPhysicsWorld; }
 
 			/**
 			 * Get Objects
@@ -181,18 +169,12 @@ namespace stunts
 			 */
 			boost::shared_ptr<CBaseObject> 			getCar(int whichCar);
 
-		protected:
-			virtual nrResult 				taskInit();
-			virtual nrResult 				taskStart();
-			virtual nrResult 				taskUpdate();
-			virtual nrResult 				taskStop();
-			virtual const char* 				taskGetName() {return "LevelTask";}
-
-			/**
-			 * get all tasks to initialize own member variables.
-			 */
-			void 						getEngineTasks();
-
+	
+			virtual nrResult 				start();
+			virtual nrResult 				update();
+			virtual nrResult 				stop();
+			
+	protected:
 
 			//! Parse the physics values of the level file
 			void 						readPhysics(TiXmlElement* elem);
@@ -217,12 +199,15 @@ namespace stunts
 			//! import file containing data of the track
 			void 						importTrackFile(const char* fileName, const char* root = NULL);
 
+			/**
+			 * get all tasks to initialize own member variables.
+			 */
+			//void 						getEngineTasks();
 
 			//member variables
-			boost::shared_ptr< COgreTask >			mOgreTask;
 			boost::shared_ptr< CUserInput > 		mUserInput;
 
-			boost::shared_ptr< Ogre::InputReader >		mInputDevice;
+			//boost::shared_ptr< Ogre::InputReader >	mInputDevice;
 			boost::shared_ptr< CTerrain > 			mTerrain;
 			boost::shared_ptr< CAtmosphere >		mAtmosphere;
 
@@ -230,9 +215,6 @@ namespace stunts
 
 			std::string					mLevelFileName;
 			std::string					mLevelFilePath;
-
-			bool						mIsLoaded;
-			bool						mShouldLoadLevel;
 
 			int32 						mGridCountInX;
 			int32 						mGridCountInZ;
@@ -246,8 +228,9 @@ namespace stunts
 
 
 			// OgreODE
-			boost::shared_ptr<OgreOde::World> 		mPhysicsWorld;
-
+//			boost::shared_ptr<OgreOde::World> 		mPhysicsWorld;
+			OgreOde::World*							mPhysicsWorld;
+			
 			float32						mGravity;
 			float32						mCFM;
 			float32						mERP;

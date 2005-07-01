@@ -41,6 +41,7 @@ stunts_SOURCES = \
 	CKI.cpp \
 	CNeuralNetwork.cpp \
 	CNeurode.cpp \
+	LevelManager.cpp \
 	External/tinyxml/tinyxml.cpp\
 	External/tinyxml/tinystr.cpp\
 	External/tinyxml/tinyxmlerror.cpp\
@@ -95,7 +96,8 @@ noinst_HEADERS = \
 	CFunction.h \
 	CKI.h \
 	CNeuralNetwork.h \
-	CNeurode.h
+	CNeurode.h \
+	LevelManager.hpp
 
 
 # Set the include path found by configure
