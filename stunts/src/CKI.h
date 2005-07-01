@@ -89,6 +89,8 @@ namespace stunts
 			float steer;
 			float acc;
 			float brake;
+			
+			float waypointTime;
 		
 			
 			virtual nrResult taskInit();
@@ -113,7 +115,7 @@ namespace stunts
 			float levelOfReaction;
 
 
-			void actualizeWaypoint();
+			void actualizeWaypoint(float delaySeconds);
 			void actualizeCarSpeed();
 			
 			

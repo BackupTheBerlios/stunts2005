@@ -46,6 +46,8 @@ namespace stunts
 		steer = 0.f;
 		acc = 0.f;
 		brake = 0.f;
+		
+		waypointTime = 0.f;
 	}
 
 
@@ -145,7 +147,7 @@ namespace stunts
 	*/
 	void CKI::executeKI(float delaySeconds)
 	{
-		actualizeWaypoint();
+		actualizeWaypoint(delaySeconds);
 		actualizeCarSpeed();
 		net->runNetwork();
 		
@@ -167,7 +169,7 @@ namespace stunts
 	/**
 	* nimmt, wenn es sein muss den naechsten Waypoint
 	*/
-	void CKI::actualizeWaypoint()
+	void CKI::actualizeWaypoint(float delaySeconds = 0.f)
 	{	
 		if(waypoint == NULL)
 		{
@@ -176,11 +178,40 @@ namespace stunts
 		}
 		else
 		{
+			
+			waypointTime += delaySeconds;
+			
+			
 			if(debug_ki)  std::cout << "\nwaypoint " << waypoint->getVector() << std::endl; 
 			
 			
 			if( waypoint->getNext() != NULL )
 			{
+				//falls du zu lange brauchst deinen Punkt zu finden fahr den n?chsten Punkt an
+				if(waypointTime > 5.f)
+				{
+					waypoint = waypoint->getNext();
+					/*
+					std::cout << "waypointTime \n" << waypointTime << "\n";
+					std::cout << "delaySeconds \n" << delaySeconds << "\n\n";
+					*/
+					waypointTime = 0.f;
+					return;
+				}
+				
+				//falls du 180 Grad turn machen musst, nimm naechsten Punkt
+				if( (waypointTime > 0.5f) && (abs(steer) > 0.95f))
+				{
+					
+					waypoint = waypoint->getNext();
+					/*
+					std::cout << "abs(steer) \n" << abs(steer) << "\n";
+					*/
+					waypointTime = 0.f;
+					return;
+				}
+				
+				
 				float w_dis = ( waypoint->getVector() - waypoint->getNext()->getVector() ).length();
 				
 				float dis_1 = ( waypoint->getVector() - controlObject->Position() ).length();
@@ -197,6 +228,7 @@ namespace stunts
 					if(debug_ki)  std::cout << "\n\nwaypoint changed: was too near\n";
 					
 					actualizeWaypoint();
+					waypointTime = 0.f;
 					return;
 				}
 				
@@ -208,6 +240,7 @@ namespace stunts
 					if(debug_ki)  std::cout << "\n\nwaypoint changed: next is nearer\n";
 					
 					actualizeWaypoint();
+					waypointTime = 0.f;
 					return;
 				}
 				if(dis_3 < dis_1)
@@ -217,6 +250,7 @@ namespace stunts
 					if(debug_ki)  std::cout << "\n\nwaypoint changed: next is nearer\n";
 					
 					actualizeWaypoint();
+					waypointTime = 0.f;
 					return;
 				}
 				
@@ -227,6 +261,7 @@ namespace stunts
 					if(debug_ki)  std::cout << "\n\nwaypoint changed: next is nearer\n";
 					
 					actualizeWaypoint();
+					waypointTime = 0.f;
 					return;
 				}
 				
@@ -237,6 +272,7 @@ namespace stunts
 					if(debug_ki)  std::cout << "waypoint changed: next is nearer\n";
 					
 					actualizeWaypoint();
+					waypointTime = 0.f;
 					return;
 				}
 				return;
@@ -294,6 +330,7 @@ namespace stunts
 		
 		if (waypoint != NULL)
 		{
+			
 			Ogre::Vector3 o_pos = controlObject->Position();
 			if(debug_ki)  std::cout << "o_pos " << o_pos << std::endl;
 
