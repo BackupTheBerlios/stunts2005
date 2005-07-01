@@ -61,6 +61,13 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	nrResult CUserInput::taskStart()
 	{
+		
+		/*
+				std::cout << "escape  (init)  "<< (unsigned int)Ogre::KC_ESCAPE <<"\n";
+				std::cout << "camRight  (init)  "<< (unsigned int)Ogre::KC_D <<"\n";
+		*/
+				
+				
 		if (!(mLevel->OgreTask()))
 		{
 			nrLog.Log(NR_LOG_APP, "CUserInput::taskStart(): Error in getting\
@@ -75,11 +82,37 @@ namespace stunts
 		}
 		else
 		{
-			mInputDevice = mLevel->OgreTask()->mInputDevice;
-			mCamera = mLevel->OgreTask()->mCamera;
-			mTerrain = mLevel->Terrain();
+			/*
+			const char* fileName = "../media/graphics/gui/button/userInput.xml";
+			
+			
+			if (  !(importFromFile(fileName))  )
+			{
+			*/
+			if(true)
+			{
+				mInputDevice = mLevel->OgreTask()->mInputDevice;
+				mCamera = mLevel->OgreTask()->mCamera;
+				mTerrain = mLevel->Terrain();
+				
+				
+				// Generating default map
+				keymap["escape"] = (unsigned int)Ogre::KC_ESCAPE;
+				keymap["screenshot"] = (unsigned int)Ogre::KC_C;
+				
+				keymap["camLeft"] = (unsigned int)Ogre::KC_A;
+				keymap["camRight"] = (unsigned int)Ogre::KC_D;
+				keymap["camForward"] = (unsigned int)Ogre::KC_W;
+				keymap["camBackward"] = (unsigned int)Ogre::KC_S;
+				
+				keymap["camUp"] = (unsigned int)Ogre::KC_PGUP;
+				keymap["camDown"] = (unsigned int)Ogre::KC_PGDOWN;
+				
+				keymap["yawMinus"] = (unsigned int)Ogre::KC_RIGHT;
+				keymap["yawPlus"] = (unsigned int)Ogre::KC_LEFT;
+			}
 		}
-
+				
 		//return
 		return NR_OK;
 	}
@@ -149,64 +182,65 @@ namespace stunts
 
 
 
-		if (mInputDevice->isKeyDown(Ogre::KC_A))
+
+		if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["camLeft"]))
         {
             // Move camera left
             mTranslateVector.x = -mMoveScale;
         }
 
-        if (mInputDevice->isKeyDown(Ogre::KC_D))
+        if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["camRight"]))
         {
             // Move camera RIGHT
             mTranslateVector.x = mMoveScale;
         }
 
         /* Move camera forward by keypress. */
-        if (mInputDevice->isKeyDown(Ogre::KC_UP) ||
-        	mInputDevice->isKeyDown(Ogre::KC_W) )
+        if (mInputDevice->isKeyDown((Ogre::KeyCode)Ogre::KC_UP) ||
+        	mInputDevice->isKeyDown((Ogre::KeyCode)keymap["camForward"]) )
         {
             mTranslateVector.z = -mMoveScale;
         }
 
         /* Move camera backward by keypress. */
-        if (mInputDevice->isKeyDown(Ogre::KC_DOWN) ||
-        	mInputDevice->isKeyDown(Ogre::KC_S) )
+        if (mInputDevice->isKeyDown((Ogre::KeyCode)Ogre::KC_DOWN) ||
+        	mInputDevice->isKeyDown((Ogre::KeyCode)keymap["camBackward"]) )
         {
             mTranslateVector.z = mMoveScale;
         }
 
-        if (mInputDevice->isKeyDown(Ogre::KC_PGUP))
+        if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["camUp"]))
         {
             // Move camera up
             mTranslateVector.y = mMoveScale;
         }
 
-        if (mInputDevice->isKeyDown(Ogre::KC_PGDOWN))
+        if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["camDown"]))
         {
             // Move camera down
             mTranslateVector.y = -mMoveScale;
         }
 
-        if (mInputDevice->isKeyDown(Ogre::KC_RIGHT))
+        if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["yawMinus"]))
         {
             mCamera->yaw(-mRotScale);
         }
 
-        if (mInputDevice->isKeyDown(Ogre::KC_LEFT))
+        if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["yawPlus"]))
         {
             mCamera->yaw(mRotScale);
         }
 
-
-        if (mInputDevice->isKeyDown(Ogre::KC_F))
+/*
+        if (mInputDevice->isKeyDown((Ogre::KeyCode)Ogre::KC_F))
         {
         }
 
-        if (mInputDevice->isKeyDown(Ogre::KC_T))
+        if (mInputDevice->isKeyDown((Ogre::KeyCode)Ogre::KC_T))
         {
         }
-
-        if (mInputDevice->isKeyDown(Ogre::KC_C))
+*/
+        if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["screenshot"]))
         {
 			static int mNumScreenShots=0;
 			char tmp[20];
@@ -214,15 +248,15 @@ namespace stunts
             mLevel->OgreTask()->mWindow->writeContentsToFile(tmp);
 			mLevel->OgreTask()->mWindow->setDebugText(String("Wrote ") + tmp);
         }
-
-		if (mInputDevice->isKeyDown(Ogre::KC_R))
+/*
+		if (mInputDevice->isKeyDown((Ogre::KeyCode)Ogre::KC_R))
 		{
 		}
 
-        if (mInputDevice->isKeyDown(Ogre::KC_P))
+        if (mInputDevice->isKeyDown((Ogre::KeyCode)Ogre::KC_P))
         {
         }
-
+*/
 
 
         /* Rotation factors, may not be used if the second mouse button is pressed. */
@@ -286,6 +320,184 @@ namespace stunts
 		return mActivated;
 	}
 
+	bool CUserInput::parseSettings(TiXmlElement* rootElem)
+	{
+		
+		nrLog.Log(NR_LOG_APP, "CUserInput::parseSettings(): Start parsing the configuration");
+
+		TiXmlElement *elem 	= NULL;
+		TiXmlElement *subElem 	= NULL;
+		
+		unsigned int keyCommand;
+		
+		// read game specific keyboard settings
+		elem = rootElem->FirstChildElement("gameInput");
+		
+		
+		
+		if (elem)
+		{
+			// configuring map for special game input
+			subElem = elem->FirstChildElement("escape");
+			const char *escapestr = subElem->GetText();
+			
+			keyCommand = escapestr ? axtoi( (escapestr)) : (unsigned int)Ogre::KC_ESCAPE;
+			/*
+				std::cout << "escape  (parse)  "<< keyCommand <<"\n";
+			*/
+			
+			keymap["escape"] = keyCommand;
+			
+			subElem = elem->FirstChildElement("screenshot");
+			const char *screenshotstr = subElem->GetText();
+			keyCommand = screenshotstr ? axtoi( (screenshotstr)) : (unsigned int)Ogre::KC_C;
+			
+			
+			keymap["screenshot"] = keyCommand;
+		}
+		else return false;
+		
+		
+		// read keyboard steering settings
+		elem = rootElem->FirstChildElement("steeringInput");
+		if (elem)
+		{
+			// configuring map for keyborad steering settings
+			subElem = elem->FirstChildElement("camLeft");
+			const char *camLeftstr = subElem->GetText();
+			keyCommand = camLeftstr ? axtoi( (camLeftstr)) : (unsigned int)Ogre::KC_A;
+			
+			keymap["camLeft"] = keyCommand;
+			
+			subElem = elem->FirstChildElement("camRight");
+			const char *camRightstr = subElem->GetText();
+			keyCommand = camRightstr ? axtoi( (camRightstr)) : (unsigned int)Ogre::KC_D;
+			/*
+				std::cout << "camRightstr  (parse)  "<< std::atoi(camRightstr) <<"\n";
+			*/
+			keymap["camRight"] = keyCommand;
+			
+			subElem = elem->FirstChildElement("camForward");
+			const char *camForwardstr = subElem->GetText();
+			keyCommand = camForwardstr ? axtoi( (camForwardstr)) : (unsigned int)Ogre::KC_W;
+			
+			keymap["camForward"] = keyCommand;
+			
+			subElem = elem->FirstChildElement("camBackward");
+			const char *camBackwardstr = subElem->GetText();
+			keyCommand = camBackwardstr ? axtoi( (camBackwardstr)) : (unsigned int)Ogre::KC_S;
+			
+			keymap["camBackward"] = keyCommand;
+			
+			subElem = elem->FirstChildElement("camUp");
+			const char *camUpstr = subElem->GetText();
+			keyCommand = camUpstr ? axtoi( (camUpstr)) : (unsigned int)Ogre::KC_PGUP;
+			
+			keymap["camUp"] = keyCommand;
+			
+			subElem = elem->FirstChildElement("camDown");
+			const char *camDownstr = subElem->GetText();
+			keyCommand = camDownstr ? axtoi( (camDownstr)) : (unsigned int)Ogre::KC_PGDOWN;
+			
+			keymap["camDown"] = keyCommand;
+			
+			subElem = elem->FirstChildElement("yawMinus");
+			const char *yawMinusstr = subElem->GetText();
+			keyCommand = yawMinusstr ? axtoi( (yawMinusstr)) : (unsigned int)Ogre::KC_RIGHT;
+			
+			keymap["yawMinus"] = keyCommand;
+			
+			subElem = elem->FirstChildElement("yawPlus");
+			const char *yawPlusstr = subElem->GetText();
+			keyCommand = yawPlusstr ? axtoi( (yawPlusstr)) : (unsigned int)Ogre::KC_LEFT;
+			
+			keymap["yawPlus"] = keyCommand;
+			
+		}
+		else return false;
+		
+		
+		// read mouse input settings
+		elem = rootElem->FirstChildElement("mouseInput");
+		if (elem)
+		{
+			// configuring map for mouse input
+		}
+		else return false;
+		
+			
+		nrLog.Log(NR_LOG_APP, "CUserInput::parseSettings(): Stop parsing the configuration");
+		return true;
+	}
+		
+	bool CUserInput::importFromFile(const char* fileName)
+	{
+				
+		// we open the file for parsing.
+		// Later we can open the file through the virtual file system if we had got more time 
+		// for development
+		boost::shared_ptr<TiXmlDocument> mLevelDoc (new TiXmlDocument(fileName));
+		if (!mLevelDoc->LoadFile())
+		{
+			nrLog.Log(NR_LOG_APP, "CUserInput::importFromFile(): There is an error occurs by loading the configuration file \"%s\"", fileName);
+			return false;
+		}
+
+		// Load elements form the config file and handle with them in according way		
+		TiXmlElement* elem = NULL;
+		TiXmlElement* rootElem;
+		rootElem = mLevelDoc->FirstChildElement("userInput");
+		
+		if (!rootElem)
+		{
+			nrLog.Log(NR_LOG_APP, "CUserInput::importFromFile(): The configuration file is corrupted - No <userInput> Tag was found !");
+			return false;
+		}
+		return parseSettings(rootElem);
+	}
+	
+	
+	
+	unsigned int CUserInput::axtoi(const char *hexStg)
+	{
+		int n = 2;         // position in string
+		int m = 0;         // position in digit[] to shift
+		int count;         // loop index
+		
+		unsigned int intValue = 0;  // integer value of hex string
+		
+		int digit[5];      // hold values to convert
+		
+		while (n < 4)
+		{
+			 if (hexStg[n]=='\0')
+				break;
+			 if (hexStg[n] > 0x29 && hexStg[n] < 0x40 ) //if 0 to 9
+				digit[n] = hexStg[n] & 0x0f;            //convert to int
+			 else if (hexStg[n] >='a' && hexStg[n] <= 'f') //if a to f
+				digit[n] = (hexStg[n] & 0x0f) + 9;      //convert to int
+			 else if (hexStg[n] >='A' && hexStg[n] <= 'F') //if A to F
+				digit[n] = (hexStg[n] & 0x0f) + 9;      //convert to int
+			 else break;
+			n++;
+		}
+		
+		count = n;
+		m = n - 1;
+		n = 0;
+		
+		while(n < count)
+		{
+			// digit[n] is value of hex digit at position n
+			// (m << 2) is the number of positions to shift
+			// OR the bits into return value
+			intValue = intValue | (digit[n] << (m << 2));
+			m--;   // adjust the position to set
+			n++;   // next digit to process
+		}
+		
+		return (intValue);
+	}
 
 }	//namespace stunts
 

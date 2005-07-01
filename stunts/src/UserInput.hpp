@@ -51,6 +51,8 @@ namespace stunts
 
 #include <nrEngine/nrEngine.h>
 
+#include <map>
+
 namespace stunts
 {
 
@@ -63,6 +65,14 @@ namespace stunts
 			void activate(bool activated);
 			bool isActivated() const;
 			virtual const char* taskGetName() {return "UserInput";}
+			
+			/**
+		 	* Import the atmosphere from a file.
+		 	* @param fileName Name of the file containing terrain data.
+		 	* @param xmlP
+		 	* @return false if error occurs otherwise true
+		 	**/
+			virtual bool importFromFile(const char* fileName);
 
 
 		protected:
@@ -77,8 +87,32 @@ namespace stunts
 			boost::shared_ptr< Ogre::InputReader >	mInputDevice;
 			boost::shared_ptr< Ogre::Camera >		mCamera;
 			boost::shared_ptr< CTerrain >			mTerrain;
+			
+			
+			// declare empty container (string -> map)
+			typedef std::map<std::string, unsigned int> inputmap;
+			// create empty container
+			inputmap keymap;
+			
 
 			bool mActivated;
+			
+			
+			/**
+		 	* Parse config settings from a given XML-Tree.
+		 	* @param rootElem Root element of the XML-Tree (here: atmosphere - Tag)
+		 	* @param xmlPath path of this XML-File, for importing
+		 	* @return true if error occurs
+		 	**/
+			bool parseSettings(TiXmlElement* rootElem);
+			
+			/**
+			* Configuring the map object to map the input keys in the .xml configuration file to userinput
+			**/
+			bool configMap();
+			
+			
+			unsigned int axtoi(const char *hexStg);
 
 	};
 }	//namespace stunts
