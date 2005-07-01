@@ -4,7 +4,7 @@
  *                    Stunts 2005 Workgroup,
  *                    http://developer.berlios.de/projects/stunts2005
  *
- * Maintainer:        Christian Morbach <GameDevelopment@paratronic.de>
+ * Maintainer:        Peter Kaczmarczyk
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -71,18 +71,26 @@ namespace stunts
 			void CKI::setLevelOfReaction (float levelReac)		{this->levelOfReaction = levelReac;}
 
 			// getter
-			float* CKI::getLevelOfSkill()			{	return &levelOfSkill;	}
-			float* CKI::getLevelOfAggressivity()	{	return &levelOfAggressivity;	}
-			float* CKI::getLevelOfReaction()		{	return &levelOfReaction;	}
-
-			float* steerAngle()	{return &msteerAngle;};
-
+			float* getLevelOfSkill()			{	return &levelOfSkill;	}
+			float* getLevelOfAggressivity()	{	return &levelOfAggressivity;	}
+			float* getLevelOfReaction()		{	return &levelOfReaction;	}
+			
+			
+			float* steerAngle()				{	return &msteerAngle;	};
+			float* Speed()						{	return &carSpeed;	}
+			
+			
 			virtual const char* taskGetName() {return "KITask";}
 
 		protected:
-
-			static const bool debug_ki = false;	//CM
-
+		
+			static const bool debug_ki = false;
+			
+			float steer;
+			float acc;
+			float brake;
+		
+			
 			virtual nrResult taskInit();
 			virtual nrResult taskStart();
 			virtual nrResult taskUpdate();
@@ -97,14 +105,18 @@ namespace stunts
 			CNeuralNetwork* net;
 
 			float msteerAngle;
-
+			float carSpeed;
+			
+			
 			float levelOfSkill;
 			float levelOfAggressivity;
 			float levelOfReaction;
 
 
 			void actualizeWaypoint();
-
+			void actualizeCarSpeed();
+			
+			
 			void computeStrategy();
 
 

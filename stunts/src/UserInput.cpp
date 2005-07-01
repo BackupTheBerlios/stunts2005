@@ -136,7 +136,9 @@ namespace stunts
 			float speedFactor = 1.0f;
 
 			//mLevel
-			mLevel->mVehicle->setInputs(mInputDevice->isKeyDown(KC_J),mInputDevice->isKeyDown(KC_L),mInputDevice->isKeyDown(KC_I),mInputDevice->isKeyDown(KC_K));
+			
+			//Peter: sonst kann KI die Signale nicht schicken
+			//mLevel->mVehicle->setInputs(mInputDevice->isKeyDown(KC_J),mInputDevice->isKeyDown(KC_L),mInputDevice->isKeyDown(KC_I),mInputDevice->isKeyDown(KC_K));
 			mLevel->mVehicle->update(delaySeconds * speedFactor);
 
 			mLevel->PhysicsWorld()->synchronise();

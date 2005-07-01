@@ -18,6 +18,7 @@ using std::vector;
 
 const int SPEED = 1000;
 const int STEER = 2000;
+const int HIGHSTEER = 3000;
 
 namespace stunts
 {
@@ -32,28 +33,28 @@ namespace stunts
 		bool FUNCTION_NEW;
 		
 		//STEER
-		/*
-		vector<float> steerAnd11;
-		vector<float> steerAndnot12;
-		vector<float> steerOr21;*/
+		float* steer;
 		
-		float* steerAnd11;
-		float* steerAndnot12;
-		float* steerOr21;
-		
-		CNeurode* steerReactN;
 		CNeurode* steerSteerangelN;
-		CNeurode* steerAggresN;
+		CNeurode* steerReactN;
 		
-		CNeurode* steerNeurodeAnd11;
-		CNeurode* steerNeurodeAndnot12;
-		CNeurode* steerNeurodeOr21;
+		CNeurode* steer6timesN;
+		CNeurode* steerNeurodeMulti;
+		
+		//HIGHSTEER
+		float* highsteerAnd11;
+		float* highsteerAndnot12;
+		float* highsteerOr21;
+		
+		CNeurode* highsteerReactN;
+		CNeurode* highsteerSteerangelN;
+		CNeurode* highsteerAggresN;
+		
+		CNeurode* highsteerNeurodeAnd11;
+		CNeurode* highsteerNeurodeAndnot12;
+		CNeurode* highsteerNeurodeOr21;
 		
 		//SPEED
-		/*
-		vector<float> speedAnd11;
-		vector<float> speedAndnot12;
-		vector<float> speedOr21;*/
 		float* speedAnd11;
 		float* speedAndnot12;
 		float* speedOr21;

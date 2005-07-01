@@ -69,6 +69,24 @@ namespace stunts {
 					{ return CCarObject::getObjectTypeSt(); }
 
 
+			inline float Speed() const
+			{
+				if(mVehicle != NULL)
+				{
+					if(mVehicle->getWheel(0) != NULL)
+					{
+						return  ( mVehicle->getWheel(0)->getRPM()  );
+					}
+				}
+				// was nicht da ist hat auch keine Speed
+				return 0.f;
+			};
+			
+			
+			inline Quaternion	Orientation() const	{ return mVehicle->getOrientation(); };
+			inline Vector3	Position() const		{ return mVehicle->getPosition(); };
+			
+			
 			// Functions for gearbox & engine
 			inline void	shiftUp()
 					{ this->mVehicle->getEngine()->changeUp();				}
@@ -81,12 +99,14 @@ namespace stunts {
 
 
 			// Funktions for engine
-			inline void	accellerate(float throttle)
-					{ this->mVehicle->getEngine()->setInputs(throttle, 0.0);		}
-			inline void 	brake(float brake)
-					{ this->mVehicle->getEngine()->setInputs(0.0, brake);			}
-			inline void 	accellerate_brake(bool throttle, bool brake)
-					{ this->mVehicle->getEngine()->setInputs(throttle, brake); 		}
+			//inline void	accellerate(float throttle)
+			//		{ this->mVehicle->getEngine()->setInputs(throttle, 0.0);		}
+			//inline void 	brake(float brake)
+			//		{ this->mVehicle->getEngine()->setInputs(0.0, brake);			}
+			//inline void 	accellerate_brake(float throttle, float brake)
+			//		{ this->mVehicle->setInputs(0.f, throttle, brake); 		}
+			inline void 	setInputs(float steer, float throttle, float brake)
+					{ this->mVehicle->setInputs(steer, throttle, brake); 		}
 			
 			
 			//ODE object
