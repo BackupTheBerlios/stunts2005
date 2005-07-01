@@ -1,0 +1,13 @@
+material Simple/black
+{
+    technique
+    {
+        pass
+        {
+            texture_unit
+            {
+                texture black.jpg 
+            }
+        }
+    }
+}
