@@ -51,6 +51,15 @@ namespace stunts
 
 		mTerrainFriction = 18.0;
 
+		mLevelNode = COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode("Level_Node");
+		
+		//(re-)set the Physics World
+		//mPhysicsWorld.reset(new OgreOde::World(COgreTask::GetSingleton().mSceneMgr));
+		if (!(OgreOde::World::getSingletonPtr()))
+			mPhysicsWorld = new OgreOde::World(COgreTask::GetSingleton().mSceneMgr);
+		else
+			mPhysicsWorld = OgreOde::World::getSingletonPtr();
+			
 	}
 
 
@@ -82,15 +91,20 @@ namespace stunts
 		mTerrain.reset();
 		mAtmosphere.reset();
 
-		// and now delete the physics
-//		mPhysicsWorld.reset();
-		if (mPhysicsWorld){
-		//	delete mPhysicsWorld;
-			mPhysicsWorld = NULL;
-		}
 		
 		// Now clear the rest of the scene
 		//COgreTask::GetSingleton().mSceneMgr->clearScene();
+		if (mLevelNode)
+		{
+			try {
+				mLevelNode->detachAllObjects();				
+				COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->removeAndDestroyChild(mLevelNode->getName());
+				mLevelNode = NULL;
+			}catch(...){
+			
+			}
+		}
+		
 		
 	}
 
@@ -417,6 +431,8 @@ namespace stunts
 		if (elem)
 			readObjects(elem);
 
+		// Now move the terrain, so we get all objects origin in the cells middlepoint
+		
 	}
 
 	//--------------------------------------------------------------------------
@@ -461,6 +477,9 @@ namespace stunts
 		//activate input class
 		mUserInput->activate(true);
 
+		// move the level node, so we get all objects on the right place
+		mLevelNode->translate(unitToMeter(0.5f), 0, unitToMeter(0.5f));
+		
 		return NR_OK;
 	}
 
@@ -736,10 +755,7 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	void CLevel::InitializeODE()
 	{
-		//(re-)set the Physics World
-		//mPhysicsWorld.reset(new OgreOde::World(COgreTask::GetSingleton().mSceneMgr));
-		mPhysicsWorld = new OgreOde::World(COgreTask::GetSingleton().mSceneMgr);
-
+	
 		//set its parameters
 		mPhysicsWorld->setGravity(Vector3(0,-mGravity,0));
 		mPhysicsWorld->setCFM(mCFM);

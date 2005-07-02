@@ -543,7 +543,7 @@ namespace stunts {
 				{
 					// Create & Load the entity
 					mEntity 	= COgreTask::GetSingleton().mSceneMgr->createEntity(mName + "_Entity", std::string(file));
-					mObjNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode(mName);
+					mObjNode 	= mLevel->mLevelNode->createChildSceneNode(mName);
 					//mEntity->setCastShadows( true );
 					mObjNode->attachObject( mEntity );
 

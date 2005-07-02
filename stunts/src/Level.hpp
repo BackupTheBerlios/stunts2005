@@ -174,6 +174,9 @@ namespace stunts
 			virtual nrResult 				update();
 			virtual nrResult 				stop();
 			
+			//! Main level node in the scene graph, which store all other objects
+			Ogre::SceneNode*						mLevelNode;
+
 	protected:
 
 			//! Parse the physics values of the level file
@@ -199,15 +202,9 @@ namespace stunts
 			//! import file containing data of the track
 			void 						importTrackFile(const char* fileName, const char* root = NULL);
 
-			/**
-			 * get all tasks to initialize own member variables.
-			 */
-			//void 						getEngineTasks();
-
+			
 			//member variables
 			boost::shared_ptr< CUserInput > 		mUserInput;
-
-			//boost::shared_ptr< Ogre::InputReader >	mInputDevice;
 			boost::shared_ptr< CTerrain > 			mTerrain;
 			boost::shared_ptr< CAtmosphere >		mAtmosphere;
 
