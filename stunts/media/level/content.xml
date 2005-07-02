@@ -14,15 +14,15 @@
 			file file name of the thumbnail containing %i which will be
 			replaced by the thumbnail number according to the count. Count
 			is started by 0. File path is relative to Level Path defined above -->
-		<thumbnail count="1" file="thumb_%i.png" />
+		<thumbnail count="3" file="screenshot_%i.jpg" />
 		
 	</level>
 	
 
 	<level>
 		<name name="Test" path="TestLevel2" />
-		<author name="Psyborg" datestr="Do, 30 Jun, 16:55" />
-		<thumbnail count="1" file="thumb_%i.png" />
+		<author name="Niemand" datestr="Irgendwannmal" />
+		<thumbnail count="0" file="thumb_%i.png" />
 		
 	</level>
 	
