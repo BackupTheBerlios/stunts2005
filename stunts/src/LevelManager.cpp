@@ -64,16 +64,26 @@ namespace stunts
 
 
 	//--------------------------------------------------------------------------
-	int32 CLevelManager::loadLevel(std::string name)
+	int32 CLevelManager::loadLevel(const std::string& name)
 	{
 		// check now, if we does support such a level
-		if (!hasGotLevel(name)) return NO_SUCH_LEVEL_FOUND;
-
+		if (!hasGotLevel(name))
+		{
+			nrLog.Log(NR_LOG_APP, "CLevelManager: Level %s was not found. So can not load it!", name.c_str());
+			return NO_SUCH_LEVEL_FOUND;
+		}
+		
 		// first we check whenever the level is already loaded
-		if (mIsCurrentLoaded && mCurrentLevel == name) return LEVEL_ALREADY_LOADED;
+		if (mIsCurrentLoaded && mCurrentLevel == name){
+			nrLog.Log(NR_LOG_APP, "CLevelManager: Level %s is already loaded. Please unload it first", name.c_str());		
+			return LEVEL_ALREADY_LOADED;
+		}
 		
 		// if another level is loaded, so error code
-		if (mIsCurrentLoaded && mCurrentLevel != name) return ANOTHER_LEVEL_IS_LOADED;
+		if (mIsCurrentLoaded && mCurrentLevel != name){
+			nrLog.Log(NR_LOG_APP, "CLevelManager: Another level is currently loaded. Please unload it first");				
+			return ANOTHER_LEVEL_IS_LOADED;
+		}
 		
 		// create new level object
 		mLevel.reset(new CLevel());
@@ -96,7 +106,7 @@ namespace stunts
 	
 	
 	//--------------------------------------------------------------------------
-	int32 CLevelManager::unloadLevel(std::string name)
+	int32 CLevelManager::unloadLevel(const std::string& name)
 	{
 		// check now, if we does support such a level
 		if (!hasGotLevel(name)) return NO_SUCH_LEVEL_FOUND;
@@ -121,7 +131,7 @@ namespace stunts
 	}
 
 	//--------------------------------------------------------------------------
-	int32 CLevelManager::reloadLevel(std::string name)
+	int32 CLevelManager::reloadLevel(const std::string& name)
 	{
 		// First unload the level
 		int32 ret = unloadLevel(name);
@@ -140,6 +150,8 @@ namespace stunts
 		{
 			// Level was found
 			if (it->name == name) return &(*it);
+			
+			it++;
 		}
 		
 		// no such level name was found
@@ -199,10 +211,10 @@ namespace stunts
 		mLevelPath = getPathFromFileName(fileName);
 
 		// scan through all levels we can found here
-		for (TiXmlElement* elem = rootElem->FirstChildElement("level"); elem != 0;
-					elem = rootElem->NextSiblingElement("level"))
+		for (TiXmlNode* elem = rootElem->FirstChild("level"); elem != 0;
+					elem = rootElem->IterateChildren(elem))
         {
-
+		
 			TiXmlElement* sElem = NULL;
 
 			// Level data
@@ -260,7 +272,10 @@ namespace stunts
 		if (mShouldLoadLevel && (mLevelToLoad.length() > 0) && (COgreTask::GetSingleton().mSceneMgr != NULL)){
 			mShouldLoadLevel = false;
 
+			nrLog.Log(NR_LOG_APP, "CLevelManager: Loading of level %s is initiated !", mLevelToLoad.c_str());
+			
 			//load the level and its physics
+			//unload();
 			loadLevel(mLevelToLoad);
 		}
 		

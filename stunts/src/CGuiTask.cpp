@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.cpp,v 1.6 2005/07/01 19:38:38 psyborg Exp $ */
+/* CVS $Id: CGuiTask.cpp,v 1.7 2005/07/02 11:09:30 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.6 $
- *  @date    CVS $Date: 2005/07/01 19:38:38 $
+ *  @version CVS $Revision: 1.7 $
+ *  @date    CVS $Date: 2005/07/02 11:09:30 $
  */
 
 
@@ -301,10 +301,22 @@ namespace stunts
 			->subscribeEvent(
 				CEGUI::PushButton::EventClicked, 
 				CEGUI::Event::Subscriber(&CGuiTask::handleLevelOK, this));
-
-		/*CEGUI::Window* editBox = wmgr.getWindow((CEGUI::utf8*)"Main/Level/LevelFile");
-		editBox->setText(CEGUI::String(string(nrSettings.get("level_file")).c_str()));
-		*/
+		
+		// add all levels we can load
+		CEGUI::Listbox* mList = static_cast<CEGUI::Listbox*>(wmgr.getWindow((CEGUI::utf8*)"Main/Level/LevelList"));
+		if (mList)
+		{
+			std::vector<CLevelManager::LevelData>& list = CLevelManager::GetSingleton().getAllLevelData();
+			
+			for (unsigned int i=0; i < list.size(); i++)
+			{
+				CEGUI::ListboxTextItem *listboxitem = new CEGUI::ListboxTextItem (list[i].name.c_str());
+				listboxitem->setSelectionBrushImage("TaharezLook", "ListboxSelectionBrush");
+				listboxitem->setSelected (i == 0);
+				mList->addItem(listboxitem);
+			}
+			
+		}
 		
 		return NR_OK;
 	}
@@ -330,6 +342,13 @@ namespace stunts
 			}
 		}
 		
+		CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
+		CEGUI::Window* wind = wmgr.getWindow((CEGUI::utf8*)"Menu");
+		if (wind)
+		{
+			wind->setText((std::string("Selected Level: ") + std::string(nrSettings.get("level_file"))).c_str());
+		}
+
 		return NR_OK;
 	}
 	
@@ -376,9 +395,12 @@ namespace stunts
 	bool CGuiTask::handleLevelOK(const CEGUI::EventArgs& e)
 	{
 		CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
-		/*CEGUI::Window* editBox = wmgr.getWindow((CEGUI::utf8*)"Main/Level/LevelFile");
-		nrSettings.get("level_file") = std::string(editBox->getText().c_str());
-		*/
+		CEGUI::Listbox* mList = static_cast<CEGUI::Listbox*>(wmgr.getWindow((CEGUI::utf8*)"Main/Level/LevelList"));
+		if (mList)
+		{
+			nrSettings.set("level_file", std::string(mList->getFirstSelectedItem()->getText().c_str()));		
+		}
+
 		selectPage("Main");
 		
 		return true;

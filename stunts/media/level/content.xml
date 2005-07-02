@@ -1,5 +1,6 @@
 <!-- Here we store information about all levels, that can be found here -->
 <levels>
+	
 	<level>
 		<!-- Name of the level and a path containing all level data. Path is relative 
 			to this file -->
@@ -17,6 +18,7 @@
 		
 	</level>
 	
+
 	<level>
 		<name name="Test" path="TestLevel2" />
 		<author name="Psyborg" datestr="Do, 30 Jun, 16:55" />

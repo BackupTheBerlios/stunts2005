@@ -65,7 +65,7 @@ namespace stunts
 	 **/
 	class CLevelManager : public nrISingletonTask<CLevelManager>, public nrIChangeable
 	{
-		private:
+		public:
 			//! this structure holds information about a level
 			struct LevelData
 			{
@@ -73,36 +73,7 @@ namespace stunts
 				std::string 	path;
 				std::string		author;
 				std::string		datestr;
-				
 			};
-			
-			//! Here we store the level object
-			boost::scoped_ptr<CLevel>	mLevel;
-			
-			//! Vector containing all levels we are using in the game
-			std::vector<LevelData>		mLevelList;
-			
-			//! Name of the level, that is currently loaded
-			std::string					mCurrentLevel;
-			
-			//! If true, so we have a level that is currently loaded
-			bool						mIsCurrentLoaded;
-			
-			//! String containg information about the path containg levels
-			std::string					mLevelPath;
-			
-			//! Store here the name of the level to be loaded at the next cycle (setted by the settings manager)
-			std::string					mLevelToLoad;
-			
-			//! If 1 so the level will be loaded at the next cycle
-			bool						mShouldLoadLevel;
-			
-			//----------------------------------------------------
-			// Methods
-			//----------------------------------------------------
-			LevelData*		getLevelData(const std::string& name);
-			
-		public:
 			
 			// Error codes
 			enum{
@@ -115,12 +86,15 @@ namespace stunts
 				CONTENT_FILE_NOT_FOUND,
 				CONTENT_FILE_CORRUPTED
 			};
-			
+
+			/** Get a vector containing all levels data */
+			std::vector<LevelData>&	getAllLevelData() { return mLevelList; }
+
+						
 			// Constructor & Desturctor
 			CLevelManager ();
 			~CLevelManager();
-			
-			
+						
 			/** Unload all currently opened levels
 			*/
 			int32 unload() 
@@ -133,15 +107,15 @@ namespace stunts
 			
 			/** Load the level with specfied name
 			*/
-			int32 loadLevel(std::string name);
+			int32 loadLevel(const std::string& name);
 			
 			/** Unload the level with specfied name
 			*/
-			int32 unloadLevel(std::string name);
+			int32 unloadLevel(const std::string& name);
 						
 			/** Reload the level with specfied name
 			*/
-			int32 reloadLevel(std::string name);
+			int32 reloadLevel(const std::string& name);
 			
 			
 			/** Load the file containg level list, which show us all levels 
@@ -181,6 +155,34 @@ namespace stunts
 			//! Remove all used variables from the settings manager
 			void	deregisterAllVars();
 
+			
+		private:
+			
+			//! Here we store the level object
+			boost::scoped_ptr<CLevel>	mLevel;
+			
+			//! Vector containing all levels we are using in the game
+			std::vector<LevelData>		mLevelList;
+			
+			//! Name of the level, that is currently loaded
+			std::string					mCurrentLevel;
+			
+			//! If true, so we have a level that is currently loaded
+			bool						mIsCurrentLoaded;
+			
+			//! String containg information about the path containg levels
+			std::string					mLevelPath;
+			
+			//! Store here the name of the level to be loaded at the next cycle (setted by the settings manager)
+			std::string					mLevelToLoad;
+			
+			//! If 1 so the level will be loaded at the next cycle
+			bool						mShouldLoadLevel;
+			
+			//----------------------------------------------------
+			// Methods
+			//----------------------------------------------------
+			LevelData*		getLevelData(const std::string& name);
 			
 	};
 
