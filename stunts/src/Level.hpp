@@ -38,6 +38,17 @@ namespace stunts
 }
 
 //------------------------------------------------------------------------------
+//--- predeclare the objects
+//------------------------------------------------------------------------------
+
+namespace stunts
+{
+	class CBaseObject;
+	class CInteractiveObject;
+	class CCarObject;
+}
+
+//------------------------------------------------------------------------------
 //--- includes
 //------------------------------------------------------------------------------
 #include <OGRE/Ogre.h>
@@ -56,7 +67,6 @@ namespace stunts
 #include "OgreTask.hpp"
 #include "UserInput.hpp"
 #include "Terrain.hpp"
-#include "BaseObject.hpp"
 #include "Atmosphere.hpp"
 #include "Waypoint.hpp"
 
@@ -69,8 +79,10 @@ namespace stunts
 	class CLevel : public OgreOde::CollisionListener
 	{
 		public:
-			//only to test here
-			boost::shared_ptr<OgreOde_Prefab::Vehicle> 	mVehicle;
+			//constants
+			//	for getCar
+			static const char CAR_AI = 0;
+			static const char CAR_HUMAN = 1;
 
 
 			CLevel();
@@ -82,14 +94,6 @@ namespace stunts
 			 * @return 0 if no error occurs otherwise 1
 			 **/
 			bool						loadLevel(const std::string& levelFile);
-
-
-			/**
-			 * Get UserInput
-			 *
-			 * @return smart pointer to UserInput class
-			 */
-			//boost::shared_ptr< CUserInput > 		UserInput();
 
 
 			/**
@@ -105,8 +109,7 @@ namespace stunts
 			 *
 			 * @return smart pointer to PhysicsWorld class
 			 */
-			//boost::shared_ptr<OgreOde::World> 		PhysicsWorld();
-			OgreOde::World*								PhysicsWorld(){return mPhysicsWorld; }
+			OgreOde::World*				PhysicsWorld(){return mPhysicsWorld; }
 
 			/**
 			 * Get Objects
@@ -158,22 +161,22 @@ namespace stunts
 
 			// Get next i Waypoint
 			boost::shared_ptr<CWaypoint> 			getNextWaypoint(boost::shared_ptr<CWaypoint> waypoint, int nr);
-			
-			
+
+
 			/**
 			 * Search car with given Name
-			 * 
-			 * @param int whichCar (0 == CAR_AI, 1 == CAR_HUMAN)
+			 *
+			 * @param int whichCar (CAR_AI orCAR_HUMAN)
 			 *
 			 * @return Smart pointer to object
 			 */
-			boost::shared_ptr<CBaseObject> 			getCar(int whichCar);
+			boost::shared_ptr<CCarObject> 			getCar(int whichCar);
 
-	
+
 			virtual nrResult 				start();
 			virtual nrResult 				update();
 			virtual nrResult 				stop();
-			
+
 			//! Main level node in the scene graph, which store all other objects
 			Ogre::SceneNode*						mLevelNode;
 
@@ -202,7 +205,7 @@ namespace stunts
 			//! import file containing data of the track
 			void 						importTrackFile(const char* fileName, const char* root = NULL);
 
-			
+
 			//member variables
 			boost::shared_ptr< CUserInput > 		mUserInput;
 			boost::shared_ptr< CTerrain > 			mTerrain;
@@ -225,9 +228,8 @@ namespace stunts
 
 
 			// OgreODE
-//			boost::shared_ptr<OgreOde::World> 		mPhysicsWorld;
 			OgreOde::World*							mPhysicsWorld;
-			
+
 			float32						mGravity;
 			float32						mCFM;
 			float32						mERP;
@@ -237,15 +239,15 @@ namespace stunts
 
 			bool collision(OgreOde::Contact* contact);
 			void InitializeODE();
-			
-			
+
+
 			// Pointer to user / ai car object
-			boost::shared_ptr<CBaseObject>			mAICar;
-			boost::shared_ptr<CBaseObject>			mHumanCar;
-			
+			boost::shared_ptr<CCarObject>			mAICar;
+			boost::shared_ptr<CCarObject>			mHumanCar;
+
 			// Function to search for cars in BaseObjects vector
 			void						searchCars();
-			
+
 	};
 
 };

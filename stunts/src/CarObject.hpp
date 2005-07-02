@@ -59,13 +59,13 @@ namespace stunts {
 			*/
 			~CCarObject();
 
-			
+
 			bool 				steer(float gasPedal);
 
 
-			static	const char* getObjectTypeSt() 
+			static	const char* getObjectTypeSt()
 					{ return "car"; }
-			const char* 	getObjectType()   
+			const char* 	getObjectType()
 					{ return CCarObject::getObjectTypeSt(); }
 
 
@@ -81,12 +81,12 @@ namespace stunts {
 				// was nicht da ist hat auch keine Speed
 				return 0.f;
 			};
-			
-			
+
+
 			inline Quaternion	Orientation() const	{ return mVehicle->getOrientation(); };
 			inline Vector3	Position() const		{ return mVehicle->getPosition(); };
-			
-			
+
+
 			// Functions for gearbox & engine
 			inline void	shiftUp()
 					{ this->mVehicle->getEngine()->changeUp();				}
@@ -107,11 +107,11 @@ namespace stunts {
 			//		{ this->mVehicle->setInputs(0.f, throttle, brake); 		}
 			inline void 	setInputs(float steer, float throttle, float brake)
 					{ this->mVehicle->setInputs(steer, throttle, brake); 		}
-			
-			
+
+
 			//ODE object
 			inline boost::shared_ptr<OgreOde_Prefab::Vehicle>	ODEVehicle()
-					{ return this->mVehicle; 						}
+					{ return this->mVehicle;}
 
 
 		protected:

@@ -52,59 +52,58 @@ namespace stunts
 		mTerrainFriction = 18.0;
 
 		mLevelNode = COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode("Level_Node");
-		
+
 		//(re-)set the Physics World
-		//mPhysicsWorld.reset(new OgreOde::World(COgreTask::GetSingleton().mSceneMgr));
 		if (!(OgreOde::World::getSingletonPtr()))
 			mPhysicsWorld = new OgreOde::World(COgreTask::GetSingleton().mSceneMgr);
 		else
 			mPhysicsWorld = OgreOde::World::getSingletonPtr();
-			
+
 	}
 
 
 	//--------------------------------------------------------------------------
 	CLevel::~CLevel()
 	{
-	
+
 		// delete the input
 		mUserInput.reset();
-		
+
 		// delete all waypoints
 		for (unsigned int i=0; i < mWaypoints.size(); i++)
 		{
 			mWaypoints[i].reset();
 		}
-		
-		
+
+
 		// First we need to delete all used objects
 		for (unsigned int i=0; i < mObjects.size(); i++)
 		{
 			(mObjects[i]).reset();
 		}
-		
+
 		// now remove all cars
 		mHumanCar.reset();
 		mAICar.reset();
-				
+
 		// Now remove terrain and atmosphere
 		mTerrain.reset();
 		mAtmosphere.reset();
 
-		
+
 		// Now clear the rest of the scene
 		//COgreTask::GetSingleton().mSceneMgr->clearScene();
 		if (mLevelNode)
 		{
 			try {
-				mLevelNode->detachAllObjects();				
+				mLevelNode->detachAllObjects();
 				COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->removeAndDestroyChild(mLevelNode->getName());
 				mLevelNode = NULL;
 			}catch(...){
-			
+
 			}
 		}
-		
+
 		//COgreTask::GetSingleton().mSceneMgr->clearScene();
 	}
 
@@ -432,7 +431,7 @@ namespace stunts
 			readObjects(elem);
 
 		// Now move the terrain, so we get all objects origin in the cells middlepoint
-		
+
 	}
 
 	//--------------------------------------------------------------------------
@@ -473,13 +472,13 @@ namespace stunts
 		mUserInput->setTaskPriority(NR_PRIORITY_VERY_HIGH);
 		nrKernel.AddTask(mUserInput);
 		nrKernel.StartTask(mUserInput->getTaskID());
-		
+
 		//activate input class
 		mUserInput->activate(true);
 
 		// move the level node, so we get all objects on the right place
 		mLevelNode->translate(unitToMeter(0.5f), 0, unitToMeter(0.5f));
-		
+
 		return NR_OK;
 	}
 
@@ -497,60 +496,19 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	nrResult CLevel::stop()
 	{
-		mUserInput->activate(false);		
+		mUserInput->activate(false);
 		nrKernel.RemoveTask(mUserInput->getTaskID());
 		mUserInput.reset();
-		
+
 		return NR_OK;
 	}
-		
 
-	//--------------------------------------------------------------------------
-	/*void CLevel::getEngineTasks()
-	{
-		//get tasks
-		//mOgreTask = boost::dynamic_pointer_cast<COgreTask, nrITask>(nrKernel.getTaskByName("OgreTask"));
-
-		if (!mUserInput)
-		{
-			mUserInput = boost::dynamic_pointer_cast<CUserInput, nrITask>(nrKernel.getTaskByName("UserInput"));
-
-			//check for errors
-			if (!mUserInput)
-			{
-				nrLog.Log(NR_LOG_APP, "CLevel::getEngineTasks(): Error in getting Tasks");
-				nrKernel.KillAllTasks();
-			}
-		}
-		
-	}*/
-
-
-	//--------------------------------------------------------------------------
-	//boost::shared_ptr< COgreTask >  CLevel::OgreTask()
-	//{
-		//COgreTask::GetSingletonPtr();
-	//	return mOgreTask;
-	//}
-
-
-	//--------------------------------------------------------------------------
-	/*boost::shared_ptr< CUserInput >  CLevel::UserInput()
-	{
-		return mUserInput;
-	}*/
 
 	//--------------------------------------------------------------------------
 	boost::shared_ptr< CTerrain >  CLevel::Terrain()
 	{
 		return mTerrain;
 	}
-
-	//--------------------------------------------------------------------------
-	/*boost::shared_ptr<OgreOde::World> CLevel::PhysicsWorld()
-	{
-		return mPhysicsWorld;
-	}*/
 
 
 	//--------------------------------------------------------------------------
@@ -755,7 +713,7 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	void CLevel::InitializeODE()
 	{
-	
+
 		//set its parameters
 		mPhysicsWorld->setGravity(Vector3(0,-mGravity,0));
 		mPhysicsWorld->setCFM(mCFM);
@@ -858,13 +816,10 @@ namespace stunts
 
 
 	//--------------------------------------------------------------------------
-	boost::shared_ptr<CBaseObject> CLevel::getCar(int whichCar)
+	boost::shared_ptr<CCarObject> CLevel::getCar(int whichCar)
 	{
-		const int CAR_AI	= 0;
-		const int CAR_HUMAN	= 1;
-
-		if      (whichCar == CAR_AI)    return this->mAICar;
-		else if (whichCar == CAR_HUMAN) return this->mHumanCar;
+		if      (whichCar == CLevel::CAR_AI)    return this->mAICar;
+		else if (whichCar == CLevel::CAR_HUMAN) return this->mHumanCar;
 	}
 
 
@@ -882,18 +837,14 @@ namespace stunts
 			if (currentObject->getName() == "AICar")
 			{
 				// Check if another AI Car exists, if true, then log it
-				if (!this->mAICar)
-				{
-					this->mAICar = currentObject;
-					this->mVehicle = ((CCarObject* )currentObject.get())->mVehicle;
-				}
+				if (!this->mAICar)	this->mAICar = boost::static_pointer_cast<CCarObject, CBaseObject>(currentObject);
 				else nrLog.Log(NR_LOG_APP, "CLevel::searchCars(): There already exists an AI Car!");
 			}
 
 			if (currentObject->getName() == "HumanPlayerCar")
 			{
 				// Check if another AI Car exists, if true, then log it
-				if (!this->mHumanCar) this->mHumanCar = currentObject;
+				if (!this->mHumanCar) this->mHumanCar = boost::static_pointer_cast<CCarObject, CBaseObject>(currentObject);
 				else nrLog.Log(NR_LOG_APP, "CLevel::searchCars(): There already exists an Human Player Car!");
 			}
 		}

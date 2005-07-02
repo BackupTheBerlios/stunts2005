@@ -41,12 +41,12 @@ namespace stunts
 
 		net = new CNeuralNetwork(this);
 		net->makeNetwork();
-		
+
 		carSpeed = 0.f;
 		steer = 0.f;
 		acc = 0.f;
 		brake = 0.f;
-		
+
 		waypointTime = 0.f;
 	}
 
@@ -76,22 +76,7 @@ namespace stunts
 	{
 		if (controlObject == NULL)
 		{
-			controlObject.reset( (CCarObject*) mLevel->getCar(0).get() );
-			/*
-			mObjects = mLevel->Objects();
-
-			if(mObjects.size() != 0)
-			{
-				for(int i=0; i<mObjects.size(); i++)
-				{
-					if (mObjects.at(i)->getName().compare("AICar") == 0)
-					{
-						controlObject.reset( (CCarObject*)mObjects.at(i).get() );
-						break;
-					}
-				}
-			}
-			*/
+			controlObject = mLevel->getCar(CLevel::CAR_AI);
 		}
 		else
 		{
@@ -150,8 +135,8 @@ namespace stunts
 		actualizeWaypoint(delaySeconds);
 		actualizeCarSpeed();
 		net->runNetwork();
-		
-		
+
+
 		computeStrategy();
 
 	//	waypoint computeNextWayPoint();
@@ -159,10 +144,10 @@ namespace stunts
 		computeGear();
 		computeDirection();
 		computeAcceleration();
-		
+
 		controlObject->setInputs(steer, acc, brake);
 	}
-	
+
 
 
 
@@ -170,7 +155,7 @@ namespace stunts
 	* nimmt, wenn es sein muss den naechsten Waypoint
 	*/
 	void CKI::actualizeWaypoint(float delaySeconds = 0.f)
-	{	
+	{
 		if(waypoint == NULL)
 		{
 			waypoint = mLevel->getFirstWaypoint();
@@ -178,13 +163,13 @@ namespace stunts
 		}
 		else
 		{
-			
+
 			waypointTime += delaySeconds;
-			
-			
-			if(debug_ki)  std::cout << "\nwaypoint " << waypoint->getVector() << std::endl; 
-			
-			
+
+
+			if(debug_ki)  std::cout << "\nwaypoint " << waypoint->getVector() << std::endl;
+
+
 			if( waypoint->getNext() != NULL )
 			{
 				//falls du zu lange brauchst deinen Punkt zu finden fahr den n?chsten Punkt an
@@ -198,11 +183,11 @@ namespace stunts
 					waypointTime = 0.f;
 					return;
 				}
-				
+
 				//falls du 180 Grad turn machen musst, nimm naechsten Punkt
 				if( (waypointTime > 0.5f) && (abs(steer) > 0.95f))
 				{
-					
+
 					waypoint = waypoint->getNext();
 					/*
 					std::cout << "abs(steer) \n" << abs(steer) << "\n";
@@ -210,35 +195,35 @@ namespace stunts
 					waypointTime = 0.f;
 					return;
 				}
-				
-				
+
+
 				float w_dis = ( waypoint->getVector() - waypoint->getNext()->getVector() ).length();
-				
+
 				float dis_1 = ( waypoint->getVector() - controlObject->Position() ).length();
 				float dis_2 = ( waypoint->getNext()->getVector() - controlObject->Position() ).length();
 				float dis_3 = ( waypoint->getNext()->getNext()->getVector() - controlObject->Position() ).length();
 				float dis_4 = ( waypoint->getNext()->getNext()->getNext()->getVector() - controlObject->Position() ).length();
 				float dis_5 = ( waypoint->getNext()->getNext()->getNext()->getNext()->getVector() - controlObject->Position() ).length();
-				
+
 				//falls nah genug am Waypoint, schau auf naechsten
 				if(dis_1 < w_dis)
 				{
 					waypoint = waypoint->getNext();
-					
+
 					if(debug_ki)  std::cout << "\n\nwaypoint changed: was too near\n";
-					
+
 					actualizeWaypoint();
 					waypointTime = 0.f;
 					return;
 				}
-				
+
 				//falls nextWaypoint naeher liegt als der jetzige, nimm naechsten
 				if(dis_2 < dis_1)
 				{
 					waypoint = waypoint->getNext();
-					
+
 					if(debug_ki)  std::cout << "\n\nwaypoint changed: next is nearer\n";
-					
+
 					actualizeWaypoint();
 					waypointTime = 0.f;
 					return;
@@ -246,31 +231,31 @@ namespace stunts
 				if(dis_3 < dis_1)
 				{
 					waypoint = waypoint->getNext()->getNext();
-					
+
 					if(debug_ki)  std::cout << "\n\nwaypoint changed: next is nearer\n";
-					
+
 					actualizeWaypoint();
 					waypointTime = 0.f;
 					return;
 				}
-				
+
 				if(dis_4 < dis_1)
 				{
 					waypoint = waypoint->getNext()->getNext()->getNext();
-					
+
 					if(debug_ki)  std::cout << "\n\nwaypoint changed: next is nearer\n";
-					
+
 					actualizeWaypoint();
 					waypointTime = 0.f;
 					return;
 				}
-				
+
 				if(dis_5 < dis_1)
 				{
 					waypoint = waypoint->getNext()->getNext()->getNext()->getNext();
-					
+
 					if(debug_ki)  std::cout << "waypoint changed: next is nearer\n";
-					
+
 					actualizeWaypoint();
 					waypointTime = 0.f;
 					return;
@@ -281,8 +266,8 @@ namespace stunts
 		}
 		return;
 	}
-	
-	
+
+
 	void CKI::actualizeCarSpeed()
 	{
 		if(controlObject != NULL)
@@ -293,18 +278,18 @@ namespace stunts
 		// was nicht da ist hat auch keine Speed
 		carSpeed = 0.f;
 	}
-			
-	
-	
+
+
+
 	/**
 	* soll mal die KI veraendern, verbessern, anpassen koennen
 	*/
 	void CKI::computeStrategy()
 	{
 	}
-	
-	
-	
+
+
+
 	void CKI::computeGear()
 	{
 	/*
@@ -327,18 +312,18 @@ namespace stunts
 	*/
 	void CKI::computeDirection()
 	{
-		
+
 		if (waypoint != NULL)
 		{
-			
+
 			Ogre::Vector3 o_pos = controlObject->Position();
 			if(debug_ki)  std::cout << "o_pos " << o_pos << std::endl;
 
 
 			Ogre::Vector3 w_dir = waypoint->getVector() - (o_pos);
 //			if(debug_ki)  std::cout << "\n  w_dir\n" << w_dir;
-		
-		
+
+
 			Ogre::Quaternion o_dir = controlObject->Orientation();
 //			if(debug_ki)  std::cout << "\n  o_dir\n" << o_dir;
 
@@ -347,18 +332,18 @@ namespace stunts
 
 			Ogre::Vector3 my_richtung = (o_dir * d);
 //			if(debug_ki)  std::cout << "\n  my_richtung\n" << my_richtung << std::endl;
-			
+
 			my_richtung.normalise();
 			w_dir.normalise();
-			
+
 			msteerAngle = my_richtung.dotProduct(w_dir);
 //			if(debug_ki)  std::cout << "\n  msteerAngle\n" << msteerAngle << endl;
-			
-			
+
+
 			steer = net->Steer();
 			if(debug_ki)  std::cout << "lenkung " << net->Steer() << std::endl;
-		
-		
+
+
 		}
 
 
@@ -400,27 +385,27 @@ namespace stunts
 	{
 		/*
 		if(debug_ki)  std::cout << "\n\n   compAcc  \n\n";
-		
+
 		if(debug_ki)  std::cout << "steer  "<< net->isHighSteer()  << std::endl;
 		if(debug_ki)  std::cout << "speed  "<< net->isHighSpeed()  << std::endl;
 		*/
-		
+
 		if (net->isHighSteer() >= 0)
 		{
 			if (net->isHighSpeed() >= 0 )
 			{
 				brake = ( net->isHighSteer() * net->isHighSpeed() );
 				acc = 0.f;
-				
+
 				//controlObject->accellerate_brake(0.f,  net->isHighSteer() * net->isHighSpeed() );
 				if(debug_ki)  std::cout << "brake (danger)" << ( net->isHighSteer() * net->isHighSpeed() ) << std::endl;
 			}
 			else
 			{
-				//steer [0..1]  speed [-1..0[ 
+				//steer [0..1]  speed [-1..0[
 				brake = 0.f;//( net->isHighSteer() * ( 1.f + net->isHighSpeed() ) );
 				acc = ( net->isHighSteer() * ( -1.f * net->isHighSpeed() ) );
-				
+
 				//controlObject->accellerate_brake(0.f,  net->isHighSteer() * ( 1.f + net->isHighSpeed() ) );
 				if(debug_ki)  std::cout << "accellerate (safe)" << ( net->isHighSteer() * ( -1.f * net->isHighSpeed() ) ) << std::endl;
 			}
@@ -432,7 +417,7 @@ namespace stunts
 				//steer ]-1..0[  speed [0..1[
 				acc = (1.f +  (-1.f * (net->isHighSpeed())) );
 				brake = 0.f;
-				
+
 				//controlObject->accellerate_brake( 1.f + -1.f * (net->isHighSpeed()) , 0.f); //highspeed is negative!
 				if(debug_ki)  std::cout << "accellerate (danger) " << (1.f +  -1.f * (net->isHighSpeed()) ) << std::endl;
 			}
@@ -441,7 +426,7 @@ namespace stunts
 				// highspeed and highsteer are negative!
 				acc = ( net->isHighSteer() * net->isHighSpeed());
 				brake = 0.f;
-				
+
 				//controlObject->accellerate_brake( (1.f - net->isHighSteer()) * net->isHighSpeed() , 0.f);
 				if(debug_ki)  std::cout << "accellerate (turbo) " << ( net->isHighSteer() * net->isHighSpeed() ) << std::endl;
 			}

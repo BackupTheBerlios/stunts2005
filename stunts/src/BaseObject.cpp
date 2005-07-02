@@ -153,27 +153,27 @@ namespace stunts {
 	//--------------------------------------------------------------------------
 	CBaseObject::~CBaseObject()
 	{
-		
+
 		// RemoveObject from memory
 		if (mObjNode)
 		{
 			try {
-			
-				mObjNode->detachAllObjects();				
+
+				mObjNode->detachAllObjects();
 				COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->removeAndDestroyChild(mName);
-				
+
 				mObjNode = NULL;
 			}catch(...){
-			
+
 			}
-			
+
 		}
-		
+
 		if (mEntity){
 			COgreTask::GetSingleton().mSceneMgr->removeEntity(mEntity);
 			mEntity = NULL;
 		}
-		
+
 		//delete the geometry
 		if (mEntityInformer)
 			delete mEntityInformer;

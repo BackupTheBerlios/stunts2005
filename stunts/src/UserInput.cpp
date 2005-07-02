@@ -27,6 +27,8 @@
 
 #include "CGuiTask.h"
 
+#include "CarObject.hpp"
+
 namespace stunts
 {
 	//--------------------------------------------------------------------------
@@ -36,7 +38,7 @@ namespace stunts
 	{
 		mLevel = level;
 		mActivated = false;		//initially this input device is disabled
-		
+
 		mInputDevice = NULL;
 		mCamera = NULL;
 	}
@@ -66,12 +68,12 @@ namespace stunts
 	nrResult CUserInput::taskStart()
 	{
 		if (!COgreTask::isValid())
-		
+
 		/*
 				std::cout << "escape  (init)  "<< (unsigned int)Ogre::KC_ESCAPE <<"\n";
 				std::cout << "camRight  (init)  "<< (unsigned int)Ogre::KC_D <<"\n";
 		*/
-				
+
 		{
 			nrLog.Log(NR_LOG_APP, "CUserInput::taskStart(): Error in getting\
 				OgreTask");
@@ -87,8 +89,8 @@ namespace stunts
 		{
 			/*
 			const char* fileName = "../media/graphics/gui/button/userInput.xml";
-			
-			
+
+
 			if (  !(importFromFile(fileName))  )
 			{
 			*/
@@ -97,25 +99,25 @@ namespace stunts
 			mInputDevice = COgreTask::GetSingleton().mInputDevice;
 			mCamera = COgreTask::GetSingleton().mCamera;
 			mTerrain = mLevel->Terrain();
-				
-				
+
+
 				// Generating default map
 				keymap["escape"] = (unsigned int)Ogre::KC_ESCAPE;
 				keymap["screenshot"] = (unsigned int)Ogre::KC_C;
-				
+
 				keymap["camLeft"] = (unsigned int)Ogre::KC_A;
 				keymap["camRight"] = (unsigned int)Ogre::KC_D;
 				keymap["camForward"] = (unsigned int)Ogre::KC_W;
 				keymap["camBackward"] = (unsigned int)Ogre::KC_S;
-				
+
 				keymap["camUp"] = (unsigned int)Ogre::KC_PGUP;
 				keymap["camDown"] = (unsigned int)Ogre::KC_PGDOWN;
-				
+
 				keymap["yawMinus"] = (unsigned int)Ogre::KC_RIGHT;
 				keymap["yawPlus"] = (unsigned int)Ogre::KC_LEFT;
 			}
 		}
-				
+
 		//return
 		return NR_OK;
 	}
@@ -167,15 +169,16 @@ namespace stunts
 		//if(mInputDevice->isKeyDown(KC_U)) mPhysicsExecution->pause(false);
 		//if(mInputDevice->isKeyDown(KC_P)) mPhysicsExecution->pause(true);
 
-		if((mLevel->mVehicle != NULL))// && !mPhysicsExecution->isPaused())
+		if((mLevel->getCar(CLevel::CAR_HUMAN) != NULL))// && !mPhysicsExecution->isPaused())
 		{
 			float speedFactor = 1.0f;
 
-			//mLevel
-			
-			//Peter: sonst kann KI die Signale nicht schicken
-			//mLevel->mVehicle->setInputs(mInputDevice->isKeyDown(KC_J),mInputDevice->isKeyDown(KC_L),mInputDevice->isKeyDown(KC_I),mInputDevice->isKeyDown(KC_K));
-			mLevel->mVehicle->update(delaySeconds * speedFactor);
+			//AI
+			mLevel->getCar(CLevel::CAR_AI)->ODEVehicle()->update(delaySeconds * speedFactor);
+
+			//HumanPlayer
+			mLevel->getCar(CLevel::CAR_HUMAN)->ODEVehicle()->setInputs(mInputDevice->isKeyDown(KC_J),mInputDevice->isKeyDown(KC_L),mInputDevice->isKeyDown(KC_I),mInputDevice->isKeyDown(KC_K));
+			mLevel->getCar(CLevel::CAR_HUMAN)->ODEVehicle()->update(delaySeconds * speedFactor);
 
 			mLevel->PhysicsWorld()->synchronise();
 			mLevel->PhysicsWorld()->getDefaultSpace()->collide();
@@ -248,7 +251,7 @@ namespace stunts
 			static int mNumScreenShots=0;
 			char tmp[20];
 			sprintf(tmp, "screenshot_%d.png", ++mNumScreenShots);
-            COgreTask::GetSingleton().mWindow->writeContentsToFile(tmp);
+			COgreTask::GetSingleton().mWindow->writeContentsToFile(tmp);
 			COgreTask::GetSingleton().mWindow->setDebugText(String("Wrote ") + tmp);
         }
 /*
@@ -325,42 +328,42 @@ namespace stunts
 
 	bool CUserInput::parseSettings(TiXmlElement* rootElem)
 	{
-		
+
 		nrLog.Log(NR_LOG_APP, "CUserInput::parseSettings(): Start parsing the configuration");
 
 		TiXmlElement *elem 	= NULL;
 		TiXmlElement *subElem 	= NULL;
-		
+
 		unsigned int keyCommand;
-		
+
 		// read game specific keyboard settings
 		elem = rootElem->FirstChildElement("gameInput");
-		
-		
-		
+
+
+
 		if (elem)
 		{
 			// configuring map for special game input
 			subElem = elem->FirstChildElement("escape");
 			const char *escapestr = subElem->GetText();
-			
+
 			keyCommand = escapestr ? axtoi( (escapestr)) : (unsigned int)Ogre::KC_ESCAPE;
 			/*
 				std::cout << "escape  (parse)  "<< keyCommand <<"\n";
 			*/
-			
+
 			keymap["escape"] = keyCommand;
-			
+
 			subElem = elem->FirstChildElement("screenshot");
 			const char *screenshotstr = subElem->GetText();
 			keyCommand = screenshotstr ? axtoi( (screenshotstr)) : (unsigned int)Ogre::KC_C;
-			
-			
+
+
 			keymap["screenshot"] = keyCommand;
 		}
 		else return false;
-		
-		
+
+
 		// read keyboard steering settings
 		elem = rootElem->FirstChildElement("steeringInput");
 		if (elem)
@@ -369,9 +372,9 @@ namespace stunts
 			subElem = elem->FirstChildElement("camLeft");
 			const char *camLeftstr = subElem->GetText();
 			keyCommand = camLeftstr ? axtoi( (camLeftstr)) : (unsigned int)Ogre::KC_A;
-			
+
 			keymap["camLeft"] = keyCommand;
-			
+
 			subElem = elem->FirstChildElement("camRight");
 			const char *camRightstr = subElem->GetText();
 			keyCommand = camRightstr ? axtoi( (camRightstr)) : (unsigned int)Ogre::KC_D;
@@ -379,47 +382,47 @@ namespace stunts
 				std::cout << "camRightstr  (parse)  "<< std::atoi(camRightstr) <<"\n";
 			*/
 			keymap["camRight"] = keyCommand;
-			
+
 			subElem = elem->FirstChildElement("camForward");
 			const char *camForwardstr = subElem->GetText();
 			keyCommand = camForwardstr ? axtoi( (camForwardstr)) : (unsigned int)Ogre::KC_W;
-			
+
 			keymap["camForward"] = keyCommand;
-			
+
 			subElem = elem->FirstChildElement("camBackward");
 			const char *camBackwardstr = subElem->GetText();
 			keyCommand = camBackwardstr ? axtoi( (camBackwardstr)) : (unsigned int)Ogre::KC_S;
-			
+
 			keymap["camBackward"] = keyCommand;
-			
+
 			subElem = elem->FirstChildElement("camUp");
 			const char *camUpstr = subElem->GetText();
 			keyCommand = camUpstr ? axtoi( (camUpstr)) : (unsigned int)Ogre::KC_PGUP;
-			
+
 			keymap["camUp"] = keyCommand;
-			
+
 			subElem = elem->FirstChildElement("camDown");
 			const char *camDownstr = subElem->GetText();
 			keyCommand = camDownstr ? axtoi( (camDownstr)) : (unsigned int)Ogre::KC_PGDOWN;
-			
+
 			keymap["camDown"] = keyCommand;
-			
+
 			subElem = elem->FirstChildElement("yawMinus");
 			const char *yawMinusstr = subElem->GetText();
 			keyCommand = yawMinusstr ? axtoi( (yawMinusstr)) : (unsigned int)Ogre::KC_RIGHT;
-			
+
 			keymap["yawMinus"] = keyCommand;
-			
+
 			subElem = elem->FirstChildElement("yawPlus");
 			const char *yawPlusstr = subElem->GetText();
 			keyCommand = yawPlusstr ? axtoi( (yawPlusstr)) : (unsigned int)Ogre::KC_LEFT;
-			
+
 			keymap["yawPlus"] = keyCommand;
-			
+
 		}
 		else return false;
-		
-		
+
+
 		// read mouse input settings
 		elem = rootElem->FirstChildElement("mouseInput");
 		if (elem)
@@ -427,17 +430,17 @@ namespace stunts
 			// configuring map for mouse input
 		}
 		else return false;
-		
-			
+
+
 		nrLog.Log(NR_LOG_APP, "CUserInput::parseSettings(): Stop parsing the configuration");
 		return true;
 	}
-		
+
 	bool CUserInput::importFromFile(const char* fileName)
 	{
-				
+
 		// we open the file for parsing.
-		// Later we can open the file through the virtual file system if we had got more time 
+		// Later we can open the file through the virtual file system if we had got more time
 		// for development
 		boost::shared_ptr<TiXmlDocument> mLevelDoc (new TiXmlDocument(fileName));
 		if (!mLevelDoc->LoadFile())
@@ -446,11 +449,11 @@ namespace stunts
 			return false;
 		}
 
-		// Load elements form the config file and handle with them in according way		
+		// Load elements form the config file and handle with them in according way
 		TiXmlElement* elem = NULL;
 		TiXmlElement* rootElem;
 		rootElem = mLevelDoc->FirstChildElement("userInput");
-		
+
 		if (!rootElem)
 		{
 			nrLog.Log(NR_LOG_APP, "CUserInput::importFromFile(): The configuration file is corrupted - No <userInput> Tag was found !");
@@ -458,19 +461,19 @@ namespace stunts
 		}
 		return parseSettings(rootElem);
 	}
-	
-	
-	
+
+
+
 	unsigned int CUserInput::axtoi(const char *hexStg)
 	{
 		int n = 2;         // position in string
 		int m = 0;         // position in digit[] to shift
 		int count;         // loop index
-		
+
 		unsigned int intValue = 0;  // integer value of hex string
-		
+
 		int digit[5];      // hold values to convert
-		
+
 		while (n < 4)
 		{
 			 if (hexStg[n]=='\0')
@@ -484,11 +487,11 @@ namespace stunts
 			 else break;
 			n++;
 		}
-		
+
 		count = n;
 		m = n - 1;
 		n = 0;
-		
+
 		while(n < count)
 		{
 			// digit[n] is value of hex digit at position n
@@ -498,7 +501,7 @@ namespace stunts
 			m--;   // adjust the position to set
 			n++;   // next digit to process
 		}
-		
+
 		return (intValue);
 	}
 
