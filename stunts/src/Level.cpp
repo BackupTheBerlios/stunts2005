@@ -105,7 +105,7 @@ namespace stunts
 			}
 		}
 		
-		
+		//COgreTask::GetSingleton().mSceneMgr->clearScene();
 	}
 
 

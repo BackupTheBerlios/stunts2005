@@ -170,9 +170,9 @@ namespace stunts {
 	void COgreTask::destroyScene()
 	{
 		
-		mSceneMgr->clearScene();
-		
-		mSceneMgr->removeCamera(mCamera);
+		mSceneMgr->clearScene();		
+		mSceneMgr->removeAllCameras();
+		mRoot->getAutoCreatedWindow()->removeAllViewports();
 		
 	}
 

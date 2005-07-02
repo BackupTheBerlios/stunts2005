@@ -59,6 +59,8 @@ namespace stunts
 		
 		mTerrain.reset();
 		
+		//COgreTask::GetSingleton().mSceneMgr->removeAllStaticGeometry();
+		
 	}
 
 	void CTerrain::Init(std::string terrainFile)
