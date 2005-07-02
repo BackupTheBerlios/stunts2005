@@ -1,0 +1,62 @@
+we need a installed Ogre-1.02 and boost boost-1.32.0-r4
+ and an extracted fmod sound library
+
+---
+
+cegui_mk2-0.3.0 - cegui_mk2_stunts_release.tar.bz2:
+
+-> extract Ogre 1.02 (you get the ogrenew directory)
+-> extract cegui_mk2_stunts_release.tar.bz2 to ogrenew/Samples/Common
+-> cd ogrenew/Samples/Common/cegui_mk2-0.3.0
+-> touch NEWS
+-> make -f Makefile.cvs
+-> make
+-> make install (as root)
+
+---
+
+CEGUIRenderer - CEGUIRenderer-Ogre1_02.tar.gz:
+
+-> cegui_mk2-0.3.0 has to be installed and you have the ogrenew directory
+-> rm -r ogrenew/Samples/Common/CEGUIRenderer
+-> extract CEGUIRenderer-Ogre1_02.tar.gz to ogrenew/Samples/Common
+-> cd ogrenew
+-> ./bootstrap
+-> ./configure
+-> cd ogrenew/Samples/Common/CEGUIRenderer
+-> make (Makefile must exist after ./configure)
+-> make install (as root)
+
+---
+
+ODE and OgreODE - OgreOde_1-0-1-r1.tar.gz:
+
+-> extract CEGUIRenderer-Ogre1_02.tar.gz to ogrenew
+-> sh install.sh (it leads you through the setup process, install it to /usr/local/)
+-> cp ogrenew/OgreOde_1-0-1-r1/prefab/include/OgreOdeRagdoll.h  /usr/local/include/OgreOde_Prefab
+
+---
+
+Take the following paths to your environment variables:
+
+export LD_LIBRARY_PATH=/<FMOD path>/:/<nrEngine path>/lib/:/usr/local/lib/
+export LIBRARY_PATH=$LD_LIBRARY_PATH
+export CPLUS_INCLUDE_PATH=/<nrEngine path>/include/:/<FMOD path>/inc/:/usr/include/OGRE:/usr/local/include/OgreOde_Core:/usr/local/include/OgreOde_Prefab
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
+
+---
+
+Stunts:
+
+-> checkout the stunts module
+-> cd stunts
+-> make -f Makefile.cvs
+-> ./configure (no error may occur there)
+-> make
+
+
+
+
+
+
+
