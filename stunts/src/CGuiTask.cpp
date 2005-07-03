@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.cpp,v 1.7 2005/07/02 11:09:30 psyborg Exp $ */
+/* CVS $Id: CGuiTask.cpp,v 1.8 2005/07/03 11:21:03 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.7 $
- *  @date    CVS $Date: 2005/07/02 11:09:30 $
+ *  @version CVS $Revision: 1.8 $
+ *  @date    CVS $Date: 2005/07/03 11:21:03 $
  */
 
 
@@ -301,6 +301,32 @@ namespace stunts
 			->subscribeEvent(
 				CEGUI::PushButton::EventClicked, 
 				CEGUI::Event::Subscriber(&CGuiTask::handleLevelOK, this));
+
+		// load all screenshot images into the vector
+		std::vector<CLevelManager::LevelData>& levels = CLevelManager::GetSingleton().getAllLevelData();
+		for (unsigned int i=0; i < levels.size(); i++){
+			CLevelManager::LevelData& data = levels[i];
+			
+			for (unsigned int j=0; j < data.screenshots.size(); j++){
+				char imgname[256];
+				sprintf(imgname, "%s_image", data.screenshots[j]->getName().c_str());
+
+				// Try to create images for the GUI from the Textures
+				try{
+					CEGUI::Texture* tex = mGUIRenderer->createTexture(data.screenshots[j]);
+					CEGUI::Imageset* imageSet = CEGUI::ImagesetManager::getSingleton().createImageset((CEGUI::utf8*)data.screenshots[j]->getName().c_str(), tex);
+
+	 				imageSet->defineImage((CEGUI::utf8*)imgname, 
+						CEGUI::Point(0.0f, 0.0f),
+						CEGUI::Size(tex->getWidth(), tex->getHeight()),
+						CEGUI::Point(0.0f,0.0f));
+
+					// add the imageset into our internal database
+					mImageSets.push_back(imageSet);
+				}catch (...){}
+				
+			}
+		}
 		
 		// add all levels we can load
 		CEGUI::Listbox* mList = static_cast<CEGUI::Listbox*>(wmgr.getWindow((CEGUI::utf8*)"Main/Level/LevelList"));
@@ -316,8 +342,17 @@ namespace stunts
 				mList->addItem(listboxitem);
 			}
 			
+			// if one was selected, so call this method
+			mList->subscribeEvent(
+				CEGUI::Listbox::EventSelectionChanged, 
+				CEGUI::Event::Subscriber(&CGuiTask::handleLevelSelected, this));
+				
+			// now initialize the values
+			CEGUI::EventArgs temp;
+			handleLevelSelected(temp);
 		}
 		
+				
 		return NR_OK;
 	}
 	
@@ -342,6 +377,7 @@ namespace stunts
 			}
 		}
 		
+		// Update the current level name
 		CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
 		CEGUI::Window* wind = wmgr.getWindow((CEGUI::utf8*)"Menu");
 		if (wind)
@@ -406,5 +442,51 @@ namespace stunts
 		return true;
 	}
 	
+	bool CGuiTask::handleLevelSelected(const CEGUI::EventArgs& e)
+	{
+
+		
+		CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
+		CEGUI::Listbox* mList = static_cast<CEGUI::Listbox*>(wmgr.getWindow((CEGUI::utf8*)"Main/Level/LevelList"));
+		if (mList)
+		{
+			CEGUI::ListboxItem* item = mList->getFirstSelectedItem();
+			if (item){
+				CLevelManager::LevelData* data = CLevelManager::GetSingleton().getLevelData(std::string(item->getText().c_str()));
+				if (data){
+					CEGUI::Window* win = wmgr.getWindow((CEGUI::utf8*)"Menu/Level/LevelDescr");
+					if (win){
+						char	descr[1024];
+						sprintf(descr, "Author: %s\n\nDate: %s", data->author.c_str(), data->datestr.c_str());
+						win->setText(descr);
+					}
+					
+					CEGUI::StaticImage* img = static_cast<CEGUI::StaticImage*>(wmgr.getWindow((CEGUI::utf8*)"Menu/Level/LevelScreenshot"));
+					
+					if (img){
+						if (data->screenshots.size()){
+							// create the name of the screenshot
+							CEGUI::String scrName (data->screenshots[0]->getName().c_str());
+							CEGUI::String scrNameImage ((data->screenshots[0]->getName() + "_image").c_str());
+						
+							try{
+								CEGUI::Imageset* set= CEGUI::ImagesetManager::getSingleton().getImageset(scrName);
+								if (set){
+									img->setImage(&set->getImage(scrNameImage));							
+								}
+							}catch(...){
+								nrLog.Log(NR_LOG_APP, "CGuiTask: Cannot set screenshot %s", scrName.c_str());
+							}
+						}else{
+							img->setImage(NULL);
+						}
+					}
+				}
+			}
+		}
+		
+		return true;
+	}
+
 };
 

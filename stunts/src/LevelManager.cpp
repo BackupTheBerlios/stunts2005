@@ -235,7 +235,33 @@ namespace stunts
 				data.author = sElem->Attribute("name");
 				data.datestr = sElem->Attribute("datestr");
 			}
-
+			
+			// now read the textures
+			sElem = elem->FirstChildElement("thumbnail");
+			if (sElem)
+			{
+				int count = 0;
+				nrCDator<int> dcount(count);
+				
+				const char* str = sElem->Attribute("count");
+				const char* files = sElem->Attribute("file");
+				
+				dcount = std::string(str);
+				
+				// load all screenshots as textures
+				for (int i=0; i < count; i++)
+				{
+					char filename[256];
+					sprintf (filename, "%s/%s", data.path.c_str(), files);
+					sprintf (filename, filename, i);
+					
+					Ogre::TexturePtr tex = Ogre::TextureManager::getSingleton().load(filename, "General");
+				
+					data.screenshots.push_back(tex);
+				}
+				
+			}
+			
 			// store the data in a supported list of levels
 			mLevelList.push_back(data);
 

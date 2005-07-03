@@ -6,13 +6,7 @@
 			<Property Name="Size" Value="w:0.9 h:0.9" />
 			<Property Name="Alpha" Value="0.600000" />
 			<Property Name="Text" Value="Stunts 2005" />
-			
-
-			<!--
-			<Window Type="TaharezLook/Editbox" Name="Main/Level/LevelFile">
-				<Property Name="RelativeRect" Value="l:0.305000 t:0.301667 r:0.689999 b:0.396667" />
-			</Window>
-			-->
+		
 			
 			<!-- OK button which choose the level from the list -->
 			<Window Type="TaharezLook/Button" Name="Main/Level/OK">
@@ -26,7 +20,19 @@
 				<Property Name="AbsolutePosition" Value="x:0.0 y:0.0" />
 				<Property Name="AbsoluteSize" Value="w:300.0 h:250.0" />
 			</Window>
-            
+        
+        	<!-- Box containing information about the level -->
+        	<Window Type="TaharezLook/StaticText" Name="Menu/Level/LevelDescr">
+        		<Property Name="AbsolutePosition" Value="x:400.0 y:0.0" />
+        		<Property Name="AbsoluteSize" Value="w:200.0 h:100.0" />
+        	</Window>
+        	    
+        	<!-- Here we can see the screenshots, about the level -->
+        	<Window Type="TaharezLook/StaticImage" Name="Menu/Level/LevelScreenshot">
+        		<Property Name="AbsolutePosition" Value="x:350.0 y:200.0" />
+        		<Property Name="AbsoluteSize" Value="w:300.0 h:225.0" />
+        	</Window>
+        	   
 		</Window>
 
 		<Window Type="TaharezLook/StaticText" Name="Menu_Level_LogoText">

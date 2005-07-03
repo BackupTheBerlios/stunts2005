@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.h,v 1.6 2005/07/01 19:38:38 psyborg Exp $ */
+/* CVS $Id: CGuiTask.h,v 1.7 2005/07/03 11:21:03 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.6 $
- *  @date    CVS $Date: 2005/07/01 19:38:38 $
+ *  @version CVS $Revision: 1.7 $
+ *  @date    CVS $Date: 2005/07/03 11:21:03 $
  */
 
 
@@ -37,7 +37,8 @@ namespace CEGUI{
 	class Renderer;
 	class System;
 	class EventArgs;
-	
+	class Imageset;
+	class OgreCEGUIRenderer;
 }
 
 
@@ -122,6 +123,7 @@ namespace stunts
 		bool handleUnload(const CEGUI::EventArgs& e);
 		bool handleLevel(const CEGUI::EventArgs& e);
 		bool handleLevelOK(const CEGUI::EventArgs& e);
+		bool handleLevelSelected(const CEGUI::EventArgs& e);
 		
 	private:
 	
@@ -131,7 +133,7 @@ namespace stunts
 		CGuiPage* mCurrent;                      /**< currently selected GUI page */
 	
 		
-		CEGUI::Renderer* 	mGUIRenderer; /**< Gui Renderer from the CEGUI-Library */
+		CEGUI::OgreCEGUIRenderer* 	mGUIRenderer; /**< Gui Renderer from the CEGUI-Library */
 		CEGUI::System*	 	mGUISystem;
 		
 		
@@ -139,6 +141,10 @@ namespace stunts
 		Ogre::EventProcessor* 	mEventProcessor;
 		Ogre::RenderWindow*		mWindow;
 		Ogre::SceneManager*		mSceneMgr;
+		
+		//! Here we store all used images in our Gui like Screenshots
+		std::vector<CEGUI::Imageset*>	mImageSets;
+		
 	};
 
 };

@@ -73,6 +73,8 @@ namespace stunts
 				std::string 	path;
 				std::string		author;
 				std::string		datestr;
+				
+				std::vector<Ogre::TexturePtr>	screenshots;
 			};
 
 			// Error codes
@@ -155,7 +157,9 @@ namespace stunts
 			//! Remove all used variables from the settings manager
 			void	deregisterAllVars();
 
-
+			//! Get the data about a level with specified name. If no such level found, Null will be returned
+			LevelData*		getLevelData(const std::string& name);	
+					
 		private:
 
 			//! Here we store the level object
@@ -182,8 +186,6 @@ namespace stunts
 			//----------------------------------------------------
 			// Methods
 			//----------------------------------------------------
-			LevelData*		getLevelData(const std::string& name);
-
 	};
 
 };
