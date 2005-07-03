@@ -1,7 +1,32 @@
 we need a installed Ogre-1.02 and boost boost-1.32.0-r4
  and an extracted fmod sound library
 
+
 ---
+
+
+First, we have to install the nrEngine
+
+-> Download from CVS
+-> make -f Makefile.cvs
+-> ./configure [--prefix "INSTALLDIR"]
+-> make
+-> [make install]
+
+
+---
+
+
+Take the following paths to your environment variables:
+
+export LD_LIBRARY_PATH=/<FMOD path>/:/<nrEngine path>/lib/:/usr/local/lib/
+export LIBRARY_PATH=$LD_LIBRARY_PATH
+export CPLUS_INCLUDE_PATH=/<nrEngine path>/include/:/<FMOD path>/inc/:/usr/include/OGRE:/usr/local/include/OgreOde_Core:/usr/local/include/OgreOde_Prefab
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
+
+
+---
+
 
 cegui_mk2-0.3.0 - cegui_mk2_stunts_release.tar.bz2:
 
@@ -14,7 +39,9 @@ cegui_mk2-0.3.0 - cegui_mk2_stunts_release.tar.bz2:
 -> make
 -> make install (as root)
 
+
 ---
+
 
 CEGUIRenderer - CEGUIRenderer-Ogre1_02.tar.gz:
 
@@ -28,7 +55,9 @@ CEGUIRenderer - CEGUIRenderer-Ogre1_02.tar.gz:
 -> make (Makefile must exist after ./configure)
 -> make install (as root)
 
+
 ---
+
 
 ODE and OgreODE - OgreOde_1-0-1-r1.tar.gz:
 
@@ -36,16 +65,9 @@ ODE and OgreODE - OgreOde_1-0-1-r1.tar.gz:
 -> sh install.sh (it leads you through the setup process, install it to /usr/local/)
 -> cp ogrenew/OgreOde_1-0-1-r1/prefab/include/OgreOdeRagdoll.h  /usr/local/include/OgreOde_Prefab
 
----
-
-Take the following paths to your environment variables:
-
-export LD_LIBRARY_PATH=/<FMOD path>/:/<nrEngine path>/lib/:/usr/local/lib/
-export LIBRARY_PATH=$LD_LIBRARY_PATH
-export CPLUS_INCLUDE_PATH=/<nrEngine path>/include/:/<FMOD path>/inc/:/usr/include/OGRE:/usr/local/include/OgreOde_Core:/usr/local/include/OgreOde_Prefab
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 
 ---
+
 
 Stunts:
 
