@@ -80,23 +80,11 @@ namespace stunts
 			return false;
 		}
 
-
 		//create tasks
 		COgreTask::Instantiate();
 
-		//shared_ptr<CLevel> 		level_task(new CLevel());
-		//shared_ptr<CUserInput> 	user_input(new CUserInput(level_task));
-		//shared_ptr<CKI> 		ki_task(new CKI(level_task));
-
-
-		//set priorities
-		//ki_task->   setTaskPriority(NR_PRIORITY_VERY_HIGH);
-		
 		// Add singletons to the kernel
 		COgreTask::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_LAST);
-
-		//add tasks to the kernel
-		//nrKernel.AddTask(user_input);
 
 		// Setup InGame-Clock
 		shared_ptr<nrITimeSource> timer (new COgreTimer());
@@ -107,20 +95,19 @@ namespace stunts
 		nrCClock::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_FIRST);
 
 		// Add the AI to the Kernel
-		//nrKernel.AddTask(ki_task);
 
 		// Create Level Manager
 		CLevelManager::Instantiate();
 		CLevelManager::GetSingleton().loadLevelDescriptions("../media/level/content.xml");
 		CLevelManager::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_LOW);
-		
-		
+
+
 		// add GUI task
 		CGuiTask::Instantiate();
 		CGuiTask::GetSingleton().setWindow(COgreTask::GetSingleton().mWindow);
 		CGuiTask::GetSingleton().setSceneManager(COgreTask::GetSingleton().mSceneMgr);
 		CGuiTask::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_ULTRA_LOW);
-		
+
 		// this is how you load a page!
 		CGuiTask::GetSingleton().addPage( "Main", "" );
 		CGuiTask::GetSingleton().addPage( "MainLevel", "" );

@@ -121,7 +121,7 @@ namespace stunts {
 			* @return false if the reading was successfull
 			**/
 			virtual bool importFromFile(const char* fileName, const std::string& xmlPath);
-			bool importFromFile(const std::string fileName, const std::string& xmlPath){ return importFromFile(fileName.c_str(), xmlPath); }
+			bool importFromFile(const std::string fileName, const std::string& xmlPath){ return CBaseObject::importFromFile(fileName.c_str(), xmlPath); }
 
 
 			/**

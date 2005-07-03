@@ -221,7 +221,7 @@ namespace stunts {
 		// find if we want to import a file
 		elem = rootElem->FirstChildElement("import");
 		if (elem)
-			importFromFile(xmlPath + elem->Attribute("file"), xmlPath);
+			CBaseObject::importFromFile(xmlPath + elem->Attribute("file"), xmlPath);
 
 
 		// if we found a controller, so bind it

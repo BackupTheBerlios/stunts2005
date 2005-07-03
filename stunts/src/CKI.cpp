@@ -29,15 +29,13 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	//--- CKI()
 	//--------------------------------------------------------------------------
-	CKI::CKI(boost::shared_ptr< CLevel > level)
+	CKI::CKI(CLevel* level)
 	{
 		mLevel = level;
 
 		levelOfSkill = 1;
 		levelOfAggressivity = 1;
 		levelOfReaction = 1;
-
-//		controlObject.reset(Object);
 
 		net = new CNeuralNetwork(this);
 		net->makeNetwork();
@@ -74,7 +72,7 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	nrResult CKI::taskUpdate()
 	{
-		if (controlObject == NULL)
+		if ((controlObject == NULL) && (mLevel != NULL))
 		{
 			controlObject = mLevel->getCar(CLevel::CAR_AI);
 		}
@@ -96,12 +94,6 @@ namespace stunts
 	{
 		return NR_OK;
 	}
-
-
-
-
-
-
 
 
 	/**
@@ -146,6 +138,9 @@ namespace stunts
 		computeAcceleration();
 
 		controlObject->setInputs(steer, acc, brake);
+		controlObject->ODEVehicle()->update(delaySeconds);
+
+		//std::cout << "CKI::executeKI" << std::endl;
 	}
 
 
@@ -156,7 +151,7 @@ namespace stunts
 	*/
 	void CKI::actualizeWaypoint(float delaySeconds = 0.f)
 	{
-		if(waypoint == NULL)
+		if((waypoint == NULL) && (mLevel != NULL))
 		{
 			waypoint = mLevel->getFirstWaypoint();
 			return;

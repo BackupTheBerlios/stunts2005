@@ -45,20 +45,20 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	CLevelManager::CLevelManager():mLevel(0)
 	{
-	
+
 		mShouldLoadLevel = false;
 		mIsCurrentLoaded = false;
-		
+
 		registerAllVars();
 	}
-	
+
 	//--------------------------------------------------------------------------
 	CLevelManager::~CLevelManager()
 	{
 		unload();
-		
-		mLevel.reset();		
-		
+
+		mLevel.reset();
+
 		deregisterAllVars();
 	}
 
@@ -72,39 +72,39 @@ namespace stunts
 			nrLog.Log(NR_LOG_APP, "CLevelManager: Level %s was not found. So can not load it!", name.c_str());
 			return NO_SUCH_LEVEL_FOUND;
 		}
-		
+
 		// first we check whenever the level is already loaded
 		if (mIsCurrentLoaded && mCurrentLevel == name){
-			nrLog.Log(NR_LOG_APP, "CLevelManager: Level %s is already loaded. Please unload it first", name.c_str());		
+			nrLog.Log(NR_LOG_APP, "CLevelManager: Level %s is already loaded. Please unload it first", name.c_str());
 			return LEVEL_ALREADY_LOADED;
 		}
-		
+
 		// if another level is loaded, so error code
 		if (mIsCurrentLoaded && mCurrentLevel != name){
-			nrLog.Log(NR_LOG_APP, "CLevelManager: Another level is currently loaded. Please unload it first");				
+			nrLog.Log(NR_LOG_APP, "CLevelManager: Another level is currently loaded. Please unload it first");
 			return ANOTHER_LEVEL_IS_LOADED;
 		}
-		
+
 		// create new level object
 		mLevel.reset(new CLevel());
-		
+
 		// get the filename of the level file
 		std::string fileName = mLevelPath + getLevelData(name)->path + "/level.xml";
-		
+
 		nrLog.Log(NR_LOG_APP, "CLevelManager: Load level from \"%s\"", fileName.c_str());
-		
+
 		// load the level
 		if (mLevel->loadLevel(fileName)) return LEVEL_LOAD_ERROR;
 		mLevel->start();
-				
+
 		mIsCurrentLoaded = true;
 		mCurrentLevel = name;
-		
+
 		// OK
 		return OK;
 	}
-	
-	
+
+
 	//--------------------------------------------------------------------------
 	int32 CLevelManager::unloadLevel(const std::string& name)
 	{
@@ -113,7 +113,7 @@ namespace stunts
 
 		// first we check whenever the level is already loaded
 		if (!mIsCurrentLoaded && mCurrentLevel == name) return LEVEL_NOT_LOADED;
-		
+
 		// if another level is loaded, so error code
 		if (mIsCurrentLoaded && mCurrentLevel != name) return ANOTHER_LEVEL_IS_LOADED;
 
@@ -122,10 +122,10 @@ namespace stunts
 		// create new level object
 		mLevel->stop();
 		mLevel.reset(0);
-				
+
 		mIsCurrentLoaded = false;
 		mCurrentLevel = name;
-		
+
 		// OK
 		return OK;
 	}
@@ -136,24 +136,24 @@ namespace stunts
 		// First unload the level
 		int32 ret = unloadLevel(name);
 		if (ret != OK) return ret;
-		
+
 		// now load the level
 		return loadLevel(name);
 	}
-	
+
 	//--------------------------------------------------------------------------
 	CLevelManager::LevelData* CLevelManager::getLevelData(const std::string& name)
 	{
 		std::vector<LevelData>::iterator it = mLevelList.begin();
-		
+
 		while (it != mLevelList.end())
 		{
 			// Level was found
 			if (it->name == name) return &(*it);
-			
+
 			it++;
 		}
-		
+
 		// no such level name was found
 		return NULL;
 	}
@@ -161,10 +161,10 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	bool CLevelManager::hasGotLevel(const std::string& name)
 	{
-		return getLevelData(name) != NULL;	
+		return getLevelData(name) != NULL;
 	}
-		
-	
+
+
 	//--------------------------------------------------------------------------
 	void CLevelManager::registerAllVars()
 	{
@@ -172,7 +172,7 @@ namespace stunts
 
 		nrSettingsRegister(bool, mShouldLoadLevel, 	"load_level");
 	}
-	
+
 
 	//--------------------------------------------------------------------------
 	void CLevelManager::deregisterAllVars()
@@ -180,13 +180,13 @@ namespace stunts
 		nrSettings.deregisterVariable("level_file");
 		nrSettings.deregisterVariable("load_level");
 	}
-	
-	
+
+
 	//--------------------------------------------------------------------------
 	int32 CLevelManager::loadLevelDescriptions(const std::string& fileName)
 	{
 		nrLog.Log(NR_LOG_APP, "CLevelManager: Load level definitions from \"%s\"", fileName.c_str());
-		
+
 		// we open the file for parsing.
 		// Later we can open the file through the virtual file system if we had got more time
 		// for development
@@ -214,12 +214,12 @@ namespace stunts
 		for (TiXmlNode* elem = rootElem->FirstChild("level"); elem != 0;
 					elem = rootElem->IterateChildren(elem))
         {
-		
+
 			TiXmlElement* sElem = NULL;
 
 			// Level data
 			LevelData data;
-			
+
 			// get the name
 			sElem = elem->FirstChildElement("name");
 			if (sElem)
@@ -227,7 +227,7 @@ namespace stunts
 				data.name = sElem->Attribute("name");
 				data.path = sElem->Attribute("path");
 			}
-			
+
 			// get creator data
 			sElem = elem->FirstChildElement("author");
 			if (sElem)
@@ -235,34 +235,34 @@ namespace stunts
 				data.author = sElem->Attribute("name");
 				data.datestr = sElem->Attribute("datestr");
 			}
-			
+
 			// store the data in a supported list of levels
 			mLevelList.push_back(data);
-			
+
 			// Some log info
-			nrLog.Log(NR_LOG_APP, "CLevelManager: Found level \"%s\" (path \"%s%s\") created by %s", 
+			nrLog.Log(NR_LOG_APP, "CLevelManager: Found level \"%s\" (path \"%s%s\") created by %s",
 					data.name.c_str(), mLevelPath.c_str(), data.path.c_str(), data.author.c_str());
 		}
-		
+
 		// OK
 		return OK;
 	}
-	
-	
+
+
 	//--------------------------------------------------------------------------
 	nrResult CLevelManager::taskInit()
 	{
 		// OK
 		return NR_OK;
-	
+
 	}
-	
+
 	//--------------------------------------------------------------------------
 	nrResult CLevelManager::taskStart()
 	{
 		// OK
 		return NR_OK;
-	
+
 	}
 
 	//--------------------------------------------------------------------------
@@ -273,19 +273,19 @@ namespace stunts
 			mShouldLoadLevel = false;
 
 			nrLog.Log(NR_LOG_APP, "CLevelManager: Loading of level %s is initiated !", mLevelToLoad.c_str());
-			
+
 			//load the level and its physics
 			//unload();
 			loadLevel(mLevelToLoad);
 		}
-		
+
 		// update the level
 		if (mLevel)
 			mLevel->update();
-		
+
 		// OK
 		return NR_OK;
-	
+
 	}
 
 	//--------------------------------------------------------------------------
@@ -293,12 +293,12 @@ namespace stunts
 	{
 		// Unload the level
 		unload();
-		
+
 		// OK
 		return NR_OK;
 	}
-	
-			
+
+
 };
 // namespace stunts
 

@@ -60,7 +60,8 @@ namespace stunts {
 			~CCarObject();
 
 
-			bool 				steer(float gasPedal);
+			//control functions
+			bool steer(float gasPedal);
 
 
 			static	const char* getObjectTypeSt()
@@ -89,25 +90,18 @@ namespace stunts {
 
 			// Functions for gearbox & engine
 			inline void	shiftUp()
-					{ this->mVehicle->getEngine()->changeUp();				}
+					{ this->mVehicle->getEngine()->changeUp();	}
 			inline void	shiftDown()
-					{ this->mVehicle->getEngine()->changeDown();				}
+					{ this->mVehicle->getEngine()->changeDown();}
 			inline void	setGear(unsigned int i)
-					{ this->mVehicle->getEngine()->setGear(i);				}
+					{ this->mVehicle->getEngine()->setGear(i);}
 			inline void 	setAutoBox(bool automatic)
-					{ this->mVehicle->getEngine()->setAutoBox(automatic);			}
+					{ this->mVehicle->getEngine()->setAutoBox(automatic);}
 
 
-			// Funktions for engine
-			//inline void	accellerate(float throttle)
-			//		{ this->mVehicle->getEngine()->setInputs(throttle, 0.0);		}
-			//inline void 	brake(float brake)
-			//		{ this->mVehicle->getEngine()->setInputs(0.0, brake);			}
-			//inline void 	accellerate_brake(float throttle, float brake)
-			//		{ this->mVehicle->setInputs(0.f, throttle, brake); 		}
+			// functions for the engine
 			inline void 	setInputs(float steer, float throttle, float brake)
-					{ this->mVehicle->setInputs(steer, throttle, brake); 		}
-
+					{ this->mVehicle->setInputs(steer, throttle, brake);}
 
 			//ODE object
 			inline boost::shared_ptr<OgreOde_Prefab::Vehicle>	ODEVehicle()
@@ -118,11 +112,14 @@ namespace stunts {
 			//------------------ Methods --------------------------------------
 			//! @see CBaseObject::parseSettings()
 			bool parseSettings(TiXmlElement* rootElem, const std::string& xmlPath);
+			bool parseSettingsCar(TiXmlElement* rootElem, const std::string& xmlPath);
+
+			virtual bool importFromFile(const char* fileName, const std::string& xmlPath);
+			virtual bool importFromFile(const std::string fileName, const std::string& xmlPath){ return CCarObject::importFromFile(fileName.c_str(), xmlPath); }
 
 			//------------------ Variables --------------------------------------
 
 			//ODE description of the car
-		public:
 			boost::shared_ptr<OgreOde_Prefab::Vehicle> 	mVehicle;
 	};
 };

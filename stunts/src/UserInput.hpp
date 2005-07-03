@@ -65,7 +65,7 @@ namespace stunts
 			void activate(bool activated);
 			bool isActivated() const;
 			virtual const char* taskGetName() {return "UserInput";}
-			
+
 			/**
 		 	* Import the atmosphere from a file.
 		 	* @param fileName Name of the file containing terrain data.
@@ -85,21 +85,19 @@ namespace stunts
 			CLevel*					mLevel;
 			Ogre::InputReader*		mInputDevice;
 			Ogre::Camera*			mCamera;
-			
-			//boost::shared_ptr< Ogre::InputReader >	mInputDevice;
-			//boost::shared_ptr< Ogre::Camera >		mCamera;
+
 			boost::shared_ptr< CTerrain >			mTerrain;
-			
-			
+
+
 			// declare empty container (string -> map)
 			typedef std::map<std::string, unsigned int> inputmap;
 			// create empty container
 			inputmap keymap;
-			
+
 
 			bool mActivated;
-			
-			
+
+
 			/**
 		 	* Parse config settings from a given XML-Tree.
 		 	* @param rootElem Root element of the XML-Tree (here: atmosphere - Tag)
@@ -107,14 +105,17 @@ namespace stunts
 		 	* @return true if error occurs
 		 	**/
 			bool parseSettings(TiXmlElement* rootElem);
-			
+
 			/**
 			* Configuring the map object to map the input keys in the .xml configuration file to userinput
 			**/
 			bool configMap();
-			
-			
+
+
 			unsigned int axtoi(const char *hexStg);
+
+			//human player car
+			boost::shared_ptr<CCarObject>					controlObject;
 
 	};
 }	//namespace stunts

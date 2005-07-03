@@ -115,6 +115,13 @@ namespace stunts
 
 				keymap["yawMinus"] = (unsigned int)Ogre::KC_RIGHT;
 				keymap["yawPlus"] = (unsigned int)Ogre::KC_LEFT;
+
+				//car control
+				keymap["carAccelerate"] = (unsigned int)Ogre::KC_I;
+				keymap["carBrake"] = (unsigned int)Ogre::KC_K;
+
+				keymap["carLeft"] = (unsigned int)Ogre::KC_J;
+				keymap["carRight"] = (unsigned int)Ogre::KC_L;
 			}
 		}
 
@@ -128,6 +135,11 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	nrResult CUserInput::taskUpdate()
 	{
+		if (controlObject == NULL)
+		{
+			controlObject = mLevel->getCar(CLevel::CAR_HUMAN);
+		}
+
 		//react here only in this example application
 		//	as no InteractiveObject is running
 		this->react(COgreTask::GetSingleton().mTimer->getFrameInterval());
@@ -162,31 +174,18 @@ namespace stunts
 		Ogre::Degree mRotScale(120.0f * delaySeconds);
 		Ogre::Degree mRotX;
 		Ogre::Degree mRotY;
-		//
 
 
-		//move car
-		//if(mInputDevice->isKeyDown(KC_U)) mPhysicsExecution->pause(false);
-		//if(mInputDevice->isKeyDown(KC_P)) mPhysicsExecution->pause(true);
-
-		if((mLevel->getCar(CLevel::CAR_HUMAN) != NULL))// && !mPhysicsExecution->isPaused())
+		//control car
+		if (controlObject != NULL)
 		{
-			float speedFactor = 1.0f;
-
-			//AI
-			mLevel->getCar(CLevel::CAR_AI)->ODEVehicle()->update(delaySeconds * speedFactor);
-
-			//HumanPlayer
-			mLevel->getCar(CLevel::CAR_HUMAN)->ODEVehicle()->setInputs(mInputDevice->isKeyDown(KC_J),mInputDevice->isKeyDown(KC_L),mInputDevice->isKeyDown(KC_I),mInputDevice->isKeyDown(KC_K));
-			mLevel->getCar(CLevel::CAR_HUMAN)->ODEVehicle()->update(delaySeconds * speedFactor);
-
-			mLevel->PhysicsWorld()->synchronise();
-			mLevel->PhysicsWorld()->getDefaultSpace()->collide();
-			mLevel->PhysicsWorld()->quickStep(delaySeconds);
-			mLevel->PhysicsWorld()->clearContacts();
+			controlObject->ODEVehicle()->setInputs(
+				mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carLeft"]),
+				mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carRight"]),
+				mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carAccelerate"]),
+				mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carBrake"])  );
+			controlObject->ODEVehicle()->update(delaySeconds);
 		}
-
-
 
 
 		if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["camLeft"]))
@@ -418,6 +417,35 @@ namespace stunts
 			keyCommand = yawPlusstr ? axtoi( (yawPlusstr)) : (unsigned int)Ogre::KC_LEFT;
 
 			keymap["yawPlus"] = keyCommand;
+
+
+			//car control
+			subElem = elem->FirstChildElement("carAccelerate");
+			const char *carAcceleratestr = subElem->GetText();
+			keyCommand = carAcceleratestr ? axtoi( (carAcceleratestr)) : (unsigned int)Ogre::KC_I;
+
+			keymap["carAccelerate"] = keyCommand;
+
+
+			subElem = elem->FirstChildElement("carBrake");
+			const char *carBrakestr = subElem->GetText();
+			keyCommand = carBrakestr ? axtoi( (carBrakestr)) : (unsigned int)Ogre::KC_K;
+
+			keymap["carBrake"] = keyCommand;
+
+
+			subElem = elem->FirstChildElement("carLeft");
+			const char *carLeftstr = subElem->GetText();
+			keyCommand = carLeftstr ? axtoi( (carLeftstr)) : (unsigned int)Ogre::KC_J;
+
+			keymap["carLeft"] = keyCommand;
+
+
+			subElem = elem->FirstChildElement("carRight");
+			const char *carRightstr = subElem->GetText();
+			keyCommand = carRightstr ? axtoi( (carRightstr)) : (unsigned int)Ogre::KC_L;
+
+			keymap["carRight"] = keyCommand;
 
 		}
 		else return false;

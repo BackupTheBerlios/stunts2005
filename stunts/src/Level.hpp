@@ -46,6 +46,8 @@ namespace stunts
 	class CBaseObject;
 	class CInteractiveObject;
 	class CCarObject;
+
+	class CKI;
 }
 
 //------------------------------------------------------------------------------
@@ -210,6 +212,7 @@ namespace stunts
 			boost::shared_ptr< CUserInput > 		mUserInput;
 			boost::shared_ptr< CTerrain > 			mTerrain;
 			boost::shared_ptr< CAtmosphere >		mAtmosphere;
+			boost::shared_ptr< CKI >				mAI;
 
 			std::vector<boost::shared_ptr<CBaseObject> >	mObjects;
 
@@ -239,6 +242,7 @@ namespace stunts
 
 			bool collision(OgreOde::Contact* contact);
 			void InitializeODE();
+			void executeODE(float delaySeconds);
 
 
 			// Pointer to user / ai car object

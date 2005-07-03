@@ -59,35 +59,88 @@ namespace stunts {
 	//--------------------------------------------------------------------------
 	bool CCarObject::parseSettings(TiXmlElement* rootElem, const std::string& xmlPath)
 	{
+		nrLog.Log(NR_LOG_APP, "CCarObject::parseSettings(): Start parsing the settings");
+
 		if (rootElem == NULL){
 			nrLog.Log(NR_LOG_APP, "CCarObject::parseSettings(): Not valid XML-Element given");
 			return true;
 		}
 
-		// variables
-		TiXmlElement* elem = NULL;
-		TiXmlElement* smElem = NULL;
-
 		// Ok now let the base object parse it's settings
 		if (CBaseObject::parseSettings(rootElem, xmlPath))
 			return true;
 
-		// load cars
-		if (mName.compare("AICar") == 0)
-		{
-			mVehicle.reset(new OgreOde_Prefab::Vehicle("AICar"));
-			mVehicle->load("jeep_ode.xml","Jeep");
-			mVehicle->setPosition(m_position);
-		}
-		else if (mName.compare("HumanPlayerCar") == 0)
-		{
-			mVehicle.reset(new OgreOde_Prefab::Vehicle("HumanPlayerCar"));
-			mVehicle->load("subaru_ode.xml","Subaru");
-			mVehicle->setPosition(m_position);
-		}
+		//then parse the car's special settings
+		if (parseSettingsCar(rootElem, xmlPath))
+			return true;
 
 		return false;
 	}
 
+	//--------------------------------------------------------------------------
+	bool CCarObject::parseSettingsCar(TiXmlElement* rootElem, const std::string& xmlPath)
+	{
+		nrLog.Log(NR_LOG_APP, "CCarObject::parseSettingsCar(): Start parsing the settings");
 
+		if (rootElem == NULL){
+			nrLog.Log(NR_LOG_APP, "CCarObject::parseSettingsCar(): Not valid XML-Element given");
+			return true;
+		}
+
+		// variables
+		TiXmlElement* elem	= NULL;
+		TiXmlElement* elemWp	= NULL;
+		TiXmlElement* elemPos	= NULL;
+
+
+		// find if we want to import a file
+		elem = rootElem->FirstChildElement("import");
+		if (elem)
+			CCarObject::importFromFile(xmlPath + elem->Attribute("file"), xmlPath);
+
+
+		// get the name of the object
+		elem = rootElem->FirstChildElement("ode");
+		if (elem)
+		{
+			const char* odeName = elem->Attribute("name");
+			const char* odeFile = elem->Attribute("file");
+
+			if (!odeName || !odeFile)
+			{
+				nrLog.Log(NR_LOG_APP, "CCarObject::parseSettingsCar(): No name and file attributes");
+				return true;
+			}
+
+			mVehicle.reset(new OgreOde_Prefab::Vehicle(mName));
+			mVehicle->load(odeFile, odeName);
+			mVehicle->setPosition(m_position);
+		}
+	}
+
+
+	//--------------------------------------------------------------------------
+	bool CCarObject::importFromFile(const char* fileName, const std::string& xmlPath)
+	{
+
+		// load the xml document
+		shared_ptr<TiXmlDocument> mDoc (new TiXmlDocument(fileName));
+		if (!mDoc->LoadFile())
+		{
+			nrLog.Log(NR_LOG_APP, "CCarObject::importFromFile(): Can not load the file \"%s\"", fileName);
+			return true;
+		}
+
+		// Get the root element from the file
+		TiXmlElement* rootElem = mDoc->FirstChildElement(this->getObjectType());
+
+		// get the first root element.
+		if (rootElem == NULL)
+		{
+			nrLog.Log(NR_LOG_APP, "CCarObject::importFromFile(): Can not find root node \"%s\"", this->getObjectType());
+			return true;
+		}
+
+		return CCarObject::parseSettingsCar(rootElem, xmlPath);
+	}
 };

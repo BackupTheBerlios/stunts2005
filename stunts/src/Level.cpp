@@ -26,6 +26,7 @@
 #include "Level.hpp"
 #include "Utils.hpp"
 #include "OgreTask.hpp"
+#include "CKI.h"
 
 #include "ObjectInstantiator.hpp"
 #include <math.h>
@@ -468,10 +469,17 @@ namespace stunts
 		//get all tasks and set member attributes
 		//getEngineTasks();
 
+		//userInput
 		mUserInput.reset (new CUserInput(this));
 		mUserInput->setTaskPriority(NR_PRIORITY_VERY_HIGH);
 		nrKernel.AddTask(mUserInput);
 		nrKernel.StartTask(mUserInput->getTaskID());
+
+		//AI
+		mAI.reset (new CKI(this));
+		mAI->setTaskPriority(NR_PRIORITY_VERY_HIGH);
+		nrKernel.AddTask(mAI);
+		nrKernel.StartTask(mAI->getTaskID());
 
 		//activate input class
 		mUserInput->activate(true);
@@ -489,6 +497,9 @@ namespace stunts
 		//activate input class
 		mUserInput->activate(true);
 
+		//executeODE
+		executeODE(COgreTask::GetSingleton().mTimer->getFrameInterval());
+
 		return NR_OK;
 	}
 
@@ -496,9 +507,14 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	nrResult CLevel::stop()
 	{
+		//userInput
 		mUserInput->activate(false);
 		nrKernel.RemoveTask(mUserInput->getTaskID());
 		mUserInput.reset();
+
+		//mAI
+		nrKernel.RemoveTask(mAI->getTaskID());
+		mAI.reset();
 
 		return NR_OK;
 	}
@@ -813,6 +829,15 @@ namespace stunts
 */
 	}
 
+
+	//--------------------------------------------------------------------------
+	void CLevel::executeODE(float delaySeconds)
+	{
+		mPhysicsWorld->synchronise();
+		mPhysicsWorld->getDefaultSpace()->collide();
+		mPhysicsWorld->quickStep(delaySeconds);
+		mPhysicsWorld->clearContacts();
+	}
 
 
 	//--------------------------------------------------------------------------

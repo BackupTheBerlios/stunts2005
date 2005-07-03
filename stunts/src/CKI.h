@@ -58,7 +58,7 @@ namespace stunts
 		 public:
 			// Default constructor and destructor
 			CKI(CCarObject* Object, String Typ);
-			CKI(boost::shared_ptr< CLevel > level);
+			CKI(CLevel* level);
 
 			virtual ~CKI();
 
@@ -74,32 +74,32 @@ namespace stunts
 			float* getLevelOfSkill()			{	return &levelOfSkill;	}
 			float* getLevelOfAggressivity()	{	return &levelOfAggressivity;	}
 			float* getLevelOfReaction()		{	return &levelOfReaction;	}
-			
-			
+
+
 			float* steerAngle()				{	return &msteerAngle;	};
 			float* Speed()						{	return &carSpeed;	}
-			
-			
+
+
 			virtual const char* taskGetName() {return "KITask";}
 
 		protected:
-		
+
 			static const bool debug_ki = false;
-			
+
 			float steer;
 			float acc;
 			float brake;
-			
+
 			float waypointTime;
-		
-			
+
+
 			virtual nrResult taskInit();
 			virtual nrResult taskStart();
 			virtual nrResult taskUpdate();
 			virtual nrResult taskStop();
 
 
-			boost::shared_ptr< CLevel >						mLevel;
+			CLevel*											mLevel;
 			std::vector<boost::shared_ptr<CBaseObject> >	mObjects;
 			boost::shared_ptr<CCarObject>					controlObject;
 			boost::shared_ptr<CWaypoint>					waypoint;
@@ -108,8 +108,8 @@ namespace stunts
 
 			float msteerAngle;
 			float carSpeed;
-			
-			
+
+
 			float levelOfSkill;
 			float levelOfAggressivity;
 			float levelOfReaction;
@@ -117,8 +117,8 @@ namespace stunts
 
 			void actualizeWaypoint(float delaySeconds);
 			void actualizeCarSpeed();
-			
-			
+
+
 			void computeStrategy();
 
 
