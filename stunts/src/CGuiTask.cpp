@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.cpp,v 1.8 2005/07/03 11:21:03 psyborg Exp $ */
+/* CVS $Id: CGuiTask.cpp,v 1.9 2005/07/03 19:18:12 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.8 $
- *  @date    CVS $Date: 2005/07/03 11:21:03 $
+ *  @version CVS $Revision: 1.9 $
+ *  @date    CVS $Date: 2005/07/03 19:18:12 $
  */
 
 
@@ -211,11 +211,13 @@ namespace stunts
 	/** Shows the gui */
 	void CGuiTask::showGUI(){
 		mActive = true;
+		CEGUI::MouseCursor::getSingleton().show();
 	}
 
 	/** Hides the Gui */
 	void CGuiTask::hideGUI(){
 		mActive = false;
+		CEGUI::MouseCursor::getSingleton().hide();
 	}
 
 	/** Actions upon initialization of task by engine. */
@@ -372,8 +374,10 @@ namespace stunts
 		{
 			if (mActive){
 				guiSheet->show();
+				CEGUI::MouseCursor::getSingleton().show();
 			}else{
 				guiSheet->hide();
+				CEGUI::MouseCursor::getSingleton().hide();
 			}
 		}
 		
@@ -483,8 +487,59 @@ namespace stunts
 					}
 				}
 			}
+
+
 		}
 		
+		return true;
+	}
+
+	/** Call this to change the current screenshot to the next one**/
+	bool CGuiTask::handleLevelChangeScreenshot(const CEGUI::EventArgs& e)
+	{
+
+	}
+
+	/** Will be called to setup mouse over events */
+	void CGuiTask::setupEnterExitEvents(CEGUI::Window* win)
+	{
+		win->subscribeEvent(
+			CEGUI::Window::EventMouseEnters, 
+			CEGUI::Event::Subscriber(&CGuiTask::handleMouseEnters, this));
+		win->subscribeEvent(
+			CEGUI::Window::EventMouseLeaves, 
+			CEGUI::Event::Subscriber(&CGuiTask::handleMouseLeaves, this));
+		for (unsigned int i = 0; i < win->getChildCount(); ++i)
+		{
+			CEGUI::Window* child = win->getChildAtIdx(i);
+			setupEnterExitEvents(child);
+		}
+	}
+
+	/** Call this event if mouse moves over an object **/
+	bool CGuiTask::handleMouseEnters(const CEGUI::EventArgs& e)
+	{
+		/*
+		CEGUI::WindowEventArgs& we = ((CEGUI::WindowEventArgs&)e);
+		::iterator i = mDescriptionMap.find(we.window->getName());
+		if (i != mDescriptionMap.end())
+		{
+			mTip->setText(i->second);
+		}
+		else
+		{
+			mTip->setText((CEGUI::utf8*)"");
+		}
+		*/
+		return true;
+	}
+
+	/** Call if mouse is get out from the object **/
+	bool CGuiTask::handleMouseLeaves(const CEGUI::EventArgs& e)
+	{
+		/*
+		mTip->setText((CEGUI::utf8*)"");
+		*/
 		return true;
 	}
 

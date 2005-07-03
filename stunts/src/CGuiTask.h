@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.h,v 1.7 2005/07/03 11:21:03 psyborg Exp $ */
+/* CVS $Id: CGuiTask.h,v 1.8 2005/07/03 19:18:12 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.7 $
- *  @date    CVS $Date: 2005/07/03 11:21:03 $
+ *  @version CVS $Revision: 1.8 $
+ *  @date    CVS $Date: 2005/07/03 19:18:12 $
  */
 
 
@@ -125,14 +125,20 @@ namespace stunts
 		bool handleLevelOK(const CEGUI::EventArgs& e);
 		bool handleLevelSelected(const CEGUI::EventArgs& e);
 		
+		bool handleLevelChangeScreenshot(const CEGUI::EventArgs& e);
+		
+		bool handleMouseEnters(const CEGUI::EventArgs& e);
+		bool handleMouseLeaves(const CEGUI::EventArgs& e);
+		
+		void setupEnterExitEvents(CEGUI::Window* win);
+		
 	private:
 	
 		bool mActive; /**< GUI manager activated flag */
 	
 		std::map<std::string, CGuiPage*> mPages; /**< Pages accessible by name */
 		CGuiPage* mCurrent;                      /**< currently selected GUI page */
-	
-		
+
 		CEGUI::OgreCEGUIRenderer* 	mGUIRenderer; /**< Gui Renderer from the CEGUI-Library */
 		CEGUI::System*	 	mGUISystem;
 		
@@ -144,6 +150,10 @@ namespace stunts
 		
 		//! Here we store all used images in our Gui like Screenshots
 		std::vector<CEGUI::Imageset*>	mImageSets;
+
+		//! Map to store tool tips about objects
+		//std::map<std::string, std::string> mDescriptionMap;
+		
 		
 	};
 

@@ -2,8 +2,8 @@
 <GUILayout>
 	<Window Type="DefaultGUISheet" Name="Menu_Level">
 		<Window Type="DefaultWindow" Name="Menu_Level_Win">
-			<Property Name="Position" Value="x:0.05 y:0.13" />
-			<Property Name="Size" Value="w:0.9 h:0.9" />
+			<Property Name="Position" Value="x:0.05 y:0.15" />
+			<Property Name="Size" Value="w:0.95 h:0.9" />
 			<Property Name="Alpha" Value="0.600000" />
 			<Property Name="Text" Value="Stunts 2005" />
 		
@@ -29,10 +29,19 @@
         	    
         	<!-- Here we can see the screenshots, about the level -->
         	<Window Type="TaharezLook/StaticImage" Name="Menu/Level/LevelScreenshot">
-        		<Property Name="AbsolutePosition" Value="x:350.0 y:200.0" />
+        		<Property Name="AbsolutePosition" Value="x:350.0 y:125.0" />
         		<Property Name="AbsoluteSize" Value="w:300.0 h:225.0" />
+        		<Property Name="Text" Value="Click on the screenshot image to change to next one if such one exists" />
         	</Window>
-        	   
+
+        	<!-- Some information about screenshots -->
+        	<!--<Window Type="TaharezLook/StaticText" Name="Menu/Level/ToolTip">
+        		<Property Name="AbsolutePosition" Value="x:25.0 y:455.0" />
+        		<Property Name="AbsoluteSize" Value="w:650.0 h:30.0" />
+				<Property Name="HorzFormatting" Value="WordWrapCentred" />
+				<Property Name="Text" Value="Here you can choose the track you want to drive on" />
+        	</Window>-->
+			
 		</Window>
 
 		<Window Type="TaharezLook/StaticText" Name="Menu_Level_LogoText">
