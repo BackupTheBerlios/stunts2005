@@ -10,6 +10,7 @@ cegui_mk2-0.3.0 - cegui_mk2_stunts_release.tar.bz2:
 -> cd ogrenew/Samples/Common/cegui_mk2-0.3.0
 -> touch NEWS
 -> make -f Makefile.cvs
+-> ./configure
 -> make
 -> make install (as root)
 
