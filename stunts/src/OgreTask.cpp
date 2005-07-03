@@ -158,11 +158,13 @@ namespace stunts {
 
 		//set shadows
 		mSceneMgr->setShadowTechnique( SHADOWTYPE_TEXTURE_MODULATIVE );
-#if 0
+#if 1
 		mSceneMgr->setShadowTechnique(SHADOWTYPE_STENCIL_MODULATIVE);
 #endif
-		//mSceneMgr->setShadowColour(ColourValue(0.5,0.2,0.2));
-
+		mSceneMgr->setShadowColour(ColourValue(0.5,0.5,0.5));
+		mSceneMgr->setShadowFarDistance(5000.0f);
+		mSceneMgr->setShadowUseInfiniteFarPlane(true);
+		
 	}
 
 

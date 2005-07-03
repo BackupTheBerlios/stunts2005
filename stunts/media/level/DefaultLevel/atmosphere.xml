@@ -48,25 +48,22 @@
 		</light>
 	
 		<!-- Defines a light with y type "directional". Other values are "point", "spot" -->
-		<light type="directional">
+		<!--<light type="directional">
 			<name>Sun_Nah</name>
 
-			<!-- Shadow properties -->
-			<shadow cause="1" />
+			<shadow cause="0" />
 			
-			<!-- Direction and position of this light -->
-			<direction x="1.14" y="-0.22" z="-0.97" />
-			<pos x="-300" y="60" z="25" />
-			
-			<!-- Colors components -->
+			<direction x="0.14" y="-0.22" z="-0.97" />
+			<pos x="200" y="30" z="500" />
 			<diffuse r="0.88" g="0.82" b="0.76" />
 			<specular r="0.09" g="0.09" b="0.04" />
 			
 			<attenuation range="1000.0" constant="1.0" linear="1.0" quadratic="1.0" />
 			
-			<spot inner="30.0" outer="50.0" falloff="1.0" />
+			<spot inner="3.0" outer="25.0" falloff="1.0" />
+			<billboard material="Effects/Sun" width="10.0" height="10.0"/>
 			
-		</light>
+		</light>-->
 	</lights>
 	
 	<lensflare>
