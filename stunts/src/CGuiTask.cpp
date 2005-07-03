@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.cpp,v 1.10 2005/07/03 20:05:07 psyborg Exp $ */
+/* CVS $Id: CGuiTask.cpp,v 1.11 2005/07/03 20:34:54 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele, Art Tevs
  *
- *  @version CVS $Revision: 1.10 $
- *  @date    CVS $Date: 2005/07/03 20:05:07 $
+ *  @version CVS $Revision: 1.11 $
+ *  @date    CVS $Date: 2005/07/03 20:34:54 $
  */
 
 
@@ -51,12 +51,16 @@ namespace stunts
 							mGUISystem(0),
 							mSceneMgr(0)
 	{
-	
+
+		// register game paused mode variable
+		nrSettingsRegister(bool, mActive, "gui_active");
 	}
 	
 	
 	/** Destructor. Clean up heap objects. */
 	CGuiTask::~CGuiTask() {
+		nrSettings.deregisterVariable("gui_active");
+		
 		map<string, CGuiPage*>::iterator i;
 		for ( i = mPages.begin(); i != mPages.end(); i++ )
 			delete ( i->second );

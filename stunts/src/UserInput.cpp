@@ -162,7 +162,7 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	void CUserInput::react(float delaySeconds)
 	{
-		if (!mInputDevice || !mActivated || CGuiTask::GetSingleton().Active())
+		if (!mInputDevice || !mActivated || (bool)nrSettings.get("gui_active"))
 			return;
 
 		mInputDevice->capture();
