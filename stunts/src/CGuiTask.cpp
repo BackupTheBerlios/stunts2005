@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.cpp,v 1.9 2005/07/03 19:18:12 psyborg Exp $ */
+/* CVS $Id: CGuiTask.cpp,v 1.10 2005/07/03 20:05:07 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
- *  @author  Markus Thiele
+ *  @author  Markus Thiele, Art Tevs
  *
- *  @version CVS $Revision: 1.9 $
- *  @date    CVS $Date: 2005/07/03 19:18:12 $
+ *  @version CVS $Revision: 1.10 $
+ *  @date    CVS $Date: 2005/07/03 20:05:07 $
  */
 
 

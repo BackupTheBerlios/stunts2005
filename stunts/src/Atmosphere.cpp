@@ -256,6 +256,18 @@ namespace stunts
 											fz);
 				}
 
+				// checkj whenever light can cast shadows
+				sElem = smElem->FirstChildElement("shadow");
+				if (sElem)
+				{
+					const char* x = sElem->Attribute("cause");
+
+					bool can = x ? (bool)lexical_cast<int>(x) : false;
+
+					light->setCastShadows(can);
+				}
+
+				
 				// read the billboard value
 				sElem = smElem->FirstChildElement("billboard");
 				if (sElem)
