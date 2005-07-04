@@ -10,7 +10,7 @@ material Solar/wheel
             emissive 0.0 0.0 0.0
             texture_unit
             {
-                texture solarwheel.jpg 
+                texture wheel.jpg 
             }
         }
     }
