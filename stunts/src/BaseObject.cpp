@@ -434,8 +434,10 @@ namespace stunts {
 
 		// put on position
 		waypoint.x += this->m_position.x;
+		waypoint.x += mLevel->unitToMeter(0.5f);
 		waypoint.y += this->m_position.y;
 		waypoint.z += this->m_position.z;
+		waypoint.z += mLevel->unitToMeter(0.5f);
 
 		return waypoint;
 	};
