@@ -1,5 +1,5 @@
 	
 <waypoints>
-	<position x="-10.0" y="40.0" z="30.0" />
-	<position x="-10.0" y="0.0" z="-30.0" />
+	<position x="0.0" y="40.0" z="30.0" />
+	<position x="0.0" y="0.0" z="-30.0" />
 </waypoints>

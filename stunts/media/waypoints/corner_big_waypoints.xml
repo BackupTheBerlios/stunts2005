@@ -1,8 +1,6 @@
 	
 <waypoints>
-	<position x="25.0" y="0.0" z="-37.5" />
-	<position x="15.0" y="0.0" z="-22.5" />
-	<position x="0.0" y="0.0" z="0.0" />
-	<position x="-22.5" y="0.0" z="15.0" />
-	<position x="-37.5" y="0.0" z="25.0" />
+	<position x="15.0"   y="0.0" z="-11.75" />
+	<position x="0.0"    y="0.0" z="0.0"    />
+	<position x="-11.75" y="0.0" z="15.0"   />
 </waypoints>
