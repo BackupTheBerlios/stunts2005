@@ -14,7 +14,9 @@ struct tentry {
 	std::string RotY;
 	std::string ScaleAxis;
 	std::string ScaleVal;
+	std::string Shadow;
 	std::string MeshName;
+	std::string Extra;
 };
 
 std::map<std::string, tentry> tmatrix;
@@ -48,7 +50,9 @@ void transReload() {
 			lin >> cur.OffX >> cur.OffZ;
 			lin >> cur.RotY;
 			lin >> cur.ScaleAxis >> cur.ScaleVal;
+			lin >> cur.Shadow;
 			lin >> cur.MeshName;
+			getline( lin, cur.Extra );
 
 			if( id != "" ) 
 				tmatrix[id] = cur;
@@ -73,7 +77,9 @@ void translate( std::ofstream &out, Fl_Button* o, float x, float z ) {
 	const char* _POS_Z_ = "_POS_Z_";
 	const char* _SCALE_AXIS_ = "_SCALE_AXIS_";
 	const char* _SCALE_VALUE_ = "_SCALE_VALUE_";
+	const char* _SHADOW_ = "_SHADOW_";
 	const char* _MESH_NAME_ = "_MESH_NAME_";
+	const char* _EXTRA_XML_ = "_EXTRA_XML_";
 
 	std::ostringstream posX;
 	std::ostringstream posZ;
@@ -99,6 +105,12 @@ void translate( std::ofstream &out, Fl_Button* o, float x, float z ) {
 	currentTmp.replace(
 		currentTmp.find(_SCALE_VALUE_, 0),
 		strlen(_SCALE_VALUE_), tmatrix[id].ScaleVal);
+	currentTmp.replace(
+		currentTmp.find(_SHADOW_, 0),
+		strlen(_SHADOW_), tmatrix[id].Shadow);
+	currentTmp.replace(
+		currentTmp.find(_EXTRA_XML_, 0),
+		strlen(_EXTRA_XML_), tmatrix[id].Extra);
 	for (int i = 0; i < 2; i++)
 	{
 		currentTmp.replace(
@@ -106,5 +118,5 @@ void translate( std::ofstream &out, Fl_Button* o, float x, float z ) {
 		strlen(_MESH_NAME_), tmatrix[id].MeshName);
 	};
 
-	out << currentTmp << "\n";
+	out << currentTmp;
 }

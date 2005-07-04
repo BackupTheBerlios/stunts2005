@@ -104,7 +104,7 @@ Selected->image( o->image() );
 Selected->tooltip( o->tooltip() );
 
 Selected->redraw();}
-              xywh {140 61 49 49} align 144
+              xywh {140 106 49 49} align 144
               code0 {o->image( img["corner_small_nw"] );}
               code1 {o->tooltip( "corner_small_nw" );}
               code2 {o->label( NULL );}
@@ -126,9 +126,9 @@ Selected->image( o->image() );
 Selected->tooltip( o->tooltip() );
 
 Selected->redraw();}
-              xywh {140 166 49 49} align 144
-              code0 {o->image( img["straight_line_v"] );}
-              code1 {o->tooltip( "straight_line_v" );}
+              xywh {145 201 49 49} align 144
+              code0 {o->image( img["straight_line_h"] );}
+              code1 {o->tooltip( "straight_line_h" );}
               code2 {o->label( NULL );}
             }
             Fl_Button empty {
@@ -136,7 +136,7 @@ Selected->redraw();}
               callback {Selected->tooltip( o->tooltip() );
 Selected->image( o->image() );
 Selected->redraw();}
-              tooltip empty xywh {35 168 47 47} align 16
+              tooltip empty xywh {35 203 47 47} align 16
               code0 {o->image( img["empty"] );}
               code1 {o->tooltip( "empty" );}
               code2 {o->label( NULL );}
@@ -170,9 +170,161 @@ Selected->image( o->image() );
 Selected->tooltip( o->tooltip() );
 
 Selected->redraw();}
-              xywh {140 216 49 49} align 144
-              code0 {o->image( img["start_goal_v"] );}
-              code1 {o->tooltip( "start_goal_v" );}
+              xywh {90 201 49 49} align 144
+              code0 {o->image( img["start_goal_h"] );}
+              code1 {o->tooltip( "start_goal_h" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button tube_inout {
+              label {tube inout}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "tube_in_v" ) {
+		o->tooltip( "tube_in_h" );
+		o->image( img["tube_in_h"] );
+	} else if( o->tooltip() == "tube_in_h" ) {
+		o->tooltip( "tube_out_v" );
+		o->image( img["tube_out_v"] );
+	} else if( o->tooltip() == "tube_out_v" ) {
+		o->tooltip( "tube_out_h" );
+		o->image( img["tube_out_h"] );
+	} else if( o->tooltip() == "tube_out_h" ) {
+		o->tooltip( "tube_in_v" );
+		o->image( img["tube_in_v"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tube_in_v" ) {
+		o->tooltip( "tube_out_h" );
+		o->image( img["tube_out_h"] );
+	} else if( o->tooltip() == "tube_out_h" ) {
+		o->tooltip( "tube_out_v" );
+		o->image( img["tube_out_v"] );
+	} else if( o->tooltip() == "tube_out_v" ) {
+		o->tooltip( "tube_in_h" );
+		o->image( img["tube_in_h"] );
+	} else if( o->tooltip() == "tube_in_h" ) {
+		o->tooltip( "tube_in_v" );
+		o->image( img["tube_in_v"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {35 301 49 49} align 144
+              code0 {o->image( img["tube_in_h"] );}
+              code1 {o->tooltip( "tube_in_h" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button tube {
+              label tube
+              callback {if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tube_h" ) {
+		o->tooltip( "tube_v" );
+		o->image( img["tube_v"] );
+	} else if( o->tooltip() == "tube_v" ) {
+		o->tooltip( "tube_h" );
+		o->image( img["tube_h"] );
+	} 
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {90 301 49 49} align 144
+              code0 {o->image( img["tube_h"] );}
+              code1 {o->tooltip( "tube_h" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button tube_with_wall {
+              label {tube with wall}
+              callback {if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tube_with_wall_h" ) {
+		o->tooltip( "tube_with_wall_v" );
+		o->image( img["tube_with_wall_v"] );
+	} else if( o->tooltip() == "tube_with_wall_v" ) {
+		o->tooltip( "tube_with_wall_h" );
+		o->image( img["tube_with_wall_h"] );
+	} 
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {145 301 49 49} align 144
+              code0 {o->image( img["tube_with_wall_h"] );}
+              code1 {o->tooltip( "tube_with_wall_h" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button tunnel_inout {
+              label {tunnel inout}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "tunnel_in_v" ) {
+		o->tooltip( "tunnel_in_h" );
+		o->image( img["tunnel_in_h"] );
+	} else if( o->tooltip() == "tunnel_in_h" ) {
+		o->tooltip( "tunnel_out_v" );
+		o->image( img["tunnel_out_v"] );
+	} else if( o->tooltip() == "tunnel_out_v" ) {
+		o->tooltip( "tunnel_out_h" );
+		o->image( img["tunnel_out_h"] );
+	} else if( o->tooltip() == "tunnel_out_h" ) {
+		o->tooltip( "tunnel_in_v" );
+		o->image( img["tunnel_in_v"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tunnel_in_v" ) {
+		o->tooltip( "tunnel_out_h" );
+		o->image( img["tunnel_out_h"] );
+	} else if( o->tooltip() == "tunnel_out_h" ) {
+		o->tooltip( "tunnel_out_v" );
+		o->image( img["tunnel_out_v"] );
+	} else if( o->tooltip() == "tunnel_out_v" ) {
+		o->tooltip( "tunnel_in_h" );
+		o->image( img["tunnel_in_h"] );
+	} else if( o->tooltip() == "tunnel_in_h" ) {
+		o->tooltip( "tunnel_in_v" );
+		o->image( img["tunnel_in_v"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {60 356 49 49} align 144
+              code0 {o->image( img["tunnel_in_h"] );}
+              code1 {o->tooltip( "tunnel_in_h" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button tunnel {
+              label tunnel
+              callback {if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tunnel_h" ) {
+		o->tooltip( "tunnel_v" );
+		o->image( img["tunnel_v"] );
+	} else if( o->tooltip() == "tunnel_v" ) {
+		o->tooltip( "tunnel_h" );
+		o->image( img["tunnel_h"] );
+	} 
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {115 356 49 49} align 144
+              code0 {o->image( img["tunnel_h"] );}
+              code1 {o->tooltip( "tunnel_h" );}
               code2 {o->label( NULL );}
             }
           }
@@ -526,162 +678,9 @@ Selected->redraw();}
             }
           }
           Fl_Group {} {
-            label Tunnel open
+            label Stunt open
             xywh {5 25 215 430} hide
-          } {
-            Fl_Button tube_inout {
-              label {tube inout}
-              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
-	if( o->tooltip() == "tube_in_v" ) {
-		o->tooltip( "tube_in_h" );
-		o->image( img["tube_in_h"] );
-	} else if( o->tooltip() == "tube_in_h" ) {
-		o->tooltip( "tube_out_v" );
-		o->image( img["tube_out_v"] );
-	} else if( o->tooltip() == "tube_out_v" ) {
-		o->tooltip( "tube_out_h" );
-		o->image( img["tube_out_h"] );
-	} else if( o->tooltip() == "tube_out_h" ) {
-		o->tooltip( "tube_in_v" );
-		o->image( img["tube_in_v"] );
-	}
-	o->redraw();
-} else if( Selected->image() == o->image() ) {
-	if( o->tooltip() == "tube_in_v" ) {
-		o->tooltip( "tube_out_h" );
-		o->image( img["tube_out_h"] );
-	} else if( o->tooltip() == "tube_out_h" ) {
-		o->tooltip( "tube_out_v" );
-		o->image( img["tube_out_v"] );
-	} else if( o->tooltip() == "tube_out_v" ) {
-		o->tooltip( "tube_in_h" );
-		o->image( img["tube_in_h"] );
-	} else if( o->tooltip() == "tube_in_h" ) {
-		o->tooltip( "tube_in_v" );
-		o->image( img["tube_in_v"] );
-	}
-	o->redraw();
-}
-
-Selected->image( o->image() );
-Selected->tooltip( o->tooltip() );
-
-Selected->redraw();}
-              xywh {20 51 49 49} align 144
-              code0 {o->image( img["tube_in_v"] );}
-              code1 {o->tooltip( "tube_in_v" );}
-              code2 {o->label( NULL );}
-            }
-            Fl_Button tube {
-              label tube
-              callback {if( Selected->image() == o->image() ) {
-	if( o->tooltip() == "tube_h" ) {
-		o->tooltip( "tube_v" );
-		o->image( img["tube_v"] );
-	} else if( o->tooltip() == "tube_v" ) {
-		o->tooltip( "tube_h" );
-		o->image( img["tube_h"] );
-	} 
-	o->redraw();
-}
-
-Selected->image( o->image() );
-Selected->tooltip( o->tooltip() );
-
-Selected->redraw();}
-              xywh {75 51 49 49} align 144
-              code0 {o->image( img["tube_v"] );}
-              code1 {o->tooltip( "tube_v" );}
-              code2 {o->label( NULL );}
-            }
-            Fl_Button tube_with_wall {
-              label {tube with wall}
-              callback {if( Selected->image() == o->image() ) {
-	if( o->tooltip() == "tube_with_wall_h" ) {
-		o->tooltip( "tube_with_wall_v" );
-		o->image( img["tube_with_wall_v"] );
-	} else if( o->tooltip() == "tube_with_wall_v" ) {
-		o->tooltip( "tube_with_wall_h" );
-		o->image( img["tube_with_wall_h"] );
-	} 
-	o->redraw();
-}
-
-Selected->image( o->image() );
-Selected->tooltip( o->tooltip() );
-
-Selected->redraw();}
-              xywh {130 51 49 49} align 144
-              code0 {o->image( img["tube_with_wall_v"] );}
-              code1 {o->tooltip( "tube_with_wall_v" );}
-              code2 {o->label( NULL );}
-            }
-            Fl_Button tunnel_inout {
-              label {tunnel inout}
-              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
-	if( o->tooltip() == "tunnel_in_v" ) {
-		o->tooltip( "tunnel_in_h" );
-		o->image( img["tunnel_in_h"] );
-	} else if( o->tooltip() == "tunnel_in_h" ) {
-		o->tooltip( "tunnel_out_v" );
-		o->image( img["tunnel_out_v"] );
-	} else if( o->tooltip() == "tunnel_out_v" ) {
-		o->tooltip( "tunnel_out_h" );
-		o->image( img["tunnel_out_h"] );
-	} else if( o->tooltip() == "tunnel_out_h" ) {
-		o->tooltip( "tunnel_in_v" );
-		o->image( img["tunnel_in_v"] );
-	}
-	o->redraw();
-} else if( Selected->image() == o->image() ) {
-	if( o->tooltip() == "tunnel_in_v" ) {
-		o->tooltip( "tunnel_out_h" );
-		o->image( img["tunnel_out_h"] );
-	} else if( o->tooltip() == "tunnel_out_h" ) {
-		o->tooltip( "tunnel_out_v" );
-		o->image( img["tunnel_out_v"] );
-	} else if( o->tooltip() == "tunnel_out_v" ) {
-		o->tooltip( "tunnel_in_h" );
-		o->image( img["tunnel_in_h"] );
-	} else if( o->tooltip() == "tunnel_in_h" ) {
-		o->tooltip( "tunnel_in_v" );
-		o->image( img["tunnel_in_v"] );
-	}
-	o->redraw();
-}
-
-Selected->image( o->image() );
-Selected->tooltip( o->tooltip() );
-
-Selected->redraw();}
-              xywh {20 106 49 49} align 144
-              code0 {o->image( img["tunnel_in_v"] );}
-              code1 {o->tooltip( "tunnel_in_v" );}
-              code2 {o->label( NULL );}
-            }
-            Fl_Button tunnel {
-              label tunnel
-              callback {if( Selected->image() == o->image() ) {
-	if( o->tooltip() == "tunnel_h" ) {
-		o->tooltip( "tunnel_v" );
-		o->image( img["tunnel_v"] );
-	} else if( o->tooltip() == "tunnel_v" ) {
-		o->tooltip( "tunnel_h" );
-		o->image( img["tunnel_h"] );
-	} 
-	o->redraw();
-}
-
-Selected->image( o->image() );
-Selected->tooltip( o->tooltip() );
-
-Selected->redraw();}
-              xywh {75 106 49 49} align 144
-              code0 {o->image( img["tunnel_v"] );}
-              code1 {o->tooltip( "tunnel_v" );}
-              code2 {o->label( NULL );}
-            }
-          }
+          } {}
         }
         Fl_Group {} {open
           xywh {215 0 580 30}
@@ -760,25 +759,29 @@ Track->add( TrackIcons );
 Track->redraw();} {}
     Fl_Window newTrack {
       label {New track...} open
-      xywh {683 388 359 126} modal visible
+      xywh {631 453 201 311} modal visible
     } {
       Fl_Group {} {open
-        xywh {10 5 345 80} box PLASTIC_UP_BOX
+        xywh {10 5 185 265} box PLASTIC_UP_BOX
       } {
         Fl_Value_Input vCells {
           label {vertical cells}
           callback {if( o->value() > 99 ) o->value( 99 );}
-          xywh {240 15 25 20} align 8 minimum 2 maximum 80 step 1 value 30 deactivate
+          xywh {35 40 25 20} align 8 minimum 2 maximum 80 step 1 value 30 deactivate
         }
         Fl_Value_Input hCells {
           label {horizontal cells}
           callback {if( o->value() > 99 ) o->value( 99 );}
-          xywh {20 15 25 20} align 8 minimum 2 maximum 80 step 1 value 30 deactivate
+          xywh {35 15 25 20} align 8 minimum 2 maximum 80 step 1 value 30 deactivate
         }
         Fl_Input nter {
           label {Terrain:}
-          xywh {75 45 265 25}
+          xywh {70 235 115 25}
           code0 {o->value( "terrain3" );}
+        }
+        Fl_Browser selterrain {
+          label {Available Terrains:}
+          xywh {20 90 165 140} align 1 when 3
         }
       }
       Fl_Button {} {
@@ -829,15 +832,19 @@ Track->redraw();
 
 newTrack->hide();
 mainGroup->activate();} selected
-        xywh {290 90 65 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
+        xywh {130 275 65 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
       }
       Fl_Button {} {
         label cancel
         callback {newTrack->hide();
 mainGroup->activate();}
-        xywh {10 90 65 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
+        xywh {10 275 65 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
       }
     }
+    code {std::map<std::string, tdata>::iterator i;
+for( i = ters.begin(); i != ters.end(); i++ ) {
+	selterrain->add( i->first.c_str() );
+}} {}
     Fl_Window saveTrack {
       label {Save track...} open
       xywh {-32000 -32000 510 192} hide modal

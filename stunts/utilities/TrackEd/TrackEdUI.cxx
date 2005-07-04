@@ -149,6 +149,153 @@ void CTrackEdUI::cb_start_goal(Fl_Button* o, void* v) {
   ((CTrackEdUI*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_start_goal_i(o,v);
 }
 
+inline void CTrackEdUI::cb_tube_inout_i(Fl_Button* o, void*) {
+  if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "tube_in_v" ) {
+		o->tooltip( "tube_in_h" );
+		o->image( img["tube_in_h"] );
+	} else if( o->tooltip() == "tube_in_h" ) {
+		o->tooltip( "tube_out_v" );
+		o->image( img["tube_out_v"] );
+	} else if( o->tooltip() == "tube_out_v" ) {
+		o->tooltip( "tube_out_h" );
+		o->image( img["tube_out_h"] );
+	} else if( o->tooltip() == "tube_out_h" ) {
+		o->tooltip( "tube_in_v" );
+		o->image( img["tube_in_v"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tube_in_v" ) {
+		o->tooltip( "tube_out_h" );
+		o->image( img["tube_out_h"] );
+	} else if( o->tooltip() == "tube_out_h" ) {
+		o->tooltip( "tube_out_v" );
+		o->image( img["tube_out_v"] );
+	} else if( o->tooltip() == "tube_out_v" ) {
+		o->tooltip( "tube_in_h" );
+		o->image( img["tube_in_h"] );
+	} else if( o->tooltip() == "tube_in_h" ) {
+		o->tooltip( "tube_in_v" );
+		o->image( img["tube_in_v"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();
+}
+void CTrackEdUI::cb_tube_inout(Fl_Button* o, void* v) {
+  ((CTrackEdUI*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_tube_inout_i(o,v);
+}
+
+inline void CTrackEdUI::cb_tube_i(Fl_Button* o, void*) {
+  if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tube_h" ) {
+		o->tooltip( "tube_v" );
+		o->image( img["tube_v"] );
+	} else if( o->tooltip() == "tube_v" ) {
+		o->tooltip( "tube_h" );
+		o->image( img["tube_h"] );
+	} 
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();
+}
+void CTrackEdUI::cb_tube(Fl_Button* o, void* v) {
+  ((CTrackEdUI*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_tube_i(o,v);
+}
+
+inline void CTrackEdUI::cb_tube_with_wall_i(Fl_Button* o, void*) {
+  if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tube_with_wall_h" ) {
+		o->tooltip( "tube_with_wall_v" );
+		o->image( img["tube_with_wall_v"] );
+	} else if( o->tooltip() == "tube_with_wall_v" ) {
+		o->tooltip( "tube_with_wall_h" );
+		o->image( img["tube_with_wall_h"] );
+	} 
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();
+}
+void CTrackEdUI::cb_tube_with_wall(Fl_Button* o, void* v) {
+  ((CTrackEdUI*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_tube_with_wall_i(o,v);
+}
+
+inline void CTrackEdUI::cb_tunnel_inout_i(Fl_Button* o, void*) {
+  if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "tunnel_in_v" ) {
+		o->tooltip( "tunnel_in_h" );
+		o->image( img["tunnel_in_h"] );
+	} else if( o->tooltip() == "tunnel_in_h" ) {
+		o->tooltip( "tunnel_out_v" );
+		o->image( img["tunnel_out_v"] );
+	} else if( o->tooltip() == "tunnel_out_v" ) {
+		o->tooltip( "tunnel_out_h" );
+		o->image( img["tunnel_out_h"] );
+	} else if( o->tooltip() == "tunnel_out_h" ) {
+		o->tooltip( "tunnel_in_v" );
+		o->image( img["tunnel_in_v"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tunnel_in_v" ) {
+		o->tooltip( "tunnel_out_h" );
+		o->image( img["tunnel_out_h"] );
+	} else if( o->tooltip() == "tunnel_out_h" ) {
+		o->tooltip( "tunnel_out_v" );
+		o->image( img["tunnel_out_v"] );
+	} else if( o->tooltip() == "tunnel_out_v" ) {
+		o->tooltip( "tunnel_in_h" );
+		o->image( img["tunnel_in_h"] );
+	} else if( o->tooltip() == "tunnel_in_h" ) {
+		o->tooltip( "tunnel_in_v" );
+		o->image( img["tunnel_in_v"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();
+}
+void CTrackEdUI::cb_tunnel_inout(Fl_Button* o, void* v) {
+  ((CTrackEdUI*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_tunnel_inout_i(o,v);
+}
+
+inline void CTrackEdUI::cb_tunnel_i(Fl_Button* o, void*) {
+  if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tunnel_h" ) {
+		o->tooltip( "tunnel_v" );
+		o->image( img["tunnel_v"] );
+	} else if( o->tooltip() == "tunnel_v" ) {
+		o->tooltip( "tunnel_h" );
+		o->image( img["tunnel_h"] );
+	} 
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();
+}
+void CTrackEdUI::cb_tunnel(Fl_Button* o, void* v) {
+  ((CTrackEdUI*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_tunnel_i(o,v);
+}
+
 inline void CTrackEdUI::cb_corner_bridge_big_i(Fl_Button* o, void*) {
   if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
 	if( o->tooltip() == "corner_bridge_big_nw" ) {
@@ -485,153 +632,6 @@ void CTrackEdUI::cb_crossover(Fl_Button* o, void* v) {
   ((CTrackEdUI*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_crossover_i(o,v);
 }
 
-inline void CTrackEdUI::cb_tube_inout_i(Fl_Button* o, void*) {
-  if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
-	if( o->tooltip() == "tube_in_v" ) {
-		o->tooltip( "tube_in_h" );
-		o->image( img["tube_in_h"] );
-	} else if( o->tooltip() == "tube_in_h" ) {
-		o->tooltip( "tube_out_v" );
-		o->image( img["tube_out_v"] );
-	} else if( o->tooltip() == "tube_out_v" ) {
-		o->tooltip( "tube_out_h" );
-		o->image( img["tube_out_h"] );
-	} else if( o->tooltip() == "tube_out_h" ) {
-		o->tooltip( "tube_in_v" );
-		o->image( img["tube_in_v"] );
-	}
-	o->redraw();
-} else if( Selected->image() == o->image() ) {
-	if( o->tooltip() == "tube_in_v" ) {
-		o->tooltip( "tube_out_h" );
-		o->image( img["tube_out_h"] );
-	} else if( o->tooltip() == "tube_out_h" ) {
-		o->tooltip( "tube_out_v" );
-		o->image( img["tube_out_v"] );
-	} else if( o->tooltip() == "tube_out_v" ) {
-		o->tooltip( "tube_in_h" );
-		o->image( img["tube_in_h"] );
-	} else if( o->tooltip() == "tube_in_h" ) {
-		o->tooltip( "tube_in_v" );
-		o->image( img["tube_in_v"] );
-	}
-	o->redraw();
-}
-
-Selected->image( o->image() );
-Selected->tooltip( o->tooltip() );
-
-Selected->redraw();
-}
-void CTrackEdUI::cb_tube_inout(Fl_Button* o, void* v) {
-  ((CTrackEdUI*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_tube_inout_i(o,v);
-}
-
-inline void CTrackEdUI::cb_tube_i(Fl_Button* o, void*) {
-  if( Selected->image() == o->image() ) {
-	if( o->tooltip() == "tube_h" ) {
-		o->tooltip( "tube_v" );
-		o->image( img["tube_v"] );
-	} else if( o->tooltip() == "tube_v" ) {
-		o->tooltip( "tube_h" );
-		o->image( img["tube_h"] );
-	} 
-	o->redraw();
-}
-
-Selected->image( o->image() );
-Selected->tooltip( o->tooltip() );
-
-Selected->redraw();
-}
-void CTrackEdUI::cb_tube(Fl_Button* o, void* v) {
-  ((CTrackEdUI*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_tube_i(o,v);
-}
-
-inline void CTrackEdUI::cb_tube_with_wall_i(Fl_Button* o, void*) {
-  if( Selected->image() == o->image() ) {
-	if( o->tooltip() == "tube_with_wall_h" ) {
-		o->tooltip( "tube_with_wall_v" );
-		o->image( img["tube_with_wall_v"] );
-	} else if( o->tooltip() == "tube_with_wall_v" ) {
-		o->tooltip( "tube_with_wall_h" );
-		o->image( img["tube_with_wall_h"] );
-	} 
-	o->redraw();
-}
-
-Selected->image( o->image() );
-Selected->tooltip( o->tooltip() );
-
-Selected->redraw();
-}
-void CTrackEdUI::cb_tube_with_wall(Fl_Button* o, void* v) {
-  ((CTrackEdUI*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_tube_with_wall_i(o,v);
-}
-
-inline void CTrackEdUI::cb_tunnel_inout_i(Fl_Button* o, void*) {
-  if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
-	if( o->tooltip() == "tunnel_in_v" ) {
-		o->tooltip( "tunnel_in_h" );
-		o->image( img["tunnel_in_h"] );
-	} else if( o->tooltip() == "tunnel_in_h" ) {
-		o->tooltip( "tunnel_out_v" );
-		o->image( img["tunnel_out_v"] );
-	} else if( o->tooltip() == "tunnel_out_v" ) {
-		o->tooltip( "tunnel_out_h" );
-		o->image( img["tunnel_out_h"] );
-	} else if( o->tooltip() == "tunnel_out_h" ) {
-		o->tooltip( "tunnel_in_v" );
-		o->image( img["tunnel_in_v"] );
-	}
-	o->redraw();
-} else if( Selected->image() == o->image() ) {
-	if( o->tooltip() == "tunnel_in_v" ) {
-		o->tooltip( "tunnel_out_h" );
-		o->image( img["tunnel_out_h"] );
-	} else if( o->tooltip() == "tunnel_out_h" ) {
-		o->tooltip( "tunnel_out_v" );
-		o->image( img["tunnel_out_v"] );
-	} else if( o->tooltip() == "tunnel_out_v" ) {
-		o->tooltip( "tunnel_in_h" );
-		o->image( img["tunnel_in_h"] );
-	} else if( o->tooltip() == "tunnel_in_h" ) {
-		o->tooltip( "tunnel_in_v" );
-		o->image( img["tunnel_in_v"] );
-	}
-	o->redraw();
-}
-
-Selected->image( o->image() );
-Selected->tooltip( o->tooltip() );
-
-Selected->redraw();
-}
-void CTrackEdUI::cb_tunnel_inout(Fl_Button* o, void* v) {
-  ((CTrackEdUI*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_tunnel_inout_i(o,v);
-}
-
-inline void CTrackEdUI::cb_tunnel_i(Fl_Button* o, void*) {
-  if( Selected->image() == o->image() ) {
-	if( o->tooltip() == "tunnel_h" ) {
-		o->tooltip( "tunnel_v" );
-		o->image( img["tunnel_v"] );
-	} else if( o->tooltip() == "tunnel_v" ) {
-		o->tooltip( "tunnel_h" );
-		o->image( img["tunnel_h"] );
-	} 
-	o->redraw();
-}
-
-Selected->image( o->image() );
-Selected->tooltip( o->tooltip() );
-
-Selected->redraw();
-}
-void CTrackEdUI::cb_tunnel(Fl_Button* o, void* v) {
-  ((CTrackEdUI*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_tunnel_i(o,v);
-}
-
 inline void CTrackEdUI::cb_Load_i(Fl_Button*, void*) {
   mainGroup->deactivate();
 loadTrack->show();
@@ -886,21 +886,21 @@ CTrackEdUI::CTrackEdUI() {
             o->tooltip( "corner_big_nw" );
             o->label( NULL );
           }
-          { Fl_Button* o = corner_small = new Fl_Button(140, 61, 49, 49, "corner small");
+          { Fl_Button* o = corner_small = new Fl_Button(140, 106, 49, 49, "corner small");
             o->callback((Fl_Callback*)cb_corner_small);
             o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
             o->image( img["corner_small_nw"] );
             o->tooltip( "corner_small_nw" );
             o->label( NULL );
           }
-          { Fl_Button* o = straight_line = new Fl_Button(140, 166, 49, 49, "straight line");
+          { Fl_Button* o = straight_line = new Fl_Button(145, 201, 49, 49, "straight line");
             o->callback((Fl_Callback*)cb_straight_line);
             o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
-            o->image( img["straight_line_v"] );
-            o->tooltip( "straight_line_v" );
+            o->image( img["straight_line_h"] );
+            o->tooltip( "straight_line_h" );
             o->label( NULL );
           }
-          { Fl_Button* o = empty = new Fl_Button(35, 168, 47, 47, "empty");
+          { Fl_Button* o = empty = new Fl_Button(35, 203, 47, 47, "empty");
             o->tooltip("empty");
             o->callback((Fl_Callback*)cb_empty);
             o->align(FL_ALIGN_CENTER|FL_ALIGN_INSIDE);
@@ -915,11 +915,46 @@ CTrackEdUI::CTrackEdUI() {
             o->hide();
             o->image( img["empty"] );
           }
-          { Fl_Button* o = start_goal = new Fl_Button(140, 216, 49, 49, "start goal");
+          { Fl_Button* o = start_goal = new Fl_Button(90, 201, 49, 49, "start goal");
             o->callback((Fl_Callback*)cb_start_goal);
             o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
-            o->image( img["start_goal_v"] );
-            o->tooltip( "start_goal_v" );
+            o->image( img["start_goal_h"] );
+            o->tooltip( "start_goal_h" );
+            o->label( NULL );
+          }
+          { Fl_Button* o = tube_inout = new Fl_Button(35, 301, 49, 49, "tube inout");
+            o->callback((Fl_Callback*)cb_tube_inout);
+            o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
+            o->image( img["tube_in_h"] );
+            o->tooltip( "tube_in_h" );
+            o->label( NULL );
+          }
+          { Fl_Button* o = tube = new Fl_Button(90, 301, 49, 49, "tube");
+            o->callback((Fl_Callback*)cb_tube);
+            o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
+            o->image( img["tube_h"] );
+            o->tooltip( "tube_h" );
+            o->label( NULL );
+          }
+          { Fl_Button* o = tube_with_wall = new Fl_Button(145, 301, 49, 49, "tube with wall");
+            o->callback((Fl_Callback*)cb_tube_with_wall);
+            o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
+            o->image( img["tube_with_wall_h"] );
+            o->tooltip( "tube_with_wall_h" );
+            o->label( NULL );
+          }
+          { Fl_Button* o = tunnel_inout = new Fl_Button(60, 356, 49, 49, "tunnel inout");
+            o->callback((Fl_Callback*)cb_tunnel_inout);
+            o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
+            o->image( img["tunnel_in_h"] );
+            o->tooltip( "tunnel_in_h" );
+            o->label( NULL );
+          }
+          { Fl_Button* o = tunnel = new Fl_Button(115, 356, 49, 49, "tunnel");
+            o->callback((Fl_Callback*)cb_tunnel);
+            o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
+            o->image( img["tunnel_h"] );
+            o->tooltip( "tunnel_h" );
             o->label( NULL );
           }
           o->end();
@@ -984,43 +1019,8 @@ CTrackEdUI::CTrackEdUI() {
           }
           o->end();
         }
-        { Fl_Group* o = new Fl_Group(5, 25, 215, 430, "Tunnel");
+        { Fl_Group* o = new Fl_Group(5, 25, 215, 430, "Stunt");
           o->hide();
-          { Fl_Button* o = tube_inout = new Fl_Button(20, 51, 49, 49, "tube inout");
-            o->callback((Fl_Callback*)cb_tube_inout);
-            o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
-            o->image( img["tube_in_v"] );
-            o->tooltip( "tube_in_v" );
-            o->label( NULL );
-          }
-          { Fl_Button* o = tube = new Fl_Button(75, 51, 49, 49, "tube");
-            o->callback((Fl_Callback*)cb_tube);
-            o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
-            o->image( img["tube_v"] );
-            o->tooltip( "tube_v" );
-            o->label( NULL );
-          }
-          { Fl_Button* o = tube_with_wall = new Fl_Button(130, 51, 49, 49, "tube with wall");
-            o->callback((Fl_Callback*)cb_tube_with_wall);
-            o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
-            o->image( img["tube_with_wall_v"] );
-            o->tooltip( "tube_with_wall_v" );
-            o->label( NULL );
-          }
-          { Fl_Button* o = tunnel_inout = new Fl_Button(20, 106, 49, 49, "tunnel inout");
-            o->callback((Fl_Callback*)cb_tunnel_inout);
-            o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
-            o->image( img["tunnel_in_v"] );
-            o->tooltip( "tunnel_in_v" );
-            o->label( NULL );
-          }
-          { Fl_Button* o = tunnel = new Fl_Button(75, 106, 49, 49, "tunnel");
-            o->callback((Fl_Callback*)cb_tunnel);
-            o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
-            o->image( img["tunnel_v"] );
-            o->tooltip( "tunnel_v" );
-            o->label( NULL );
-          }
           o->end();
         }
         o->end();
@@ -1103,12 +1103,12 @@ for( int x = 0; x < 30; x++ ) {
 
 Track->add( TrackIcons );
 Track->redraw();
-  { Fl_Window* o = newTrack = new Fl_Window(359, 126, "New track...");
+  { Fl_Window* o = newTrack = new Fl_Window(201, 311, "New track...");
     w = o;
     o->user_data((void*)(this));
-    { Fl_Group* o = new Fl_Group(10, 5, 345, 80);
+    { Fl_Group* o = new Fl_Group(10, 5, 185, 265);
       o->box(FL_PLASTIC_UP_BOX);
-      { Fl_Value_Input* o = vCells = new Fl_Value_Input(240, 15, 25, 20, "vertical cells");
+      { Fl_Value_Input* o = vCells = new Fl_Value_Input(35, 40, 25, 20, "vertical cells");
         o->minimum(2);
         o->maximum(80);
         o->step(1);
@@ -1117,7 +1117,7 @@ Track->redraw();
         o->align(FL_ALIGN_RIGHT);
         o->deactivate();
       }
-      { Fl_Value_Input* o = hCells = new Fl_Value_Input(20, 15, 25, 20, "horizontal cells");
+      { Fl_Value_Input* o = hCells = new Fl_Value_Input(35, 15, 25, 20, "horizontal cells");
         o->minimum(2);
         o->maximum(80);
         o->step(1);
@@ -1126,17 +1126,21 @@ Track->redraw();
         o->align(FL_ALIGN_RIGHT);
         o->deactivate();
       }
-      { Fl_Input* o = nter = new Fl_Input(75, 45, 265, 25, "Terrain:");
+      { Fl_Input* o = nter = new Fl_Input(70, 235, 115, 25, "Terrain:");
         o->value( "terrain3" );
+      }
+      { Fl_Browser* o = selterrain = new Fl_Browser(20, 90, 165, 140, "Available Terrains:");
+        o->align(FL_ALIGN_TOP);
+        o->when(3);
       }
       o->end();
     }
-    { Fl_Button* o = new Fl_Button(290, 90, 65, 30, "ok");
+    { Fl_Button* o = new Fl_Button(130, 275, 65, 30, "ok");
       o->box(FL_PLASTIC_UP_BOX);
       o->down_box(FL_PLASTIC_DOWN_BOX);
       o->callback((Fl_Callback*)cb_ok);
     }
-    { Fl_Button* o = new Fl_Button(10, 90, 65, 30, "cancel");
+    { Fl_Button* o = new Fl_Button(10, 275, 65, 30, "cancel");
       o->box(FL_PLASTIC_UP_BOX);
       o->down_box(FL_PLASTIC_DOWN_BOX);
       o->callback((Fl_Callback*)cb_cancel);
@@ -1144,6 +1148,10 @@ Track->redraw();
     o->set_modal();
     o->end();
   }
+  std::map<std::string, tdata>::iterator i;
+for( i = ters.begin(); i != ters.end(); i++ ) {
+	selterrain->add( i->first.c_str() );
+}
   { Fl_Window* o = saveTrack = new Fl_Window(510, 192, "Save track...");
     w = o;
     o->user_data((void*)(this));

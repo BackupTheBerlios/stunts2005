@@ -16,6 +16,7 @@
 #include "TrackData.h"
 #include <FL/Fl_Value_Input.H>
 #include <FL/Fl_Input.H>
+#include <FL/Fl_Browser.H>
 #include <fstream>
 #include "Translate.h"
 
@@ -48,6 +49,36 @@ public:
 private:
   inline void cb_cellTemplate_i(Fl_Button*, void*);
   static void cb_cellTemplate(Fl_Button*, void*);
+public:
+  Fl_Button *start_goal;
+private:
+  inline void cb_start_goal_i(Fl_Button*, void*);
+  static void cb_start_goal(Fl_Button*, void*);
+public:
+  Fl_Button *tube_inout;
+private:
+  inline void cb_tube_inout_i(Fl_Button*, void*);
+  static void cb_tube_inout(Fl_Button*, void*);
+public:
+  Fl_Button *tube;
+private:
+  inline void cb_tube_i(Fl_Button*, void*);
+  static void cb_tube(Fl_Button*, void*);
+public:
+  Fl_Button *tube_with_wall;
+private:
+  inline void cb_tube_with_wall_i(Fl_Button*, void*);
+  static void cb_tube_with_wall(Fl_Button*, void*);
+public:
+  Fl_Button *tunnel_inout;
+private:
+  inline void cb_tunnel_inout_i(Fl_Button*, void*);
+  static void cb_tunnel_inout(Fl_Button*, void*);
+public:
+  Fl_Button *tunnel;
+private:
+  inline void cb_tunnel_i(Fl_Button*, void*);
+  static void cb_tunnel(Fl_Button*, void*);
 public:
   Fl_Button *corner_bridge_big;
 private:
@@ -88,31 +119,6 @@ public:
 private:
   inline void cb_crossover_i(Fl_Button*, void*);
   static void cb_crossover(Fl_Button*, void*);
-public:
-  Fl_Button *tube_inout;
-private:
-  inline void cb_tube_inout_i(Fl_Button*, void*);
-  static void cb_tube_inout(Fl_Button*, void*);
-public:
-  Fl_Button *tube;
-private:
-  inline void cb_tube_i(Fl_Button*, void*);
-  static void cb_tube(Fl_Button*, void*);
-public:
-  Fl_Button *tube_with_wall;
-private:
-  inline void cb_tube_with_wall_i(Fl_Button*, void*);
-  static void cb_tube_with_wall(Fl_Button*, void*);
-public:
-  Fl_Button *tunnel_inout;
-private:
-  inline void cb_tunnel_inout_i(Fl_Button*, void*);
-  static void cb_tunnel_inout(Fl_Button*, void*);
-public:
-  Fl_Button *tunnel;
-private:
-  inline void cb_tunnel_i(Fl_Button*, void*);
-  static void cb_tunnel(Fl_Button*, void*);
   inline void cb_Load_i(Fl_Button*, void*);
   static void cb_Load(Fl_Button*, void*);
   inline void cb_Save_i(Fl_Button*, void*);
@@ -134,6 +140,7 @@ private:
   static void cb_hCells(Fl_Value_Input*, void*);
 public:
   Fl_Input *nter;
+  Fl_Browser *selterrain;
 private:
   inline void cb_ok_i(Fl_Button*, void*);
   static void cb_ok(Fl_Button*, void*);

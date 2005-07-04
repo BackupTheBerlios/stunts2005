@@ -39,6 +39,8 @@ void FreeTerrain( ) {
 // th = high threshold
 void LoadTerrain( std::string name, int cw, int ch ) {
 
+	if( ters.find( name ) == ters.end() ) name = "terrain1";
+
 	std::string file = ters[name].file;
 	double tl = ters[name].tl;
 	double th = ters[name].th;
