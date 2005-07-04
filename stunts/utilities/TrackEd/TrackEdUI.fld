@@ -1,0 +1,1143 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0102 
+header_name {.h} 
+code_name {.cxx}
+class CTrackEdUI {open
+} {
+  Function {CTrackEdUI()} {open
+  } {
+    Fl_Window mainWindow {
+      label {Stunts2005 TrackEd (preview)} open
+      xywh {419 265 794 600}
+      code0 {\#include <FL/Fl_PNG_Image.h>}
+      code1 {\#include "Images.h"} visible
+    } {
+      Fl_Group mainGroup {open
+        xywh {0 0 795 600} box FLAT_BOX
+      } {
+        Fl_Tabs {} {open
+          xywh {0 0 225 465} box PLASTIC_UP_BOX
+        } {
+          Fl_Group {} {
+            label Road open
+            xywh {5 25 215 430} hide
+          } {
+            Fl_Button corner_big {
+              label {corner big}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "corner_big_nw" ) {
+		o->tooltip( "corner_big_ne" );
+		o->image( img["corner_big_ne"] );
+	} else if( o->tooltip() == "corner_big_ne" ) {
+		o->tooltip( "corner_big_se" );
+		o->image( img["corner_big_se"] );
+	} else if( o->tooltip() == "corner_big_se" ) {
+		o->tooltip( "corner_big_sw" );
+		o->image( img["corner_big_sw"] );
+	} else if( o->tooltip() == "corner_big_sw" ) {
+		o->tooltip( "corner_big_nw" );
+		o->image( img["corner_big_nw"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "corner_big_ne" ) {
+		o->tooltip( "corner_big_nw" );
+		o->image( img["corner_big_nw"] );
+	} else if( o->tooltip() == "corner_big_se" ) {
+		o->tooltip( "corner_big_ne" );
+		o->image( img["corner_big_ne"] );
+	} else if( o->tooltip() == "corner_big_sw" ) {
+		o->tooltip( "corner_big_se" );
+		o->image( img["corner_big_se"] );
+	} else if( o->tooltip() == "corner_big_nw" ) {
+		o->tooltip( "corner_big_sw" );
+		o->image( img["corner_big_sw"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {35 61 94 94} align 144
+              code0 {o->image( img["corner_big_nw"] );}
+              code1 {o->tooltip( "corner_big_nw" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button corner_small {
+              label {corner small}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "corner_small_nw" ) {
+		o->tooltip( "corner_small_ne" );
+		o->image( img["corner_small_ne"] );
+	} else if( o->tooltip() == "corner_small_ne" ) {
+		o->tooltip( "corner_small_se" );
+		o->image( img["corner_small_se"] );
+	} else if( o->tooltip() == "corner_small_se" ) {
+		o->tooltip( "corner_small_sw" );
+		o->image( img["corner_small_sw"] );
+	} else if( o->tooltip() == "corner_small_sw" ) {
+		o->tooltip( "corner_small_nw" );
+		o->image( img["corner_small_nw"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "corner_small_ne" ) {
+		o->tooltip( "corner_small_nw" );
+		o->image( img["corner_small_nw"] );
+	} else if( o->tooltip() == "corner_small_se" ) {
+		o->tooltip( "corner_small_ne" );
+		o->image( img["corner_small_ne"] );
+	} else if( o->tooltip() == "corner_small_sw" ) {
+		o->tooltip( "corner_small_se" );
+		o->image( img["corner_small_se"] );
+	} else if( o->tooltip() == "corner_small_nw" ) {
+		o->tooltip( "corner_small_sw" );
+		o->image( img["corner_small_sw"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {140 61 49 49} align 144
+              code0 {o->image( img["corner_small_nw"] );}
+              code1 {o->tooltip( "corner_small_nw" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button straight_line {
+              label {straight line}
+              callback {if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "straight_line_v" ) {
+		o->tooltip( "straight_line_h" );
+		o->image( img["straight_line_h"] );
+	} else if( o->tooltip() == "straight_line_h" ) {
+		o->tooltip( "straight_line_v" );
+		o->image( img["straight_line_v"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {140 166 49 49} align 144
+              code0 {o->image( img["straight_line_v"] );}
+              code1 {o->tooltip( "straight_line_v" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button empty {
+              label empty
+              callback {Selected->tooltip( o->tooltip() );
+Selected->image( o->image() );
+Selected->redraw();}
+              tooltip empty xywh {35 168 47 47} align 16
+              code0 {o->image( img["empty"] );}
+              code1 {o->tooltip( "empty" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button cellTemplate {
+              label tmpl
+              callback {// o->image() == Selected->image() ||
+if( Fl::event_button() == FL_RIGHT_MOUSE ) {
+	clearCells( o );
+} else {
+	setCells( o );
+}}
+              tooltip cellTemplate xywh {35 228 47 47} align 16 hide
+              code0 {o->image( img["empty"] );}
+              code1 {\#include <string>}
+            }
+          }
+          Fl_Group {} {
+            label Bridge open
+            xywh {5 25 215 430} hide
+          } {
+            Fl_Button corner_bridge_big {
+              label {corner bridge big}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "corner_bridge_big_nw" ) {
+		o->tooltip( "corner_bridge_big_ne" );
+		o->image( img["corner_bridge_big_ne"] );
+	} else if( o->tooltip() == "corner_bridge_big_ne" ) {
+		o->tooltip( "corner_bridge_big_se" );
+		o->image( img["corner_bridge_big_se"] );
+	} else if( o->tooltip() == "corner_bridge_big_se" ) {
+		o->tooltip( "corner_bridge_big_sw" );
+		o->image( img["corner_bridge_big_sw"] );
+	} else if( o->tooltip() == "corner_bridge_big_sw" ) {
+		o->tooltip( "corner_bridge_big_nw" );
+		o->image( img["corner_bridge_big_nw"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "corner_bridge_big_ne" ) {
+		o->tooltip( "corner_bridge_big_nw" );
+		o->image( img["corner_bridge_big_nw"] );
+	} else if( o->tooltip() == "corner_bridge_big_se" ) {
+		o->tooltip( "corner_bridge_big_ne" );
+		o->image( img["corner_bridge_big_ne"] );
+	} else if( o->tooltip() == "corner_bridge_big_sw" ) {
+		o->tooltip( "corner_bridge_big_se" );
+		o->image( img["corner_bridge_big_se"] );
+	} else if( o->tooltip() == "corner_bridge_big_nw" ) {
+		o->tooltip( "corner_bridge_big_sw" );
+		o->image( img["corner_bridge_big_sw"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {15 46 94 94} align 144
+              code0 {o->image( img["corner_bridge_big_nw"] );}
+              code1 {o->tooltip( "corner_bridge_big_nw" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button corner_bridge_small {
+              label {corner bridge small}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "corner_bridge_small_nw" ) {
+		o->tooltip( "corner_bridge_small_ne" );
+		o->image( img["corner_bridge_small_ne"] );
+	} else if( o->tooltip() == "corner_bridge_small_ne" ) {
+		o->tooltip( "corner_bridge_small_se" );
+		o->image( img["corner_bridge_small_se"] );
+	} else if( o->tooltip() == "corner_bridge_small_se" ) {
+		o->tooltip( "corner_bridge_small_sw" );
+		o->image( img["corner_bridge_small_sw"] );
+	} else if( o->tooltip() == "corner_bridge_small_sw" ) {
+		o->tooltip( "corner_bridge_small_nw" );
+		o->image( img["corner_bridge_small_nw"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "corner_bridge_small_ne" ) {
+		o->tooltip( "corner_bridge_small_nw" );
+		o->image( img["corner_bridge_small_nw"] );
+	} else if( o->tooltip() == "corner_bridge_small_se" ) {
+		o->tooltip( "corner_bridge_small_ne" );
+		o->image( img["corner_bridge_small_ne"] );
+	} else if( o->tooltip() == "corner_bridge_small_sw" ) {
+		o->tooltip( "corner_bridge_small_se" );
+		o->image( img["corner_bridge_small_se"] );
+	} else if( o->tooltip() == "corner_bridge_small_nw" ) {
+		o->tooltip( "corner_bridge_small_sw" );
+		o->image( img["corner_bridge_small_sw"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {60 146 49 49} align 144
+              code0 {o->image( img["corner_bridge_small_nw"] );}
+              code1 {o->tooltip( "corner_bridge_small_nw" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button corner_bridge_big_b {
+              label {corner bridge big B}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "corner_bridge_big_b_nw" ) {
+		o->tooltip( "corner_bridge_big_b_ne" );
+		o->image( img["corner_bridge_big_b_ne"] );
+	} else if( o->tooltip() == "corner_bridge_big_b_ne" ) {
+		o->tooltip( "corner_bridge_big_b_se" );
+		o->image( img["corner_bridge_big_b_se"] );
+	} else if( o->tooltip() == "corner_bridge_big_b_se" ) {
+		o->tooltip( "corner_bridge_big_b_sw" );
+		o->image( img["corner_bridge_big_b_sw"] );
+	} else if( o->tooltip() == "corner_bridge_big_b_sw" ) {
+		o->tooltip( "corner_bridge_big_b_nw" );
+		o->image( img["corner_bridge_big_b_nw"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "corner_bridge_big_b_ne" ) {
+		o->tooltip( "corner_bridge_big_b_nw" );
+		o->image( img["corner_bridge_big_b_nw"] );
+	} else if( o->tooltip() == "corner_bridge_big_b_se" ) {
+		o->tooltip( "corner_bridge_big_b_ne" );
+		o->image( img["corner_bridge_big_b_ne"] );
+	} else if( o->tooltip() == "corner_bridge_big_b_sw" ) {
+		o->tooltip( "corner_bridge_big_b_se" );
+		o->image( img["corner_bridge_big_b_se"] );
+	} else if( o->tooltip() == "corner_bridge_big_b_nw" ) {
+		o->tooltip( "corner_bridge_big_b_sw" );
+		o->image( img["corner_bridge_big_b_sw"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {115 46 94 94} align 144
+              code0 {o->image( img["corner_bridge_big_b_nw"] );}
+              code1 {o->tooltip( "corner_bridge_big_b_nw" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button corner_bridge_small_b {
+              label {corner bridge small B}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "corner_bridge_small_b_nw" ) {
+		o->tooltip( "corner_bridge_small_b_ne" );
+		o->image( img["corner_bridge_small_b_ne"] );
+	} else if( o->tooltip() == "corner_bridge_small_b_ne" ) {
+		o->tooltip( "corner_bridge_small_b_se" );
+		o->image( img["corner_bridge_small_b_se"] );
+	} else if( o->tooltip() == "corner_bridge_small_b_se" ) {
+		o->tooltip( "corner_bridge_small_b_sw" );
+		o->image( img["corner_bridge_small_b_sw"] );
+	} else if( o->tooltip() == "corner_bridge_small_b_sw" ) {
+		o->tooltip( "corner_bridge_small_b_nw" );
+		o->image( img["corner_bridge_small_b_nw"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "corner_bridge_small_b_ne" ) {
+		o->tooltip( "corner_bridge_small_b_nw" );
+		o->image( img["corner_bridge_small_b_nw"] );
+	} else if( o->tooltip() == "corner_bridge_small_b_se" ) {
+		o->tooltip( "corner_bridge_small_b_ne" );
+		o->image( img["corner_bridge_small_b_ne"] );
+	} else if( o->tooltip() == "corner_bridge_small_b_sw" ) {
+		o->tooltip( "corner_bridge_small_b_se" );
+		o->image( img["corner_bridge_small_b_se"] );
+	} else if( o->tooltip() == "corner_bridge_small_b_nw" ) {
+		o->tooltip( "corner_bridge_small_b_sw" );
+		o->image( img["corner_bridge_small_b_sw"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {115 146 49 49} align 144
+              code0 {o->image( img["corner_bridge_small_b_nw"] );}
+              code1 {o->tooltip( "corner_bridge_small_b_nw" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button straight_line_bridge {
+              label {straight line bridge}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "straight_line_bridge_b_v" ) {
+		o->tooltip( "straight_line_bridge_h" );
+		o->image( img["straight_line_bridge_h"] );
+	} else if( o->tooltip() == "straight_line_bridge_h" ) {
+		o->tooltip( "straight_line_bridge_v" );
+		o->image( img["straight_line_bridge_v"] );
+	} else if( o->tooltip() == "straight_line_bridge_v" ) {
+		o->tooltip( "straight_line_bridge_b_h" );
+		o->image( img["straight_line_bridge_b_h"] );
+	} else if( o->tooltip() == "straight_line_bridge_b_h" ) {
+		o->tooltip( "straight_line_bridge_b_v" );
+		o->image( img["straight_line_bridge_b_v"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "straight_line_bridge_b_h" ) {
+		o->tooltip( "straight_line_bridge_v" );
+		o->image( img["straight_line_bridge_v"] );
+	} else if( o->tooltip() == "straight_line_bridge_v" ) {
+		o->tooltip( "straight_line_bridge_h" );
+		o->image( img["straight_line_bridge_h"] );
+	} else if( o->tooltip() == "straight_line_bridge_h" ) {
+		o->tooltip( "straight_line_bridge_b_v" );
+		o->image( img["straight_line_bridge_b_v"] );
+	} else if( o->tooltip() == "straight_line_bridge_b_v" ) {
+		o->tooltip( "straight_line_bridge_b_h" );
+		o->image( img["straight_line_bridge_b_h"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {85 261 49 49} align 144
+              code0 {o->image( img["straight_line_bridge_v"] );}
+              code1 {o->tooltip( "straight_line_bridge_v" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button drive_down_bridge {
+              label {drive down bridge}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "drive_down_bridge_b_v" ) {
+		o->tooltip( "drive_down_bridge_h" );
+		o->image( img["drive_down_bridge_h"] );
+	} else if( o->tooltip() == "drive_down_bridge_h" ) {
+		o->tooltip( "drive_down_bridge_v" );
+		o->image( img["drive_down_bridge_v"] );
+	} else if( o->tooltip() == "drive_down_bridge_v" ) {
+		o->tooltip( "drive_down_bridge_b_h" );
+		o->image( img["drive_down_bridge_b_h"] );
+	} else if( o->tooltip() == "drive_down_bridge_b_h" ) {
+		o->tooltip( "drive_down_bridge_b_v" );
+		o->image( img["drive_down_bridge_b_v"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "drive_down_bridge_b_h" ) {
+		o->tooltip( "drive_down_bridge_v" );
+		o->image( img["drive_down_bridge_v"] );
+	} else if( o->tooltip() == "drive_down_bridge_v" ) {
+		o->tooltip( "drive_down_bridge_h" );
+		o->image( img["drive_down_bridge_h"] );
+	} else if( o->tooltip() == "drive_down_bridge_h" ) {
+		o->tooltip( "drive_down_bridge_b_v" );
+		o->image( img["drive_down_bridge_b_v"] );
+	} else if( o->tooltip() == "drive_down_bridge_b_v" ) {
+		o->tooltip( "drive_down_bridge_b_h" );
+		o->image( img["drive_down_bridge_b_h"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {85 206 49 49} align 144
+              code0 {o->image( img["drive_down_bridge_v"] );}
+              code1 {o->tooltip( "drive_down_bridge_v" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button drive_up_bridge {
+              label {drive up bridge}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "drive_up_bridge_b_v" ) {
+		o->tooltip( "drive_up_bridge_h" );
+		o->image( img["drive_up_bridge_h"] );
+	} else if( o->tooltip() == "drive_up_bridge_h" ) {
+		o->tooltip( "drive_up_bridge_v" );
+		o->image( img["drive_up_bridge_v"] );
+	} else if( o->tooltip() == "drive_up_bridge_v" ) {
+		o->tooltip( "drive_up_bridge_b_h" );
+		o->image( img["drive_up_bridge_b_h"] );
+	} else if( o->tooltip() == "drive_up_bridge_b_h" ) {
+		o->tooltip( "drive_up_bridge_b_v" );
+		o->image( img["drive_up_bridge_b_v"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "drive_up_bridge_b_h" ) {
+		o->tooltip( "drive_up_bridge_v" );
+		o->image( img["drive_up_bridge_v"] );
+	} else if( o->tooltip() == "drive_up_bridge_v" ) {
+		o->tooltip( "drive_up_bridge_h" );
+		o->image( img["drive_up_bridge_h"] );
+	} else if( o->tooltip() == "drive_up_bridge_h" ) {
+		o->tooltip( "drive_up_bridge_b_v" );
+		o->image( img["drive_up_bridge_b_v"] );
+	} else if( o->tooltip() == "drive_up_bridge_b_v" ) {
+		o->tooltip( "drive_up_bridge_b_h" );
+		o->image( img["drive_up_bridge_b_h"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {85 371 49 49} align 144
+              code0 {o->image( img["drive_up_bridge_v"] );}
+              code1 {o->tooltip( "drive_up_bridge_v" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button crossover {
+              label {cross over}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "crossover_b_v" ) {
+		o->tooltip( "crossover_h" );
+		o->image( img["crossover_h"] );
+	} else if( o->tooltip() == "crossover_h" ) {
+		o->tooltip( "crossover_v" );
+		o->image( img["crossover_v"] );
+	} else if( o->tooltip() == "crossover_v" ) {
+		o->tooltip( "crossover_b_h" );
+		o->image( img["crossover_b_h"] );
+	} else if( o->tooltip() == "crossover_b_h" ) {
+		o->tooltip( "crossover_b_v" );
+		o->image( img["crossover_b_v"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "crossover_b_h" ) {
+		o->tooltip( "crossover_v" );
+		o->image( img["crossover_v"] );
+	} else if( o->tooltip() == "crossover_v" ) {
+		o->tooltip( "crossover_h" );
+		o->image( img["crossover_h"] );
+	} else if( o->tooltip() == "crossover_h" ) {
+		o->tooltip( "crossover_b_v" );
+		o->image( img["crossover_b_v"] );
+	} else if( o->tooltip() == "crossover_b_v" ) {
+		o->tooltip( "crossover_b_h" );
+		o->image( img["crossover_b_h"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {85 316 49 49} align 144
+              code0 {o->image( img["crossover_v"] );}
+              code1 {o->tooltip( "crossover_v" );}
+              code2 {o->label( NULL );}
+            }
+          }
+          Fl_Group {} {
+            label Tunnel open
+            xywh {5 25 215 430}
+          } {
+            Fl_Button tube_inout {
+              label {tube inout}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "tube_in_v" ) {
+		o->tooltip( "tube_in_h" );
+		o->image( img["tube_in_h"] );
+	} else if( o->tooltip() == "tube_in_h" ) {
+		o->tooltip( "tube_out_v" );
+		o->image( img["tube_out_v"] );
+	} else if( o->tooltip() == "tube_out_v" ) {
+		o->tooltip( "tube_out_h" );
+		o->image( img["tube_out_h"] );
+	} else if( o->tooltip() == "tube_out_h" ) {
+		o->tooltip( "tube_in_v" );
+		o->image( img["tube_in_v"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tube_in_v" ) {
+		o->tooltip( "tube_out_h" );
+		o->image( img["tube_out_h"] );
+	} else if( o->tooltip() == "tube_out_h" ) {
+		o->tooltip( "tube_out_v" );
+		o->image( img["tube_out_v"] );
+	} else if( o->tooltip() == "tube_out_v" ) {
+		o->tooltip( "tube_in_h" );
+		o->image( img["tube_in_h"] );
+	} else if( o->tooltip() == "tube_in_h" ) {
+		o->tooltip( "tube_in_v" );
+		o->image( img["tube_in_v"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {20 51 49 49} align 144
+              code0 {o->image( img["tube_in_v"] );}
+              code1 {o->tooltip( "tube_in_v" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button tube {
+              label tube
+              callback {if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tube_h" ) {
+		o->tooltip( "tube_v" );
+		o->image( img["tube_v"] );
+	} else if( o->tooltip() == "tube_v" ) {
+		o->tooltip( "tube_h" );
+		o->image( img["tube_h"] );
+	} 
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {75 51 49 49} align 144
+              code0 {o->image( img["tube_v"] );}
+              code1 {o->tooltip( "tube_v" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button tube_with_wall {
+              label {tube with wall}
+              callback {if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tube_with_wall_h" ) {
+		o->tooltip( "tube_with_wall_v" );
+		o->image( img["tube_with_wall_v"] );
+	} else if( o->tooltip() == "tube_with_wall_v" ) {
+		o->tooltip( "tube_with_wall_h" );
+		o->image( img["tube_with_wall_h"] );
+	} 
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {130 51 49 49} align 144
+              code0 {o->image( img["tube_with_wall_v"] );}
+              code1 {o->tooltip( "tube_with_wall_v" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button tunnel_inout {
+              label {tunnel inout}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "tunnel_in_v" ) {
+		o->tooltip( "tunnel_in_h" );
+		o->image( img["tunnel_in_h"] );
+	} else if( o->tooltip() == "tunnel_in_h" ) {
+		o->tooltip( "tunnel_out_v" );
+		o->image( img["tunnel_out_v"] );
+	} else if( o->tooltip() == "tunnel_out_v" ) {
+		o->tooltip( "tunnel_out_h" );
+		o->image( img["tunnel_out_h"] );
+	} else if( o->tooltip() == "tunnel_out_h" ) {
+		o->tooltip( "tunnel_in_v" );
+		o->image( img["tunnel_in_v"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tunnel_in_v" ) {
+		o->tooltip( "tunnel_out_h" );
+		o->image( img["tunnel_out_h"] );
+	} else if( o->tooltip() == "tunnel_out_h" ) {
+		o->tooltip( "tunnel_out_v" );
+		o->image( img["tunnel_out_v"] );
+	} else if( o->tooltip() == "tunnel_out_v" ) {
+		o->tooltip( "tunnel_in_h" );
+		o->image( img["tunnel_in_h"] );
+	} else if( o->tooltip() == "tunnel_in_h" ) {
+		o->tooltip( "tunnel_in_v" );
+		o->image( img["tunnel_in_v"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {20 106 49 49} align 144
+              code0 {o->image( img["tunnel_in_v"] );}
+              code1 {o->tooltip( "tunnel_in_v" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button tunnel {
+              label tunnel
+              callback {if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tunnel_h" ) {
+		o->tooltip( "tunnel_v" );
+		o->image( img["tunnel_v"] );
+	} else if( o->tooltip() == "tunnel_v" ) {
+		o->tooltip( "tunnel_h" );
+		o->image( img["tunnel_h"] );
+	} 
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {75 106 49 49} align 144
+              code0 {o->image( img["tunnel_v"] );}
+              code1 {o->tooltip( "tunnel_v" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Value_Output debug1 {
+              label w
+              xywh {85 210 85 25}
+            }
+            Fl_Value_Output debug2 {
+              label h
+              xywh {85 240 85 25}
+            }
+            Fl_Value_Output debug3 {
+              label d
+              xywh {85 270 85 25}
+            }
+            Fl_Value_Output debug4 {
+              label ld
+              xywh {85 300 85 25}
+            }
+            Fl_Value_Output debug5 {
+              label count selected
+              xywh {85 330 85 25}
+            }
+          }
+        }
+        Fl_Group {} {open
+          xywh {215 0 580 30}
+        } {
+          Fl_Box {} {
+            label {Stunts2005 Track Editor}
+            xywh {230 0 165 25} labeltype EMBOSSED_LABEL align 20
+          }
+          Fl_Button {} {
+            label Load
+            callback {mainGroup->deactivate();
+loadTrack->show();}
+            xywh {580 0 105 25} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
+          }
+          Fl_Button {} {
+            label Save
+            callback {mainGroup->deactivate();
+saveTrack->show();}
+            xywh {685 0 105 25} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
+          }
+          Fl_Button {} {
+            label New
+            callback {mainGroup->deactivate();
+newTrack->show();}
+            xywh {465 0 105 25} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
+          }
+        }
+        Fl_Scroll Track {open
+          xywh {225 25 565 570} type BOTH_ALWAYS box PLASTIC_UP_BOX resizable
+          code0 {\#include "TrackData.h"}
+        } {}
+        Fl_Group {} {
+          label Selected open
+          xywh {0 460 225 135} box PLASTIC_UP_BOX align 20
+        } {
+          Fl_Button Selected {
+            tooltip straight_line_h xywh {95 470 114 115} box EMBOSSED_BOX align 16 deactivate
+            code0 {o->image( img["empty"] );}
+            code1 {o->tooltip( "empty" );}
+          }
+        }
+      }
+    }
+    code {int ox = Track->x() + 5;  // magic numbers own you :)
+int oy = Track->y() + 5;
+
+TrackIcons = new Fl_Group( ox, oy, 47*30, 47*30 );
+
+for( int x = 0; x < 30; x++ ) {
+	std::vector<Fl_Button*> col;
+	for( int y = 0; y < 30; y++ ) {
+		Fl_Button *o = new Fl_Button( ox + x*47, oy + y*47, 47, 47 );
+		o->image( empty->image() );
+		o->tooltip( "empty" );
+		o->callback( cellTemplate->callback() );
+		o->when( FL_WHEN_RELEASE );
+		col.push_back( o );
+		TrackIcons->add( o );
+	}
+	TrackData.push_back( col );
+}
+
+Track->add( TrackIcons );
+Track->redraw();} {}
+    Fl_Window newTrack {
+      label {New track...} open
+      xywh {-32000 -32000 167 124} hide modal
+    } {
+      Fl_Group {} {open
+        xywh {10 5 145 70} box PLASTIC_UP_BOX
+      } {
+        Fl_Value_Input vCells {
+          label {vertical cells}
+          callback {if( o->value() > 99 ) o->value( 99 );}
+          xywh {20 15 25 20} align 8 minimum 2 maximum 80 step 1 value 20
+        }
+        Fl_Value_Input hCells {
+          label {horizontal cells}
+          callback {if( o->value() > 99 ) o->value( 99 );}
+          xywh {20 40 25 20} align 8 minimum 2 maximum 80 step 1 value 20
+        }
+      }
+      Fl_Button {} {
+        label ok
+        callback {Fl_Group* temp = TrackIcons;
+Track->remove( TrackIcons );
+delete temp;
+
+int ox = Track->x() + 5;  // magic numbers own you :)
+int oy = Track->y() + 5;
+
+int w = (int)hCells->value();
+int h = (int)vCells->value();
+
+if( w < 1 ) w = 1;
+if( h < 1 ) h = 1;
+
+TrackData.clear();
+TrackIcons = new Fl_Group( ox, oy, 47*w, 47*h );
+for( int x = 0; x < w; x++ ) {
+	std::vector<Fl_Button*> col;
+	for( int y = 0; y < h; y++ ) {
+		Fl_Button *o = new Fl_Button( ox + x*47, oy + y*47, 47, 47 );
+		o->image( empty->image() );
+		o->tooltip( "empty" );
+		o->callback( cellTemplate->callback() );
+		o->when( FL_WHEN_RELEASE );
+		col.push_back( o );
+		TrackIcons->add( o );
+	}
+	TrackData.push_back( col );
+}
+Track->add( TrackIcons );
+
+Track->redraw();
+
+newTrack->hide();
+mainGroup->activate();}
+        xywh {90 85 65 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
+      }
+      Fl_Button {} {
+        label cancel
+        callback {newTrack->hide();
+mainGroup->activate();}
+        xywh {10 85 65 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
+      }
+    }
+    Fl_Window saveTrack {
+      label {Save track...} open
+      xywh {143 524 510 192} modal visible
+    } {
+      Fl_Tabs {} {open
+        xywh {5 5 500 185} box PLASTIC_UP_BOX
+      } {
+        Fl_Group {} {
+          label {Internal format} open
+          xywh {5 30 500 155} hide
+        } {
+          Fl_Button {} {
+            label cancel
+            callback {saveTrack->hide();
+mainGroup->activate();}
+            xywh {15 145 95 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
+          }
+          Fl_Button {} {
+            label ok
+            callback {std::ofstream out( saveInternal->value() );
+
+if( out != NULL ) {
+	out << TrackData.size() << "\\t";
+	out << TrackData[0].size() << "\\n";
+
+	for( int i = 0; i < TrackIcons->children(); i++ ) {
+		out << TrackIcons->child(i)->tooltip() << "\\n";
+	}
+
+	saveTrack->hide();
+	mainGroup->activate();
+
+	out.close();
+}}
+            xywh {400 145 95 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
+            code0 {\#include <fstream>}
+          }
+          Fl_Input saveInternal {
+            label {Target filename:}
+            xywh {15 60 480 25} align 5
+          }
+        }
+        Fl_Group {} {
+          label {Export to Stunts} open
+          xywh {5 30 500 155}
+        } {
+          Fl_Button {} {
+            label cancel
+            callback {saveTrack->hide();
+mainGroup->activate();}
+            xywh {15 145 95 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
+          }
+          Fl_Button {} {
+            label ok
+            callback {std::ofstream out( saveStunts->value() );
+
+if( out != NULL ) {
+
+	transReload();
+
+	out << "<!-- generated by Stunts2005 TrackEd -->\\n\\n";
+	out << "<track>\\n";
+	out << "\\t<objects>\\n";
+
+	int w = TrackData.size();
+	int h = TrackData[0].size();
+
+	for( int x = 0; x < TrackData.size(); x++ ) {
+		for( int y = 0; y < TrackData[0].size(); y++ ) {
+			translate( out, TrackData[y][x], y, x );
+		}
+	}
+
+	out << "\\t</objects>\\n";
+	out << "</track>\\n";
+
+	saveTrack->hide();
+	mainGroup->activate();
+
+}}
+            xywh {400 145 95 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
+            code0 {\#include "Translate.h"}
+          }
+          Fl_Input saveStunts {
+            label {Target XML filename:}
+            xywh {15 60 480 25} align 5
+          }
+        }
+      }
+    }
+    Fl_Window loadTrack {
+      label {Load track...} open
+      xywh {170 434 510 192} modal visible
+    } {
+      Fl_Tabs {} {open
+        xywh {5 5 500 183} box PLASTIC_UP_BOX
+      } {
+        Fl_Group {} {
+          label {Internal format} open
+          xywh {5 30 500 155}
+        } {
+          Fl_Button {} {
+            label cancel
+            callback {loadTrack->hide();
+mainGroup->activate();}
+            xywh {15 145 95 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
+          }
+          Fl_Button {} {
+            label ok
+            callback {std::ifstream in( loadInternal->value() );
+
+if( in != NULL ) {
+	int w, h;
+	in >> w >> h;
+
+	Fl_Group* temp = TrackIcons;
+	Track->remove( TrackIcons );
+	delete temp;
+
+	int ox = Track->x() + 5;  // magic numbers own you :)
+	int oy = Track->y() + 5;
+
+	if( w < 1 ) w = 1;
+	if( h < 1 ) h = 1;
+
+	TrackData.clear();
+	TrackIcons = new Fl_Group( ox, oy, 47*w, 47*h );
+	for( int x = 0; x < w; x++ ) {
+		std::vector<Fl_Button*> col;
+		for( int y = 0; y < h; y++ ) {
+			std::string cur;
+			in >> cur;
+			Fl_Button *o = new Fl_Button( ox + x*47, oy + y*47, 47, 47 );
+			o->image( img[cur] );
+			o->tooltip( img.find(cur)->first.c_str() );
+			o->callback( cellTemplate->callback() );
+			o->when( FL_WHEN_RELEASE );
+			col.push_back( o );
+			TrackIcons->add( o );
+		}
+		TrackData.push_back( col );
+	}
+	Track->add( TrackIcons );
+
+	Track->redraw();
+
+	loadTrack->hide();
+	mainGroup->activate();
+
+	in.close();
+}}
+            xywh {400 145 95 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
+            code0 {\#include <fstream>}
+            code1 {\#include <string>}
+          }
+          Fl_Input loadInternal {
+            label {Source filename:}
+            xywh {15 60 480 25} align 5
+          }
+        }
+        Fl_Group {} {
+          label {Import from Stunts2005} open
+          xywh {5 30 500 158} hide
+        } {
+          Fl_Button {} {
+            label {to be implemented.... (maybe)}
+            xywh {215 125 273 45} box PLASTIC_UP_FRAME down_box PLASTIC_DOWN_FRAME labelfont 1
+          }
+        }
+      }
+    }
+  }
+  Function {show( int argc, char *argv[] )} {open return_type void
+  } {
+    code {mainWindow->show( argc, argv );} {}
+  }
+  Function {setCells( Fl_Button* o )} {open return_type void
+  } {
+    code {std::string id = Selected->tooltip();
+if( id.find("_big_",0) < id.size() ) {
+	int i = TrackIcons->find( o );
+
+	int w = TrackData.size();
+	int h = TrackData[0].size();
+
+	int i0, i1, i2, i3;
+	if( id.substr( id.size() - 3 ) == "_nw" ) {
+		i0 = i;
+		i1 = i + TrackData[0].size();
+		i2 = i + 1;
+		i3 = i + TrackData[0].size() + 1;
+	} else if( id.substr( id.size() - 3 ) == "_ne" ) {
+		i0 = i - TrackData[0].size();
+		i1 = i;
+		i2 = i - TrackData[0].size() + 1;
+		i3 = i + 1;
+	} else if( id.substr( id.size() - 3 ) == "_sw" ) {
+		i0 = i - 1;
+		i1 = i + TrackData[0].size() - 1;
+		i2 = i;
+		i3 = i + TrackData[0].size();
+	} else {
+		i0 = i - TrackData[0].size() - 1;
+		i1 = i - 1;
+		i2 = i - TrackData[0].size();
+		i3 = i;
+	}
+
+	// make sure it fits in x direction
+	if (i0 < 0 || i0 >= TrackIcons->children() ||
+		i1 < 0 || i1 >= TrackIcons->children() ||
+		i2 < 0 || i2 >= TrackIcons->children() ||
+		i3 < 0 || i3 >= TrackIcons->children() ) return;
+
+	int y0 = i0 % h;
+	int y1 = i1 % h;
+	int y2 = i2 % h;
+	int y3 = i3 % h;
+
+	// now y direction -------- correct later!
+	if( y0 < 0 ) return;
+	if( y1 < 0 ) return;
+	if( y2 < 0 ) return;
+	if( y3 < 0 ) return;
+
+	Fl_Button* o0 = (Fl_Button*)TrackIcons->child(i0);
+	Fl_Button* o1 = (Fl_Button*)TrackIcons->child(i1);
+	Fl_Button* o2 = (Fl_Button*)TrackIcons->child(i2);
+	Fl_Button* o3 = (Fl_Button*)TrackIcons->child(i3);
+
+	// make sure they're all free
+	if( o0->active() != true ||
+		o1->active() != true ||
+		o2->active() != true ||
+		o3->active() != true ) return;
+
+	clearCells( o0 );
+	clearCells( o1 );
+	clearCells( o2 );
+	clearCells( o3 );
+
+	o0 -> tooltip( img.find(id + "_0")->first.c_str() );
+	o1 -> tooltip( img.find(id + "_1")->first.c_str() );
+	o2 -> tooltip( img.find(id + "_2")->first.c_str() );
+	o3 -> tooltip( img.find(id + "_3")->first.c_str() );
+	o0 -> image( img[id + "_0"] );
+	o1 -> image( img[id + "_1"] );
+	o2 -> image( img[id + "_2"] );
+	o3 -> image( img[id + "_3"] );
+
+	o0->redraw();
+	o1->redraw();
+	o2->redraw();
+	o3->redraw();
+} else {
+	clearCells( o );
+	o->image( Selected->image() );
+	o->tooltip( Selected->tooltip() );
+	o->redraw();
+}} {}
+  }
+  Function {clearCells( Fl_Button* o )} {open return_type void
+  } {
+    code {std::string id = o->tooltip();
+if( id.find("_big_",0) < id.size() ) {
+	int i = TrackIcons->find( o );
+
+	int w = TrackData.size();
+	int h = TrackData[0].size();
+
+	int i0, i1, i2, i3;
+	if( id.substr( id.size() - 2 ) == "_0" ) {
+		i0 = i;
+		i1 = i + TrackData[0].size();
+		i2 = i + 1;
+		i3 = i + TrackData[0].size() + 1;
+	} else if( id.substr( id.size() - 2 ) == "_1" ) {
+		i0 = i - TrackData[0].size();
+		i1 = i;
+		i2 = i - TrackData[0].size() + 1;
+		i3 = i + 1;
+	} else if( id.substr( id.size() - 2 ) == "_2" ) {
+		i0 = i - 1;
+		i1 = i + TrackData[0].size() - 1;
+		i2 = i;
+		i3 = i + TrackData[0].size();
+	} else {
+		i0 = i - TrackData[0].size() - 1;
+		i1 = i - 1;
+		i2 = i - TrackData[0].size();
+		i3 = i;
+	}
+
+	// make sure it fits in x direction
+	if (i0 < 0 || i0 > TrackIcons->children() ||
+		i1 < 0 || i1 > TrackIcons->children() ||
+		i2 < 0 || i2 > TrackIcons->children() ||
+		i3 < 0 || i3 > TrackIcons->children() ) return;
+
+	int y0 = i0 % h;
+	int y1 = i0 % h;
+	int y2 = i0 % h;
+	int y3 = i0 % h;
+
+	// now y direction
+	if( y0 < 0 || (y0 > w && i0 != 0) ) return;
+	if( y1 < 0 || (y1 > w && i1 != 0) ) return;
+	if( y2 < 0 || (y2 > w && i2 != 0) ) return;
+	if( y3 < 0 || (y3 > w && i3 != 0) ) return;
+
+	Fl_Button* o0 = (Fl_Button*)TrackIcons->child(i0);
+	Fl_Button* o1 = (Fl_Button*)TrackIcons->child(i1);
+	Fl_Button* o2 = (Fl_Button*)TrackIcons->child(i2);
+	Fl_Button* o3 = (Fl_Button*)TrackIcons->child(i3);
+
+	o0 -> tooltip( "empty" );
+	o1 -> tooltip( "empty" );
+	o2 -> tooltip( "empty" );
+	o3 -> tooltip( "empty" );
+	o0 -> image( img["empty"] );
+	o1 -> image( img["empty"] );
+	o2 -> image( img["empty"] );
+	o3 -> image( img["empty"] );
+
+	o0->redraw();
+	o1->redraw();
+	o2->redraw();
+	o3->redraw();
+} else {
+	o->image( empty->image() );
+	o->tooltip( empty->tooltip() );
+	o->redraw();
+}} {}
+  }
+} 

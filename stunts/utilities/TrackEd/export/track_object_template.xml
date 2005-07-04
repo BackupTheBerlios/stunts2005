@@ -1,0 +1,28 @@
+		<object type="base">
+			<!-- _OBJECT_COMMENT_ -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+
+			<rotate x="0" y="1" z="0" unit="quarters" value="_ROT_Y_" />
+
+			<!-- the track objects are places in grid units -->
+			<!-- if the unit isn't set, its default is meters-->
+			<!-- if a position has a bottom type, it's on the terrain's ground -->
+			<!-- if type=bottom then the given height [in given units] will be added to the terrains's ground -->
+			<posX unit="gridUnits">_POS_X_</posX>
+			<posY type="bottom">0.2</posY>
+			<posZ unit="gridUnits">_POS_Z_</posZ>
+
+			<proportion axis="_SCALE_AXIS_" size="_SCALE_VALUE_" units="gridUnits" />
+			<stretch x="1.0" y="1.0" z="1.0" />
+
+			<geometry>
+				<file>_MESH_NAME_.mesh</file>
+			</geometry>
+
+			<!-- waypoints can be set as invisible objects in 3d studio -->
+			<!-- names like "wpbegin" are the names of the 3ds objects -->
+			<waypoints>
+				<file>_MESH_NAME__waypoints.xml</file>
+			</waypoints>
+		</object>
