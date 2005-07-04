@@ -385,8 +385,18 @@ namespace stunts {
 					}
 				}
 			}
-		};
+		  };
 
+		// checkj whenever light can cast shadows
+		elem = rootElem->FirstChildElement("shadow");
+		if (elem)
+		{
+			const char* x = elem->Attribute("cast");
+
+			bool can = x ? (bool)boost::lexical_cast<int>(x) : false;
+
+			mEntity->setCastShadows(can);
+		}
 
 		nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): parsing is complete now");
 		return false;
