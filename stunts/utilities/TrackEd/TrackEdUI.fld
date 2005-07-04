@@ -7,7 +7,7 @@ class CTrackEdUI {open
   Function {CTrackEdUI()} {open
   } {
     Fl_Window mainWindow {
-      label {Stunts2005 TrackEd (alpha)} open selected
+      label {Stunts2005 TrackEd (alpha)} open
       xywh {419 265 794 600}
       code0 {\#include <FL/Fl_PNG_Image.h>}
       code1 {\#include "Images.h"}
@@ -152,6 +152,28 @@ if( Fl::event_button() == FL_RIGHT_MOUSE ) {
               tooltip cellTemplate xywh {35 228 47 47} align 16 hide
               code0 {o->image( img["empty"] );}
               code1 {\#include <string>}
+            }
+            Fl_Button start_goal {
+              label {start goal}
+              callback {if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "start_goal_v" ) {
+		o->tooltip( "start_goal_h" );
+		o->image( img["start_goal_h"] );
+	} else if( o->tooltip() == "start_goal_h" ) {
+		o->tooltip( "start_goal_v" );
+		o->image( img["start_goal_v"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {140 216 49 49} align 144
+              code0 {o->image( img["start_goal_v"] );}
+              code1 {o->tooltip( "start_goal_v" );}
+              code2 {o->label( NULL );}
             }
           }
           Fl_Group {} {
@@ -796,6 +818,7 @@ for( int x = 0; x < w; x++ ) {
 			o->callback( cellTemplate->callback() );
 			o->when( FL_WHEN_RELEASE );
 		}
+		col.push_back( o );
 		TrackIcons->add( o );
 	}
 	TrackData.push_back( col );
@@ -805,7 +828,7 @@ Track->add( TrackIcons );
 Track->redraw();
 
 newTrack->hide();
-mainGroup->activate();}
+mainGroup->activate();} selected
         xywh {290 90 65 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
       }
       Fl_Button {} {

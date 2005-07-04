@@ -105,3 +105,5 @@ tunnel_out_v.png
 tunnel_v.png
 water.png
 mountain.png
+start_goal_h.png
+start_goal_v.png

@@ -128,6 +128,27 @@ void CTrackEdUI::cb_cellTemplate(Fl_Button* o, void* v) {
   ((CTrackEdUI*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_cellTemplate_i(o,v);
 }
 
+inline void CTrackEdUI::cb_start_goal_i(Fl_Button* o, void*) {
+  if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "start_goal_v" ) {
+		o->tooltip( "start_goal_h" );
+		o->image( img["start_goal_h"] );
+	} else if( o->tooltip() == "start_goal_h" ) {
+		o->tooltip( "start_goal_v" );
+		o->image( img["start_goal_v"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();
+}
+void CTrackEdUI::cb_start_goal(Fl_Button* o, void* v) {
+  ((CTrackEdUI*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_start_goal_i(o,v);
+}
+
 inline void CTrackEdUI::cb_corner_bridge_big_i(Fl_Button* o, void*) {
   if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
 	if( o->tooltip() == "corner_bridge_big_nw" ) {
@@ -685,6 +706,7 @@ for( int x = 0; x < w; x++ ) {
 			o->callback( cellTemplate->callback() );
 			o->when( FL_WHEN_RELEASE );
 		}
+		col.push_back( o );
 		TrackIcons->add( o );
 	}
 	TrackData.push_back( col );
@@ -892,6 +914,13 @@ CTrackEdUI::CTrackEdUI() {
             o->align(FL_ALIGN_CENTER|FL_ALIGN_INSIDE);
             o->hide();
             o->image( img["empty"] );
+          }
+          { Fl_Button* o = start_goal = new Fl_Button(140, 216, 49, 49, "start goal");
+            o->callback((Fl_Callback*)cb_start_goal);
+            o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
+            o->image( img["start_goal_v"] );
+            o->tooltip( "start_goal_v" );
+            o->label( NULL );
           }
           o->end();
         }
