@@ -105,6 +105,9 @@ namespace stunts
 			}
 		}
 
+		//clear the collision geometry (and unregister it from ODE)
+		mCollisionGeometry.reset();
+
 		//COgreTask::GetSingleton().mSceneMgr->clearScene();
 	}
 
@@ -198,8 +201,6 @@ namespace stunts
 				continue;
 
 			//copy vertices
-			//memcpy(&MeshVertices[MeshVertexCount], mObjects.at(c)->mMeshVertices,
-			//	mObjects.at(c)->mMeshVertexCount * sizeof(Ogre::Vector3));
 			for (int d=0; d<mObjects.at(c)->mMeshVertexCount;d++)
 				MeshVertices[d + MeshVertexCount] =
 					(mObjects.at(c)->mObjNode->_getFullTransform() * mObjects.at(c)->mMeshVertices[d]);
@@ -214,9 +215,9 @@ namespace stunts
 		}
 
 		//attach the vertices
-		OgreOde::TriangleMeshGeometry* geom =
+		mCollisionGeometry.reset(
 			new OgreOde::TriangleMeshGeometry(MeshVertices, MeshVertexCount,
-			MeshIndices, MeshIndexCount, mPhysicsWorld->getDefaultSpace());
+			MeshIndices, MeshIndexCount, mPhysicsWorld->getDefaultSpace()) );
 
 
 
@@ -327,7 +328,7 @@ namespace stunts
 		// Notify Mesh object that it has been loaded
 		msh->load();
 
-		
+
 		// Now add this into scene graph
 		char ename[256];
 		sprintf(ename, "%s_entity", name);
@@ -336,7 +337,7 @@ namespace stunts
 		SceneNode* mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
 		mSceneNode->attachObject( ent );
 		mSceneNode->showBoundingBox(true);
-		
+
 	};
 
 

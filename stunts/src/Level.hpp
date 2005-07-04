@@ -240,6 +240,8 @@ namespace stunts
 
 			float32						mTerrainFriction;
 
+			boost::shared_ptr<OgreOde::TriangleMeshGeometry> mCollisionGeometry;
+
 			bool collision(OgreOde::Contact* contact);
 			void InitializeODE();
 			void executeODE(float delaySeconds);
