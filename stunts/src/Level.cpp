@@ -223,7 +223,6 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	void CLevel::drawWaypoint(Ogre::Vector3 pos, int i)
 	{
-		/*
 		char name[256];
 
 		sprintf(name, "Waypoint__%i__%f__%f__%f__", i, pos.x,pos.y,pos.z);
@@ -250,7 +249,6 @@ namespace stunts
 		SceneNode* mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
 		mSceneNode->attachObject( ent );
 		mSceneNode->showBoundingBox(true);
-		*/
 	};
 
 
@@ -262,14 +260,6 @@ namespace stunts
 
 		char name[256];
 		sprintf(name, "Waypoint2__%i__from__%f__%f__%f__to__%f__%f__%f", i, min.x,min.y, min.z, max.x, max.y, max.z);
-		/*
-		// Create & Load the entity
-		Entity* ent;
-		ent  = COgreTask::GetSingleton().mSceneMgr->createEntity(name, "arrow.mesh");
-
-		SceneNode* mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
-		mSceneNode->attachObject( ent );
-		mSceneNode->translate(min);*/
 
 
 		// Create the mesh via the MeshManager
@@ -282,7 +272,7 @@ namespace stunts
 		// Notify Mesh object that it has been loaded
 		msh->load();
 
-		/*
+		
 		// Now add this into scene graph
 		char ename[256];
 		sprintf(ename, "%s_entity", name);
@@ -291,7 +281,7 @@ namespace stunts
 		SceneNode* mSceneNode 	= COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
 		mSceneNode->attachObject( ent );
 		mSceneNode->showBoundingBox(true);
-		*/
+		
 	};
 
 
@@ -584,9 +574,9 @@ namespace stunts
 				// over a street is more far away and the waypoints of the street under it
 				// will be ignored
 				currentVector	 = current->getVector();
-				sumFromCurrent	 = fabs(currentVector.x - fromVector.x);
-				sumFromCurrent	+= fabs(currentVector.y - fromVector.y);
-				sumFromCurrent	+= fabs((currentVector.z - fromVector.z) * 3);
+				sumFromCurrent	 = fabs (currentVector.x - fromVector.x);
+				sumFromCurrent	+= fabs (currentVector.y - fromVector.y);
+				sumFromCurrent	+= fabs (currentVector.z - fromVector.z);
 
 				if ((sumFromCurrent < sumFromNearest) || (sumFromNearest == 0.0f))
 				{
@@ -664,7 +654,7 @@ namespace stunts
 			nearest->setFirst(first);
 
 			// Debugging output
-			//this->drawWaypoint(nearest->getVector(),current->getVector(), i);
+			// this->drawWaypoint(nearest->getVector(),current->getVector(), i);
 
 			i++;
 			current = nearest;
