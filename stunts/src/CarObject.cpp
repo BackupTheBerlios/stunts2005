@@ -37,14 +37,10 @@ namespace stunts {
 	//--------------------------------------------------------------------------
 	CCarObject::CCarObject():CBaseObject()
 	{
-		// TODO please load the settings from the XML file
-		//mVehicle.reset(new OgreOde_Prefab::Vehicle("Jeep"));
-		//mVehicle->load("jeep_ode.xml");
+
 	}
-	
-	
-	
-	
+
+
 	//--------------------------------------------------------------------------
 	CCarObject::CCarObject(char* xmlSettingsString, const std::string& xmlPath) :
 				CBaseObject(xmlSettingsString, xmlPath)
@@ -55,8 +51,6 @@ namespace stunts {
 	}
 
 
-
-
 	//--------------------------------------------------------------------------
 	CCarObject::~CCarObject()
 	{
@@ -65,8 +59,6 @@ namespace stunts {
 		mVehicle.reset();
 
 	}
-
-
 
 
 	//--------------------------------------------------------------------------
@@ -89,8 +81,6 @@ namespace stunts {
 
 		return false;
 	}
-
-
 
 
 	//--------------------------------------------------------------------------
@@ -132,10 +122,10 @@ namespace stunts {
 			mVehicle->load(odeFile, odeName);
 			mVehicle->setPosition(m_position);
 		}
-		
+
 		// Look for gearbox
 		elem = rootElem->FirstChildElement("gearbox");
-		if (elem) 
+		if (elem)
 		{
 			// Some variables
 			TiXmlElement* 		gear 		= NULL;
@@ -143,33 +133,33 @@ namespace stunts {
 			std::string 		name;
 			// Set carRatio, if found in XML file this Value will be overwritten
 			float 			carRatio 	= 1.0f;
-			
+
 			// 2 vectors to save the gear-ratios in
 			std::vector<char> 	names;
 			std::vector<float32> 	ratios;
-			
+
 			// Get first element
 			gear = elem->FirstChildElement("ratio");
-			
+
 			while (gear)
 			{
 				// Get ratio
 				nrCDator<float32> _ratio(ratio);
 				_ratio 	= std::string(gear->Attribute("value"));
-				
+
 				// Get gearname
 				name 	= (std::string)(gear->Attribute("name"));
-				
+
 				// Go for next gear
 				gear 	= gear->NextSiblingElement("ratio");
-				
+
 				// Save names and ratios
 				if (name == "R")
 				{
 					names.push_back('R');
 					ratios.push_back(((Ogre::Real) _ratio) * (-1));
 				}
-				else if (name == "C") 
+				else if (name == "C")
 				{
 					carRatio = ((Ogre::Real) _ratio) * (-1);
 				}
@@ -178,9 +168,9 @@ namespace stunts {
 					names.push_back(name[0]);
 					ratios.push_back((Ogre::Real) _ratio);
 				};
-				
-			};		
-			
+
+			};
+
 			// Multiply carRatio with gear ratios and add to car
 			int i = 0;
 			while (i < ratios.size())
@@ -189,13 +179,11 @@ namespace stunts {
 				// std::cout << "DEBUG: " << names[i] << ": " << ratios[i] << std::endl;
 				i++;
 			};
-			
+
 			nrLog.Log(NR_LOG_APP, "CCarObject::parseSettingsCar(): Gearbox loaded!");
 			return false;
 		}
 	}
-
-
 
 
 	//--------------------------------------------------------------------------
@@ -224,15 +212,11 @@ namespace stunts {
 	}
 
 
-
-
 	//--------------------------------------------------------------------------
 	void CCarObject::setInputs(float steer, float throttle, float brake)
 	{
 		this->mVehicle->setInputs(steer, throttle, brake);
 	}
-
-
 
 
 	//--------------------------------------------------------------------------
@@ -241,10 +225,8 @@ namespace stunts {
 		//std::cout << this->getSpeed() << std::endl;
 		this->mVehicle->setInputs(left, right, throttle, brake);
 	}
-	
-	
-	
-	
+
+
 	//--------------------------------------------------------------------------
 	void CCarObject::setAutoBox()
 	{
@@ -255,8 +237,8 @@ namespace stunts {
 		} else
 		{
 			this->mAutoBox = false;
-			this->mVehicle->getEngine()->setAutoBox(false);			
+			this->mVehicle->getEngine()->setAutoBox(false);
 		};
 	}
-	
+
 };

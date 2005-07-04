@@ -123,6 +123,24 @@ namespace stunts {
 		mMeshVertexCount = 0;
 		mMeshIndexCount = 0;
 
+		//set default values
+		m_orientation = Ogre::Quaternion::IDENTITY;
+
+		m_speed = 0;
+		m_speedVector = Ogre::Vector3::ZERO;
+
+		m_mass = 0;
+		m_masspoint = Ogre::Vector3::ZERO;
+
+		m_frictionCoefficient = 0;
+
+		m_torque = 0;
+		m_torqueAxis = Ogre::Vector3::ZERO;
+
+		m_scale = Ogre::Vector3::UNIT_SCALE;
+
+		mControl = NULL;
+
 
 		setName(createName().c_str());
 		setPosition(Vector3(0,0,0));
@@ -140,6 +158,25 @@ namespace stunts {
 		mEntityInformer = NULL;
 		mMeshVertexCount = 0;
 		mMeshIndexCount = 0;
+
+
+		//set default values
+		m_orientation = Ogre::Quaternion::IDENTITY;
+
+		m_speed = 0;
+		m_speedVector = Ogre::Vector3::ZERO;
+
+		m_mass = 0;
+		m_masspoint = Ogre::Vector3::ZERO;
+
+		m_frictionCoefficient = 0;
+
+		m_torque = 0;
+		m_torqueAxis = Ogre::Vector3::ZERO;
+
+		m_scale = Ogre::Vector3::UNIT_SCALE;
+
+		mControl = NULL;
 
 
 		setName(createName().c_str());
@@ -498,7 +535,7 @@ namespace stunts {
 						dist.push_back(700.0f);
 						dist.push_back(1500.0f);
 						dist.push_back(2000.0f);
-						
+
 						mEntity->getMesh()->generateLodLevels(
 							dist, ProgressiveMesh::VRQ_CONSTANT, 10);
 						}*/
