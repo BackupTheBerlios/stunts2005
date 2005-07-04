@@ -32,7 +32,7 @@
 				linear - The linear factor in the attenuation formula: 1 means attenuate evenly over the distance 
 				quadratic  - The quadratic factor in the attenuation formula: adds a curvature to the attenuation formula.
 			-->
-			<attenuation range="1000.0" constant="1.0" linear="1.0" quadratic="1.0" />
+			<attenuation range="100000.0" constant="1.0" linear="1.0" quadratic="1.0" />
 			
 			<!-- Set the spotlight properties. 
 				inner [degrees] - Inner angle of the spot light
