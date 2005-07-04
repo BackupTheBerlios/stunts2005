@@ -6,6 +6,7 @@
  *
  * Maintainer:        Andreas Maurer <andi@andile.de
  *                    Art Tevs <tevs@mpi-sb.mpg.de>
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -27,6 +28,8 @@
 
 #include <nrEngine/nrEngine.h>
 
+#include <stdlib.h>
+
 using boost::shared_ptr;
 
 namespace stunts {
@@ -38,6 +41,10 @@ namespace stunts {
 		//mVehicle.reset(new OgreOde_Prefab::Vehicle("Jeep"));
 		//mVehicle->load("jeep_ode.xml");
 	}
+	
+	
+	
+	
 	//--------------------------------------------------------------------------
 	CCarObject::CCarObject(char* xmlSettingsString, const std::string& xmlPath) :
 				CBaseObject(xmlSettingsString, xmlPath)
@@ -47,6 +54,9 @@ namespace stunts {
 		// parse the settings
 	}
 
+
+
+
 	//--------------------------------------------------------------------------
 	CCarObject::~CCarObject()
 	{
@@ -55,6 +65,9 @@ namespace stunts {
 		mVehicle.reset();
 
 	}
+
+
+
 
 	//--------------------------------------------------------------------------
 	bool CCarObject::parseSettings(TiXmlElement* rootElem, const std::string& xmlPath)
@@ -76,6 +89,9 @@ namespace stunts {
 
 		return false;
 	}
+
+
+
 
 	//--------------------------------------------------------------------------
 	bool CCarObject::parseSettingsCar(TiXmlElement* rootElem, const std::string& xmlPath)
@@ -116,7 +132,70 @@ namespace stunts {
 			mVehicle->load(odeFile, odeName);
 			mVehicle->setPosition(m_position);
 		}
+		
+		// Look for gearbox
+		elem = rootElem->FirstChildElement("gearbox");
+		if (elem) 
+		{
+			// Some variables
+			TiXmlElement* 		gear 		= NULL;
+			float32 		ratio 		= 0.0f;
+			std::string 		name;
+			// Set carRatio, if found in XML file this Value will be overwritten
+			float 			carRatio 	= 1.0f;
+			
+			// 2 vectors to save the gear-ratios in
+			std::vector<char> 	names;
+			std::vector<float32> 	ratios;
+			
+			// Get first element
+			gear = elem->FirstChildElement("ratio");
+			
+			while (gear)
+			{
+				// Get ratio
+				nrCDator<float32> _ratio(ratio);
+				_ratio 	= std::string(gear->Attribute("value"));
+				
+				// Get gearname
+				name 	= (std::string)(gear->Attribute("name"));
+				
+				// Go for next gear
+				gear 	= gear->NextSiblingElement("ratio");
+				
+				// Save names and ratios
+				if (name == "R")
+				{
+					names.push_back('R');
+					ratios.push_back(((Ogre::Real) _ratio) * (-1));
+				}
+				else if (name == "C") 
+				{
+					carRatio = ((Ogre::Real) _ratio) * (-1);
+				}
+				else if ((int)name[0] > 0)
+				{
+					names.push_back(name[0]);
+					ratios.push_back((Ogre::Real) _ratio);
+				};
+				
+			};		
+			
+			// Multiply carRatio with gear ratios and add to car
+			int i = 0;
+			while (i < ratios.size())
+			{
+				this->addGear(carRatio * ratios[i], names[i]);
+				// std::cout << "DEBUG: " << names[i] << ": " << ratios[i] << std::endl;
+				i++;
+			};
+			
+			nrLog.Log(NR_LOG_APP, "CCarObject::parseSettingsCar(): Gearbox loaded!");
+			return false;
+		}
 	}
+
+
 
 
 	//--------------------------------------------------------------------------
@@ -143,4 +222,41 @@ namespace stunts {
 
 		return CCarObject::parseSettingsCar(rootElem, xmlPath);
 	}
+
+
+
+
+	//--------------------------------------------------------------------------
+	void CCarObject::setInputs(float steer, float throttle, float brake)
+	{
+		this->mVehicle->setInputs(steer, throttle, brake);
+	}
+
+
+
+
+	//--------------------------------------------------------------------------
+	void CCarObject::setInputs(bool left, bool right, bool throttle, bool brake)
+	{
+		//std::cout << this->getSpeed() << std::endl;
+		this->mVehicle->setInputs(left, right, throttle, brake);
+	}
+	
+	
+	
+	
+	//--------------------------------------------------------------------------
+	void CCarObject::setAutoBox()
+	{
+		if (this->mAutoBox == false)
+		{
+			this->mAutoBox = true;
+			this->mVehicle->getEngine()->setAutoBox(true);
+		} else
+		{
+			this->mAutoBox = false;
+			this->mVehicle->getEngine()->setAutoBox(false);			
+		};
+	}
+	
 };

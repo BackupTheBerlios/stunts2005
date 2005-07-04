@@ -291,10 +291,10 @@ namespace stunts {
 
 			//geometry data
 			OgreOde::EntityInformer* mEntityInformer;
-			Ogre::Vector3* mMeshVertices;
-			int* mMeshIndices;
-			int mMeshVertexCount;
-			int mMeshIndexCount;
+			Ogre::Vector3* 		mMeshVertices;
+			int* 			mMeshIndices;
+			int 			mMeshVertexCount;
+			int 			mMeshIndexCount;
 
 			// Position and direction of the object
 			Vector3 		m_position;
@@ -331,7 +331,7 @@ namespace stunts {
 			CLevel*			mLevel;
 
 			// Vector for storing waypoints
-			std::vector<Vector3>		m_waypoints;
+			std::vector<Vector3>	m_waypoints;
 	};
 };
 

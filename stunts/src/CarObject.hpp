@@ -84,28 +84,40 @@ namespace stunts {
 			};
 
 
-			inline Quaternion	Orientation() const	{ return mVehicle->getOrientation(); };
-			inline Vector3	Position() const		{ return mVehicle->getPosition(); };
+			inline Quaternion	Orientation() const	{ return mVehicle->getOrientation(); 	};
+			inline Vector3	Position() const		{ return mVehicle->getPosition(); 	};
 
 
 			// Functions for gearbox & engine
 			inline void	shiftUp()
-					{ this->mVehicle->getEngine()->changeUp();	}
+						{ this->mVehicle->getEngine()->changeUp();		}
+			
 			inline void	shiftDown()
-					{ this->mVehicle->getEngine()->changeDown();}
+						{ this->mVehicle->getEngine()->changeDown();		}
+					
 			inline void	setGear(unsigned int i)
-					{ this->mVehicle->getEngine()->setGear(i);}
+						{ this->mVehicle->getEngine()->setGear(i);		}
+					
 			inline void 	setAutoBox(bool automatic)
-					{ this->mVehicle->getEngine()->setAutoBox(automatic);}
+						{ this->mVehicle->getEngine()->setAutoBox(automatic);	}
+					
+			// Little helper function to switch status
+			void 		setAutoBox();
+			
+			inline void	addGear(Real ratio,char code)
+						{ this->mVehicle->getEngine()->addGear(ratio,code);	}
 
 
 			// functions for the engine
-			inline void 	setInputs(float steer, float throttle, float brake)
-					{ this->mVehicle->setInputs(steer, throttle, brake);}
+			void 		setInputs(float steer, float throttle, float brake);
+			void 		setInputs(bool left,bool right,bool throttle,bool brake);
 
 			//ODE object
 			inline boost::shared_ptr<OgreOde_Prefab::Vehicle>	ODEVehicle()
-					{ return this->mVehicle;}
+						{ return this->mVehicle;}
+			
+			// Actualize speed
+			inline float	getSpeed() { return this->mVehicle->getVelocity(); }
 
 
 		protected:
@@ -115,12 +127,16 @@ namespace stunts {
 			bool parseSettingsCar(TiXmlElement* rootElem, const std::string& xmlPath);
 
 			virtual bool importFromFile(const char* fileName, const std::string& xmlPath);
-			virtual bool importFromFile(const std::string fileName, const std::string& xmlPath){ return CCarObject::importFromFile(fileName.c_str(), xmlPath); }
+			virtual bool importFromFile(const std::string fileName, const std::string& xmlPath)
+						{ return CCarObject::importFromFile(fileName.c_str(), xmlPath); }
 
 			//------------------ Variables --------------------------------------
 
 			//ODE description of the car
 			boost::shared_ptr<OgreOde_Prefab::Vehicle> 	mVehicle;
+			
+			// Auto Box status
+			bool		mAutoBox;
 	};
 };
 #endif

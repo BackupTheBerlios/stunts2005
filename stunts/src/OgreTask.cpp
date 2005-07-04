@@ -184,8 +184,8 @@ namespace stunts {
 	/**
 	 * Configure Ogre-Engine for rendering
 	 **/
-    bool COgreTask::configure()
-    {
+	bool COgreTask::configure()
+	{
 
 		bool ok = mRoot->restoreConfig();
 		//bool ok = mRoot->showConfigDialog();
@@ -193,9 +193,9 @@ namespace stunts {
 		//attention: plugins.cfg must be in the root folder or
 		//	a segfault will occur!
 		if (ok)
-        {
+		{
 			mWindow = mRoot->initialise(true, "Stunts2005");
-        }
+		}
 		// Create scene manager
 		//mSceneMgr.reset(mRoot->getSceneManager(ST_EXTERIOR_CLOSE));
 		mSceneMgr = mRoot->getSceneManager(ST_EXTERIOR_CLOSE);
@@ -207,7 +207,7 @@ namespace stunts {
 		MeshManager::getSingleton().setBoundsPaddingFactor(0.0f);
 
 		// Set default mipmap level (NB some APIs ignore this)
-        TextureManager::getSingleton().setDefaultNumMipmaps(5);
+		TextureManager::getSingleton().setDefaultNumMipmaps(5);
 
 
 		// Setup Rendering Options
@@ -218,74 +218,72 @@ namespace stunts {
 		// Setup some Ogre-Properties
 
 		return ok;
-    }
+	}
 
 
 	/**
 	 * Create the camera for our player
 	 **/
-    void COgreTask::createCamera()
-    {
-        // Create the camera
-        //mCamera.reset(mSceneMgr->createCamera("PlayerCam"));
-        mCamera = mSceneMgr->createCamera("PlayerCam");
-
-        // Position it at 500 in Z direction
-        mCamera->setPosition(Vector3(128,25,128));
-        // Look back along -Z
-        mCamera->lookAt(Vector3(0,0,-300));
-        mCamera->setNearClipDistance( 1 );
-        mCamera->setFarClipDistance( 1000 );
-    }
+	void COgreTask::createCamera()
+	{
+	        // Create the camera
+	        //mCamera.reset(mSceneMgr->createCamera("PlayerCam"));
+	        mCamera = mSceneMgr->createCamera("PlayerCam");
+	
+	        // Position it at 500 in Z direction
+	        mCamera->setPosition(Vector3(128,25,128));
+	        // Look back along -Z
+	        mCamera->lookAt(Vector3(0,0,-300));
+	        mCamera->setNearClipDistance( 1 );
+	        mCamera->setFarClipDistance( 1000 );
+	}
 
 
 	/**
 	 * Create a viewport for our camera
 	 **/
 	void COgreTask::createViewports()
-    {
-        // Create one viewport, entire window
-        Viewport* vp = mWindow->addViewport(mCamera);
-        vp->setBackgroundColour(ColourValue(0,0,0));
-
-        // Alter the camera aspect ratio to match the viewport
-        mCamera->setAspectRatio(
-            Real(vp->getActualWidth()) / Real(vp->getActualHeight()));
-
-		vp->setOverlaysEnabled(true);
-    }
+	{
+	        // Create one viewport, entire window
+	        Viewport* vp = mWindow->addViewport(mCamera);
+	        vp->setBackgroundColour(ColourValue(0,0,0));
+	
+	        // Alter the camera aspect ratio to match the viewport
+	        mCamera->setAspectRatio(
+	            Real(vp->getActualWidth()) / Real(vp->getActualHeight()));
+	
+			vp->setOverlaysEnabled(true);
+	}
 
 
 	/**
 	 * Load all resources needed for our game/scene
 	 **/
-    void COgreTask::setupResources()
-    {
-        // Load resource paths from config file
-        ConfigFile cf;
-        cf.load("../config/resources.cfg");
-
-        // Go through all sections & settings in the file
-        ConfigFile::SectionIterator seci = cf.getSectionIterator();
-        String secName, typeName, archName;
-        while (seci.hasMoreElements())
-        {
-            secName = seci.peekNextKey();
-            ConfigFile::SettingsMultiMap *settings = seci.getNext();
-            ConfigFile::SettingsMultiMap::iterator i;
-            for (i = settings->begin(); i != settings->end(); ++i)
-            {
-                typeName = i->first;
-                archName = i->second;
-                ResourceGroupManager::getSingleton().addResourceLocation(
-                    archName, typeName, secName);
-            }
-        }
-
-		// Initialise, parse scripts etc
-		ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-
-    }
-
+	void COgreTask::setupResources()
+	{
+	        // Load resource paths from config file
+	        ConfigFile cf;
+	        cf.load("../config/resources.cfg");
+	
+	        // Go through all sections & settings in the file
+	        ConfigFile::SectionIterator seci = cf.getSectionIterator();
+	        String secName, typeName, archName;
+	        while (seci.hasMoreElements())
+	        {
+	        	secName = seci.peekNextKey();
+	        	ConfigFile::SettingsMultiMap *settings = seci.getNext();
+	        	ConfigFile::SettingsMultiMap::iterator i;
+	        	for (i = settings->begin(); i != settings->end(); ++i)
+	        	{
+	                	typeName = i->first;
+	                	archName = i->second;
+	                	ResourceGroupManager::getSingleton().addResourceLocation(
+	                	    archName, typeName, secName);
+	        	}
+	        }
+	
+			// Initialise, parse scripts etc
+			ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+	}
 }
 

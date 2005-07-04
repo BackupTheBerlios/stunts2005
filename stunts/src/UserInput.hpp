@@ -5,6 +5,7 @@
  *                    http://developer.berlios.de/projects/stunts2005
  *
  * Maintainer:        Christian Morbach <GameDevelopment@paratronic.de>
+ *                    Andreas Maurer <andi@andile.de>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -82,11 +83,11 @@ namespace stunts
 			virtual nrResult taskStop();
 
 
-			CLevel*					mLevel;
+			CLevel*				mLevel;
 			Ogre::InputReader*		mInputDevice;
 			Ogre::Camera*			mCamera;
 
-			boost::shared_ptr< CTerrain >			mTerrain;
+			boost::shared_ptr< CTerrain >	mTerrain;
 
 
 			// declare empty container (string -> map)
@@ -116,6 +117,7 @@ namespace stunts
 
 			//human player car
 			boost::shared_ptr<CCarObject>					controlObject;
+			
 
 	};
 }	//namespace stunts

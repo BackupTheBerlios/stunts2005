@@ -5,6 +5,7 @@
  *                    http://developer.berlios.de/projects/stunts2005
  *
  * Maintainer:        Christian Morbach <GameDevelopment@paratronic.de>
+ *                    Andreas Maurer <andi@andile.de>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -102,26 +103,30 @@ namespace stunts
 
 
 				// Generating default map
-				keymap["escape"] = (unsigned int)Ogre::KC_ESCAPE;
-				keymap["screenshot"] = (unsigned int)Ogre::KC_C;
+				keymap["escape"] 	= (unsigned int)Ogre::KC_ESCAPE;
+				keymap["screenshot"] 	= (unsigned int)Ogre::KC_C;
 
-				keymap["camLeft"] = (unsigned int)Ogre::KC_A;
-				keymap["camRight"] = (unsigned int)Ogre::KC_D;
-				keymap["camForward"] = (unsigned int)Ogre::KC_W;
-				keymap["camBackward"] = (unsigned int)Ogre::KC_S;
+				keymap["camLeft"] 	= (unsigned int)Ogre::KC_A;
+				keymap["camRight"] 	= (unsigned int)Ogre::KC_D;
+				keymap["camForward"] 	= (unsigned int)Ogre::KC_W;
+				keymap["camBackward"] 	= (unsigned int)Ogre::KC_S;
 
-				keymap["camUp"] = (unsigned int)Ogre::KC_PGUP;
-				keymap["camDown"] = (unsigned int)Ogre::KC_PGDOWN;
+				keymap["camUp"] 	= (unsigned int)Ogre::KC_PGUP;
+				keymap["camDown"] 	= (unsigned int)Ogre::KC_PGDOWN;
 
-				keymap["yawMinus"] = (unsigned int)Ogre::KC_RIGHT;
-				keymap["yawPlus"] = (unsigned int)Ogre::KC_LEFT;
+				keymap["yawMinus"] 	= (unsigned int)Ogre::KC_RIGHT;
+				keymap["yawPlus"] 	= (unsigned int)Ogre::KC_LEFT;
 
 				//car control
-				keymap["carAccelerate"] = (unsigned int)Ogre::KC_I;
-				keymap["carBrake"] = (unsigned int)Ogre::KC_K;
+				keymap["carAccelerate"]	= (unsigned int)Ogre::KC_I;
+				keymap["carBrake"] 	= (unsigned int)Ogre::KC_K;
 
-				keymap["carLeft"] = (unsigned int)Ogre::KC_J;
-				keymap["carRight"] = (unsigned int)Ogre::KC_L;
+				keymap["carLeft"] 	= (unsigned int)Ogre::KC_J;
+				keymap["carRight"] 	= (unsigned int)Ogre::KC_L;
+				
+				keymap["carShiftUp"] 	= (unsigned int)Ogre::KC_Z;
+				keymap["carShiftDown"] 	= (unsigned int)Ogre::KC_H;
+				keymap["carSetAutoBox"]	= (unsigned int)Ogre::KC_M;
 			}
 		}
 
@@ -168,27 +173,31 @@ namespace stunts
 		mInputDevice->capture();
 
 		// app specific
-		Ogre::Vector3 mTranslateVector(0.0f, 0.0f, 0.0f);
-		Ogre::Vector3 mTranslateVectorTerrain(0.0f, 0.0f, 0.0f);
-		float mMoveScale = 100.0f  * delaySeconds;
-		Ogre::Degree mRotScale(120.0f * delaySeconds);
-		Ogre::Degree mRotX;
-		Ogre::Degree mRotY;
+		Ogre::Vector3 	mTranslateVector(0.0f, 0.0f, 0.0f);
+		Ogre::Vector3 	mTranslateVectorTerrain(0.0f, 0.0f, 0.0f);
+		float 		mMoveScale = 100.0f  * delaySeconds;
+		Ogre::Degree 	mRotScale(120.0f * delaySeconds);
+		Ogre::Degree 	mRotX;
+		Ogre::Degree 	mRotY;
 
 
 		//control car
 		if (controlObject != NULL)
 		{
-			controlObject->ODEVehicle()->setInputs(
-				mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carLeft"]),
-				mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carRight"]),
-				mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carAccelerate"]),
-				mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carBrake"])  );
+			controlObject->setInputs(
+				mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carLeft"]	),
+				mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carRight"]	),
+				mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carAccelerate"]	),
+				mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carBrake"]  	)
+			);
+			if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carShiftUp"]))	controlObject->shiftUp();
+			if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carShiftDown"]))	controlObject->shiftDown();
+			if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carSetAutoBox"]))	controlObject->setAutoBox();
 			controlObject->ODEVehicle()->update(delaySeconds);
 		}
 
 
-		if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["camLeft"]))
+	if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["camLeft"]))
         {
             // Move camera left
             mTranslateVector.x = -mMoveScale;
@@ -446,6 +455,27 @@ namespace stunts
 			keyCommand = carRightstr ? axtoi( (carRightstr)) : (unsigned int)Ogre::KC_L;
 
 			keymap["carRight"] = keyCommand;
+
+
+			subElem = elem->FirstChildElement("carShiftUp");
+			const char *carShiftUpstr = subElem->GetText();
+			keyCommand = carShiftUpstr ? axtoi( (carShiftUpstr)) : (unsigned int)Ogre::KC_Z;
+
+			keymap["carShiftUp"] = keyCommand;
+
+
+			subElem = elem->FirstChildElement("carShiftDown");
+			const char *carShiftDownstr = subElem->GetText();
+			keyCommand = carShiftDownstr ? axtoi( (carShiftDownstr)) : (unsigned int)Ogre::KC_H;
+
+			keymap["carShiftDown"] = keyCommand;
+
+
+			subElem = elem->FirstChildElement("carSetAutoBox");
+			const char *carSetAutoBox = subElem->GetText();
+			keyCommand = carSetAutoBox ? axtoi( (carSetAutoBox)) : (unsigned int)Ogre::KC_M;
+
+			keymap["carSetAutoBox"] = keyCommand;
 
 		}
 		else return false;

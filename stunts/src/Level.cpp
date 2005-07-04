@@ -6,6 +6,7 @@
  *
  * Maintainer:        Christian Morbach <GameDevelopment@paratronic.de>
  *                    Art Tevs <tevs@mpi-sb.mpg.de>
+ *                    Andreas Maurer <andi@andile.de>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License

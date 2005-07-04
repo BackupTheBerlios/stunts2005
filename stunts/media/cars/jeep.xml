@@ -10,15 +10,14 @@
 
 	<gearbox>
 		<!-- Andi's BMW -->
-		<numberOfGears>6</numberOfGears>
-		<carRatio>3.64</carRatio>
-		<ratio1>4.23</ratio1>
-		<ratio2>2.53</ratio2>
-		<ratio3>1.67</ratio3>
-		<ratio4>1.23</ratio4>
-		<ratio5>1.00</ratio5>
-		<ratio6>0.83</ratio6>
-		<ratioR>3.75</ratioR>
+		<ratio name="C" value="3.64" />
+		<ratio name="1" value="4.23" />
+		<ratio name="2" value="2.53" />
+		<ratio name="3" value="1.67" />
+		<ratio name="4" value="1.23" />
+		<ratio name="5" value="1.00" />
+		<ratio name="6" value="0.83" />
+		<ratio name="R" value="3.75" />
 	</gearbox>
 
 	<motorPower>120</motorPower>
