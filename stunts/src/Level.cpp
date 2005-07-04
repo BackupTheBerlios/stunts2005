@@ -166,6 +166,61 @@ namespace stunts
 		if (elem)
 			readObjects(elem);
 
+
+		// move the level node, so we get all objects on the right place
+		mLevelNode->translate(unitToMeter(0.5f), 0, unitToMeter(0.5f));
+
+
+		//create collision geometry out of the objects
+		Ogre::Vector3* MeshVertices = NULL;
+		int* MeshIndices = NULL;
+		int MeshVertexCount = 0;
+		int MeshIndexCount = 0;
+
+
+		//get count
+		for (int c=0; c<mObjects.size();c++)
+		{
+			MeshVertexCount += mObjects.at(c)->mMeshVertexCount;
+			MeshIndexCount += mObjects.at(c)->mMeshIndexCount;
+		}
+
+		//store geometry
+		MeshVertices = new Ogre::Vector3[MeshVertexCount];
+		MeshIndices = new int[MeshIndexCount];
+
+		MeshVertexCount = 0;
+		MeshIndexCount = 0;
+
+		for (int c=0; c<mObjects.size();c++)
+		{
+			if (mObjects.at(c)->mMeshVertexCount <= 0)
+				continue;
+
+			//copy vertices
+			//memcpy(&MeshVertices[MeshVertexCount], mObjects.at(c)->mMeshVertices,
+			//	mObjects.at(c)->mMeshVertexCount * sizeof(Ogre::Vector3));
+			for (int d=0; d<mObjects.at(c)->mMeshVertexCount;d++)
+				MeshVertices[d + MeshVertexCount] =
+					(mObjects.at(c)->mObjNode->_getFullTransform() * mObjects.at(c)->mMeshVertices[d]);
+
+			//copy indices
+			for (int d=0; d<mObjects.at(c)->mMeshIndexCount;d++)
+				MeshIndices[d + MeshIndexCount] = (mObjects.at(c)->mMeshIndices[d] + MeshVertexCount);
+
+
+			MeshVertexCount += mObjects.at(c)->mMeshVertexCount;
+			MeshIndexCount += mObjects.at(c)->mMeshIndexCount;
+		}
+
+		//attach the vertices
+		OgreOde::TriangleMeshGeometry* geom =
+			new OgreOde::TriangleMeshGeometry(MeshVertices, MeshVertexCount,
+			MeshIndices, MeshIndexCount, mPhysicsWorld->getDefaultSpace());
+
+
+
+
 		// check for the atmosphere
 		elem = rootElem->FirstChildElement("atmosphere");
 		if (elem)
@@ -473,9 +528,6 @@ namespace stunts
 
 		//activate input class
 		mUserInput->activate(true);
-
-		// move the level node, so we get all objects on the right place
-		mLevelNode->translate(unitToMeter(0.5f), 0, unitToMeter(0.5f));
 
 		return NR_OK;
 	}

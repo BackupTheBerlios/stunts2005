@@ -326,60 +326,6 @@ namespace stunts {
 		setPosition(newPos);
 
 
-		//apply the transformations to the raw geometry
-		if ((mMeshVertices != NULL) && (mMeshVertexCount > 0))
-		{
-			for (int c=0; c<mMeshVertexCount; c++)
-			{
-				mMeshVertices[c] = this->m_orientation * mMeshVertices[c];
-				mMeshVertices[c] += m_position;
-				mMeshVertices[c] *= this->m_scale;
-			}
-		}
-
-		std::cout << "Geometry:" << std::endl
-			<< "(mMeshVertices != NULL): " << (mMeshVertices != NULL)
-			<< "  mMeshVertexCount: " << mMeshVertexCount << std::endl;
-
-		//create new (raw) geometry
-		if ((mMeshVertices != NULL) && (mMeshVertexCount > 0))
-		{
-			std::cout << "Geometry:" << std::endl
-				<< "vcount: " << mMeshVertexCount
-				<< "  this->m_scale: " << this->m_scale
-				<< "  m_position: " << m_position << std::endl;
-
-
-
-			/*if (mMeshVertexCount < 2000)
-			{
-				//get geometry
-				OgreOde::EntityInformer ei1(mEntity);
-
-				int meshVertexCount = ei1.getVertexCount();
-				int meshIndexCount = ei1.getIndexCount();
-
-				Ogre::Vector3* meshVertices = (Ogre::Vector3*)ei1.getVertices();
-				int* meshIndices = (int*)ei1.getIndices();
-
-				//move vertices
-				for (int c=0; c<meshVertexCount; c++)
-				{
-					meshVertices[c] += mObjNode->getPosition();
-				}
-
-				//create new geometry
-				OgreOde::TriangleMeshGeometry* geom =
-					new OgreOde::TriangleMeshGeometry(meshVertices, meshVertexCount,
-					meshIndices, meshIndexCount, mLevel->PhysicsWorld()->getDefaultSpace());
-			}*/
-
-
-			//OgreOde::TriangleMeshGeometry* geom =
-			//	new OgreOde::TriangleMeshGeometry(mMeshVertices, mMeshVertexCount,
-			//	mMeshIndices, mMeshIndexCount, mLevel->PhysicsWorld()->getDefaultSpace());
-		}
-
 		// Read waypoints
 		elem =  rootElem->FirstChildElement("waypoints");
 		if (elem)
@@ -403,7 +349,6 @@ namespace stunts {
 				}
 			}
 		};
-
 
 
 		nrLog.Log(NR_LOG_APP, "CBaseObject::parseSettings(): parsing is complete now");
