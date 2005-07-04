@@ -9,19 +9,9 @@ int main (int argc, char *argv[])
 {
 
 	InitImg();
+	InitTerrain();
 
 	CTrackEdUI TrackEdUI;
-
-	Fl_PNG_Image *temp = new Fl_PNG_Image( "terrain/terrain1.png" );
-
-	TrackEdUI.debug1 -> value( temp->w() );
-	TrackEdUI.debug2 -> value( temp->h() );
-	TrackEdUI.debug3 -> value( temp->d() );
-	TrackEdUI.debug4 -> value( temp->ld() );
-	TrackEdUI.debug5 -> value( temp->count() );
-
-	delete temp;
-
 
 	TrackEdUI.show( argc, argv );
 
@@ -29,6 +19,7 @@ int main (int argc, char *argv[])
 	int result = Fl::run();
 
 	FreeImg();
+	FreeTerrain();
 
     return result;
 }

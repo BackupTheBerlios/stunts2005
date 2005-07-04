@@ -663,17 +663,28 @@ int h = (int)vCells->value();
 if( w < 1 ) w = 1;
 if( h < 1 ) h = 1;
 
+LoadTerrain( nter->value(), w, h );
+
 TrackData.clear();
 TrackIcons = new Fl_Group( ox, oy, 47*w, 47*h );
 for( int x = 0; x < w; x++ ) {
 	std::vector<Fl_Button*> col;
 	for( int y = 0; y < h; y++ ) {
 		Fl_Button *o = new Fl_Button( ox + x*47, oy + y*47, 47, 47 );
-		o->image( empty->image() );
-		o->tooltip( "empty" );
-		o->callback( cellTemplate->callback() );
-		o->when( FL_WHEN_RELEASE );
-		col.push_back( o );
+		if( tertype( x,y ) == MOUNTAIN ) {
+			o->image( img["mountain"] );
+			o->tooltip( "mountain" );
+			o->deactivate( );
+		} else if( tertype( x,y ) == WATER ) {
+			o->image( img["water"] );
+			o->tooltip( "water" );
+			o->deactivate( );
+		} else {
+			o->image( empty->image() );
+			o->tooltip( "empty" );
+			o->callback( cellTemplate->callback() );
+			o->when( FL_WHEN_RELEASE );
+		}
 		TrackIcons->add( o );
 	}
 	TrackData.push_back( col );
@@ -709,6 +720,9 @@ inline void CTrackEdUI::cb_ok1_i(Fl_Button*, void*) {
   std::ofstream out( saveInternal->value() );
 
 if( out != NULL ) {
+
+	out << curTerrain << "\n";
+
 	out << TrackData.size() << "\t";
 	out << TrackData[0].size() << "\n";
 
@@ -779,7 +793,7 @@ inline void CTrackEdUI::cb_ok3_i(Fl_Button* o, void*) {
 
 if( in != NULL ) {
 	int w, h;
-	in >> w >> h;
+	in >> curTerrain >> w >> h;
 
 	Fl_Group* temp = TrackIcons;
 	Track->remove( TrackIcons );
@@ -799,10 +813,21 @@ if( in != NULL ) {
 			std::string cur;
 			in >> cur;
 			Fl_Button *o = new Fl_Button( ox + x*47, oy + y*47, 47, 47 );
-			o->image( img[cur] );
-			o->tooltip( img.find(cur)->first.c_str() );
-			o->callback( cellTemplate->callback() );
-			o->when( FL_WHEN_RELEASE );
+
+			if( cur == "water" ) {
+				o->image( img["water"] );
+				o->tooltip( "water" );
+				o->deactivate();
+			} else if( cur == "mountain" ) {
+				o->image( img["mountain"] );
+				o->tooltip( "mountain" );
+				o->deactivate();
+			} else {
+				o->image( img[cur] );
+				o->tooltip( img.find(cur)->first.c_str() );
+				o->callback( cellTemplate->callback() );
+				o->when( FL_WHEN_RELEASE );
+			}
 			col.push_back( o );
 			TrackIcons->add( o );
 		}
@@ -824,7 +849,7 @@ void CTrackEdUI::cb_ok3(Fl_Button* o, void* v) {
 
 CTrackEdUI::CTrackEdUI() {
   Fl_Window* w;
-  { Fl_Window* o = mainWindow = new Fl_Window(794, 600, "Stunts2005 TrackEd (preview)");
+  { Fl_Window* o = mainWindow = new Fl_Window(794, 600, "Stunts2005 TrackEd (alpha)");
     w = o;
     o->user_data((void*)(this));
     { Fl_Group* o = mainGroup = new Fl_Group(0, 0, 795, 600);
@@ -832,7 +857,6 @@ CTrackEdUI::CTrackEdUI() {
       { Fl_Tabs* o = new Fl_Tabs(0, 0, 225, 465);
         o->box(FL_PLASTIC_UP_BOX);
         { Fl_Group* o = new Fl_Group(5, 25, 215, 430, "Road");
-          o->hide();
           { Fl_Button* o = corner_big = new Fl_Button(35, 61, 94, 94, "corner big");
             o->callback((Fl_Callback*)cb_corner_big);
             o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
@@ -932,6 +956,7 @@ CTrackEdUI::CTrackEdUI() {
           o->end();
         }
         { Fl_Group* o = new Fl_Group(5, 25, 215, 430, "Tunnel");
+          o->hide();
           { Fl_Button* o = tube_inout = new Fl_Button(20, 51, 49, 49, "tube inout");
             o->callback((Fl_Callback*)cb_tube_inout);
             o->align(FL_ALIGN_WRAP|FL_ALIGN_INSIDE);
@@ -967,11 +992,6 @@ CTrackEdUI::CTrackEdUI() {
             o->tooltip( "tunnel_v" );
             o->label( NULL );
           }
-          debug1 = new Fl_Value_Output(85, 210, 85, 25, "w");
-          debug2 = new Fl_Value_Output(85, 240, 85, 25, "h");
-          debug3 = new Fl_Value_Output(85, 270, 85, 25, "d");
-          debug4 = new Fl_Value_Output(85, 300, 85, 25, "ld");
-          debug5 = new Fl_Value_Output(85, 330, 85, 25, "count");
           o->end();
         }
         o->end();
@@ -1026,14 +1046,26 @@ int oy = Track->y() + 5;
 
 TrackIcons = new Fl_Group( ox, oy, 47*30, 47*30 );
 
+LoadTerrain( "terrain1", 30, 30 );
+
 for( int x = 0; x < 30; x++ ) {
 	std::vector<Fl_Button*> col;
 	for( int y = 0; y < 30; y++ ) {
 		Fl_Button *o = new Fl_Button( ox + x*47, oy + y*47, 47, 47 );
-		o->image( empty->image() );
-		o->tooltip( "empty" );
-		o->callback( cellTemplate->callback() );
-		o->when( FL_WHEN_RELEASE );
+		if( tertype( x,y ) == MOUNTAIN ) {
+			o->image( img["mountain"] );
+			o->tooltip( "mountain" );
+			o->deactivate( );
+		} else if( tertype( x,y ) == WATER ) {
+			o->image( img["water"] );
+			o->tooltip( "water" );
+			o->deactivate( );
+		} else {
+			o->image( empty->image() );
+			o->tooltip( "empty" );
+			o->callback( cellTemplate->callback() );
+			o->when( FL_WHEN_RELEASE );
+		}
 		col.push_back( o );
 		TrackIcons->add( o );
 	}
@@ -1042,35 +1074,40 @@ for( int x = 0; x < 30; x++ ) {
 
 Track->add( TrackIcons );
 Track->redraw();
-  { Fl_Window* o = newTrack = new Fl_Window(167, 124, "New track...");
+  { Fl_Window* o = newTrack = new Fl_Window(359, 126, "New track...");
     w = o;
     o->user_data((void*)(this));
-    { Fl_Group* o = new Fl_Group(10, 5, 145, 70);
+    { Fl_Group* o = new Fl_Group(10, 5, 345, 80);
       o->box(FL_PLASTIC_UP_BOX);
-      { Fl_Value_Input* o = vCells = new Fl_Value_Input(20, 15, 25, 20, "vertical cells");
+      { Fl_Value_Input* o = vCells = new Fl_Value_Input(240, 15, 25, 20, "vertical cells");
         o->minimum(2);
         o->maximum(80);
         o->step(1);
-        o->value(20);
+        o->value(30);
         o->callback((Fl_Callback*)cb_vCells);
         o->align(FL_ALIGN_RIGHT);
+        o->deactivate();
       }
-      { Fl_Value_Input* o = hCells = new Fl_Value_Input(20, 40, 25, 20, "horizontal cells");
+      { Fl_Value_Input* o = hCells = new Fl_Value_Input(20, 15, 25, 20, "horizontal cells");
         o->minimum(2);
         o->maximum(80);
         o->step(1);
-        o->value(20);
+        o->value(30);
         o->callback((Fl_Callback*)cb_hCells);
         o->align(FL_ALIGN_RIGHT);
+        o->deactivate();
+      }
+      { Fl_Input* o = nter = new Fl_Input(75, 45, 265, 25, "Terrain:");
+        o->value( "terrain3" );
       }
       o->end();
     }
-    { Fl_Button* o = new Fl_Button(90, 85, 65, 30, "ok");
+    { Fl_Button* o = new Fl_Button(290, 90, 65, 30, "ok");
       o->box(FL_PLASTIC_UP_BOX);
       o->down_box(FL_PLASTIC_DOWN_BOX);
       o->callback((Fl_Callback*)cb_ok);
     }
-    { Fl_Button* o = new Fl_Button(10, 85, 65, 30, "cancel");
+    { Fl_Button* o = new Fl_Button(10, 90, 65, 30, "cancel");
       o->box(FL_PLASTIC_UP_BOX);
       o->down_box(FL_PLASTIC_DOWN_BOX);
       o->callback((Fl_Callback*)cb_cancel);
@@ -1084,7 +1121,6 @@ Track->redraw();
     { Fl_Tabs* o = new Fl_Tabs(5, 5, 500, 185);
       o->box(FL_PLASTIC_UP_BOX);
       { Fl_Group* o = new Fl_Group(5, 30, 500, 155, "Internal format");
-        o->hide();
         { Fl_Button* o = new Fl_Button(15, 145, 95, 30, "cancel");
           o->box(FL_PLASTIC_UP_BOX);
           o->down_box(FL_PLASTIC_DOWN_BOX);
@@ -1101,6 +1137,7 @@ Track->redraw();
         o->end();
       }
       { Fl_Group* o = new Fl_Group(5, 30, 500, 155, "Export to Stunts");
+        o->hide();
         { Fl_Button* o = new Fl_Button(15, 145, 95, 30, "cancel");
           o->box(FL_PLASTIC_UP_BOX);
           o->down_box(FL_PLASTIC_DOWN_BOX);

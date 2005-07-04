@@ -1,0 +1,6 @@
+_NAME_	_FILE_	_THRESHOLD_LOW_	_THRESHOLD_HIGH_
+terrain1	terrain1.png	30	33
+terrain2	terrain2.png	30	33
+terrain3	terrain3.png	30	33
+terrain4	terrain4.png	30	33
+terrain5	terrain5.png	30	33

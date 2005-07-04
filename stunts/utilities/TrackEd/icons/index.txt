@@ -103,3 +103,5 @@ tunnel_in_v.png
 tunnel_out_h.png
 tunnel_out_v.png
 tunnel_v.png
+water.png
+mountain.png

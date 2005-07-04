@@ -7,10 +7,11 @@ class CTrackEdUI {open
   Function {CTrackEdUI()} {open
   } {
     Fl_Window mainWindow {
-      label {Stunts2005 TrackEd (preview)} open
+      label {Stunts2005 TrackEd (alpha)} open selected
       xywh {419 265 794 600}
       code0 {\#include <FL/Fl_PNG_Image.h>}
-      code1 {\#include "Images.h"} visible
+      code1 {\#include "Images.h"}
+      code2 {\#include "Terrain.h"} visible
     } {
       Fl_Group mainGroup {open
         xywh {0 0 795 600} box FLAT_BOX
@@ -20,7 +21,7 @@ class CTrackEdUI {open
         } {
           Fl_Group {} {
             label Road open
-            xywh {5 25 215 430} hide
+            xywh {5 25 215 430}
           } {
             Fl_Button corner_big {
               label {corner big}
@@ -504,7 +505,7 @@ Selected->redraw();}
           }
           Fl_Group {} {
             label Tunnel open
-            xywh {5 25 215 430}
+            xywh {5 25 215 430} hide
           } {
             Fl_Button tube_inout {
               label {tube inout}
@@ -658,26 +659,6 @@ Selected->redraw();}
               code1 {o->tooltip( "tunnel_v" );}
               code2 {o->label( NULL );}
             }
-            Fl_Value_Output debug1 {
-              label w
-              xywh {85 210 85 25}
-            }
-            Fl_Value_Output debug2 {
-              label h
-              xywh {85 240 85 25}
-            }
-            Fl_Value_Output debug3 {
-              label d
-              xywh {85 270 85 25}
-            }
-            Fl_Value_Output debug4 {
-              label ld
-              xywh {85 300 85 25}
-            }
-            Fl_Value_Output debug5 {
-              label count selected
-              xywh {85 330 85 25}
-            }
           }
         }
         Fl_Group {} {open
@@ -727,14 +708,26 @@ int oy = Track->y() + 5;
 
 TrackIcons = new Fl_Group( ox, oy, 47*30, 47*30 );
 
+LoadTerrain( "terrain1", 30, 30 );
+
 for( int x = 0; x < 30; x++ ) {
 	std::vector<Fl_Button*> col;
 	for( int y = 0; y < 30; y++ ) {
 		Fl_Button *o = new Fl_Button( ox + x*47, oy + y*47, 47, 47 );
-		o->image( empty->image() );
-		o->tooltip( "empty" );
-		o->callback( cellTemplate->callback() );
-		o->when( FL_WHEN_RELEASE );
+		if( tertype( x,y ) == MOUNTAIN ) {
+			o->image( img["mountain"] );
+			o->tooltip( "mountain" );
+			o->deactivate( );
+		} else if( tertype( x,y ) == WATER ) {
+			o->image( img["water"] );
+			o->tooltip( "water" );
+			o->deactivate( );
+		} else {
+			o->image( empty->image() );
+			o->tooltip( "empty" );
+			o->callback( cellTemplate->callback() );
+			o->when( FL_WHEN_RELEASE );
+		}
 		col.push_back( o );
 		TrackIcons->add( o );
 	}
@@ -745,20 +738,25 @@ Track->add( TrackIcons );
 Track->redraw();} {}
     Fl_Window newTrack {
       label {New track...} open
-      xywh {-32000 -32000 167 124} hide modal
+      xywh {683 388 359 126} modal visible
     } {
       Fl_Group {} {open
-        xywh {10 5 145 70} box PLASTIC_UP_BOX
+        xywh {10 5 345 80} box PLASTIC_UP_BOX
       } {
         Fl_Value_Input vCells {
           label {vertical cells}
           callback {if( o->value() > 99 ) o->value( 99 );}
-          xywh {20 15 25 20} align 8 minimum 2 maximum 80 step 1 value 20
+          xywh {240 15 25 20} align 8 minimum 2 maximum 80 step 1 value 30 deactivate
         }
         Fl_Value_Input hCells {
           label {horizontal cells}
           callback {if( o->value() > 99 ) o->value( 99 );}
-          xywh {20 40 25 20} align 8 minimum 2 maximum 80 step 1 value 20
+          xywh {20 15 25 20} align 8 minimum 2 maximum 80 step 1 value 30 deactivate
+        }
+        Fl_Input nter {
+          label {Terrain:}
+          xywh {75 45 265 25}
+          code0 {o->value( "terrain3" );}
         }
       }
       Fl_Button {} {
@@ -776,17 +774,28 @@ int h = (int)vCells->value();
 if( w < 1 ) w = 1;
 if( h < 1 ) h = 1;
 
+LoadTerrain( nter->value(), w, h );
+
 TrackData.clear();
 TrackIcons = new Fl_Group( ox, oy, 47*w, 47*h );
 for( int x = 0; x < w; x++ ) {
 	std::vector<Fl_Button*> col;
 	for( int y = 0; y < h; y++ ) {
 		Fl_Button *o = new Fl_Button( ox + x*47, oy + y*47, 47, 47 );
-		o->image( empty->image() );
-		o->tooltip( "empty" );
-		o->callback( cellTemplate->callback() );
-		o->when( FL_WHEN_RELEASE );
-		col.push_back( o );
+		if( tertype( x,y ) == MOUNTAIN ) {
+			o->image( img["mountain"] );
+			o->tooltip( "mountain" );
+			o->deactivate( );
+		} else if( tertype( x,y ) == WATER ) {
+			o->image( img["water"] );
+			o->tooltip( "water" );
+			o->deactivate( );
+		} else {
+			o->image( empty->image() );
+			o->tooltip( "empty" );
+			o->callback( cellTemplate->callback() );
+			o->when( FL_WHEN_RELEASE );
+		}
 		TrackIcons->add( o );
 	}
 	TrackData.push_back( col );
@@ -797,25 +806,25 @@ Track->redraw();
 
 newTrack->hide();
 mainGroup->activate();}
-        xywh {90 85 65 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
+        xywh {290 90 65 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
       }
       Fl_Button {} {
         label cancel
         callback {newTrack->hide();
 mainGroup->activate();}
-        xywh {10 85 65 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
+        xywh {10 90 65 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
       }
     }
     Fl_Window saveTrack {
       label {Save track...} open
-      xywh {143 524 510 192} modal visible
+      xywh {-32000 -32000 510 192} hide modal
     } {
       Fl_Tabs {} {open
         xywh {5 5 500 185} box PLASTIC_UP_BOX
       } {
         Fl_Group {} {
           label {Internal format} open
-          xywh {5 30 500 155} hide
+          xywh {5 30 500 155}
         } {
           Fl_Button {} {
             label cancel
@@ -828,6 +837,9 @@ mainGroup->activate();}
             callback {std::ofstream out( saveInternal->value() );
 
 if( out != NULL ) {
+
+	out << curTerrain << "\\n";
+
 	out << TrackData.size() << "\\t";
 	out << TrackData[0].size() << "\\n";
 
@@ -850,7 +862,7 @@ if( out != NULL ) {
         }
         Fl_Group {} {
           label {Export to Stunts} open
-          xywh {5 30 500 155}
+          xywh {5 30 500 155} hide
         } {
           Fl_Button {} {
             label cancel
@@ -919,7 +931,7 @@ mainGroup->activate();}
 
 if( in != NULL ) {
 	int w, h;
-	in >> w >> h;
+	in >> curTerrain >> w >> h;
 
 	Fl_Group* temp = TrackIcons;
 	Track->remove( TrackIcons );
@@ -939,10 +951,21 @@ if( in != NULL ) {
 			std::string cur;
 			in >> cur;
 			Fl_Button *o = new Fl_Button( ox + x*47, oy + y*47, 47, 47 );
-			o->image( img[cur] );
-			o->tooltip( img.find(cur)->first.c_str() );
-			o->callback( cellTemplate->callback() );
-			o->when( FL_WHEN_RELEASE );
+
+			if( cur == "water" ) {
+				o->image( img["water"] );
+				o->tooltip( "water" );
+				o->deactivate();
+			} else if( cur == "mountain" ) {
+				o->image( img["mountain"] );
+				o->tooltip( "mountain" );
+				o->deactivate();
+			} else {
+				o->image( img[cur] );
+				o->tooltip( img.find(cur)->first.c_str() );
+				o->callback( cellTemplate->callback() );
+				o->when( FL_WHEN_RELEASE );
+			}
 			col.push_back( o );
 			TrackIcons->add( o );
 		}

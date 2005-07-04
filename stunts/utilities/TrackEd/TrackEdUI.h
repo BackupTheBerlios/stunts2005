@@ -6,17 +6,17 @@
 #include <FL/Fl_Window.H>
 #include <FL/Fl_PNG_Image.h>
 #include "Images.h"
+#include "Terrain.h"
 #include <FL/Fl_Group.H>
 #include <FL/Fl_Tabs.H>
 #include <FL/Fl_Button.H>
 #include <string>
-#include <FL/Fl_Value_Output.H>
 #include <FL/Fl_Box.H>
 #include <FL/Fl_Scroll.H>
 #include "TrackData.h"
 #include <FL/Fl_Value_Input.H>
-#include <fstream>
 #include <FL/Fl_Input.H>
+#include <fstream>
 #include "Translate.h"
 
 class CTrackEdUI {
@@ -113,13 +113,6 @@ public:
 private:
   inline void cb_tunnel_i(Fl_Button*, void*);
   static void cb_tunnel(Fl_Button*, void*);
-public:
-  Fl_Value_Output *debug1;
-  Fl_Value_Output *debug2;
-  Fl_Value_Output *debug3;
-  Fl_Value_Output *debug4;
-  Fl_Value_Output *debug5;
-private:
   inline void cb_Load_i(Fl_Button*, void*);
   static void cb_Load(Fl_Button*, void*);
   inline void cb_Save_i(Fl_Button*, void*);
@@ -139,6 +132,9 @@ public:
 private:
   inline void cb_hCells_i(Fl_Value_Input*, void*);
   static void cb_hCells(Fl_Value_Input*, void*);
+public:
+  Fl_Input *nter;
+private:
   inline void cb_ok_i(Fl_Button*, void*);
   static void cb_ok(Fl_Button*, void*);
   inline void cb_cancel_i(Fl_Button*, void*);

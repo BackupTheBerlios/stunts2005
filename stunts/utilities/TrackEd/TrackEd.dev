@@ -1,7 +1,7 @@
 [Project]
 FileName=TrackEd.dev
 Name=Project2
-UnitCount=9
+UnitCount=11
 Type=0
 Ver=1
 ObjFiles=
@@ -129,6 +129,26 @@ BuildCmd=
 
 [Unit9]
 FileName=Translate.h
+CompileCpp=1
+Folder=Project2
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit10]
+FileName=Terrain.cpp
+CompileCpp=1
+Folder=Project2
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit11]
+FileName=Terrain.h
 CompileCpp=1
 Folder=Project2
 Compile=1
