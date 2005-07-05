@@ -29,7 +29,7 @@ Stunts/Gui/MainLevel
 		left 0
 		width 1.0
 		height 1.0
-		material Stunts/Gui/GuiBackground
+		material Stunts/Gui/GuiLevelBg
 	}
 }
 

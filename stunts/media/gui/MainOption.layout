@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<GUILayout>
+	<Window Type="DefaultGUISheet" Name="Main_Option">
+		<Window Type="TaharezLook/FrameWindow" Name="Main_Option_Sheet">
+			<Property Name="Position" Value="x:0.20 y:0.25" />
+			<Property Name="Size" Value="w:0.55 h:0.5" />
+			<Property Name="Alpha" Value="0.600000" />
+			<Property Name="Text" Value="Stunts 2005" />
+
+			<!-- Checkbox to setup shadow mode -->
+			<Window Type="TaharezLook/Checkbox" Name="Main/Option/UseShadows">
+				<Property Name="RelativePosition" Value="x:0.20 y:0.3" />
+				<Property Name="AbsoluteSize" Value="w:250 h:40" />
+				<Property Name="Text" Value="Turn stencil shadows on/off" />
+			</Window>
+	
+			<!-- Checkbox to setup water reflection mode -->
+			<Window Type="TaharezLook/Checkbox" Name="Main/Option/UseShadowsInWater">
+				<Property Name="RelativePosition" Value="x:0.20 y:0.4" />
+				<Property Name="AbsoluteSize" Value="w:250 h:40" />
+				<Property Name="Text" Value="Show shadows in water reflections" />
+			</Window>
+			
+			<!-- OK button which choose the level from the list -->
+			<Window Type="TaharezLook/Button" Name="Main/Option/OK">
+				<Property Name="RelativePosition" Value="x:0.35 y:0.8" />
+				<Property Name="AbsoluteSize" Value="w:150 h:20" />					
+				<Property Name="Text" Value="OK" />
+			</Window>
+	
+		</Window>
+
+		<Window Type="TaharezLook/StaticText" Name="Menu/Option/LogoText">
+			<Property Name="Alpha" Value="0.500000" />
+			<Property Name="RelativeRect" Value="l:0.035000 t:0.030000 r:0.961251 b:0.090000" />
+			<Property Name="Text" Value="Stunts2005 powered by Ogre3D, nrEngine, CEGUI, FMod, ODE, Tinyxml" />
+		</Window>
+
+	</Window>
+	
+</GUILayout>
