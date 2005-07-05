@@ -63,12 +63,9 @@ namespace stunts {
 			//control functions
 			bool steer(float gasPedal);
 
-
-			static	const char* getObjectTypeSt()
-					{ return "car"; }
-			const char* 	getObjectType()
-					{ return CCarObject::getObjectTypeSt(); }
-
+			
+			static	const char* getObjectTypeSt() 			{ return "car"; }
+			const char* 	getObjectType()   				{ return CCarObject::getObjectTypeSt(); }
 
 			inline float Speed() const
 			{
@@ -82,30 +79,23 @@ namespace stunts {
 				// was nicht da ist hat auch keine Speed
 				return 0.f;
 			};
-
-
-			inline Quaternion	Orientation() const	{ return mVehicle->getOrientation(); 	};
-			inline Vector3	Position() const		{ return mVehicle->getPosition(); 	};
-
-
-			// Functions for gearbox & engine
-			inline void	shiftUp()
-						{ this->mVehicle->getEngine()->changeUp();		}
 			
-			inline void	shiftDown()
-						{ this->mVehicle->getEngine()->changeDown();		}
-					
-			inline void	setGear(unsigned int i)
-						{ this->mVehicle->getEngine()->setGear(i);		}
-					
-			inline void 	setAutoBox(bool automatic)
-						{ this->mVehicle->getEngine()->setAutoBox(automatic);	}
-					
+			
+			
+			inline Quaternion	Orientation() const		{ return mVehicle->getOrientation(); 	};
+			inline Vector3		Position() const		{ return mVehicle->getPosition(); 		};
+			
+			
+			// Functions for gearbox & engine
+			inline void	shiftUp()						{ this->mVehicle->getEngine()->changeUp();				}
+			inline void	shiftDown()						{ this->mVehicle->getEngine()->changeDown();			}
+			inline void	setGear(unsigned int i)			{ this->mVehicle->getEngine()->setGear(i);				}
+			inline void setAutoBox(bool automatic)		{ this->mVehicle->getEngine()->setAutoBox(automatic);	}
+			
 			// Little helper function to switch status
 			void 		setAutoBox();
 			
-			inline void	addGear(Real ratio,char code)
-						{ this->mVehicle->getEngine()->addGear(ratio,code);	}
+			inline void	addGear(Real ratio,char code)	{ this->mVehicle->getEngine()->addGear(ratio,code);		}
 
 
 			// functions for the engine

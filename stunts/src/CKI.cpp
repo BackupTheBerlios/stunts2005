@@ -46,6 +46,7 @@ namespace stunts
 		brake = 0.f;
 
 		waypointTime = 0.f;
+		stayTime = 0.f;
 	}
 
 
@@ -130,13 +131,14 @@ namespace stunts
 
 
 		computeStrategy();
-
-	//	waypoint computeNextWayPoint();
+		
+//		lowrider(delaySeconds);
 
 		computeGear();
 		computeDirection();
 		computeAcceleration();
-
+		
+		//actualize the object with the computed inputs
 		controlObject->setInputs(steer, acc, brake);
 
 
@@ -152,8 +154,6 @@ namespace stunts
 		*/
 
 		controlObject->ODEVehicle()->update(delaySeconds);
-
-		//std::cout << "CKI::executeKI" << std::endl;
 	}
 
 
@@ -173,38 +173,63 @@ namespace stunts
 		{
 
 			waypointTime += delaySeconds;
-
-
+			
 			if(debug_ki)  std::cout << "\nwaypoint " << waypoint->getVector() << std::endl;
-
-
+			
+			
 			if( waypoint->getNext() != NULL )
 			{
-				//falls du zu lange brauchst deinen Punkt zu finden fahr den n?chsten Punkt an
-				if(waypointTime > 5.f)
+				std::cout << "\nspeed  \n" <<controlObject->getSpeed(); 
+				//falls du zu lange brauchst deinen Punkt zu finden
+				if(controlObject->getSpeed() < 1.f)
 				{
-					waypoint = waypoint->getNext();
-					/*
-					std::cout << "waypointTime \n" << waypointTime << "\n";
-					std::cout << "delaySeconds \n" << delaySeconds << "\n\n";
-					*/
-					waypointTime = 0.f;
-					return;
+					stayTime += delaySeconds;
+					
+					if(stayTime > 1.f)
+					{
+						Ogre::Vector3 _position = waypoint->getVector();
+						Ogre::Vector3 _h = Ogre::Vector3(0., 10., 0.);
+						_position = _position + _h;
+						controlObject->ODEVehicle()->setPosition(_position);
+						
+						
+						Ogre::Vector3 dir = ( waypoint->getNext()->getVector() - waypoint->getVector() );
+						dir.normalise();
+						
+						waypoint = waypoint->getNext();
+						computeDirection();
+						
+					//	Quaternion d = Quaternion( dir[0] , 0 , dir[2] , 0 );
+						Quaternion d = Quaternion( 0 , 1 , 0 , msteerAngle );
+					//	Quaternion e = controlObject->ODEVehicle()->getBody()->getOrientation();
+						controlObject->ODEVehicle()->getBody()->setOrientation(d);
+						
+						std::cout << "Car was respawnt \n";
+						
+						waypointTime = 0.f;
+						stayTime = 0.f;
+						return;
+					}
 				}
-
+				else
+				{
+					stayTime = 0.f;
+				}
+				/*
 				//falls du 180 Grad turn machen musst, nimm naechsten Punkt
-				if( (waypointTime > 0.5f) && (abs(steer) > 0.95f))
+				if( (waypointTime > 0.5f) && (abs(steer) > 0.85f))
 				{
 
 					waypoint = waypoint->getNext();
-					/*
-					std::cout << "abs(steer) \n" << abs(steer) << "\n";
-					*/
+					
+					//std::cout << "abs(steer) \n" << abs(steer) << "\n";
+					
 					waypointTime = 0.f;
 					return;
 				}
-
-
+				*/
+				float height = waypoint->getVector()[1] - controlObject->Position()[1];
+			
 				float w_dis = ( waypoint->getVector() - waypoint->getNext()->getVector() ).length();
 
 				float dis_1 = ( waypoint->getVector() - controlObject->Position() ).length();
@@ -212,7 +237,16 @@ namespace stunts
 				float dis_3 = ( waypoint->getNext()->getNext()->getVector() - controlObject->Position() ).length();
 				float dis_4 = ( waypoint->getNext()->getNext()->getNext()->getVector() - controlObject->Position() ).length();
 				float dis_5 = ( waypoint->getNext()->getNext()->getNext()->getNext()->getVector() - controlObject->Position() ).length();
-
+				/*
+				if( (waypointTime > 1.0f) && (abs(height) > 10.f))
+				{
+					waypoint = waypoint->getNext();
+					//std::cout << "abs(height) \n" << abs(height) << "\n";
+					
+					waypointTime = 0.f;
+					return;
+				}
+				*/
 				//falls nah genug am Waypoint, schau auf naechsten
 				if(dis_1 < w_dis)
 				{
@@ -280,7 +314,7 @@ namespace stunts
 	{
 		if(controlObject != NULL)
 		{
-			carSpeed = controlObject->Speed();
+			carSpeed = controlObject->getSpeed();
 			return;
 		}
 		// was nicht da ist hat auch keine Speed
@@ -405,7 +439,6 @@ namespace stunts
 				brake = ( net->isHighSteer() * net->isHighSpeed() );
 				acc = 0.f;
 
-				//controlObject->accellerate_brake(0.f,  net->isHighSteer() * net->isHighSpeed() );
 				if(debug_ki)  std::cout << "brake (danger)" << ( net->isHighSteer() * net->isHighSpeed() ) << std::endl;
 			}
 			else
@@ -413,8 +446,7 @@ namespace stunts
 				//steer [0..1]  speed [-1..0[
 				brake = 0.f;//( net->isHighSteer() * ( 1.f + net->isHighSpeed() ) );
 				acc = ( net->isHighSteer() * ( -1.f * net->isHighSpeed() ) );
-
-				//controlObject->accellerate_brake(0.f,  net->isHighSteer() * ( 1.f + net->isHighSpeed() ) );
+				
 				if(debug_ki)  std::cout << "accellerate (safe)" << ( net->isHighSteer() * ( -1.f * net->isHighSpeed() ) ) << std::endl;
 			}
 		}
@@ -425,8 +457,8 @@ namespace stunts
 				//steer ]-1..0[  speed [0..1[
 				acc = (1.f +  (-1.f * (net->isHighSpeed())) );
 				brake = 0.f;
-
-				//controlObject->accellerate_brake( 1.f + -1.f * (net->isHighSpeed()) , 0.f); //highspeed is negative!
+				
+				
 				if(debug_ki)  std::cout << "accellerate (danger) " << (1.f +  -1.f * (net->isHighSpeed()) ) << std::endl;
 			}
 			else
@@ -435,9 +467,29 @@ namespace stunts
 				acc = ( net->isHighSteer() * net->isHighSpeed());
 				brake = 0.f;
 
-				//controlObject->accellerate_brake( (1.f - net->isHighSteer()) * net->isHighSpeed() , 0.f);
+				
 				if(debug_ki)  std::cout << "accellerate (turbo) " << ( net->isHighSteer() * net->isHighSpeed() ) << std::endl;
 			}
 		}
+	}
+	
+	
+	void CKI::lowrider(float delaySeconds)
+	{
+		l_time += delaySeconds;
+		
+		const Ogre::Vector3 w0 = controlObject->ODEVehicle()->getWheel(0)->getPosition();
+		const Ogre::Vector3 w1 = controlObject->ODEVehicle()->getWheel(1)->getPosition();
+		const Ogre::Vector3 w2 = controlObject->ODEVehicle()->getWheel(2)->getPosition();
+		const Ogre::Vector3 w3 = controlObject->ODEVehicle()->getWheel(3)->getPosition();
+		
+		//const float t = 0.000001f * sin(l_time * 0.000001f);
+		
+		const Ogre::Vector3* wn1 = new Vector3(w1[0], w1[1] , w1[2]);
+		
+		controlObject->ODEVehicle()->getWheel(1)->setPosition(w0);
+		controlObject->ODEVehicle()->getWheel(1)->setPosition(*wn1);
+		controlObject->ODEVehicle()->getWheel(1)->setPosition(w2);
+		controlObject->ODEVehicle()->getWheel(1)->setPosition(w3);
 	}
 }

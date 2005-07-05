@@ -47,7 +47,7 @@ namespace stunts
 		{
 				/*
 				steer.push_back(0.f);
-				steer.push_back(6.f);
+				steer.push_back(4.f);
 				steer.push_back(0.f);
 				*/
 			//Inputs
@@ -277,7 +277,7 @@ namespace stunts
 				fIO->Open(dat, FILE_WRITE_MODE);
 				fIO->PushHeader("steer");
 				steer[0] = 0.f;
-				steer[1] = 6.f;
+				steer[1] = 4.f;
 				steer[2] = 0.f;
 				fIO->PushRecord(steer, sizeof(float)*3);
 			}

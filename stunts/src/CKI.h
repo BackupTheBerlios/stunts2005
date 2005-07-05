@@ -85,12 +85,16 @@ namespace stunts
 		protected:
 
 			static const bool debug_ki = false;
-
+			
+			//sums the time
+			float l_time;
+			
 			float steer;
 			float acc;
 			float brake;
 
 			float waypointTime;
+			float stayTime;
 
 
 			virtual nrResult taskInit();
@@ -121,6 +125,9 @@ namespace stunts
 
 			void computeStrategy();
 
+			
+			void lowrider(float delaySeconds);
+	
 
 			void computeGear();
 			void computeDirection();
