@@ -1,6 +1,5 @@
 material Water/normal
 {
-	receive_shadows off
 
 	technique
 	{

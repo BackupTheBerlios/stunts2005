@@ -118,13 +118,6 @@ namespace stunts
 			
 		}
 		
-		// now unload the water material, so we can load it again
-		// if we do load the terrain again
-		try{
-			//MaterialManager::getSingleton().getByName(mWaterMaterial)->reload();
-			//MaterialManager::getSingleton().remove(mWaterMaterial);
-		}catch(...){}
-		
 		// remove terrain objects
 		mRaySceneQuery.reset();
 		
@@ -168,7 +161,8 @@ namespace stunts
 				*mWaterPlane, 5000, 5000,
 				1, 1, true, 1, 1, 1, Vector3::UNIT_Z);
 			mWaterPlaneEnt = mSceneMgr->createEntity( "Terrain_WaterPlane", "Terrain_WaterReflectionPlane" );
-			
+			mWaterPlaneEnt->setCastShadows(false);
+
 			// Attach to the scene manager
 			mWaterNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
 			
@@ -222,12 +216,16 @@ namespace stunts
 		}
 
 	}
-	
+
 	//----------------------------------------------------------------------
 	void CTerrain::preRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
 	{
 		// Hide plane
 		mWaterPlaneEnt->setVisible(false);
+
+		mCurrentShadowTechnique = COgreTask::GetSingleton().mSceneMgr->getShadowTechnique();
+		COgreTask::GetSingleton().mSceneMgr->setShadowTechnique(SHADOWTYPE_NONE);
+
 	}
 	
 	//----------------------------------------------------------------------
@@ -235,6 +233,8 @@ namespace stunts
 	{
 		// Show plane
 		mWaterPlaneEnt->setVisible(true);
+		COgreTask::GetSingleton().mSceneMgr->setShadowTechnique(mCurrentShadowTechnique);
+	
 	}
 
 	//----------------------------------------------------------------------

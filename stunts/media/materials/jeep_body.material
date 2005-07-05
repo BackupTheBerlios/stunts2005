@@ -1,7 +1,7 @@
 
 material Ac3d/Jeep_Body/Mat001_Tex00
 {
-    receive_shadows off
+    receive_shadows on
 	technique
 	{
 		pass

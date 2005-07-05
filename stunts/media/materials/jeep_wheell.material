@@ -1,7 +1,7 @@
 
 material Ac3d/Jeep_WheelL/Mat001_Tex01
 {
-    receive_shadows off
+    receive_shadows on
 	technique
 	{
 		pass
@@ -15,7 +15,7 @@ material Ac3d/Jeep_WheelL/Mat001_Tex01
 }
 material Ac3d/Jeep_WheelL/Mat002_Tex01
 {
-    receive_shadows off
+    receive_shadows on
 	technique
 	{
 		pass

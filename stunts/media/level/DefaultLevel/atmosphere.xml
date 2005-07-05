@@ -13,7 +13,7 @@
 			<name>Sun</name>
 
 			<!-- Shadow properties -->
-			<shadow cause="0" />
+			<shadow cause="1" />
 
 			<!-- Direction and position of this light -->
 			<direction x="1.14" y="-0.22" z="-0.97" />
