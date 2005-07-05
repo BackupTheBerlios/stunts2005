@@ -1,0 +1,14 @@
+Stunts/Intro
+{
+	zorder 500
+
+	container Panel(Stunts/IntroPanel)
+	{
+		left 0
+		top 0
+		width 1.0
+		height 1.0
+		material Stunts/IntroMaterial
+	}
+	
+}

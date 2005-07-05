@@ -1,0 +1,44 @@
+
+material Stunts/IntroMaterial
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			
+			depth_write off
+			scene_blend alpha_blend
+
+			diffuse 1.0 1.0 1.0
+			
+			texture_unit
+			{
+				texture GuiDemoBG.jpg
+			}
+		}
+	}
+}
+
+material Stunts/MainMenuBG
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			
+			depth_write off
+			scene_blend alpha_blend
+
+			diffuse 1.0 1.0 1.0
+			
+			texture_unit
+			{
+				texture main_menu_bg.jpg
+			}
+		}
+	}
+}
+
+
