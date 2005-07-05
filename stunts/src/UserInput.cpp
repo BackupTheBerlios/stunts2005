@@ -42,6 +42,8 @@ namespace stunts
 
 		mInputDevice = NULL;
 		mCamera = NULL;
+
+		mCamMode = 0;
 	}
 
 
@@ -68,13 +70,9 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	nrResult CUserInput::taskStart()
 	{
+		mCamMode = 0;
+
 		if (!COgreTask::isValid())
-
-		/*
-				std::cout << "escape  (init)  "<< (unsigned int)Ogre::KC_ESCAPE <<"\n";
-				std::cout << "camRight  (init)  "<< (unsigned int)Ogre::KC_D <<"\n";
-		*/
-
 		{
 			nrLog.Log(NR_LOG_APP, "CUserInput::taskStart(): Error in getting\
 				OgreTask");
@@ -116,6 +114,9 @@ namespace stunts
 
 				keymap["yawMinus"] 	= (unsigned int)Ogre::KC_RIGHT;
 				keymap["yawPlus"] 	= (unsigned int)Ogre::KC_LEFT;
+
+				keymap["camSelect0"] 	= (unsigned int)Ogre::KC_F1;
+				keymap["camSelect1"] 	= (unsigned int)Ogre::KC_F2;
 
 				//car control
 				keymap["carAccelerate"]	= (unsigned int)Ogre::KC_I;
@@ -211,7 +212,7 @@ namespace stunts
 		}
 
 
-	if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["camLeft"]))
+		if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["camLeft"]))
         {
             // Move camera left
             mTranslateVector.x = -mMoveScale;
@@ -259,6 +260,17 @@ namespace stunts
             mCamera->yaw(mRotScale);
         }
 
+
+        if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["camSelect0"]))
+        {
+            mCamMode = 0;
+        }
+
+        if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["camSelect1"]))
+        {
+            mCamMode = 1;
+        }
+
 /*
         if (mInputDevice->isKeyDown((Ogre::KeyCode)Ogre::KC_F))
         {
@@ -286,49 +298,12 @@ namespace stunts
         }
 */
 
-        /* Rotation factors, may not be used if the second mouse button is pressed. */
-
-        /* If the second mouse button is pressed, then the mouse movement results in
-           sliding the camera, otherwise we rotate. */
-        if( mInputDevice->getMouseButton( 1 ) )
-        {
-            mTranslateVector.x += mInputDevice->getMouseRelativeX() * 0.13;
-            mTranslateVector.y -= mInputDevice->getMouseRelativeY() * 0.13;
-        }
-        else
-        {
-            mRotX = Ogre::Degree(-mInputDevice->getMouseRelativeX() * 0.13);
-            mRotY = Ogre::Degree(-mInputDevice->getMouseRelativeY() * 0.13);
-        }
+		//chose the right camera model
+		if (controlObject == NULL)
+			mCamMode = 1;
 
 
-        // app specific
-        mCamera->yaw(mRotX);
-        mCamera->pitch(mRotY);
-        mCamera->moveRelative(mTranslateVector);
-
-		mTranslateVectorTerrain = mCamera->getPosition();
-
-		bool rval;
-
-		if (mTerrain != NULL)
-			rval = mTerrain->getHeight(mTranslateVectorTerrain);
-		else
-		{
-			mTerrain = mLevel->Terrain();
-			rval = false;
-		}
-
-		if (rval && (mCamera->getPosition().y < (mTranslateVectorTerrain.y + 10)))
-		{
-			mCamera->setPosition(mTranslateVectorTerrain.x,
-				mTranslateVectorTerrain.y + 10,
-				mTranslateVectorTerrain.z);
-		}
-
-
-        //car camera
-		/*if (controlObject != NULL)
+		if (mCamMode == 0)        //car camera far
 		{
 			const Real followFactor = 0.05;
 			const Real camHeight = 5.0;
@@ -344,8 +319,47 @@ namespace stunts
 
 			mCamera->move( (toCam - mCamera->getPosition()) * followFactor );
 			mCamera->lookAt(controlObject->ODEVehicle()->getSceneNode()->getPosition() + ((controlObject->ODEVehicle()->getSceneNode()->getOrientation() * Vector3::UNIT_Z) * camLookAhead));
-		}*/
+		}
+		else		//free camera
+		{
+			/* Rotation factors, may not be used if the second mouse button is pressed
+			   If the second mouse button is pressed, then the mouse movement results in
+			   sliding the camera, otherwise we rotate. */
+			if( mInputDevice->getMouseButton( 1 ) )
+			{
+				mTranslateVector.x += mInputDevice->getMouseRelativeX() * 0.13;
+				mTranslateVector.y -= mInputDevice->getMouseRelativeY() * 0.13;
+			}
+			else
+			{
+				mRotX = Ogre::Degree(-mInputDevice->getMouseRelativeX() * 0.13);
+				mRotY = Ogre::Degree(-mInputDevice->getMouseRelativeY() * 0.13);
+			}
 
+			// app specific
+			mCamera->yaw(mRotX);
+			mCamera->pitch(mRotY);
+			mCamera->moveRelative(mTranslateVector);
+
+			mTranslateVectorTerrain = mCamera->getPosition();
+
+			bool rval;
+
+			if (mTerrain != NULL)
+				rval = mTerrain->getHeight(mTranslateVectorTerrain);
+			else
+			{
+				mTerrain = mLevel->Terrain();
+				rval = false;
+			}
+
+			if (rval && (mCamera->getPosition().y < (mTranslateVectorTerrain.y + 10)))
+			{
+				mCamera->setPosition(mTranslateVectorTerrain.x,
+					mTranslateVectorTerrain.y + 10,
+					mTranslateVectorTerrain.z);
+			}
+		}
 	}
 
 
@@ -458,6 +472,19 @@ namespace stunts
 			keyCommand = yawPlusstr ? axtoi( (yawPlusstr)) : (unsigned int)Ogre::KC_LEFT;
 
 			keymap["yawPlus"] = keyCommand;
+
+
+			subElem = elem->FirstChildElement("camSelect0");
+			const char *camSelect0str = subElem->GetText();
+			keyCommand = camSelect0str ? axtoi( (camSelect0str)) : (unsigned int)Ogre::KC_F1;
+
+			keymap["camSelect0"] = keyCommand;
+
+			subElem = elem->FirstChildElement("camSelect1");
+			const char *camSelect1str = subElem->GetText();
+			keyCommand = camSelect1str ? axtoi( (camSelect1str)) : (unsigned int)Ogre::KC_F2;
+
+			keymap["camSelect1"] = keyCommand;
 
 
 			//car control

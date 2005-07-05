@@ -83,19 +83,20 @@ namespace stunts
 			virtual nrResult taskStop();
 
 
-			CLevel*				mLevel;
+			CLevel*					mLevel;
 			Ogre::InputReader*		mInputDevice;
 			Ogre::Camera*			mCamera;
 
 			boost::shared_ptr< CTerrain >	mTerrain;
 
+			int mCamMode;
+
 
 			// declare empty container (string -> map)
 			typedef std::map<std::string, unsigned int> inputmap;
+
 			// create empty container
 			inputmap keymap;
-
-
 			bool mActivated;
 
 
@@ -117,7 +118,7 @@ namespace stunts
 
 			//human player car
 			boost::shared_ptr<CCarObject>					controlObject;
-			
+
 
 	};
 }	//namespace stunts
