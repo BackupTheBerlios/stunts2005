@@ -26,11 +26,4 @@
 
 	</level>
 
-	<level>
-		<name name="Goal" path="TestLevel3" />
-		<author name="elowar" datestr="Irgendwannmal" />
-		<thumbnail count="0" file="thumb_%i.png" />
-
-	</level>
-
 </levels>
