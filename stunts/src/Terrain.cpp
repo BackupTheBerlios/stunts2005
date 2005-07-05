@@ -63,7 +63,44 @@ namespace stunts
 	//----------------------------------------------------------------------
 	CTerrain::~CTerrain()
 	{
+
+		// remove water surface
+		if (mWaterNode)
+		{
+			mWaterNode->detachAllObjects();
+			COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->removeAndDestroyChild(mWaterNode->getName());
+		}
+
+		if (mWaterPlaneEnt)
+		{
+			COgreTask::GetSingleton().mSceneMgr->removeEntity(mWaterPlaneEnt);
+			mWaterPlaneEnt = NULL;
+		}
+
+		if (mWaterPlane)
+		{
+			delete mWaterPlane;
+			mWaterPlane = NULL;
+		}
+
+		// remove reflection camera
+		if (mReflectCam)
+		{
+			COgreTask::GetSingleton().mSceneMgr->removeCamera(mReflectCam);
+			mReflectCam = NULL;
+		}
+
+		Ogre::RenderTarget* t = COgreTask::GetSingleton().mRenderer->getRenderTarget("Terrain_WaterRttTex");
+		if (t)
+		{
+			t->removeAllListeners();
+			t->removeAllViewports();
+			COgreTask::GetSingleton().mRenderer->destroyRenderTexture("Terrain_WaterRttTex");
+		}
+
 		
+		
+		// remove terrain objects
 		mRaySceneQuery.reset();
 		
 		mTerrain.reset();
@@ -116,7 +153,7 @@ namespace stunts
 			mWaterNode->translate(0, mWaterHeight, 0);
 	
 			// Create reflection on the water surface
-			RenderTexture* rttTex = COgreTask::GetSingleton().mRoot->getRenderSystem()->createRenderTexture( "Terrain_WaterRttTex", 512, 512, TEX_TYPE_2D, PF_R8G8B8 );
+			RenderTexture* rttTex = COgreTask::GetSingleton().mRenderer->createRenderTexture( "Terrain_WaterRttTex", 512, 512, TEX_TYPE_2D, PF_R8G8B8 );
 			{
 				mReflectCam = mSceneMgr->createCamera("Terrain_ReflectCam");
 				mReflectCam->setNearClipDistance(mCamera->getNearClipDistance());

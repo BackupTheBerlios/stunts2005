@@ -1,0 +1,35 @@
+material Water/normal
+{
+	receive_shadows off
+
+	technique
+	{
+		pass
+		{
+
+			// Blend with the scene
+			scene_blend add
+
+			// Do not write into Depth Buffer
+			depth_write off
+
+			//ambient 0.4 0.4 1.0
+			//diffuse 0.4 0.4 1.0
+			
+			
+			// Water reflection combined with water surface
+			texture_unit
+			{
+				scroll_anim 0.01 0.0
+				texture Water01.jpg
+				rotate_anim 0.0005
+				colour_op_ex blend_manual src_texture src_current 0.35
+			}
+
+
+		} // pass
+		
+	} // technique
+	
+} // material
+ 
