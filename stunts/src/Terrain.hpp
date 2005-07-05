@@ -52,7 +52,9 @@ namespace stunts
 //------------------------------------------------------------------------------
 namespace stunts
 {
-	class CTerrain : public OgreOde::TerrainGeometryHeightListener
+	class CTerrain :
+		public OgreOde::TerrainGeometryHeightListener,
+		public Ogre::RenderTargetListener
 	{
 
 	public:
@@ -89,6 +91,18 @@ namespace stunts
 		*/
 		inline float32 getFriction(){return mFriction;};
 
+		/**
+		 * Updates the terrain.
+		 **/
+		void update();
+
+		/**
+		 * Get from the RenderTargetListener Interface. Will be called through
+		 * Ogre Engine, to say that it now will be rendered
+		 **/
+		void preRenderTargetUpdate(const Ogre::RenderTargetEvent& evt);
+		void postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt);
+
 	protected:
 		void Init(std::string terrainFile);
 
@@ -105,6 +119,16 @@ namespace stunts
 		// OgreODE
 		boost::shared_ptr<OgreOde::TerrainGeometry> mTerrain;
 		float32 mFriction;
+
+		// Water bindings
+		Ogre::Camera*		mReflectCam;
+		Ogre::SceneNode*	mWaterNode;
+		Ogre::MovablePlane* mWaterPlane;
+		Ogre::Entity* 		mWaterPlaneEnt;
+
+		Ogre::Real			mWaterHeight;
+		std::string			mWaterMaterial;
+		
 	};
 }
 

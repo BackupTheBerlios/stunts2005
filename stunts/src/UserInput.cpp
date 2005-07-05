@@ -304,7 +304,7 @@ namespace stunts
 
 
         // app specific
-/*        mCamera->yaw(mRotX);
+        mCamera->yaw(mRotX);
         mCamera->pitch(mRotY);
         mCamera->moveRelative(mTranslateVector);
 
@@ -326,10 +326,10 @@ namespace stunts
 				mTranslateVectorTerrain.y + 10,
 				mTranslateVectorTerrain.z);
 		}
-*/
+
 
         //car camera
-		if (controlObject != NULL)
+		/*if (controlObject != NULL)
 		{
 			const Real followFactor = 0.05;
 			const Real camHeight = 5.0;
@@ -345,7 +345,7 @@ namespace stunts
 
 			mCamera->move( (toCam - mCamera->getPosition()) * followFactor );
 			mCamera->lookAt(controlObject->ODEVehicle()->getSceneNode()->getPosition() + ((controlObject->ODEVehicle()->getSceneNode()->getOrientation() * Vector3::UNIT_Z) * camLookAhead));
-		}
+		}*/
 
 	}
 

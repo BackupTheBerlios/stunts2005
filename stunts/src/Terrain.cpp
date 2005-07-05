@@ -35,6 +35,7 @@ using namespace boost;
 namespace stunts
 {
 
+	//----------------------------------------------------------------------
 	CTerrain::CTerrain(CLevel* level)
 	{
 		//mSceneMgr = COgreTask::GetSingleton().mSceneMgr;
@@ -50,8 +51,16 @@ namespace stunts
 
 		//reset physics members
 		mFriction = 18.0f;
+
+		// Init pointers
+		mReflectCam = NULL;
+		mWaterNode = NULL;
+		mWaterPlane = NULL;
+		mWaterPlaneEnt = NULL;
+		mWaterHeight = 0;
 	}
 
+	//----------------------------------------------------------------------
 	CTerrain::~CTerrain()
 	{
 		
@@ -59,10 +68,9 @@ namespace stunts
 		
 		mTerrain.reset();
 		
-		//COgreTask::GetSingleton().mSceneMgr->removeAllStaticGeometry();
-		
 	}
 
+	//----------------------------------------------------------------------
 	void CTerrain::Init(std::string terrainFile)
 	{
 		//collision functionality
@@ -78,9 +86,103 @@ namespace stunts
 
 
 		mTerrain->setHeightListener(this);
+
+		// Get some engine objects
+		Ogre::SceneManager*	mSceneMgr = COgreTask::GetSingleton().mSceneMgr;
+		Ogre::Camera*		mCamera = COgreTask::GetSingleton().mCamera;
+		Ogre::RenderWindow*	mWindow = COgreTask::GetSingleton().mWindow;
+
+		nrLog.Log(NR_LOG_APP, "CTerrain: Initialize water surface");
+		
+		try
+		{
+
+			// Create water surface
+			mWaterPlane = new MovablePlane("Terrain_WaterReflectPlane");
+			mWaterPlane->d = 0;
+			mWaterPlane->normal = Vector3::UNIT_Y;
+			MeshManager::getSingleton().createPlane("Terrain_WaterReflectionPlane",
+				ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+				*mWaterPlane, 5000, 5000,
+				1, 1, true, 1, 1, 1, Vector3::UNIT_Z);
+			mWaterPlaneEnt = mSceneMgr->createEntity( "Terrain_WaterPlane", "Terrain_WaterReflectionPlane" );
+	
+			// Attach to the scene manager
+			mWaterNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
+			
+			// Attach both the plane entity, and the plane definition
+			mWaterNode->attachObject(mWaterPlaneEnt);
+			mWaterNode->attachObject(mWaterPlane);
+			mWaterNode->translate(0, mWaterHeight, 0);
+	
+			// Create reflection on the water surface
+			RenderTexture* rttTex = COgreTask::GetSingleton().mRoot->getRenderSystem()->createRenderTexture( "Terrain_WaterRttTex", 512, 512, TEX_TYPE_2D, PF_R8G8B8 );
+			{
+				mReflectCam = mSceneMgr->createCamera("Terrain_ReflectCam");
+				mReflectCam->setNearClipDistance(mCamera->getNearClipDistance());
+				mReflectCam->setFarClipDistance(mCamera->getFarClipDistance());
+				mReflectCam->setAspectRatio(
+					(Real)mWindow->getViewport(0)->getActualWidth() /
+					(Real)mWindow->getViewport(0)->getActualHeight());
+				
+				Viewport *v = rttTex->addViewport( mReflectCam );
+				v->setClearEveryFrame( true );
+				v->setBackgroundColour( ColourValue::Black );
+
+				// get the material for water surface
+				MaterialPtr mat = MaterialManager::getSingleton().getByName(mWaterMaterial);
+				TextureUnitState* t = mat->getTechnique(0)->getPass(0)->createTextureUnitState("Terrain_WaterRttTex");
+				
+				// Blend with base texture
+				t->setProjectiveTexturing(true, mReflectCam);
+				rttTex->addListener(this);
+
+				// set up linked reflection
+				mReflectCam->enableReflection(mWaterPlane);
+				// Also clip
+				mReflectCam->enableCustomNearClipPlane(mWaterPlane);
+			}
+			
+			// Give the plane a texture
+			mWaterPlaneEnt->setMaterialName(mWaterMaterial.c_str());
+		
+			nrLog.Log(NR_LOG_APP, "CTerrain: Water was initialized");
+		
+		}catch (Ogre::Exception& excp){
+			nrLog.Log(NR_LOG_APP, "CTerrain: Water surface could not be initilized. %s",
+					excp.getFullDescription().c_str());
+		}
+
+	}
+	
+	//----------------------------------------------------------------------
+	void CTerrain::preRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
+	{
+		// Hide plane
+		mWaterPlaneEnt->setVisible(false);
+	}
+	
+	//----------------------------------------------------------------------
+	void CTerrain::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
+	{
+		// Show plane
+		mWaterPlaneEnt->setVisible(true);
 	}
 
-
+	//----------------------------------------------------------------------
+	void CTerrain::update()
+	{
+		// if camera and water available
+		if (mReflectCam && mWaterPlane)
+		{
+			// Make sure reflection camera is updated too
+			mReflectCam->setOrientation(COgreTask::GetSingleton().mCamera->getOrientation());
+			mReflectCam->setPosition(COgreTask::GetSingleton().mCamera->getPosition());
+		}
+		
+	}
+	
+	//----------------------------------------------------------------------
 	bool CTerrain::getHeight(Ogre::Vector3& pos)
 	{
 
@@ -165,6 +267,36 @@ namespace stunts
 		// get path containing this file
 		std::string mPath = getPathFromFileName(fileName);
 
+		// read the size of the terrain out
+		elem = rootElem->FirstChildElement("size");
+		if (elem)
+		{
+			nrCDator<float> wx (mWidthX);
+			nrCDator<float> wz (mWidthZ);
+
+			wx = std::string(elem->Attribute("widthX"));
+			wz = std::string(elem->Attribute("widthZ"));
+		}
+
+		// read the friction of the terrain out
+		elem = rootElem->FirstChildElement("physics");
+		if (elem)
+		{
+			nrCDator<float> friction(this->mFriction);
+
+			friction = std::string(elem->Attribute("friction"));
+		}
+
+		// read water definition
+		elem = rootElem->FirstChildElement("water");
+		if (elem)
+		{
+			nrCDator<Ogre::Real> height(this->mWaterHeight);
+
+			height = std::string(elem->Attribute("height"));
+			mWaterMaterial = std::string(elem->Attribute("material"));
+		}
+
 		// read out the location of cfg file
 		elem = rootElem->FirstChildElement("config");
 		if (elem){
@@ -186,26 +318,6 @@ namespace stunts
 		}else{
 			nrLog.Log(NR_LOG_APP, "CTerrain::importFromFile(): No Config file definition found !!!");
 			return true;
-		}
-
-		// read the size of the terrain out
-		elem = rootElem->FirstChildElement("size");
-		if (elem)
-		{
-			nrCDator<float> wx (mWidthX);
-			nrCDator<float> wz (mWidthZ);
-
-			wx = std::string(elem->Attribute("widthX"));
-			wz = std::string(elem->Attribute("widthZ"));
-		}
-
-		// read the friction of the terrain out
-		elem = rootElem->FirstChildElement("physics");
-		if (elem)
-		{
-			nrCDator<float> friction(this->mFriction);
-
-			friction = std::string(elem->Attribute("friction"));
 		}
 
 		return false;

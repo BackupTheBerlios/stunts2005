@@ -14,9 +14,7 @@
 		</geometry>
 	</fence>
 
-	<water>
-		<beginBelow>0.0</beginBelow>
-	</water>
+	<water height="5.0" material="Water/normal" />
 
 	<config>terrain.cfg</config>
 </terrain>

@@ -406,6 +406,7 @@ namespace stunts
 
 		//get its friction
 		mTerrainFriction = mTerrain->getFriction();
+		
 	}
 
 	//--------------------------------------------------------------------------
@@ -544,6 +545,9 @@ namespace stunts
 		//executeODE
 		executeODE(COgreTask::GetSingleton().mTimer->getFrameInterval());
 
+		// update the terrain
+		mTerrain->update();
+		
 		return NR_OK;
 	}
 
