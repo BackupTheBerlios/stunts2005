@@ -14,7 +14,7 @@
 			<control name="Human" />
 
 			<posX unit="gridUnits">10</posX>
-			<posY unit="gridUnits">1</posY>
+			<posY type="bottom">0</posY>
 			<posZ unit="gridUnits">13</posZ>
 		</object>
 
@@ -24,10 +24,10 @@
 			<control name="AICar" />
 
 			<posX unit="gridUnits">13</posX>
-			<posY unit="gridUnits">1</posY>
+			<posY type="bottom">0</posY>
 			<posZ unit="gridUnits">10</posZ>
 		</object>
-		
+
 		<!-- this imports all track objects -->
 		<import root="track" file="track.xml" />
 	</objects>

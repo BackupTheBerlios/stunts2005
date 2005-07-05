@@ -1,29 +1,36 @@
 <!-- Here we store information about all levels, that can be found here -->
 <levels>
-	
+
 	<level>
-		<!-- Name of the level and a path containing all level data. Path is relative 
+		<!-- Name of the level and a path containing all level data. Path is relative
 			to this file -->
 		<name name="The Default Level" path="DefaultLevel" />
-		
+
 		<!-- Name of the author and a string containing creating date -->
 		<author name="Psyborg" datestr="Do, 30 Jun, 16:55" />
-		
+
 		<!-- Thumbnails bzw. screenshots showing the level.
 			count is number of thumbnails
 			file file name of the thumbnail containing %i which will be
 			replaced by the thumbnail number according to the count. Count
 			is started by 0. File path is relative to Level Path defined above -->
 		<thumbnail count="3" file="screenshot_%i.png" />
-		
+
 	</level>
-	
+
 
 	<level>
 		<name name="Test" path="TestLevel2" />
 		<author name="Niemand" datestr="Irgendwannmal" />
 		<thumbnail count="0" file="thumb_%i.png" />
-		
+
 	</level>
-	
+
+	<level>
+		<name name="Goal" path="TestLevel3" />
+		<author name="elowar" datestr="Irgendwannmal" />
+		<thumbnail count="0" file="thumb_%i.png" />
+
+	</level>
+
 </levels>

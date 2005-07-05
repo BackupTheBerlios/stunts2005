@@ -138,6 +138,19 @@ namespace stunts
 		computeAcceleration();
 
 		controlObject->setInputs(steer, acc, brake);
+
+
+		/*
+		float delaySecondsOde = delaySeconds;
+
+		while (delaySecondsOde > 0.02)
+		{
+			controlObject->ODEVehicle()->update(0.02);
+			delaySecondsOde -= 0.02;
+		}
+		controlObject->ODEVehicle()->update(delaySecondsOde);
+		*/
+
 		controlObject->ODEVehicle()->update(delaySeconds);
 
 		//std::cout << "CKI::executeKI" << std::endl;

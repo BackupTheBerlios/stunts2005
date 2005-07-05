@@ -123,7 +123,7 @@ namespace stunts
 
 				keymap["carLeft"] 	= (unsigned int)Ogre::KC_J;
 				keymap["carRight"] 	= (unsigned int)Ogre::KC_L;
-				
+
 				keymap["carShiftUp"] 	= (unsigned int)Ogre::KC_Z;
 				keymap["carShiftDown"] 	= (unsigned int)Ogre::KC_H;
 				keymap["carSetAutoBox"]	= (unsigned int)Ogre::KC_M;
@@ -190,9 +190,23 @@ namespace stunts
 				mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carAccelerate"]	),
 				mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carBrake"]  	)
 			);
+
 			if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carShiftUp"]))	controlObject->shiftUp();
 			if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carShiftDown"]))	controlObject->shiftDown();
 			if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carSetAutoBox"]))	controlObject->setAutoBox();
+
+
+			/*
+			float delaySecondsOde = delaySeconds;
+
+			while (delaySecondsOde > 0.02)
+			{
+				controlObject->ODEVehicle()->update(0.02);
+				delaySecondsOde -= 0.02;
+			}
+			controlObject->ODEVehicle()->update(delaySecondsOde);
+			*/
+
 			controlObject->ODEVehicle()->update(delaySeconds);
 		}
 
@@ -290,7 +304,7 @@ namespace stunts
 
 
         // app specific
-        mCamera->yaw(mRotX);
+/*        mCamera->yaw(mRotX);
         mCamera->pitch(mRotY);
         mCamera->moveRelative(mTranslateVector);
 
@@ -312,8 +326,27 @@ namespace stunts
 				mTranslateVectorTerrain.y + 10,
 				mTranslateVectorTerrain.z);
 		}
+*/
 
-        //
+        //car camera
+		if (controlObject != NULL)
+		{
+			const Real followFactor = 0.05;
+			const Real camHeight = 5.0;
+			const Real camDistance = 10.0;
+			const Real camLookAhead = 3.0;
+
+			Quaternion q = controlObject->ODEVehicle()->getSceneNode()->getOrientation();
+			Vector3 toCam = controlObject->ODEVehicle()->getSceneNode()->getPosition();
+
+			toCam.y += camHeight;
+			toCam.z -= camDistance * q.zAxis().z;
+			toCam.x -= camDistance * q.zAxis().x;
+
+			mCamera->move( (toCam - mCamera->getPosition()) * followFactor );
+			mCamera->lookAt(controlObject->ODEVehicle()->getSceneNode()->getPosition() + ((controlObject->ODEVehicle()->getSceneNode()->getOrientation() * Vector3::UNIT_Z) * camLookAhead));
+		}
+
 	}
 
 

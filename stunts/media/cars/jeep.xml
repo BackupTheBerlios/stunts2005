@@ -4,10 +4,6 @@
 
 	<ode name = "Jeep" file="jeep_ode.xml"/>
 
-	<geometry>
-		<stretch x="3.0" y="3.0" z="3.0"/>
-	</geometry>
-
 	<gearbox>
 		<!-- Andi's BMW -->
 		<ratio name="C" value="3.64" />

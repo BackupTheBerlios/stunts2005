@@ -46,7 +46,7 @@ namespace stunts {
 	* Destructor
 	**/
 	COgreTask::~COgreTask(){
-		
+
 		NR_SAFE_DELETE(mRoot);
 
 	}
@@ -164,7 +164,7 @@ namespace stunts {
 		mSceneMgr->setShadowColour(ColourValue(0.5,0.5,0.5));
 		mSceneMgr->setShadowFarDistance(5000.0f);
 		mSceneMgr->setShadowUseInfiniteFarPlane(true);
-		
+
 	}
 
 
@@ -173,11 +173,11 @@ namespace stunts {
 	 **/
 	void COgreTask::destroyScene()
 	{
-		
-		mSceneMgr->clearScene();		
+
+		mSceneMgr->clearScene();
 		mSceneMgr->removeAllCameras();
 		mRoot->getAutoCreatedWindow()->removeAllViewports();
-		
+
 	}
 
 
@@ -207,7 +207,7 @@ namespace stunts {
 		MeshManager::getSingleton().setBoundsPaddingFactor(0.0f);
 
 		// Set default mipmap level (NB some APIs ignore this)
-		TextureManager::getSingleton().setDefaultNumMipmaps(5);
+		TextureManager::getSingleton().setDefaultNumMipmaps(10);
 
 
 		// Setup Rendering Options
@@ -229,7 +229,7 @@ namespace stunts {
 	        // Create the camera
 	        //mCamera.reset(mSceneMgr->createCamera("PlayerCam"));
 	        mCamera = mSceneMgr->createCamera("PlayerCam");
-	
+
 	        // Position it at 500 in Z direction
 	        mCamera->setPosition(Vector3(128,25,128));
 	        // Look back along -Z
@@ -247,11 +247,11 @@ namespace stunts {
 	        // Create one viewport, entire window
 	        Viewport* vp = mWindow->addViewport(mCamera);
 	        vp->setBackgroundColour(ColourValue(0,0,0));
-	
+
 	        // Alter the camera aspect ratio to match the viewport
 	        mCamera->setAspectRatio(
 	            Real(vp->getActualWidth()) / Real(vp->getActualHeight()));
-	
+
 			vp->setOverlaysEnabled(true);
 	}
 
@@ -264,7 +264,7 @@ namespace stunts {
 	        // Load resource paths from config file
 	        ConfigFile cf;
 	        cf.load("../config/resources.cfg");
-	
+
 	        // Go through all sections & settings in the file
 	        ConfigFile::SectionIterator seci = cf.getSectionIterator();
 	        String secName, typeName, archName;
@@ -281,7 +281,7 @@ namespace stunts {
 	                	    archName, typeName, secName);
 	        	}
 	        }
-	
+
 			// Initialise, parse scripts etc
 			ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 	}

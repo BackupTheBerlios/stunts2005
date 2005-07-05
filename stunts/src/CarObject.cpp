@@ -128,9 +128,10 @@ namespace stunts {
 		if (elem)
 		{
 			// Some variables
-			TiXmlElement* 		gear 		= NULL;
-			float32 		ratio 		= 0.0f;
-			std::string 		name;
+			TiXmlElement* gear 		= NULL;
+			float32 ratio 			= 0.0f;
+			std::string name;
+
 			// Set carRatio, if found in XML file this Value will be overwritten
 			float 			carRatio 	= 1.0f;
 
@@ -181,6 +182,11 @@ namespace stunts {
 			};
 
 			nrLog.Log(NR_LOG_APP, "CCarObject::parseSettingsCar(): Gearbox loaded!");
+
+
+			//stretch the car
+			mVehicle->getSceneNode()->scale(m_scale);
+
 			return false;
 		}
 	}
