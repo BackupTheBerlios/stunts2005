@@ -1,48 +1,48 @@
 <?xml version="1.0" ?>
 <GUILayout>
 	<Window Type="DefaultWindow" Name="root">
-		<Window Type="DefaultWindow" Name="Menu">
-			<Property Name="Position" Value="x:0.2 y:0.20" />
-			<Property Name="Size" Value="w:0.6 h:0.7" />
+		<Window Type="TaharezLook/FrameWindow" Name="Menu">
+			<Property Name="Position" Value="x:0.2 y:0.40" />
+			<Property Name="Size" Value="w:0.6 h:0.5" />
 			<Property Name="Alpha" Value="0.600000" />
 			<Property Name="Text" Value="Stunts 2005" />
 			<Window Type="TaharezLook/Button" Name="Main/Start">
-				<Property Name="RelativePosition" Value="x:0.3 y:0.1" />
+				<Property Name="RelativePosition" Value="x:0.3 y:0.2" />
 				<Property Name="AbsoluteSize" Value="w:200 h:45" />
 				<Property Name="Text" Value="Start" />
 			</Window>
 
 			<Window Type="TaharezLook/Button" Name="Main/Unload">
-				<Property Name="RelativePosition" Value="x:0.3 y:0.30" />
+				<Property Name="RelativePosition" Value="x:0.3 y:0.40" />
 				<Property Name="AbsoluteSize" Value="w:200 h:25" />
 				<Property Name="Text" Value="Unload" />
 			</Window>
 			
 			<Window Type="TaharezLook/Button" Name="Main/Level">
-				<Property Name="RelativePosition" Value="x:0.3 y:0.40" />
+				<Property Name="RelativePosition" Value="x:0.3 y:0.55" />
 				<Property Name="AbsoluteSize" Value="w:200 h:25" />
 				<Property Name="Text" Value="Choose Level" />
 			</Window>
 
 			<Window Type="TaharezLook/Button" Name="Main/Options">
-				<Property Name="RelativePosition" Value="x:0.3 y:0.50" />
+				<Property Name="RelativePosition" Value="x:0.3 y:0.70" />
 				<Property Name="AbsoluteSize" Value="w:200 h:25" />
 				<Property Name="Text" Value="Options" />
 			</Window>
 			
 			<Window Type="TaharezLook/Button" Name="Main/Quit">
-				<Property Name="RelativePosition" Value="x:0.3 y:0.60" />
+				<Property Name="RelativePosition" Value="x:0.3 y:0.85" />
 				<Property Name="AbsoluteSize" Value="w:200 h:25" />
 				<Property Name="Text" Value="Quit" />
 			</Window>
 			
 		</Window>
 
-		<Window Type="TaharezLook/StaticText" Name="LogoText">
+		<!--Window Type="TaharezLook/StaticText" Name="LogoText">
 			<Property Name="Alpha" Value="0.500000" />
 			<Property Name="RelativeRect" Value="l:0.035000 t:0.030000 r:0.961251 b:0.090000" />
 			<Property Name="Text" Value="Stunts2005 powered by Ogre3D, nrEngine, CEGUI, FMod, ODE, Tinyxml" />
-		</Window>
+		</Window-->
 		
 	</Window>
 </GUILayout>
