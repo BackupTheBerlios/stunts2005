@@ -1,0 +1,29 @@
+// Ogre overlay scripts
+Stunts/Gui/Main
+{
+	zorder 500
+	
+	container Panel(Stunts/Gui/Main/Background)
+	{	
+		top 0
+		left 0
+		width 1.0
+		height 1.0
+		material Stunts/Gui/GuiBackground
+	}
+}
+
+// A silly example of how you would do a 3D cockpit
+//Examples/KnotCockpit
+//{
+//	zorder 100
+//	entity knot.mesh(hudKnot)
+//	{
+//		position 0 0 -50
+//		rotation 0 0 0 0
+//	}
+//
+//}
+
+
+
