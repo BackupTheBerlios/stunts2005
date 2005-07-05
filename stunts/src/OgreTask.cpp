@@ -79,6 +79,9 @@ namespace stunts {
  		// Create the scene
         createScene();
 
+		// show the logo
+		showIntro();
+		
 		return NR_OK;
 	}
 
@@ -92,7 +95,7 @@ namespace stunts {
 		// create the timer interface
 		mTimer.reset (new nrCTimer(nrCClock::GetSingleton()));
 		nrCClock::GetSingleton().addObserver(mTimer);
-
+		
 		// OK
 		return NR_OK;
 	}
@@ -133,18 +136,6 @@ namespace stunts {
 
         // Set ambient light
         mSceneMgr->setAmbientLight(ColourValue(0.0, 0.0, 0.0));
-
-        // Create a light
-        //Light* l = mSceneMgr->createLight("MainLight");
-        //l->setPosition(20,80,50);
-
-        // Fog
-        //ColourValue fadeColour(0.93, 0.86, 0.76);
-        //mSceneMgr->setFog( FOG_LINEAR, fadeColour, .001, 500, 1000);
-        //mWindow->getViewport(0)->setBackgroundColour(fadeColour);
-
-		// Load game data
-        //mSceneMgr -> setWorldGeometry("../config/terrain.cfg");
 
         // Infinite far plane?
         if (mRoot->getRenderSystem()->getCapabilities()->hasCapability(RSC_INFINITE_FAR_PLANE))
@@ -188,7 +179,6 @@ namespace stunts {
 	{
 
 		bool ok = mRoot->restoreConfig();
-		//bool ok = mRoot->showConfigDialog();
 
 		//attention: plugins.cfg must be in the root folder or
 		//	a segfault will occur!
@@ -197,7 +187,6 @@ namespace stunts {
 			mWindow = mRoot->initialise(true, "Stunts2005");
 		}
 		// Create scene manager
-		//mSceneMgr.reset(mRoot->getSceneManager(ST_EXTERIOR_CLOSE));
 		mSceneMgr = mRoot->getSceneManager(ST_EXTERIOR_CLOSE);
 
 		// Get Render System
@@ -208,14 +197,6 @@ namespace stunts {
 
 		// Set default mipmap level (NB some APIs ignore this)
 		TextureManager::getSingleton().setDefaultNumMipmaps(10);
-
-
-		// Setup Rendering Options
-		//mRenderer->setShadingType(SO_GOURAUD);
-		//mRenderer->setLightingEnabled(true);
-		//mRenderer->setNormaliseNormals(true);
-
-		// Setup some Ogre-Properties
 
 		return ok;
 	}
@@ -284,6 +265,60 @@ namespace stunts {
 
 			// Initialise, parse scripts etc
 			ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+	}
+
+	/**
+	 * Shows the Ogre-Log on the screen for a some time
+	 **/
+	void COgreTask::showIntro()
+	{
+		using namespace Ogre;
+
+		Overlay* ov = OverlayManager::getSingleton().getByName("Ogre/Intro");
+		if (ov)
+		{
+			// show the Ogre-logo
+			ov->show();
+
+			// now get the material for the logo
+			MaterialPtr mat = MaterialManager::getSingleton().getByName("Ogre/IntroMaterial");
+			TextureUnitState* state = NULL;
+			//Pass* state = NULL;
+			if (mat.get() != NULL){
+				state = mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
+			}
+			
+			// create a timer
+			Timer* timer = PlatformManager::getSingleton().createTimer();
+			if (timer && state)
+			{
+				// now hold on for some time
+				unsigned long stopTime = timer->getMilliseconds() + 1500;
+				unsigned long startTime = timer->getMilliseconds();
+				
+				while (timer->getMilliseconds() < stopTime)
+				{
+					float value = float(timer->getMilliseconds() - startTime) / float(stopTime - startTime);
+					fprintf(stderr, "%f\n", value);
+					
+					state->setAlphaOperation(LBX_MODULATE,LBS_TEXTURE,LBS_MANUAL, 1.0, value);
+					mRoot->renderOneFrame();
+				}
+
+				while (timer->getMilliseconds() < stopTime + 2500)
+				{
+					mRoot->renderOneFrame();
+				}
+								
+				// destroy the timer
+				PlatformManager::getSingleton().destroyTimer(timer);
+				
+			}
+			// now cleanup data
+			OverlayManager::getSingleton().destroy(ov);
+			
+		}
+		
 	}
 }
 

@@ -70,7 +70,8 @@ namespace stunts {
 		void createViewports();
 		void setupResources();
 
-
+		void showIntro();
+		
 	public:	//for testing issues
 		Ogre::Root* 			mRoot;
 		Ogre::RenderWindow* 	mWindow;

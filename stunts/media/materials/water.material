@@ -26,9 +26,9 @@ material Water/normal
 			}
 
 
-		} // pass
+		}
 		
-	} // technique
+	}
 	
-} // material
+}
  
