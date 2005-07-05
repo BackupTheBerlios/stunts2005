@@ -293,19 +293,18 @@ namespace stunts {
 			if (timer && state)
 			{
 				// now hold on for some time
-				unsigned long stopTime = timer->getMilliseconds() + 1500;
+				unsigned long stopTime = timer->getMilliseconds() + 1000;
 				unsigned long startTime = timer->getMilliseconds();
 				
 				while (timer->getMilliseconds() < stopTime)
 				{
 					float value = float(timer->getMilliseconds() - startTime) / float(stopTime - startTime);
-					fprintf(stderr, "%f\n", value);
 					
 					state->setAlphaOperation(LBX_MODULATE,LBS_TEXTURE,LBS_MANUAL, 1.0, value);
 					mRoot->renderOneFrame();
 				}
 
-				while (timer->getMilliseconds() < stopTime + 2500)
+				while (timer->getMilliseconds() < stopTime + 1500)
 				{
 					mRoot->renderOneFrame();
 				}
