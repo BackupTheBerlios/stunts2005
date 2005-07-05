@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.cpp,v 1.12 2005/07/05 22:17:57 psyborg Exp $ */
+/* CVS $Id: CGuiTask.cpp,v 1.13 2005/07/05 23:17:40 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele, Art Tevs
  *
- *  @version CVS $Revision: 1.12 $
- *  @date    CVS $Date: 2005/07/05 22:17:57 $
+ *  @version CVS $Revision: 1.13 $
+ *  @date    CVS $Date: 2005/07/05 23:17:40 $
  */
 
 
@@ -130,7 +130,10 @@ namespace stunts
 		if (e->getKey() == KC_ESCAPE)
 		{
 			e->consume();
-			mActive = !mActive;
+			if (mActive)
+				hideGUI();
+			else
+				showGUI();
 			return;
 		}
 	
@@ -216,12 +219,24 @@ namespace stunts
 	void CGuiTask::showGUI(){
 		mActive = true;
 		CEGUI::MouseCursor::getSingleton().show();
+
+		// activate the last current page
+		selectPage(mCurrent->PageName());
 	}
 
 	/** Hides the Gui */
 	void CGuiTask::hideGUI(){
 		mActive = false;
 		CEGUI::MouseCursor::getSingleton().hide();
+
+		// now go through all elemnts and deactivate them
+		map<std::string, CGuiPage*>::iterator it = mPages.begin();
+		while (it != mPages.end())
+		{
+			it->second->pageDeactivate();
+			it ++;
+		}
+		
 	}
 
 	/** Actions upon initialization of task by engine. */

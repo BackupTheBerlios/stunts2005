@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiPage.cpp,v 1.5 2005/07/05 23:03:11 psyborg Exp $ */
+/* CVS $Id: CGuiPage.cpp,v 1.6 2005/07/05 23:17:40 psyborg Exp $ */
 
 /** @file
  *  GUI Page container for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.5 $
- *  @date    CVS $Date: 2005/07/05 23:03:11 $
+ *  @version CVS $Revision: 1.6 $
+ *  @date    CVS $Date: 2005/07/05 23:17:40 $
  */
 
 
@@ -73,7 +73,7 @@ namespace stunts{
 		if (mGUISheet){
 			mGUISheet->activate();
 			mGUISheet->show();
-		//	if (mBgOverlay)mBgOverlay->show();
+			if (mBgOverlay)mBgOverlay->show();
 		}
 	}
 	
