@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiPage.h,v 1.3 2005/06/27 01:19:17 psyborg Exp $ */
+/* CVS $Id: CGuiPage.h,v 1.4 2005/07/05 23:03:11 psyborg Exp $ */
 
 /** @file
  *  GUI Page container for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.3 $
- *  @date    CVS $Date: 2005/06/27 01:19:17 $
+ *  @version CVS $Revision: 1.4 $
+ *  @date    CVS $Date: 2005/07/05 23:03:11 $
  */
 
 
@@ -90,6 +90,9 @@ namespace stunts
 	
 		/* CEGUI - Sheet interface */
 		CEGUI::Window*		mGUISheet;
+
+		//! Hold the overlay for background image
+		Ogre::Overlay*		mBgOverlay;
 		
 	};
 

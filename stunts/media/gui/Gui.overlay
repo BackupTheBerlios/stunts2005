@@ -1,4 +1,8 @@
-// Ogre overlay scripts
+//----------------------------------------------
+//	Here we store overlay for background images for every Gui-Page
+//----------------------------------------------
+
+// This is our main manu
 Stunts/Gui/Main
 {
 	zorder 500
@@ -12,6 +16,38 @@ Stunts/Gui/Main
 		material Stunts/Gui/GuiBackground
 	}
 }
+
+
+// This is our level choosing menu
+Stunts/Gui/MainLevel
+{
+	zorder 500
+	
+	container Panel(Stunts/Gui/MainLevel/Background)
+	{	
+		top 0
+		left 0
+		width 1.0
+		height 1.0
+		material Stunts/Gui/GuiBackground
+	}
+}
+
+// This is our option menu
+Stunts/Gui/MainOption
+{
+	zorder 500
+	
+	container Panel(Stunts/Gui/MainOption/Background)
+	{	
+		top 0
+		left 0
+		width 1.0
+		height 1.0
+		material Stunts/Gui/GuiBackground
+	}
+}
+
 
 // A silly example of how you would do a 3D cockpit
 //Examples/KnotCockpit

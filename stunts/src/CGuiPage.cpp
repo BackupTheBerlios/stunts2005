@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiPage.cpp,v 1.4 2005/06/27 01:19:17 psyborg Exp $ */
+/* CVS $Id: CGuiPage.cpp,v 1.5 2005/07/05 23:03:11 psyborg Exp $ */
 
 /** @file
  *  GUI Page container for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.4 $
- *  @date    CVS $Date: 2005/06/27 01:19:17 $
+ *  @version CVS $Revision: 1.5 $
+ *  @date    CVS $Date: 2005/07/05 23:03:11 $
  */
 
 
@@ -19,6 +19,7 @@ using std::map;
 #include <CEGUI/CEGUI.h>
 #include <OGRE/OgreCEGUIRenderer.h>
 
+#include <OGRE/Ogre.h>
 
 namespace stunts{
 	
@@ -37,12 +38,22 @@ namespace stunts{
 			mGUISheet = CEGUI::WindowManager::getSingleton().createWindow
 					((CEGUI::utf8*)"DefaultGUISheet",(CEGUI::utf8*)(PageName + "__No_Name").c_str());
 		}
-	
+
+		std::string name = "Stunts/Gui/";
+		name += PageName;
+		
+		mBgOverlay = Ogre::OverlayManager::getSingleton().getByName(name.c_str());
 	}
 	
 	
 	/** Destructor. Clean up heap objects. */
 	CGuiPage::~CGuiPage() {
+
+		// now cleanup data
+		if (mBgOverlay)
+			Ogre::OverlayManager::getSingleton().destroy(mBgOverlay);
+
+		
 		vector<CGuiObject*>::iterator i;
 		for( i = mObjects.begin(); i != mObjects.end(); i++ )
 			delete (*i);
@@ -62,6 +73,7 @@ namespace stunts{
 		if (mGUISheet){
 			mGUISheet->activate();
 			mGUISheet->show();
+		//	if (mBgOverlay)mBgOverlay->show();
 		}
 	}
 	
@@ -70,6 +82,7 @@ namespace stunts{
 		if (mGUISheet){
 			mGUISheet->deactivate();
 			mGUISheet->hide();
+			if (mBgOverlay)mBgOverlay->hide();
 		}
 	}
 	
