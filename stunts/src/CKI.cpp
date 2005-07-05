@@ -179,7 +179,8 @@ namespace stunts
 			
 			if( waypoint->getNext() != NULL )
 			{
-				std::cout << "\nspeed  \n" <<controlObject->getSpeed(); 
+				//std::cout << "\nspeed  \n" <<controlObject->getSpeed();
+				
 				//falls du zu lange brauchst deinen Punkt zu finden
 				if(controlObject->getSpeed() < 1.f)
 				{
