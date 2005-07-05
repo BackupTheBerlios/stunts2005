@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.cpp,v 1.11 2005/07/03 20:34:54 psyborg Exp $ */
+/* CVS $Id: CGuiTask.cpp,v 1.12 2005/07/05 22:17:57 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele, Art Tevs
  *
- *  @version CVS $Revision: 1.11 $
- *  @date    CVS $Date: 2005/07/03 20:34:54 $
+ *  @version CVS $Revision: 1.12 $
+ *  @date    CVS $Date: 2005/07/05 22:17:57 $
  */
 
 
@@ -283,7 +283,10 @@ namespace stunts
 	/** Actions upon starting of task by engine. */
 	nrResult CGuiTask::taskStart() {		
 		CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
-        wmgr.getWindow((CEGUI::utf8*)"Main/Quit")
+
+
+		//----------------------------------------------------------
+		wmgr.getWindow((CEGUI::utf8*)"Main/Quit")
 			->subscribeEvent(
 				CEGUI::PushButton::EventClicked, 
 				CEGUI::Event::Subscriber(&CGuiTask::handleQuit, this));
@@ -298,15 +301,39 @@ namespace stunts
 				CEGUI::PushButton::EventClicked, 
 				CEGUI::Event::Subscriber(&CGuiTask::handleUnload, this));
 
+		
+		//----------------------------------------------------------
         wmgr.getWindow((CEGUI::utf8*)"Main/Level")
 			->subscribeEvent(
 				CEGUI::PushButton::EventClicked, 
 				CEGUI::Event::Subscriber(&CGuiTask::handleLevel, this));
-
-        wmgr.getWindow((CEGUI::utf8*)"Main/Level/OK")
+        
+		wmgr.getWindow((CEGUI::utf8*)"Main/Level/OK")
 			->subscribeEvent(
 				CEGUI::PushButton::EventClicked, 
 				CEGUI::Event::Subscriber(&CGuiTask::handleLevelOK, this));
+
+        
+		//----------------------------------------------------------
+		wmgr.getWindow((CEGUI::utf8*)"Main/Option")
+			->subscribeEvent(
+				CEGUI::PushButton::EventClicked, 
+				CEGUI::Event::Subscriber(&CGuiTask::handleOption, this));
+		
+        wmgr.getWindow((CEGUI::utf8*)"Main/Option/OK")
+			->subscribeEvent(
+				CEGUI::PushButton::EventClicked, 
+				CEGUI::Event::Subscriber(&CGuiTask::handleOptionOK, this));
+
+        wmgr.getWindow((CEGUI::utf8*)"Main/Option/UseShadows")
+			->subscribeEvent(
+				CEGUI::Checkbox::EventCheckStateChanged,
+				CEGUI::Event::Subscriber(&CGuiTask::handleOptionChange, this));
+		
+        wmgr.getWindow((CEGUI::utf8*)"Main/Option/UseShadowsInWater")
+			->subscribeEvent(
+				CEGUI::Checkbox::EventCheckStateChanged,
+				CEGUI::Event::Subscriber(&CGuiTask::handleOptionChange, this));
 
 		// load all screenshot images into the vector
 		std::vector<CLevelManager::LevelData>& levels = CLevelManager::GetSingleton().getAllLevelData();
@@ -450,6 +477,7 @@ namespace stunts
 		return true;
 	}
 	
+	
 	bool CGuiTask::handleLevelSelected(const CEGUI::EventArgs& e)
 	{
 
@@ -544,6 +572,48 @@ namespace stunts
 		/*
 		mTip->setText((CEGUI::utf8*)"");
 		*/
+		return true;
+	}
+
+
+	bool CGuiTask::handleOption(const CEGUI::EventArgs& e)
+	{
+		selectPage("MainOption");
+		
+		return true;
+	}
+	
+	bool CGuiTask::handleOptionOK(const CEGUI::EventArgs& e)
+	{
+
+		selectPage("Main");
+		
+		return true;
+	}
+
+	
+	/** Activate this event if something changed with checkboxes **/
+	bool CGuiTask::handleOptionChange(const CEGUI::EventArgs& e)
+	{
+		CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
+
+		// get all checkboxes
+		CEGUI::Checkbox* mUseShadows = static_cast<CEGUI::Checkbox*>(wmgr.getWindow((CEGUI::utf8*)"Main/Option/UseShadows"));
+		CEGUI::Checkbox* mUseShadowsInWater = static_cast<CEGUI::Checkbox*>(wmgr.getWindow((CEGUI::utf8*)"Main/Option/UseShadowsInWater"));
+
+		// check the state of the checkboxes
+		if (mUseShadows->isSelected()){
+			nrSettings.get("use_shadows") = std::string("1");
+		}else{
+			nrSettings.get("use_shadows") = std::string("0");
+		}
+
+		if (mUseShadowsInWater->isSelected()){
+			nrSettings.get("use_shadows_in_water") = std::string("1");
+		}else{
+			nrSettings.get("use_shadows_in_water") = std::string("0");
+		}
+				
 		return true;
 	}
 

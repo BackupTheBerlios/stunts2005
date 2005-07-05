@@ -49,6 +49,9 @@ namespace stunts
 		mShouldLoadLevel = false;
 		mIsCurrentLoaded = false;
 
+		mUseShadows = 0;
+		mShadowTechnique = COgreTask::GetSingleton().mSceneMgr->getShadowTechnique();
+
 		registerAllVars();
 	}
 
@@ -171,6 +174,8 @@ namespace stunts
 		nrSettingsRegisterString(mLevelToLoad, 	"level_file");
 
 		nrSettingsRegister(bool, mShouldLoadLevel, 	"load_level");
+		nrSettingsRegister(bool, mUseShadows, 		"use_shadows");
+
 	}
 
 
@@ -179,6 +184,7 @@ namespace stunts
 	{
 		nrSettings.deregisterVariable("level_file");
 		nrSettings.deregisterVariable("load_level");
+		nrSettings.deregisterVariable("use_shadows");
 	}
 
 
@@ -294,6 +300,21 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	nrResult CLevelManager::taskUpdate()
 	{
+		// check whenever we have shadows acitvated
+		static bool oldShadowMode = true;
+		
+		if (mUseShadows != oldShadowMode)
+		{
+		fprintf(stderr, "%d\n", mUseShadows);
+			oldShadowMode = mUseShadows;
+			if (mUseShadows){
+				COgreTask::GetSingleton().mSceneMgr->setShadowTechnique(mShadowTechnique);
+			}else{
+				mShadowTechnique = COgreTask::GetSingleton().mSceneMgr->getShadowTechnique();
+				COgreTask::GetSingleton().mSceneMgr->setShadowTechnique(SHADOWTYPE_NONE);
+			}
+		}
+		
 		// if we are forced to load the level file
 		if (mShouldLoadLevel && (mLevelToLoad.length() > 0) && (COgreTask::GetSingleton().mSceneMgr != NULL)){
 			mShouldLoadLevel = false;

@@ -59,6 +59,9 @@ namespace stunts {
     // These internal methods package up the stages in the startup process
     bool initialize();
 
+	/** Shows the startup logo */
+	void showIntro();
+	
   };
 
 }	//namespace

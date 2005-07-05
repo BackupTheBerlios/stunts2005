@@ -59,11 +59,16 @@ namespace stunts
 		mWaterPlaneEnt = NULL;
 		mWaterHeight = 0;
 		mWaterRttiTexUnit = NULL;
+		mUseShadowsInWater = false;
+
+		// register variables
+		nrSettingsRegister(bool, mUseShadowsInWater, "use_shadows_in_water");
 	}
 
 	//----------------------------------------------------------------------
 	CTerrain::~CTerrain()
 	{
+		nrSettings.deregisterVariable("use_shadows_in_water");
 
 		// remove water surface
 		if (mWaterNode)
@@ -222,10 +227,14 @@ namespace stunts
 	{
 		// Hide plane
 		mWaterPlaneEnt->setVisible(false);
-
+		
 		mCurrentShadowTechnique = COgreTask::GetSingleton().mSceneMgr->getShadowTechnique();
-		COgreTask::GetSingleton().mSceneMgr->setShadowTechnique(SHADOWTYPE_NONE);
 
+		if (!mUseShadowsInWater)
+		{
+			COgreTask::GetSingleton().mSceneMgr->setShadowTechnique(SHADOWTYPE_NONE);
+		}
+		
 	}
 	
 	//----------------------------------------------------------------------
@@ -233,8 +242,8 @@ namespace stunts
 	{
 		// Show plane
 		mWaterPlaneEnt->setVisible(true);
-		COgreTask::GetSingleton().mSceneMgr->setShadowTechnique(mCurrentShadowTechnique);
-	
+
+		COgreTask::GetSingleton().mSceneMgr->setShadowTechnique(mCurrentShadowTechnique);		
 	}
 
 	//----------------------------------------------------------------------

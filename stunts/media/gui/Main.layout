@@ -24,7 +24,7 @@
 				<Property Name="Text" Value="Choose Level" />
 			</Window>
 
-			<Window Type="TaharezLook/Button" Name="Main/Options">
+			<Window Type="TaharezLook/Button" Name="Main/Option">
 				<Property Name="RelativePosition" Value="x:0.3 y:0.70" />
 				<Property Name="AbsoluteSize" Value="w:200 h:25" />
 				<Property Name="Text" Value="Options" />

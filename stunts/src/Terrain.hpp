@@ -130,6 +130,8 @@ namespace stunts
 		Ogre::Real			mWaterHeight;
 		std::string			mWaterMaterial;
 
+		bool				mUseShadowsInWater;
+		
 	private:
 		Ogre::ShadowTechnique	mCurrentShadowTechnique;
 		

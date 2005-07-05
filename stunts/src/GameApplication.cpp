@@ -94,8 +94,9 @@ namespace stunts
 		// want use timer before Ogre
 		nrCClock::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_FIRST);
 
-		// Add the AI to the Kernel
-
+		// Show intro
+		showIntro();
+		
 		// Create Level Manager
 		CLevelManager::Instantiate();
 		CLevelManager::GetSingleton().loadLevelDescriptions("../media/level/content.xml");
@@ -111,6 +112,7 @@ namespace stunts
 		// this is how you load a page!
 		CGuiTask::GetSingleton().addPage( "Main", "" );
 		CGuiTask::GetSingleton().addPage( "MainLevel", "" );
+		CGuiTask::GetSingleton().addPage( "MainOption", "" );
 		CGuiTask::GetSingleton().selectPage( "Main" );
 		CGuiTask::GetSingleton().rActive() = true;
 
@@ -131,6 +133,74 @@ namespace stunts
 	{
 		nrLog.Log(NR_LOG_APP, "Stunts::quit(): Quit the application");
 		nrKernel.KillAllTasks();
+	}
+
+
+	/**
+	 * Shows the Ogre-Log on the screen for a some time
+	 **/
+	void GameApplication::showIntro()
+	{
+		using namespace Ogre;
+
+		Overlay* ov = OverlayManager::getSingleton().getByName("Stunts/Intro");
+		if (ov)
+		{
+			// show the Ogre-logo
+			ov->show();
+
+			// now get the material for the logo
+			MaterialPtr mat = MaterialManager::getSingleton().getByName("Stunts/IntroMaterial");
+			TextureUnitState* state = NULL;
+	
+			if (mat.get() != NULL){
+				state = mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
+			}
+			
+			// create a timer
+			Timer* timer = PlatformManager::getSingleton().createTimer();
+			if (timer && state)
+			{
+				// now hold on for some time
+				unsigned long stopTime = timer->getMilliseconds() + 800;
+				unsigned long startTime = timer->getMilliseconds();
+
+				// Fade IN				
+				while (timer->getMilliseconds() < stopTime)
+				{
+					float value = float(timer->getMilliseconds() - startTime) / float(stopTime - startTime);
+					
+					state->setAlphaOperation(LBX_MODULATE,LBS_TEXTURE,LBS_MANUAL, 1.0, value);
+					COgreTask::GetSingleton().mRoot->renderOneFrame();
+				}
+
+				// pause
+				stopTime = timer->getMilliseconds() + 1500;
+				while (timer->getMilliseconds() < stopTime)
+				{
+					COgreTask::GetSingleton().mRoot->renderOneFrame();
+				}
+
+				// Fade Out
+				stopTime = timer->getMilliseconds() + 800;
+				startTime = timer->getMilliseconds();
+				while (timer->getMilliseconds() < stopTime)
+				{
+					float value = float(timer->getMilliseconds() - startTime) / float(stopTime - startTime);
+					
+					state->setAlphaOperation(LBX_MODULATE,LBS_TEXTURE,LBS_MANUAL, 1.0, 1.0f - value);
+					COgreTask::GetSingleton().mRoot->renderOneFrame();
+				}
+				
+				// destroy the timer
+				PlatformManager::getSingleton().destroyTimer(timer);
+				
+			}
+			// now cleanup data
+			OverlayManager::getSingleton().destroy(ov);
+			
+		}
+		
 	}
 
 }

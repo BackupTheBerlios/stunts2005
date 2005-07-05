@@ -183,6 +183,13 @@ namespace stunts
 			//! If 1 so the level will be loaded at the next cycle
 			bool						mShouldLoadLevel;
 
+			//! Here we store if we want to use shadows
+			bool						mUseShadows;
+
+			//! Type of the shadows
+			Ogre::ShadowTechnique		mShadowTechnique;
+
+			
 			//----------------------------------------------------
 			// Methods
 			//----------------------------------------------------

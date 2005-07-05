@@ -80,7 +80,10 @@ namespace stunts {
         createScene();
 
 		// show the logo
-		showIntro();
+		//showIntro();
+
+		// show intro from nrEngine		
+		//shownrEngineIntro();
 		
 		return NR_OK;
 	}
@@ -148,10 +151,7 @@ namespace stunts {
         mCamera->setOrientation(Quaternion(-0.3486, 0.0122, 0.9365, 0.0329));
 
 		//set shadows
-		mSceneMgr->setShadowTechnique( SHADOWTYPE_TEXTURE_MODULATIVE );
-#if 1
 		mSceneMgr->setShadowTechnique(SHADOWTYPE_STENCIL_MODULATIVE);
-#endif
 		mSceneMgr->setShadowColour(ColourValue(0.5,0.5,0.5));
 		mSceneMgr->setShadowFarDistance(5000.0f);
 		mSceneMgr->setShadowUseInfiniteFarPlane(true);
@@ -283,7 +283,75 @@ namespace stunts {
 			// now get the material for the logo
 			MaterialPtr mat = MaterialManager::getSingleton().getByName("Ogre/IntroMaterial");
 			TextureUnitState* state = NULL;
-			//Pass* state = NULL;
+	
+			if (mat.get() != NULL){
+				state = mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
+			}
+			
+			// create a timer
+			Timer* timer = PlatformManager::getSingleton().createTimer();
+			if (timer && state)
+			{
+				// now hold on for some time
+				unsigned long stopTime = timer->getMilliseconds() + 700;
+				unsigned long startTime = timer->getMilliseconds();
+
+				// Fade IN				
+				while (timer->getMilliseconds() < stopTime)
+				{
+					float value = float(timer->getMilliseconds() - startTime) / float(stopTime - startTime);
+					
+					state->setAlphaOperation(LBX_MODULATE,LBS_TEXTURE,LBS_MANUAL, 1.0, value);
+					mRoot->renderOneFrame();
+				}
+
+				// pause
+				stopTime = timer->getMilliseconds() + 1500;
+				while (timer->getMilliseconds() < stopTime)
+				{
+					mRoot->renderOneFrame();
+				}
+
+				// Fade Out
+				stopTime = timer->getMilliseconds() + 700;
+				startTime = timer->getMilliseconds();
+				while (timer->getMilliseconds() < stopTime)
+				{
+					float value = float(timer->getMilliseconds() - startTime) / float(stopTime - startTime);
+					
+					state->setAlphaOperation(LBX_MODULATE,LBS_TEXTURE,LBS_MANUAL, 1.0, 1.0f - value);
+					mRoot->renderOneFrame();
+				}
+				
+				// destroy the timer
+				PlatformManager::getSingleton().destroyTimer(timer);
+				
+			}
+			// now cleanup data
+			OverlayManager::getSingleton().destroy(ov);
+			
+		}
+		
+	}
+
+
+	/**
+	 * Shows intro of nrEngine
+	 **/
+	void COgreTask::shownrEngineIntro()
+	{
+		using namespace Ogre;
+
+		Overlay* ov = OverlayManager::getSingleton().getByName("nrEngine/Intro");
+		if (ov)
+		{
+			// show the Ogre-logo
+			ov->show();
+
+			// now get the material for the logo
+			MaterialPtr mat = MaterialManager::getSingleton().getByName("nrEngine/IntroMaterial");
+			TextureUnitState* state = NULL;
+	
 			if (mat.get() != NULL){
 				state = mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
 			}
@@ -319,5 +387,6 @@ namespace stunts {
 		}
 		
 	}
+
 }
 

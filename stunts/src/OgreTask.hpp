@@ -71,6 +71,8 @@ namespace stunts {
 		void setupResources();
 
 		void showIntro();
+
+		void shownrEngineIntro();
 		
 	public:	//for testing issues
 		Ogre::Root* 			mRoot;
