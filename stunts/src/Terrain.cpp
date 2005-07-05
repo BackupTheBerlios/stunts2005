@@ -58,6 +58,7 @@ namespace stunts
 		mWaterPlane = NULL;
 		mWaterPlaneEnt = NULL;
 		mWaterHeight = 0;
+		mWaterRttiTexUnit = NULL;
 	}
 
 	//----------------------------------------------------------------------
@@ -83,13 +84,7 @@ namespace stunts
 			mWaterPlane = NULL;
 		}
 
-		// remove reflection camera
-		if (mReflectCam)
-		{
-			COgreTask::GetSingleton().mSceneMgr->removeCamera(mReflectCam);
-			mReflectCam = NULL;
-		}
-
+		// remove render texture
 		Ogre::RenderTarget* t = COgreTask::GetSingleton().mRenderer->getRenderTarget("Terrain_WaterRttTex");
 		if (t)
 		{
@@ -98,7 +93,37 @@ namespace stunts
 			COgreTask::GetSingleton().mRenderer->destroyRenderTexture("Terrain_WaterRttTex");
 		}
 
+		// remove reflection camera
+		if (mReflectCam)
+		{
+			COgreTask::GetSingleton().mSceneMgr->removeCamera(mReflectCam);
+			mReflectCam = NULL;
+		}
+
+		// now remove the texture unit from the resource, so we can load
+		// the resource later again
+		if (mWaterRttiTexUnit)
+		{
+			MaterialPtr mat = MaterialManager::getSingleton().getByName(mWaterMaterial);
+			Ogre::Pass* pass = mat->getTechnique(0)->getPass(0);
+			
+			for (unsigned short i = 0; i < pass->getNumTextureUnitStates(); i++)
+			{
+				Ogre::TextureUnitState* t = pass->getTextureUnitState(i);
+				if (t->getTextureName() == mWaterRttiTexUnit->getTextureName())
+				{
+					pass->removeTextureUnitState(i);
+				}
+			}
+			
+		}
 		
+		// now unload the water material, so we can load it again
+		// if we do load the terrain again
+		try{
+			//MaterialManager::getSingleton().getByName(mWaterMaterial)->reload();
+			//MaterialManager::getSingleton().remove(mWaterMaterial);
+		}catch(...){}
 		
 		// remove terrain objects
 		mRaySceneQuery.reset();
@@ -143,7 +168,7 @@ namespace stunts
 				*mWaterPlane, 5000, 5000,
 				1, 1, true, 1, 1, 1, Vector3::UNIT_Z);
 			mWaterPlaneEnt = mSceneMgr->createEntity( "Terrain_WaterPlane", "Terrain_WaterReflectionPlane" );
-	
+			
 			// Attach to the scene manager
 			mWaterNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
 			
@@ -155,6 +180,7 @@ namespace stunts
 			// Create reflection on the water surface
 			RenderTexture* rttTex = COgreTask::GetSingleton().mRenderer->createRenderTexture( "Terrain_WaterRttTex", 512, 512, TEX_TYPE_2D, PF_R8G8B8 );
 			{
+
 				mReflectCam = mSceneMgr->createCamera("Terrain_ReflectCam");
 				mReflectCam->setNearClipDistance(mCamera->getNearClipDistance());
 				mReflectCam->setFarClipDistance(mCamera->getFarClipDistance());
@@ -168,10 +194,15 @@ namespace stunts
 
 				// get the material for water surface
 				MaterialPtr mat = MaterialManager::getSingleton().getByName(mWaterMaterial);
-				TextureUnitState* t = mat->getTechnique(0)->getPass(0)->createTextureUnitState("Terrain_WaterRttTex");
+				mWaterRttiTexUnit = mat->getTechnique(0)->getPass(0)->createTextureUnitState("Terrain_WaterRttTex");
+				if (mWaterRttiTexUnit == NULL)
+				{
+					nrLog.Log(NR_LOG_APP, "CTerrain: Check if the water reflection material file is correct");
+					return;
+				}
 				
 				// Blend with base texture
-				t->setProjectiveTexturing(true, mReflectCam);
+				mWaterRttiTexUnit->setProjectiveTexturing(true, mReflectCam);
 				rttTex->addListener(this);
 
 				// set up linked reflection
@@ -182,7 +213,7 @@ namespace stunts
 			
 			// Give the plane a texture
 			mWaterPlaneEnt->setMaterialName(mWaterMaterial.c_str());
-		
+	
 			nrLog.Log(NR_LOG_APP, "CTerrain: Water was initialized");
 		
 		}catch (Ogre::Exception& excp){
@@ -332,6 +363,8 @@ namespace stunts
 
 			height = std::string(elem->Attribute("height"));
 			mWaterMaterial = std::string(elem->Attribute("material"));
+
+			//MaterialManager::getSingleton().load(mWaterMaterial, "General");
 		}
 
 		// read out the location of cfg file

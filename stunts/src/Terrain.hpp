@@ -125,10 +125,12 @@ namespace stunts
 		Ogre::SceneNode*	mWaterNode;
 		Ogre::MovablePlane* mWaterPlane;
 		Ogre::Entity* 		mWaterPlaneEnt;
+		Ogre::TextureUnitState*	mWaterRttiTexUnit;
 
 		Ogre::Real			mWaterHeight;
 		std::string			mWaterMaterial;
-		
+
+
 	};
 }
 
