@@ -286,14 +286,6 @@ namespace stunts
         }
 */
 
-		if (mInputDevice->isKeyDown(Ogre::KC_P)){
-			if ((bool)nrSettings.get("use_shadows"))
-				nrSettings.get("use_shadows") = std::string("0");
-			else
-				nrSettings.get("use_shadows") = std::string("1");
-			
-		}
-		
         /* Rotation factors, may not be used if the second mouse button is pressed. */
 
         /* If the second mouse button is pressed, then the mouse movement results in
