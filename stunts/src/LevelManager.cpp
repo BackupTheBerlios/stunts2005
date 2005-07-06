@@ -50,6 +50,7 @@ namespace stunts
 		mIsCurrentLoaded = false;
 
 		mUseShadows = 0;
+		mUseShadowsInWater = false;
 		mShadowTechnique = COgreTask::GetSingleton().mSceneMgr->getShadowTechnique();
 
 		registerAllVars();
@@ -175,6 +176,7 @@ namespace stunts
 
 		nrSettingsRegister(bool, mShouldLoadLevel, 	"load_level");
 		nrSettingsRegister(bool, mUseShadows, 		"use_shadows");
+		nrSettingsRegister(bool, mUseShadowsInWater,"use_shadows_in_water");
 
 	}
 
@@ -185,6 +187,7 @@ namespace stunts
 		nrSettings.deregisterVariable("level_file");
 		nrSettings.deregisterVariable("load_level");
 		nrSettings.deregisterVariable("use_shadows");
+		nrSettings.deregisterVariable("use_shadows_in_water");
 	}
 
 

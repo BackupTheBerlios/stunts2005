@@ -189,6 +189,8 @@ namespace stunts
 			//! Type of the shadows
 			Ogre::ShadowTechnique		mShadowTechnique;
 
+			//! Should shadows reflect on water surface
+			bool				mUseShadowsInWater;
 			
 			//----------------------------------------------------
 			// Methods
