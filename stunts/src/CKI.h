@@ -126,7 +126,7 @@ namespace stunts
 			void computeStrategy();
 
 			
-			void lowrider(float delaySeconds);
+			//void lowrider(float delaySeconds);
 	
 
 			void computeGear();

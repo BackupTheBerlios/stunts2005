@@ -66,7 +66,7 @@ namespace stunts {
 			
 			static	const char* getObjectTypeSt() 			{ return "car"; }
 			const char* 	getObjectType()   				{ return CCarObject::getObjectTypeSt(); }
-
+/*
 			inline float Speed() const
 			{
 				if(mVehicle != NULL)
@@ -79,11 +79,13 @@ namespace stunts {
 				// was nicht da ist hat auch keine Speed
 				return 0.f;
 			};
-			
+			*/
 			
 			
 			inline Quaternion	Orientation() const		{ return mVehicle->getOrientation(); 	};
 			inline Vector3		Position() const		{ return mVehicle->getPosition(); 		};
+			
+			void respawn(Ogre::Vector3 _position, Quaternion * direction);
 			
 			
 			// Functions for gearbox & engine

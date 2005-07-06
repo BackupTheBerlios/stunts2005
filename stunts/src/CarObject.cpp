@@ -59,6 +59,20 @@ namespace stunts {
 		mVehicle.reset();
 
 	}
+	
+	void CCarObject::respawn(Ogre::Vector3 _position, Quaternion * direction = NULL)
+	{
+		//shift the car in the air
+		Ogre::Vector3 _h = Ogre::Vector3(0., 3., 0.);
+		_position = _position + _h;
+		
+		//and teleport it to its new position
+		mVehicle->setPosition(_position);
+		/*
+		if(direction != NULL)
+			mVehicle->getBody()->setOrientation(*direction);
+		*/
+	}
 
 
 	//--------------------------------------------------------------------------

@@ -136,6 +136,8 @@ namespace stunts
 				keymap["carShiftUp"] 	= (unsigned int)Ogre::KC_Z;
 				keymap["carShiftDown"] 	= (unsigned int)Ogre::KC_H;
 				keymap["carSetAutoBox"]	= (unsigned int)Ogre::KC_M;
+				
+				keymap["respawn"]	= (unsigned int)Ogre::KC_R;
 			}
 		}
 
@@ -218,6 +220,14 @@ namespace stunts
 				controlObject->setAutoBox();
 				mSetAutoboxKeyPressedBefore = true;
 			} else mSetAutoboxKeyPressedBefore = false;
+
+			if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["respawn"]))
+			{
+				boost::shared_ptr<stunts::CWaypoint> w;
+				w.reset( new CWaypoint(controlObject->Position(), 26000 )  );
+				
+				controlObject->respawn(mLevel->findNearestWaypoint(w, 26000)->getVector() , NULL );
+			}
 
 
 			

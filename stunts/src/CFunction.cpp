@@ -84,8 +84,8 @@ namespace stunts
 				highsteerAndnot12.push_back(-1.f);
 	
 				highsteerOr21.push_back(0.f);
-				highsteerOr21.push_back(3.f);
-				highsteerOr21.push_back(3.f);
+				highsteerOr21.push_back(2.f);
+				highsteerOr21.push_back(2.f);
 				*/
 			//Inputs
 			highsteerReactN = new CNeurode(0, neurode_LINEAR);

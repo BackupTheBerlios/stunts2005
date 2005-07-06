@@ -192,10 +192,29 @@ namespace stunts
 					if(stayTime > 1.f)
 					{
 						Ogre::Vector3 _position = waypoint->getVector();
+						/*
+									Ogre::Vector3 w_dir = waypoint->getNext()->getVector() - waypoint->getVector();
+						
+									Ogre::Quaternion o_dir = controlObject->Orientation();
+									
+									Ogre::Vector3 my_richtung = (o_dir * Vector3(-1.f, 0.f, 0.f));
+									
+									my_richtung.normalise();
+									w_dir.normalise();
+						
+									float m = my_richtung.dotProduct(w_dir);
+						*/
+						Quaternion* direction = new Quaternion( 0.0f , -1.0f , 0.0f , .0f );
+						
+			
+						//controlObject->respawn(_position, direction);
+						controlObject->respawn(_position, NULL);
+						
+						/*
 						Ogre::Vector3 _h = Ogre::Vector3(0., 10., 0.);
 						_position = _position + _h;
 						controlObject->ODEVehicle()->setPosition(_position);
-						
+						*/
 						
 						Ogre::Vector3 dir = ( waypoint->getNext()->getVector() - waypoint->getVector() );
 						dir.normalise();
@@ -477,7 +496,7 @@ namespace stunts
 		}
 	}
 	
-	
+	/*
 	void CKI::lowrider(float delaySeconds)
 	{
 		l_time += delaySeconds;
@@ -496,4 +515,5 @@ namespace stunts
 		controlObject->ODEVehicle()->getWheel(1)->setPosition(w2);
 		controlObject->ODEVehicle()->getWheel(1)->setPosition(w3);
 	}
+	*/
 }
