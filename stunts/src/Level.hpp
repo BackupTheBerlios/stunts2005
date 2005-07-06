@@ -255,6 +255,13 @@ namespace stunts
 			// Function to search for cars in BaseObjects vector
 			void						searchCars();
 
+			// HUD
+			Ogre::Overlay*				mHUD;
+			Ogre::OverlayElement*		mHUDneedle;
+			Ogre::OverlayElement*		mHUDgear;
+
+			void updateHUD();
+			
 	};
 
 };

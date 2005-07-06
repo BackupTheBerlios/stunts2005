@@ -273,4 +273,15 @@ namespace stunts {
 		};
 	}
 
+	//-----------------------------------------------------------------------
+	float CCarObject::getRPM(){
+
+		float wheelRPM = mVehicle->getWheel(0)->getRPM();
+
+		float gearRatio = mVehicle->getEngine()->getCurrentGearRatio();
+
+		return wheelRPM * (1.0f/gearRatio);
+							
+	}
+	
 };

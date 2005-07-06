@@ -63,12 +63,18 @@ namespace stunts
 		else
 			mPhysicsWorld = OgreOde::World::getSingletonPtr();
 
+		mHUD = NULL;
+		mHUDneedle = NULL;
+		mHUDgear = NULL;
 	}
 
 
 	//--------------------------------------------------------------------------
 	CLevel::~CLevel()
 	{
+		// cleanup HUD
+		if (mHUD)
+			Ogre::OverlayManager::getSingleton().destroy(mHUD);
 
 		// delete the input
 		mUserInput.reset();
@@ -273,6 +279,13 @@ namespace stunts
 		// Search for cars
 		searchCars();
 
+		// Load HUD
+		mHUD = Ogre::OverlayManager::getSingleton().getByName("HUD");
+		if (mHUD){
+			mHUDneedle = OverlayManager::getSingleton().getOverlayElement("HUD/RPM/Needle");
+			mHUDgear = OverlayManager::getSingleton().getOverlayElement("HUD/Gear");
+		}
+		
 		return false;
 	}
 
@@ -534,6 +547,9 @@ namespace stunts
 		//activate input class
 		mUserInput->activate(true);
 
+		// activate the HUD
+		if (mHUD)mHUD->show();
+		
 		return NR_OK;
 	}
 
@@ -554,6 +570,9 @@ namespace stunts
 		// update the terrain
 		mTerrain->update();
 
+		// Update the HUD
+		updateHUD();
+		
 		//animate objects
 		for (int c=0; c < mObjects.size(); c++)
 		{
@@ -578,6 +597,9 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	nrResult CLevel::stop()
 	{
+		// deactivate the HUD
+		if (mHUD)mHUD->hide();
+		
 		//userInput
 		mUserInput->activate(false);
 		nrKernel.RemoveTask(mUserInput->getTaskID());
@@ -590,7 +612,35 @@ namespace stunts
 		return NR_OK;
 	}
 
+	//--------------------------------------------------------------------------
+	void CLevel::updateHUD()
+	{
+		if (mHUD && mHUDneedle && mHumanCar.get())
+		{
+			// Show speed
+			float value = 0.0f;
+			
+			// folgende Formel wurde an das Tacho-Bild angepasst
+			// Es soltle später aus einer XML-Datei eingelsen werden
+			value = (-mHumanCar->getSpeed() / 72.2f) * (M_PI * 1.5);
 
+			Ogre::MaterialPtr material = mHUDneedle->getMaterial();
+			Ogre::Technique* technique = material->getTechnique(0);
+			Ogre::Pass* pass = technique->getPass(0);
+			Ogre::TextureUnitState *texture = pass->getTextureUnitState(0);
+			texture->setTextureRotate(Ogre::Radian(value));
+
+			// Gang zahl ausgeben
+			char s[2];
+			s[0] = mHumanCar->getGearCode();
+			s[1] = 0;
+			std::string sGear = s;
+			mHUDgear->setCaption(sGear.c_str());
+		}
+		
+	}
+
+	
 	//--------------------------------------------------------------------------
 	boost::shared_ptr< CTerrain >  CLevel::Terrain()
 	{

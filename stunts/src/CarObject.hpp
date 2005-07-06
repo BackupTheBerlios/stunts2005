@@ -123,7 +123,7 @@ namespace stunts {
 			inline float	getSpeed() 
 						{ return this->mVehicle->getVelocity(); 		}
 
-
+			float getRPM();
 		protected:
 			//------------------ Methods --------------------------------------
 			//! @see CBaseObject::parseSettings()

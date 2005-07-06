@@ -1,0 +1,75 @@
+//----------------------------------------------
+//	Head up Display Definitions
+//----------------------------------------------
+
+// This is our main manu
+HUD
+{
+	zorder 500
+
+	// Here we define the panel that holds our HUD for the car
+	container Panel(HUD/Car)
+	{
+		top 0
+		left 0
+		width 1.0
+		height 1.0
+
+		// Here we have our RPM-Messer
+		container Panel(HUD/RPM)
+		{
+			horz_align right
+			vert_align bottom
+		
+			top -0.25
+			left -0.25
+			width 0.2
+			height 0.2
+			material HUD/RPM/Bg
+
+
+			// Tachonadel
+			container Panel (HUD/RPM/Needle)
+			{
+
+				horz_align center
+				vert_align center
+				
+				left -0.1
+				top -0.1
+				width 0.2
+				height 0.2
+				
+				material HUD/RPM/Needle
+			}
+
+			// Here we show the current gear
+			container TextArea(HUD/Gear)
+			{
+
+				horz_align right
+				vert_align top
+				
+				left -0.025
+				top -0.025
+				width 0.2
+				height 0.25
+		
+			
+				font_name Ogre
+				
+				char_height 0.06
+				caption N
+			}
+			
+		}
+		
+
+		
+	}
+
+}
+
+
+
+
