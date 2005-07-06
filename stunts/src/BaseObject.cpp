@@ -686,12 +686,12 @@ namespace stunts {
 		}
 
 		//check for the right axis
-		if (strcmp(axis, "x") != 0)
-			mAnimAxis = 'x';
-		else if (strcmp(axis, "y") != 0)
-			mAnimAxis = 'y';
-		else if (strcmp(axis, "z") != 0)
-			mAnimAxis = 'z';
+		if (strcmp(axis, "x") == 0)
+			mAnimAxis = Ogre::Vector3::UNIT_X;
+		else if (strcmp(axis, "y") == 0)
+			mAnimAxis = Ogre::Vector3::UNIT_Y;
+		else if (strcmp(axis, "z") == 0)
+			mAnimAxis = Ogre::Vector3::UNIT_Z;
 		else
 		{
 			nrLog.Log(NR_LOG_APP, "CBaseObject::loadAnimation(): Wrong axis specified, supported are: x, y, z");
@@ -707,14 +707,7 @@ namespace stunts {
 		try
 		{
 			nrCDator<float32> _speed(mAnimSpeed);
-			nrCDator<float32> _x(x);
-			nrCDator<float32> _y(y);
-			nrCDator<float32> _z(z);
-
 			_speed = std::string(geomElem->Attribute("speed"));
-			_x = std::string(geomElem->Attribute("posX"));
-			_y = std::string(geomElem->Attribute("posY"));
-			_z = std::string(geomElem->Attribute("posZ"));
 		}
 		catch(...)
 		{
@@ -753,6 +746,26 @@ namespace stunts {
 			z = 0.0f;
 			nrLog.Log(NR_LOG_APP, "CBaseObject::loadAnimation(): Warning: no z position found");
 		}
+
+		mEntityAnimPos = Ogre::Vector3(x, y, z);
+
+		//object scale
+		mAnimScale = Ogre::Vector3::UNIT_SCALE;
+		float32 stretchFactor;
+
+		try
+		{
+			nrCDator<float32> _stretchFactor(stretchFactor);
+			_stretchFactor = std::string(geomElem->Attribute("stretch"));
+		}
+		catch(...)
+		{
+			mAnimScale = Ogre::Vector3::UNIT_SCALE;
+			nrLog.Log(NR_LOG_APP, "CBaseObject::loadAnimation(): Warning: stretch value");
+		}
+
+		mAnimScale = Ogre::Vector3::UNIT_SCALE * stretchFactor;
+
 
 		return false;
 	}

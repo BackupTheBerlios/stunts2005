@@ -297,8 +297,9 @@ namespace stunts {
 			Ogre::Entity*		mEntityAnim;
 			Ogre::SceneNode*	mObjNodeAnim;
 			Ogre::Vector3		mEntityAnimPos;
-			char	 			mAnimAxis;
+			Ogre::Vector3	 	mAnimAxis;
 			float32 			mAnimSpeed;
+			Ogre::Vector3		mAnimScale;
 		protected:
 
 			// TODO: These Classes must be included, then

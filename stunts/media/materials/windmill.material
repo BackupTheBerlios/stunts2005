@@ -34,7 +34,7 @@ material windmill/Mill_2
     }
 }
 
-material windmill/sails
+material windmill/Sails
 {
     technique
     {

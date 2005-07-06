@@ -541,12 +541,15 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	nrResult CLevel::update()
 	{
+		//time delayed
+		float timeDelayed = COgreTask::GetSingleton().mTimer->getFrameInterval();
+
 		//activate input class
 		mUserInput->activate(true);
 
 		//executeODE
 		if ((int)nrSettings.get("game_mode") == CLevelManager::PLAYING)
-			executeODE(COgreTask::GetSingleton().mTimer->getFrameInterval());
+			executeODE(timeDelayed);
 
 		// update the terrain
 		mTerrain->update();
@@ -562,8 +565,10 @@ namespace stunts
 			if (!currentObject->mObjNodeAnim)
 				continue;
 
-			currentObject->mObjNodeAnim->rotate(Ogre::Vector3::UNIT_X, Ogre::Radian(0.01));
+			currentObject->mObjNodeAnim->rotate(currentObject->mAnimAxis, Ogre::Radian(currentObject->mAnimSpeed * timeDelayed));
+
 			currentObject->mObjNodeAnim->setPosition(currentObject->mEntityAnimPos);
+			currentObject->mObjNodeAnim->setScale(currentObject->mAnimScale);
 		}
 
 		return NR_OK;
