@@ -258,6 +258,15 @@ namespace stunts {
 			virtual bool loadGeometry(TiXmlElement* geomElem, const std::string& xmlPath);
 
 			/**
+			 * This will load the animation from the settings.
+			 *
+			 * @param geomElem Pointer to the tinyxml-Element containing geometry node from the XML-tree
+			 * @param xmlPath path where the XML file was found (needed for import tags)
+			 * @return true if an error occurs
+			 **/
+			virtual bool loadAnimation(TiXmlElement* geomElem, const std::string& xmlPath);
+
+			/**
 			 * This method calculates the difference between object's local origin and global
 			 * position. After that this method will translate the object's scene node according
 			 * to calculated value, so that the origin of the object lies int the center of all
@@ -282,6 +291,15 @@ namespace stunts {
 			//------------------ Variables --------------------------------------
 			Ogre::Entity*		mEntity;
 			Ogre::SceneNode*	mObjNode;
+
+			//animation
+		public:
+			Ogre::Entity*		mEntityAnim;
+			Ogre::SceneNode*	mObjNodeAnim;
+			Ogre::Vector3		mEntityAnimPos;
+			char	 			mAnimAxis;
+			float32 			mAnimSpeed;
+		protected:
 
 			// TODO: These Classes must be included, then
 			// the 2 lines can be uncommentated

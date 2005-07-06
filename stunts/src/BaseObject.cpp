@@ -117,6 +117,9 @@ namespace stunts {
 		mObjNode = NULL;
 		mEntity = NULL;
 
+		mEntityAnim = NULL;
+		mObjNodeAnim = NULL;
+
 		mMeshVertices = NULL;
 		mMeshIndices = NULL;
 		mEntityInformer = NULL;
@@ -152,6 +155,9 @@ namespace stunts {
 		mLevel = NULL;
 		mObjNode = NULL;
 		mEntity = NULL;
+
+		mEntityAnim = NULL;
+		mObjNodeAnim = NULL;
 
 		mMeshVertices = NULL;
 		mMeshIndices = NULL;
@@ -190,6 +196,25 @@ namespace stunts {
 	//--------------------------------------------------------------------------
 	CBaseObject::~CBaseObject()
 	{
+		//
+		if (mObjNodeAnim)
+		{
+			try {
+
+				mObjNodeAnim->detachAllObjects();
+				COgreTask::GetSingleton().mSceneMgr->getRootSceneNode()->removeAndDestroyChild(mName + "_Animation");
+
+				mObjNodeAnim = NULL;
+			}catch(...){
+
+			}
+		}
+
+		if (mEntityAnim){
+			COgreTask::GetSingleton().mSceneMgr->removeEntity(mEntityAnim);
+			mEntityAnim = NULL;
+		}
+
 
 		// RemoveObject from memory
 		if (mObjNode)
@@ -210,6 +235,7 @@ namespace stunts {
 			COgreTask::GetSingleton().mSceneMgr->removeEntity(mEntity);
 			mEntity = NULL;
 		}
+
 
 		//delete the geometry
 		if (mEntityInformer)
@@ -253,6 +279,12 @@ namespace stunts {
 		elem = rootElem->FirstChildElement("geometry");
 		if (elem)
 			loadGeometry(elem, xmlPath);
+
+
+		// Get the animation of the object
+		elem = rootElem->FirstChildElement("animation");
+		if (elem)
+			loadAnimation(elem, xmlPath);
 
 
 		// find if we want to import a file
@@ -571,6 +603,155 @@ namespace stunts {
 					return true;
 				}
 			}
+		}
+
+		return false;
+	}
+
+
+	//--------------------------------------------------------------------------
+	bool CBaseObject::loadAnimation(TiXmlElement* geomElem, const std::string& xmlPath)
+	{
+
+		// Logging
+		nrLog.Log(NR_LOG_APP, "CBaseObject::loadAnimation(): Load the animation of the object");
+
+		if (geomElem == NULL)
+		{
+			nrLog.Log(NR_LOG_APP, "CBaseObject::loadAnimation(): Not a valid XML-Element given");
+			return true;
+		}
+
+		const char* type = geomElem->Attribute("type");
+		const char* meshfile = geomElem->Attribute("meshfile");
+		const char* axis  = geomElem->Attribute("axis");
+		const char* speed = geomElem->Attribute("speed");
+		const char* posX = geomElem->Attribute("posX");
+		const char* posY = geomElem->Attribute("posY");
+		const char* posZ = geomElem->Attribute("posZ");
+
+		//check if all parameters are given
+		if ((!type) || (!meshfile) || (!axis) || (!speed))
+		{
+			nrLog.Log(NR_LOG_APP, "CBaseObject::loadAnimation(): Insufficient parameters, you need type, meshfile, axis and speed");
+			return true;
+		}
+
+		//check for the right type
+		if (strcmp(type, "rotation") != 0)
+		{
+			nrLog.Log(NR_LOG_APP, "CBaseObject::loadAnimation(): Wrong type specified, supported types are: rotation");
+			return true;
+		}
+
+		//check if the parent node exists
+		if (!mObjNode)
+		{
+			nrLog.Log(NR_LOG_APP, "CBaseObject::loadAnimation(): The parent object node doesn't exist");
+			return true;
+		}
+
+		//load the animation geometry
+		nrLog.Log(NR_LOG_APP, "CBaseObject::loadAnimation(): Load for object %s the animation mesh file \"%s%s\"", mName.c_str(), "_Animation", meshfile);
+		try
+		{
+			// Create & Load the entity
+			mEntityAnim 	= COgreTask::GetSingleton().mSceneMgr->createEntity(mName + "_Animation_" + type, std::string(meshfile));
+
+			//build the edge list for the shadows
+			if (mEntityAnim != NULL && mEntityAnim->getMesh().get() != NULL)
+			{
+				mEntityAnim->getMesh()->buildEdgeList();
+			}
+
+			mObjNodeAnim 	= mObjNode->createChildSceneNode(mName + "_Animation");
+			mEntityAnim->setCastShadows( true );
+			mObjNodeAnim->attachObject( mEntityAnim );
+
+			//get raw geometry
+			/*mEntityInformer = new OgreOde::EntityInformer(mEntity);
+
+			mMeshVertexCount = mEntityInformer->getVertexCount();
+			mMeshIndexCount = mEntityInformer->getIndexCount();
+
+			mMeshVertices = (Ogre::Vector3*)mEntityInformer->getVertices();
+			mMeshIndices = (int*)mEntityInformer->getIndices();*/
+		}
+		catch (...)
+		{
+			mEntityAnim = NULL;
+			mObjNodeAnim = NULL;
+			nrLog.Log(NR_LOG_APP, "CBaseObject::loadGeometry(): An error occurs by loading of the geometry node");
+			return true;
+		}
+
+		//check for the right axis
+		if (strcmp(axis, "x") != 0)
+			mAnimAxis = 'x';
+		else if (strcmp(axis, "y") != 0)
+			mAnimAxis = 'y';
+		else if (strcmp(axis, "z") != 0)
+			mAnimAxis = 'z';
+		else
+		{
+			nrLog.Log(NR_LOG_APP, "CBaseObject::loadAnimation(): Wrong axis specified, supported are: x, y, z");
+			return true;
+		}
+
+		//get the speed and the position
+		mAnimSpeed = 1.0f;
+		mEntityAnimPos = Ogre::Vector3(0, 0, 0);
+
+		float32 x, y, z;
+
+		try
+		{
+			nrCDator<float32> _speed(mAnimSpeed);
+			nrCDator<float32> _x(x);
+			nrCDator<float32> _y(y);
+			nrCDator<float32> _z(z);
+
+			_speed = std::string(geomElem->Attribute("speed"));
+			_x = std::string(geomElem->Attribute("posX"));
+			_y = std::string(geomElem->Attribute("posY"));
+			_z = std::string(geomElem->Attribute("posZ"));
+		}
+		catch(...)
+		{
+			mAnimSpeed = 1.0f;
+		}
+
+		try
+		{
+			nrCDator<float32> _x(x);
+			_x = std::string(geomElem->Attribute("posX"));
+		}
+		catch(...)
+		{
+			x = 0.0f;
+			nrLog.Log(NR_LOG_APP, "CBaseObject::loadAnimation(): Warning: no x position found");
+		}
+
+		try
+		{
+			nrCDator<float32> _y(y);
+			_y = std::string(geomElem->Attribute("posY"));
+		}
+		catch(...)
+		{
+			y = 0.0f;
+			nrLog.Log(NR_LOG_APP, "CBaseObject::loadAnimation(): Warning: no y position found");
+		}
+
+		try
+		{
+			nrCDator<float32> _z(z);
+			_z = std::string(geomElem->Attribute("posZ"));
+		}
+		catch(...)
+		{
+			z = 0.0f;
+			nrLog.Log(NR_LOG_APP, "CBaseObject::loadAnimation(): Warning: no z position found");
 		}
 
 		return false;

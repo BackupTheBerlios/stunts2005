@@ -408,7 +408,7 @@ namespace stunts
 
 		//get its friction
 		mTerrainFriction = mTerrain->getFriction();
-		
+
 	}
 
 	//--------------------------------------------------------------------------
@@ -550,7 +550,22 @@ namespace stunts
 
 		// update the terrain
 		mTerrain->update();
-		
+
+		//animate objects
+		for (int c=0; c < mObjects.size(); c++)
+		{
+			CBaseObject* currentObject = mObjects.at(c).get();
+
+			if (!currentObject)
+				continue;
+
+			if (!currentObject->mObjNodeAnim)
+				continue;
+
+			currentObject->mObjNodeAnim->rotate(Ogre::Vector3::UNIT_X, Ogre::Radian(0.01));
+			currentObject->mObjNodeAnim->setPosition(currentObject->mEntityAnimPos);
+		}
+
 		return NR_OK;
 	}
 
