@@ -10,14 +10,14 @@
 			<!-- Checkbox to setup shadow mode -->
 			<Window Type="TaharezLook/Checkbox" Name="InGame/Option/UseShadows">
 				<Property Name="RelativePosition" Value="x:0.20 y:0.3" />
-				<Property Name="AbsoluteSize" Value="w:250 h:40" />
+				<Property Name="AbsoluteSize" Value="w:450 h:40" />
 				<Property Name="Text" Value="Turn stencil shadows on/off" />
 			</Window>
 	
 			<!-- Checkbox to setup water reflection mode -->
 			<Window Type="TaharezLook/Checkbox" Name="InGame/Option/UseShadowsInWater">
 				<Property Name="RelativePosition" Value="x:0.20 y:0.4" />
-				<Property Name="AbsoluteSize" Value="w:250 h:40" />
+				<Property Name="AbsoluteSize" Value="w:450 h:40" />
 				<Property Name="Text" Value="Show shadows in water reflections" />
 			</Window>
 			
