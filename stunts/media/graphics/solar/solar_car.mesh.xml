@@ -822,7 +822,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-		<submesh material = "Solar/zell" usesharedvertices="false" use32bitindexes="false">
+		<submesh material = "Solar/alu" usesharedvertices="false" use32bitindexes="false">
 			<faces count="320">
 				<face v1="0" v2="1" v3="2" />
 				<face v1="3" v2="4" v3="5" />
@@ -2150,7 +2150,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-		<submesh material = "Solar/zell" usesharedvertices="false" use32bitindexes="false">
+		<submesh material = "Solar/german" usesharedvertices="false" use32bitindexes="false">
 			<faces count="2">
 				<face v1="0" v2="1" v3="2" />
 				<face v1="2" v2="3" v3="0" />
@@ -2524,7 +2524,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-		<submesh material = "Solar/zell" usesharedvertices="false" use32bitindexes="false">
+		<submesh material = "Solar/mpi" usesharedvertices="false" use32bitindexes="false">
 			<faces count="4">
 				<face v1="0" v2="1" v3="2" />
 				<face v1="2" v2="3" v3="0" />
@@ -2566,7 +2566,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-		<submesh material = "Solar/zell" usesharedvertices="false" use32bitindexes="false">
+		<submesh material = "Solar/uds" usesharedvertices="false" use32bitindexes="false">
 			<faces count="2">
 				<face v1="0" v2="1" v3="2" />
 				<face v1="2" v2="3" v3="0" />
@@ -2816,7 +2816,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-		<submesh material = "Solar/zell" usesharedvertices="false" use32bitindexes="false">
+		<submesh material = "Solar/usde" usesharedvertices="false" use32bitindexes="false">
 			<faces count="4">
 				<face v1="0" v2="1" v3="2" />
 				<face v1="2" v2="3" v3="0" />
@@ -2858,7 +2858,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-		<submesh material = "Solar/zell" usesharedvertices="false" use32bitindexes="false">
+		<submesh material = "Solar/zell1" usesharedvertices="false" use32bitindexes="false">
 			<faces count="40">
 				<face v1="0" v2="1" v3="2" />
 				<face v1="2" v2="1" v3="3" />
@@ -3046,7 +3046,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-		<submesh material = "Solar/zell" usesharedvertices="false" use32bitindexes="false">
+		<submesh material = "Solar/verr" usesharedvertices="false" use32bitindexes="false">
 			<faces count="100">
 				<face v1="0" v2="1" v3="2" />
 				<face v1="3" v2="4" v3="5" />
@@ -3509,7 +3509,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-		<submesh material = "Solar/zell" usesharedvertices="false" use32bitindexes="false">
+		<submesh material = "Solar/zell1" usesharedvertices="false" use32bitindexes="false">
 			<faces count="10">
 				<face v1="0" v2="1" v3="2" />
 				<face v1="3" v2="4" v3="5" />
@@ -3587,7 +3587,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-		<submesh material = "Solar/zell" usesharedvertices="false" use32bitindexes="false">
+		<submesh material = "Solar/white" usesharedvertices="false" use32bitindexes="false">
 			<faces count="24">
 				<face v1="0" v2="1" v3="2" />
 				<face v1="3" v2="4" v3="5" />
@@ -3739,7 +3739,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-		<submesh material = "Solar/zell" usesharedvertices="false" use32bitindexes="false">
+		<submesh material = "Solar/bird" usesharedvertices="false" use32bitindexes="false">
 			<faces count="10">
 				<face v1="0" v2="1" v3="2" />
 				<face v1="3" v2="4" v3="5" />
@@ -3817,7 +3817,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-		<submesh material = "Solar/zell" usesharedvertices="false" use32bitindexes="false">
+		<submesh material = "Solar/quebec" usesharedvertices="false" use32bitindexes="false">
 			<faces count="2">
 				<face v1="0" v2="1" v3="2" />
 				<face v1="2" v2="3" v3="0" />
