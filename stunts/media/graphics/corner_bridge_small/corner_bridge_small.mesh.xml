@@ -4008,7 +4008,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-<submeshes>
+
 		<submesh material = "Street/wall" usesharedvertices="false" use32bitindexes="false">
 			<faces count="216">
 				<face v1="0" v2="1" v3="2" />
@@ -5048,7 +5048,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-<submeshes>
+
 		<submesh material = "Street/wall" usesharedvertices="false" use32bitindexes="false">
 			<faces count="216">
 				<face v1="0" v2="1" v3="2" />
@@ -6088,7 +6088,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-<submeshes>
+
 		<submesh material = "Street/wall" usesharedvertices="false" use32bitindexes="false">
 			<faces count="216">
 				<face v1="0" v2="1" v3="2" />
@@ -7128,7 +7128,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-<submeshes>
+
 		<submesh material = "Street/wall" usesharedvertices="false" use32bitindexes="false">
 			<faces count="216">
 				<face v1="0" v2="1" v3="2" />
@@ -8168,7 +8168,7 @@
 				</vertexbuffer>
 			</geometry>
 		</submesh>
-<submeshes>
+
 		<submesh material = "Street/teer" usesharedvertices="false" use32bitindexes="false">
 			<faces count="88">
 				<face v1="0" v2="1" v3="2" />
