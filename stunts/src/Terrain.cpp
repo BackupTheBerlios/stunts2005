@@ -105,7 +105,7 @@ namespace stunts
 		{
 			MaterialPtr mat = MaterialManager::getSingleton().getByName(mWaterMaterial);
 			Ogre::Pass* pass = mat->getTechnique(0)->getPass(0);
-			
+
 			for (unsigned short i = 0; i < pass->getNumTextureUnitStates(); i++)
 			{
 				Ogre::TextureUnitState* t = pass->getTextureUnitState(i);
@@ -114,14 +114,14 @@ namespace stunts
 					pass->removeTextureUnitState(i);
 				}
 			}
-			
+
 		}
-		
+
 		// remove terrain objects
 		mRaySceneQuery.reset();
-		
+
 		mTerrain.reset();
-		
+
 	}
 
 	//----------------------------------------------------------------------
@@ -147,7 +147,9 @@ namespace stunts
 		Ogre::RenderWindow*	mWindow = COgreTask::GetSingleton().mWindow;
 
 		nrLog.Log(NR_LOG_APP, "CTerrain: Initialize water surface");
-		
+
+// I wish I had a better graphics card...
+#if 0
 		try
 		{
 
@@ -164,12 +166,12 @@ namespace stunts
 
 			// Attach to the scene manager
 			mWaterNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
-			
+
 			// Attach both the plane entity, and the plane definition
 			mWaterNode->attachObject(mWaterPlaneEnt);
 			mWaterNode->attachObject(mWaterPlane);
 			mWaterNode->translate(0, mWaterHeight, 0);
-	
+
 			// Create reflection on the water surface
 			RenderTexture* rttTex = COgreTask::GetSingleton().mRenderer->createRenderTexture( "Terrain_WaterRttTex", 512, 512, TEX_TYPE_2D, PF_R8G8B8 );
 			{
@@ -180,7 +182,7 @@ namespace stunts
 				mReflectCam->setAspectRatio(
 					(Real)mWindow->getViewport(0)->getActualWidth() /
 					(Real)mWindow->getViewport(0)->getActualHeight());
-				
+
 				Viewport *v = rttTex->addViewport( mReflectCam );
 				v->setClearEveryFrame( true );
 				v->setBackgroundColour( ColourValue::Black );
@@ -193,7 +195,7 @@ namespace stunts
 					nrLog.Log(NR_LOG_APP, "CTerrain: Check if the water reflection material file is correct");
 					return;
 				}
-				
+
 				// Blend with base texture
 				mWaterRttiTexUnit->setProjectiveTexturing(true, mReflectCam);
 				rttTex->addListener(this);
@@ -203,17 +205,17 @@ namespace stunts
 				// Also clip
 				mReflectCam->enableCustomNearClipPlane(mWaterPlane);
 			}
-			
+
 			// Give the plane a texture
 			mWaterPlaneEnt->setMaterialName(mWaterMaterial.c_str());
-	
+
 			nrLog.Log(NR_LOG_APP, "CTerrain: Water was initialized");
-		
+
 		}catch (Ogre::Exception& excp){
 			nrLog.Log(NR_LOG_APP, "CTerrain: Water surface could not be initilized. %s",
 					excp.getFullDescription().c_str());
 		}
-
+#endif
 	}
 
 	//----------------------------------------------------------------------
@@ -221,23 +223,23 @@ namespace stunts
 	{
 		// Hide plane
 		mWaterPlaneEnt->setVisible(false);
-		
+
 		mCurrentShadowTechnique = COgreTask::GetSingleton().mSceneMgr->getShadowTechnique();
 
 		if (!(bool)nrSettings.get("use_shadows_in_water"))
 		{
 			COgreTask::GetSingleton().mSceneMgr->setShadowTechnique(SHADOWTYPE_NONE);
 		}
-		
+
 	}
-	
+
 	//----------------------------------------------------------------------
 	void CTerrain::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
 	{
 		// Show plane
 		mWaterPlaneEnt->setVisible(true);
 
-		COgreTask::GetSingleton().mSceneMgr->setShadowTechnique(mCurrentShadowTechnique);		
+		COgreTask::GetSingleton().mSceneMgr->setShadowTechnique(mCurrentShadowTechnique);
 	}
 
 	//----------------------------------------------------------------------
@@ -250,9 +252,9 @@ namespace stunts
 			mReflectCam->setOrientation(COgreTask::GetSingleton().mCamera->getOrientation());
 			mReflectCam->setPosition(COgreTask::GetSingleton().mCamera->getPosition());
 		}
-		
+
 	}
-	
+
 	//----------------------------------------------------------------------
 	bool CTerrain::getHeight(Ogre::Vector3& pos)
 	{
