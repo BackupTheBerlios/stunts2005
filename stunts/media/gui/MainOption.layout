@@ -2,8 +2,8 @@
 <GUILayout>
 	<Window Type="DefaultGUISheet" Name="Main_Option">
 		<Window Type="TaharezLook/FrameWindow" Name="Main_Option_Sheet">
-			<Property Name="Position" Value="x:0.20 y:0.25" />
-			<Property Name="Size" Value="w:0.55 h:0.5" />
+			<Property Name="Position" Value="x:0.20 y:0.4" />
+			<Property Name="Size" Value="w:0.6 h:0.5" />
 			<Property Name="Alpha" Value="0.600000" />
 			<Property Name="Text" Value="Stunts 2005" />
 
@@ -30,11 +30,11 @@
 	
 		</Window>
 
-		<Window Type="TaharezLook/StaticText" Name="Menu/Option/LogoText">
+		<!--Window Type="TaharezLook/StaticText" Name="Menu/Option/LogoText">
 			<Property Name="Alpha" Value="0.500000" />
 			<Property Name="RelativeRect" Value="l:0.035000 t:0.030000 r:0.961251 b:0.090000" />
 			<Property Name="Text" Value="Stunts2005 powered by Ogre3D, nrEngine, CEGUI, FMod, ODE, Tinyxml" />
-		</Window>
+		</Window-->
 
 	</Window>
 	
