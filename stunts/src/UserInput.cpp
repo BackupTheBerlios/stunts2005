@@ -43,7 +43,15 @@ namespace stunts
 		mInputDevice = NULL;
 		mCamera = NULL;
 
+		
+		// Set keys not pressed
+		this->mShiftUpKeyPressedBefore		= false;
+		this->mShiftDownKeyPressedBefore	= false;
+		this->mSetAutoboxKeyPressedBefore	= false;
+		this->mScreenshotKeyPressedBefore	= false;
+
 		mCamMode = 0;
+
 	}
 
 
@@ -192,23 +200,38 @@ namespace stunts
 				mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carBrake"]  	)
 			);
 
-			if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carShiftUp"]))	controlObject->shiftUp();
-			if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carShiftDown"]))	controlObject->shiftDown();
-			if (mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carSetAutoBox"]))	controlObject->setAutoBox();
+			if ((mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carShiftUp"])) && (mShiftUpKeyPressedBefore == false))
+			{
+				controlObject->shiftUp();
+				mShiftUpKeyPressedBefore = true;
+			} else mShiftUpKeyPressedBefore = false;
+			
+			
+			if ((mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carShiftDown"])) && (mShiftDownKeyPressedBefore == false))
+			{
+				controlObject->shiftDown();
+				mShiftDownKeyPressedBefore = true;
+			} else mShiftDownKeyPressedBefore = false;
+			
+			if ((mInputDevice->isKeyDown((Ogre::KeyCode)keymap["carSetAutoBox"])) && (mSetAutoboxKeyPressedBefore == false))
+			{
+				controlObject->setAutoBox();
+				mSetAutoboxKeyPressedBefore = true;
+			} else mSetAutoboxKeyPressedBefore = false;
 
 
-			/*
+			
 			float delaySecondsOde = delaySeconds;
 
-			while (delaySecondsOde > 0.02)
+			while (delaySecondsOde > 0.0125)
 			{
-				controlObject->ODEVehicle()->update(0.02);
-				delaySecondsOde -= 0.02;
+				controlObject->ODEVehicle()->update(0.0125);
+				delaySecondsOde -= 0.0125;
 			}
 			controlObject->ODEVehicle()->update(delaySecondsOde);
-			*/
+			
 
-			controlObject->ODEVehicle()->update(delaySeconds);
+			//controlObject->ODEVehicle()->update(delaySeconds);
 		}
 
 

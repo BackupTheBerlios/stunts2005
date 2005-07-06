@@ -87,15 +87,26 @@ namespace stunts {
 			
 			
 			// Functions for gearbox & engine
-			inline void	shiftUp()						{ this->mVehicle->getEngine()->changeUp();				}
-			inline void	shiftDown()						{ this->mVehicle->getEngine()->changeDown();			}
-			inline void	setGear(unsigned int i)			{ this->mVehicle->getEngine()->setGear(i);				}
-			inline void setAutoBox(bool automatic)		{ this->mVehicle->getEngine()->setAutoBox(automatic);	}
-			
+			inline void	shiftUp()
+						{ this->mVehicle->getEngine()->changeUp();		}
+						
+			inline void	shiftDown()
+						{ this->mVehicle->getEngine()->changeDown();		}
+					
+			inline void	setGear(char gear)
+						{ this->mVehicle->getEngine()->setGear(gear);		}
+						
+			inline char	getGearCode()
+						{ return this->mVehicle->getEngine()->getGearCode();	}
+					
+			inline void 	setAutoBox(bool automatic)
+						{ this->mVehicle->getEngine()->setAutoBox(automatic);	}
+						
 			// Little helper function to switch status
 			void 		setAutoBox();
 			
-			inline void	addGear(Real ratio,char code)	{ this->mVehicle->getEngine()->addGear(ratio,code);		}
+			inline void	addGear(Real ratio,char code)
+						{ this->mVehicle->getEngine()->addGear(ratio,code);	}
 
 
 			// functions for the engine
@@ -104,10 +115,11 @@ namespace stunts {
 
 			//ODE object
 			inline boost::shared_ptr<OgreOde_Prefab::Vehicle>	ODEVehicle()
-						{ return this->mVehicle;}
+						{ return this->mVehicle;				}
 			
 			// Actualize speed
-			inline float	getSpeed() { return this->mVehicle->getVelocity(); }
+			inline float	getSpeed() 
+						{ return this->mVehicle->getVelocity(); 		}
 
 
 		protected:

@@ -177,18 +177,20 @@ namespace stunts {
 			while (i < ratios.size())
 			{
 				this->addGear(carRatio * ratios[i], names[i]);
-				// std::cout << "DEBUG: " << names[i] << ": " << ratios[i] << std::endl;
+				nrLog.Log(NR_LOG_APP, "CCarObject::parseSettingsCar(): Added Gear %d %f", names[i], ratios[i]);
 				i++;
 			};
+			
+			// Set first gear
+			this->setGear('1');
 
 			nrLog.Log(NR_LOG_APP, "CCarObject::parseSettingsCar(): Gearbox loaded!");
 
-
-			//stretch the car
-			mVehicle->getSceneNode()->scale(m_scale);
-
 			return false;
 		}
+		
+		//stretch the car
+		mVehicle->getSceneNode()->scale(m_scale);
 	}
 
 
@@ -228,8 +230,18 @@ namespace stunts {
 	//--------------------------------------------------------------------------
 	void CCarObject::setInputs(bool left, bool right, bool throttle, bool brake)
 	{
-		//std::cout << this->getSpeed() << std::endl;
-		this->mVehicle->setInputs(left, right, throttle, brake);
+		if (((this->getGearCode() == 'R') && (throttle == false)) || ((this->getSpeed() < 1) && (brake == true)))
+		{
+			// Switch to backwardsGear if not already done
+			if (this->getGearCode() != 'R') this->setGear('R');
+			this->mVehicle->setInputs(left, right, brake, throttle);
+		} else
+		{
+			// Switch to forwardGear if backwardsGear is still in
+			if (this->getGearCode() == 'R') this->setGear('1');
+			this->mVehicle->setInputs(left, right, throttle, brake);
+		}
+		std::cout << "Gang eingelegt: " << getGearCode() << std::endl;
 	}
 
 

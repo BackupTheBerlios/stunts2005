@@ -881,21 +881,19 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	void CLevel::executeODE(float delaySeconds)
 	{
-		/*while (delaySeconds > 0.02)
+		while (delaySeconds > 0.0125)
 		{
 			mPhysicsWorld->synchronise();
 			mPhysicsWorld->getDefaultSpace()->collide();
-
-			mPhysicsWorld->quickStep(0.02);
+			mPhysicsWorld->quickStep(0.0125);
 			mPhysicsWorld->clearContacts();
 
-			delaySeconds -= 0.02;
-		}*/
+			delaySeconds -= 0.0125;
+		}
 		mPhysicsWorld->synchronise();
 		mPhysicsWorld->getDefaultSpace()->collide();
 
-		//mPhysicsWorld->quickStep(delaySeconds);
-		mPhysicsWorld->step(delaySeconds);
+		mPhysicsWorld->quickStep(delaySeconds);
 		mPhysicsWorld->clearContacts();
 	}
 

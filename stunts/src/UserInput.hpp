@@ -119,6 +119,13 @@ namespace stunts
 			//human player car
 			boost::shared_ptr<CCarObject>					controlObject;
 
+			
+			// Status information of special keys
+			bool mShiftUpKeyPressedBefore;
+			bool mShiftDownKeyPressedBefore;
+			bool mSetAutoboxKeyPressedBefore;
+			bool mScreenshotKeyPressedBefore;
+			
 
 	};
 }	//namespace stunts
