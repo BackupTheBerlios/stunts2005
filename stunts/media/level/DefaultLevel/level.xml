@@ -10,7 +10,7 @@
 	<objects>
 		<object type="car">
 			<name>HumanPlayerCar</name>
-			<import file="../../cars/jeep.xml" />
+			<import file="../../cars/solar.xml" />
 			<control name="Human" />
 
 			<posX unit="gridUnits">10</posX>
@@ -20,7 +20,7 @@
 
 		<object type="car">
 			<name>AICar</name>
-			<import file="../../cars/subaru.xml" />
+			<import file="../../cars/jeep.xml" />
 			<control name="AICar" />
 
 			<posX unit="gridUnits">13</posX>

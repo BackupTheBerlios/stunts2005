@@ -3,868 +3,32 @@
 <track>
 	<objects>
 		<object type="base">
-			<!-- corner_big -->
+			<!-- mill -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">0.5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">0.5</posZ>
-			<proportion axis="z" size="1.77" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>corner_big.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_big_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_big -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">3.5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">0.5</posZ>
-			<proportion axis="z" size="1.77" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>corner_big.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_big_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- start_goal -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">7</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">1</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>start_goal.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>start_goal_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- start_goal -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">8</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">1</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>start_goal.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>start_goal_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- start_goal -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">9</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">1</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>start_goal.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>start_goal_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tube_in -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">12</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">1</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tube_in.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tube_in_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tube -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">13</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">1</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tube.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tube_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tube_with_wall -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">14</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">1</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tube_with_wall.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tube_with_wall_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- screw -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">15</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">1</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>screw.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>screw_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tube_out -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">16</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">1</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tube_out.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tube_out_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">26</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">1</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>straight_line_bridge.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">7</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">2</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">8</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">2</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">9</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">2</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">23</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">2</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_big -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-			<posX unit="gridUnits">0.5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">3.5</posZ>
-			<proportion axis="z" size="1.77" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>corner_big.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_big_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_big -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">3.5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">3.5</posZ>
-			<proportion axis="z" size="1.77" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>corner_big.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_big_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tube_out -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">14</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">3</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tube_out.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tube_out_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tunnel_out -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">17</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">3</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tunnel_out.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tunnel_out_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">27</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">3</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">8</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">4</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- start_goal -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">9</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">4</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>start_goal.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>start_goal_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tube -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">14</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">4</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tube.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tube_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tunnel -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">17</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">4</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tunnel.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tunnel_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tunnel_in -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">19</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">4</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tunnel_in.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tunnel_in_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tunnel -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">20</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">4</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tunnel.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tunnel_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tunnel_out -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">21</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">4</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tunnel_out.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tunnel_out_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">8</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">5</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- start_goal -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">9</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">5</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>start_goal.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>start_goal_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tube_with_wall -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">14</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">5</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tube_with_wall.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tube_with_wall_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tunnel_in -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">17</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">5</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tunnel_in.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tunnel_in_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_small -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">1</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">6</posZ>
-			<proportion axis="z" size="0.76" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>corner_small.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_small_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_small -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 			<posX unit="gridUnits">3</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">6</posZ>
-			<proportion axis="z" size="0.76" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>corner_small.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_small_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">8</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">6</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- start_goal -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">9</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">6</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>start_goal.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>start_goal_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- screw -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">14</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">6</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>screw.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>screw_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- house -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">23</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">6</posZ>
+			<posZ unit="gridUnits">1</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="1" />	
 			<geometry>
-				<file>house.mesh</file>
+				<file>mill.mesh</file>
 			</geometry>
 			<waypoints>
-				<file>house_waypoints.xml</file>
+				<file>mill_waypoints.xml</file>
 			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">28</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">6</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>straight_line_bridge.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tube_in -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">14</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">7</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tube_in.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tube_in_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_small -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">22</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">7</posZ>
-			<proportion axis="z" size="0.76" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>corner_small.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_small_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
+			<animation type="rotation" meshfile="fluegel.mesh" axis="z" speed="1" posX="0" posY="829" posZ="287.71" stretch="0.9"/>
 		</object>
 		<object type="base">
 			<!-- straight_line -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">23</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">7</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_small -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">24</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">7</posZ>
-			<proportion axis="z" size="0.76" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>corner_small.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_small_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_small -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-			<posX unit="gridUnits">1</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">8</posZ>
-			<proportion axis="z" size="0.76" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>corner_small.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_small_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_small -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
 			<posX unit="gridUnits">3</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">8</posZ>
-			<proportion axis="z" size="0.76" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>corner_small.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_small_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- house -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">21</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">8</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>house.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>house_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">22</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">8</posZ>
+			<posZ unit="gridUnits">2</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="0" />	
@@ -881,9 +45,9 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">24</posX>
+			<posX unit="gridUnits">3</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">8</posZ>
+			<posZ unit="gridUnits">3</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="0" />	
@@ -892,101 +56,6 @@
 			</geometry>
 			<waypoints>
 				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- house -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-			<posX unit="gridUnits">25</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">8</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>house.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>house_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_small -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-			<posX unit="gridUnits">22</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">9</posZ>
-			<proportion axis="z" size="0.76" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>corner_small.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_small_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">23</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">9</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_small -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">24</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">9</posZ>
-			<proportion axis="z" size="0.76" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>corner_small.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_small_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- house -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">23</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">10</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>house.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>house_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>
@@ -997,7 +66,7 @@
 			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
 			<posX unit="gridUnits">3</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">11</posZ>
+			<posZ unit="gridUnits">4</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="0" />	
@@ -1010,40 +79,135 @@
 			<!-- / -->
 		</object>
 		<object type="base">
-			<!-- y2 -->
+			<!-- straight_line -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 			<posX unit="gridUnits">4</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">11</posZ>
+			<posZ unit="gridUnits">4</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="0" />	
 			<geometry>
-				<file>y2.mesh</file>
+				<file>straight_line.mesh</file>
 			</geometry>
 			<waypoints>
-				<file>y2_waypoints.xml</file>
+				<file>straight_line_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>
 		<object type="base">
-			<!-- y2 -->
+			<!-- straight_line -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">3</posX>
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<posX unit="gridUnits">5</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">12</posZ>
+			<posZ unit="gridUnits">4</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="0" />	
 			<geometry>
-				<file>y2.mesh</file>
+				<file>straight_line.mesh</file>
 			</geometry>
 			<waypoints>
-				<file>y2_waypoints.xml</file>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
+			<!-- / -->
+		</object>
+		<object type="base">
+			<!-- skyscraper -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<posX unit="gridUnits">6</posX>
+			<posY type="bottom">0.2</posY>
+			<posZ unit="gridUnits">4</posZ>
+			<proportion axis="y" size="1" units="gridUnits" />
+			<stretch x="1.0" y="1.0" z="1.0" />
+			<shadow cast="1" />	
+			<geometry>
+				<file>skyscraper.mesh</file>
+			</geometry>
+			<waypoints>
+				<file>skyscraper_waypoints.xml</file>
+			</waypoints>
+			<!-- / -->
+		</object>
+		<object type="base">
+			<!-- start_goal -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<posX unit="gridUnits">3</posX>
+			<posY type="bottom">0.2</posY>
+			<posZ unit="gridUnits">5</posZ>
+			<proportion axis="z" size="1.005" units="gridUnits" />
+			<stretch x="1.0" y="1.0" z="1.0" />
+			<shadow cast="0" />	
+			<geometry>
+				<file>start_goal.mesh</file>
+			</geometry>
+			<waypoints>
+				<file>start_goal_waypoints.xml</file>
+			</waypoints>
+			<!-- / -->
+		</object>
+		<object type="base">
+			<!-- tree -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<posX unit="gridUnits">0</posX>
+			<posY type="bottom">0.2</posY>
+			<posZ unit="gridUnits">6</posZ>
+			<proportion axis="y" size="1" units="gridUnits" />
+			<stretch x="1.0" y="1.0" z="1.0" />
+			<shadow cast="1" />	
+			<geometry>
+				<file>tree.mesh</file>
+			</geometry>
+			<waypoints>
+				<file>tree_waypoints.xml</file>
+			</waypoints>
+			<!-- / -->
+		</object>
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<posX unit="gridUnits">1</posX>
+			<posY type="bottom">0.2</posY>
+			<posZ unit="gridUnits">6</posZ>
+			<proportion axis="z" size="1.005" units="gridUnits" />
+			<stretch x="1.0" y="1.0" z="1.0" />
+			<shadow cast="0" />	
+			<geometry>
+				<file>straight_line.mesh</file>
+			</geometry>
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
+			</waypoints>
+			<!-- / -->
+		</object>
+		<object type="base">
+			<!-- straight_line -->
+			<friction>0.9</friction>
+			<mass relX="0" relY="0" relZ="0" value="inf" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<posX unit="gridUnits">2</posX>
+			<posY type="bottom">0.2</posY>
+			<posZ unit="gridUnits">6</posZ>
+			<proportion axis="z" size="1.005" units="gridUnits" />
+			<stretch x="1.0" y="1.0" z="1.0" />
+			<shadow cast="0" />	
+			<geometry>
+				<file>straight_line.mesh</file>
+			</geometry>
+			<waypoints>
+				<file>straight_line_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>
@@ -1052,9 +216,9 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">4</posX>
+			<posX unit="gridUnits">3</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">12</posZ>
+			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="0" />	
@@ -1067,925 +231,13 @@
 			<!-- / -->
 		</object>
 		<object type="base">
-			<!-- skyscraper -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">23</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">12</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>skyscraper.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>skyscraper_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- skyscraper -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">22</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">13</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>skyscraper.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>skyscraper_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- skyscraper -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-			<posX unit="gridUnits">24</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">13</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>skyscraper.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>skyscraper_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_bridge_big -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">1.5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">14.5</posZ>
-			<proportion axis="z" size="1.77" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>corner_bridge_big.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_bridge_big_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_bridge_big -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">4.5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">14.5</posZ>
-			<proportion axis="z" size="1.77" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>corner_bridge_big.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_bridge_big_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- skyscraper -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">23</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">14</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>skyscraper.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>skyscraper_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- mill -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">27</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">14</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>mill.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>mill_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- mill -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">26</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">15</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>mill.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>mill_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- mill -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-			<posX unit="gridUnits">28</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">15</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>mill.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>mill_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- house -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">23</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">16</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>house.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>house_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- mill -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">27</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">16</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>mill.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>mill_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_bridge_big -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-			<posX unit="gridUnits">1.5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">17.5</posZ>
-			<proportion axis="z" size="1.77" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>corner_bridge_big.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_bridge_big_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_bridge_big -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">4.5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">17.5</posZ>
-			<proportion axis="z" size="1.77" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>corner_bridge_big.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_bridge_big_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- house -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">22</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">17</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>house.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>house_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- house -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-			<posX unit="gridUnits">24</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">17</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>house.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>house_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- house -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">23</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">18</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>house.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>house_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_bridge_small -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">2.5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">20.5</posZ>
-			<proportion axis="z" size="0.76" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>corner_bridge_small.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_bridge_small_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_bridge_small -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">4.5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">20.5</posZ>
-			<proportion axis="z" size="0.76" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>corner_bridge_small.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_bridge_small_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- cactus -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">23</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">21</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>cactus.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>cactus_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_bridge_small -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-			<posX unit="gridUnits">2.5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">22.5</posZ>
-			<proportion axis="z" size="0.76" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>corner_bridge_small.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_bridge_small_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- corner_bridge_small -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">4.5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">22.5</posZ>
-			<proportion axis="z" size="0.76" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>corner_bridge_small.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>corner_bridge_small_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- drive-up_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">7</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">22</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>drive-up_bridge.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>drive-up_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- drive-up_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">8</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">22</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>drive-up_bridge.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>drive-up_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
 			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">18</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">22</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">19</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">22</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- cactus -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">22</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">22</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>cactus.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>cactus_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- cactus -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-			<posX unit="gridUnits">24</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">22</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>cactus.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>cactus_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">7</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">23</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>straight_line_bridge.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">8</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">23</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>straight_line_bridge.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- jump -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">18</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">23</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>jump.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>jump_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- jump -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">19</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">23</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>jump.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>jump_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- cactus -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">23</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">23</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>cactus.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>cactus_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- crossover -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">7</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">24</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>crossover.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>crossover_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- crossover -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">8</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">24</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>crossover.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>crossover_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">12</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">24</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- jump -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">13</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">24</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>jump.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>jump_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">14</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">24</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- loop -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">15</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">24</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>loop.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>loop_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">16</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">24</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">18</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">24</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">19</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">24</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tennis -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">26.5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">24.5</posZ>
-			<proportion axis="z" size="1.77" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>tennis.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tennis_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- drive-up_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">2</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">25</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>drive-up_bridge.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>drive-up_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- crossover -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
 			<posX unit="gridUnits">3</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">25</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>crossover.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>crossover_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">4</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">25</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>straight_line_bridge.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- drive-up_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">25</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>drive-up_bridge.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>drive-up_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- drive-up_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">7</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">25</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>drive-up_bridge.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>drive-up_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- drive-up_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">8</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">25</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>drive-up_bridge.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>drive-up_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">12</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">25</posZ>
+			<posZ unit="gridUnits">7</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="0" />	
@@ -1998,165 +250,13 @@
 			<!-- / -->
 		</object>
 		<object type="base">
-			<!-- jump -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-			<posX unit="gridUnits">13</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">25</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>jump.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>jump_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
 			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">14</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">25</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- loop -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">18</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">25</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>loop.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>loop_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">22</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">25</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>straight_line_bridge.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- drive-up_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">2</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">26</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>drive-up_bridge.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>drive-up_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- crossover -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
 			<posX unit="gridUnits">3</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">26</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>crossover.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>crossover_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">4</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">26</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>straight_line_bridge.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- drive-up_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">26</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>drive-up_bridge.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>drive-up_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">18</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">26</posZ>
+			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="0" />	
@@ -2169,78 +269,21 @@
 			<!-- / -->
 		</object>
 		<object type="base">
-			<!-- straight_line -->
+			<!-- house -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">12</posX>
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+			<posX unit="gridUnits">3</posX>
 			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">27</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tennis -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">26.5</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">27.5</posZ>
-			<proportion axis="z" size="1.77" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>tennis.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tennis_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line_bridge -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">9</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">28</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
+			<posZ unit="gridUnits">9</posZ>
+			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="1" />	
 			<geometry>
-				<file>straight_line_bridge.mesh</file>
+				<file>house.mesh</file>
 			</geometry>
 			<waypoints>
-				<file>straight_line_bridge_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- straight_line -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">23</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">28</posZ>
-			<proportion axis="z" size="1.005" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
-			<geometry>
-				<file>straight_line.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>straight_line_waypoints.xml</file>
+				<file>house_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>

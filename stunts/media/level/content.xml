@@ -44,4 +44,11 @@
 
 	</level>
 
+	<level>
+		<name name="AllObjects" path="TestLevel3" />
+		<author name="elowar" datestr="Mi, 06 Jul, 03:27" />
+		<thumbnail count="0" file="thumb_%i.png" />
+
+	</level>
+
 </levels>
