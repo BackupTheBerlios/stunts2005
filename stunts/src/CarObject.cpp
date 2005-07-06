@@ -255,7 +255,7 @@ namespace stunts {
 			if (this->getGearCode() == 'R') this->setGear('1');
 			this->mVehicle->setInputs(left, right, throttle, brake);
 		}
-		std::cout << "Gang eingelegt: " << getGearCode() << std::endl;
+		//std::cout << "Gang eingelegt: " << getGearCode() << std::endl;
 	}
 
 

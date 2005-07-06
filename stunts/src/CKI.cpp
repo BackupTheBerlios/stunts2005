@@ -189,32 +189,17 @@ namespace stunts
 				{
 					stayTime += delaySeconds;
 					
-					if(stayTime > 1.f)
+					if(stayTime > 2.f)
 					{
+						
 						Ogre::Vector3 _position = waypoint->getVector();
-						/*
-									Ogre::Vector3 w_dir = waypoint->getNext()->getVector() - waypoint->getVector();
 						
-									Ogre::Quaternion o_dir = controlObject->Orientation();
-									
-									Ogre::Vector3 my_richtung = (o_dir * Vector3(-1.f, 0.f, 0.f));
-									
-									my_richtung.normalise();
-									w_dir.normalise();
-						
-									float m = my_richtung.dotProduct(w_dir);
-						*/
 						Quaternion* direction = new Quaternion( 0.0f , -1.0f , 0.0f , .0f );
 						
 			
 						//controlObject->respawn(_position, direction);
 						controlObject->respawn(_position, NULL);
 						
-						/*
-						Ogre::Vector3 _h = Ogre::Vector3(0., 10., 0.);
-						_position = _position + _h;
-						controlObject->ODEVehicle()->setPosition(_position);
-						*/
 						
 						Ogre::Vector3 dir = ( waypoint->getNext()->getVector() - waypoint->getVector() );
 						dir.normalise();
@@ -222,8 +207,8 @@ namespace stunts
 						waypoint = waypoint->getNext();
 						computeDirection();
 						
-					//	Quaternion d = Quaternion( dir[0] , 0 , dir[2] , 0 );
-						Quaternion d = Quaternion( 0 , 1 , 0 , msteerAngle );
+						Quaternion d = Quaternion( 0 , 0 , -msteerAngle , 0 );
+					//	Quaternion d = Quaternion( 0 , 1 , 0 , msteerAngle );
 					//	Quaternion e = controlObject->ODEVehicle()->getBody()->getOrientation();
 						controlObject->ODEVehicle()->getBody()->setOrientation(d);
 						
