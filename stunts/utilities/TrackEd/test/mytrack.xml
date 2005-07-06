@@ -101,7 +101,7 @@
 			<!-- tube_in -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 			<posX unit="gridUnits">12</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">1</posZ>
@@ -462,7 +462,7 @@
 			<!-- tunnel_in -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 			<posX unit="gridUnits">19</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">4</posZ>
@@ -687,7 +687,7 @@
 			<!-- / -->
 		</object>
 		<object type="base">
-			<!-- house -->
+			<!-- streetlight -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
@@ -698,10 +698,10 @@
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="1" />	
 			<geometry>
-				<file>house.mesh</file>
+				<file>streetlight.mesh</file>
 			</geometry>
 			<waypoints>
-				<file>house_waypoints.xml</file>
+				<file>streetlight_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>
@@ -839,10 +839,10 @@
 			<!-- / -->
 		</object>
 		<object type="base">
-			<!-- house -->
+			<!-- streetlight -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 			<posX unit="gridUnits">21</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">8</posZ>
@@ -850,10 +850,10 @@
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="1" />	
 			<geometry>
-				<file>house.mesh</file>
+				<file>streetlight.mesh</file>
 			</geometry>
 			<waypoints>
-				<file>house_waypoints.xml</file>
+				<file>streetlight_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>
@@ -896,10 +896,10 @@
 			<!-- / -->
 		</object>
 		<object type="base">
-			<!-- house -->
+			<!-- streetlight -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 			<posX unit="gridUnits">25</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">8</posZ>
@@ -907,10 +907,10 @@
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="1" />	
 			<geometry>
-				<file>house.mesh</file>
+				<file>streetlight.mesh</file>
 			</geometry>
 			<waypoints>
-				<file>house_waypoints.xml</file>
+				<file>streetlight_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>
@@ -972,7 +972,7 @@
 			<!-- / -->
 		</object>
 		<object type="base">
-			<!-- house -->
+			<!-- streetlight -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
@@ -983,10 +983,10 @@
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="1" />	
 			<geometry>
-				<file>house.mesh</file>
+				<file>streetlight.mesh</file>
 			</geometry>
 			<waypoints>
-				<file>house_waypoints.xml</file>
+				<file>streetlight_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>
@@ -1089,7 +1089,7 @@
 			<!-- skyscraper -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 			<posX unit="gridUnits">22</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">13</posZ>
@@ -1108,7 +1108,7 @@
 			<!-- skyscraper -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 			<posX unit="gridUnits">24</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">13</posZ>
@@ -1203,7 +1203,7 @@
 			<!-- mill -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 			<posX unit="gridUnits">26</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">15</posZ>
@@ -1222,7 +1222,7 @@
 			<!-- mill -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 			<posX unit="gridUnits">28</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">15</posZ>
@@ -1317,7 +1317,7 @@
 			<!-- house -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 			<posX unit="gridUnits">22</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">17</posZ>
@@ -1336,7 +1336,7 @@
 			<!-- house -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 			<posX unit="gridUnits">24</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">17</posZ>
@@ -1469,7 +1469,7 @@
 			<!-- drive-up_bridge -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
 			<posX unit="gridUnits">7</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">22</posZ>
@@ -1488,7 +1488,7 @@
 			<!-- drive-up_bridge -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
 			<posX unit="gridUnits">8</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">22</posZ>
@@ -1545,7 +1545,7 @@
 			<!-- cactus -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 			<posX unit="gridUnits">22</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">22</posZ>
@@ -1564,7 +1564,7 @@
 			<!-- cactus -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 			<posX unit="gridUnits">24</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">22</posZ>
@@ -1773,7 +1773,7 @@
 			<!-- loop -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
 			<posX unit="gridUnits">15</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">24</posZ>
@@ -1868,7 +1868,7 @@
 			<!-- drive-up_bridge -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 			<posX unit="gridUnits">2</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">25</posZ>
@@ -1925,7 +1925,7 @@
 			<!-- drive-up_bridge -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 			<posX unit="gridUnits">5</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">25</posZ>
@@ -1944,7 +1944,7 @@
 			<!-- drive-up_bridge -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
 			<posX unit="gridUnits">7</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">25</posZ>
@@ -1963,7 +1963,7 @@
 			<!-- drive-up_bridge -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
 			<posX unit="gridUnits">8</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">25</posZ>
@@ -2039,7 +2039,7 @@
 			<!-- loop -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 			<posX unit="gridUnits">18</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">25</posZ>
@@ -2077,7 +2077,7 @@
 			<!-- drive-up_bridge -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 			<posX unit="gridUnits">2</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">26</posZ>
@@ -2134,7 +2134,7 @@
 			<!-- drive-up_bridge -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
+			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
 			<posX unit="gridUnits">5</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">26</posZ>
