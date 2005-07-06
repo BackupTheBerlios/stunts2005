@@ -32,6 +32,8 @@
 #include "ObjectInstantiator.hpp"
 #include <math.h>
 
+#include "LevelManager.hpp"
+
 using boost::shared_ptr;
 
 namespace stunts
@@ -543,7 +545,8 @@ namespace stunts
 		mUserInput->activate(true);
 
 		//executeODE
-		executeODE(COgreTask::GetSingleton().mTimer->getFrameInterval());
+		if ((int)nrSettings.get("game_mode") == CLevelManager::PLAYING)
+			executeODE(COgreTask::GetSingleton().mTimer->getFrameInterval());
 
 		// update the terrain
 		mTerrain->update();
@@ -881,7 +884,7 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	void CLevel::executeODE(float delaySeconds)
 	{
-		while (delaySeconds > 0.0125)
+		/*while (delaySeconds > 0.0125)
 		{
 			mPhysicsWorld->synchronise();
 			mPhysicsWorld->getDefaultSpace()->collide();
@@ -889,7 +892,7 @@ namespace stunts
 			mPhysicsWorld->clearContacts();
 
 			delaySeconds -= 0.0125;
-		}
+		}*/
 		mPhysicsWorld->synchronise();
 		mPhysicsWorld->getDefaultSpace()->collide();
 

@@ -89,6 +89,14 @@ namespace stunts
 				CONTENT_FILE_CORRUPTED
 			};
 
+			// Game mode
+			enum GameMode
+			{
+				NOT_STARTED,
+				PAUSE,
+				PLAYING
+			};
+			
 			/** Get a vector containing all levels data */
 			std::vector<LevelData>&	getAllLevelData() { return mLevelList; }
 
@@ -191,6 +199,9 @@ namespace stunts
 
 			//! Should shadows reflect on water surface
 			bool				mUseShadowsInWater;
+
+			//! Game mode variable
+			int					mGameMode;
 			
 			//----------------------------------------------------
 			// Methods

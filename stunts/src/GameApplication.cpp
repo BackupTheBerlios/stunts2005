@@ -113,6 +113,11 @@ namespace stunts
 		CGuiTask::GetSingleton().addPage( "Main", "" );
 		CGuiTask::GetSingleton().addPage( "MainLevel", "" );
 		CGuiTask::GetSingleton().addPage( "MainOption", "" );
+		
+		CGuiTask::GetSingleton().addPage( "InGameOption", "" );
+		CGuiTask::GetSingleton().addPage( "InGame", "" );
+		CGuiTask::GetSingleton().addPage( "InGameLevel", "" );
+		
 		CGuiTask::GetSingleton().selectPage( "Main" );
 		CGuiTask::GetSingleton().rActive() = true;
 

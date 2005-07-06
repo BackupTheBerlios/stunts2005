@@ -24,6 +24,8 @@
 
 #include "CKI.h"
 
+#include "LevelManager.hpp"
+
 namespace stunts
 {
 	//--------------------------------------------------------------------------
@@ -81,7 +83,8 @@ namespace stunts
 		{
 			//react here only in this example application
 			//	as no InteractiveObject is running
-			this->executeKI(COgreTask::GetSingleton().mTimer->getFrameInterval());
+			if ((int)nrSettings.get("game_mode") == CLevelManager::PLAYING)
+				this->executeKI(COgreTask::GetSingleton().mTimer->getFrameInterval());
 		}
 
 		return NR_OK;
@@ -131,18 +134,18 @@ namespace stunts
 
 
 		computeStrategy();
-		
+
 //		lowrider(delaySeconds);
 
 		computeGear();
 		computeDirection();
 		computeAcceleration();
-		
+
 		//actualize the object with the computed inputs
 		controlObject->setInputs(steer, acc, brake);
 
 
-		
+
 		float delaySecondsOde = delaySeconds;
 
 		while (delaySecondsOde > 0.0125)
@@ -151,7 +154,6 @@ namespace stunts
 			delaySecondsOde -= 0.0125;
 		}
 		controlObject->ODEVehicle()->update(delaySecondsOde);
-		
 
 
 		//controlObject->ODEVehicle()->update(delaySeconds);

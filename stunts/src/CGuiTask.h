@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.h,v 1.9 2005/07/05 22:17:57 psyborg Exp $ */
+/* CVS $Id: CGuiTask.h,v 1.10 2005/07/06 14:41:14 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele
  *
- *  @version CVS $Revision: 1.9 $
- *  @date    CVS $Date: 2005/07/05 22:17:57 $
+ *  @version CVS $Revision: 1.10 $
+ *  @date    CVS $Date: 2005/07/06 14:41:14 $
  */
 
 
@@ -125,18 +125,19 @@ namespace stunts
 		bool handleLevel(const CEGUI::EventArgs& e);		
 		bool handleLevelOK(const CEGUI::EventArgs& e);
 		bool handleLevelSelected(const CEGUI::EventArgs& e);
-		bool handleLevelChangeScreenshot(const CEGUI::EventArgs& e);
+		//bool handleLevelChangeScreenshot(const CEGUI::EventArgs& e);
 		
 		bool handleOption(const CEGUI::EventArgs& e);
 		bool handleOptionOK(const CEGUI::EventArgs& e);
 		bool handleOptionChange(const CEGUI::EventArgs& e);
 		
-		bool handleMouseEnters(const CEGUI::EventArgs& e);
-		bool handleMouseLeaves(const CEGUI::EventArgs& e);
+		//bool handleMouseEnters(const CEGUI::EventArgs& e);
+		//bool handleMouseLeaves(const CEGUI::EventArgs& e);
 		
-		void setupEnterExitEvents(CEGUI::Window* win);
+		//void setupEnterExitEvents(CEGUI::Window* win);
 		
 	private:
+		void setupLevelList(const char* guiListName);
 	
 		bool mActive; /**< GUI manager activated flag */
 	

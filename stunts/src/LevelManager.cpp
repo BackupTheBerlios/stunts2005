@@ -51,6 +51,7 @@ namespace stunts
 
 		mUseShadows = 0;
 		mUseShadowsInWater = false;
+		mGameMode = NOT_STARTED;
 		mShadowTechnique = COgreTask::GetSingleton().mSceneMgr->getShadowTechnique();
 
 		registerAllVars();
@@ -178,6 +179,8 @@ namespace stunts
 		nrSettingsRegister(bool, mUseShadows, 		"use_shadows");
 		nrSettingsRegister(bool, mUseShadowsInWater,"use_shadows_in_water");
 
+		nrSettingsRegister(int, mGameMode, "game_mode");
+
 	}
 
 
@@ -188,6 +191,7 @@ namespace stunts
 		nrSettings.deregisterVariable("load_level");
 		nrSettings.deregisterVariable("use_shadows");
 		nrSettings.deregisterVariable("use_shadows_in_water");
+		nrSettings.deregisterVariable("game_mode");
 	}
 
 
@@ -303,12 +307,11 @@ namespace stunts
 	//--------------------------------------------------------------------------
 	nrResult CLevelManager::taskUpdate()
 	{
+
 		// check whenever we have shadows acitvated
 		static bool oldShadowMode = true;
 		
-		if (mUseShadows != oldShadowMode)
-		{
-		fprintf(stderr, "%d\n", mUseShadows);
+		if (mUseShadows != oldShadowMode){
 			oldShadowMode = mUseShadows;
 			if (mUseShadows){
 				COgreTask::GetSingleton().mSceneMgr->setShadowTechnique(mShadowTechnique);

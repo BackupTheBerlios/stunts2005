@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<GUILayout>
+	<Window Type="DefaultGUISheet" Name="InGame_Main">
+		<Window Type="TaharezLook/FrameWindow" Name="InGame_Option_Sheet">
+			<Property Name="Position" Value="x:0.20 y:0.4" />
+			<Property Name="Size" Value="w:0.6 h:0.5" />
+			<Property Name="Alpha" Value="0.600000" />
+			<Property Name="Text" Value="Stunts 2005" />
+
+			<!-- Checkbox to setup shadow mode -->
+			<Window Type="TaharezLook/Checkbox" Name="InGame/Option/UseShadows">
+				<Property Name="RelativePosition" Value="x:0.20 y:0.3" />
+				<Property Name="AbsoluteSize" Value="w:250 h:40" />
+				<Property Name="Text" Value="Turn stencil shadows on/off" />
+			</Window>
+	
+			<!-- Checkbox to setup water reflection mode -->
+			<Window Type="TaharezLook/Checkbox" Name="InGame/Option/UseShadowsInWater">
+				<Property Name="RelativePosition" Value="x:0.20 y:0.4" />
+				<Property Name="AbsoluteSize" Value="w:250 h:40" />
+				<Property Name="Text" Value="Show shadows in water reflections" />
+			</Window>
+			
+			<!-- OK button which choose the level from the list -->
+			<Window Type="TaharezLook/Button" Name="InGame/Option/OK">
+				<Property Name="RelativePosition" Value="x:0.35 y:0.8" />
+				<Property Name="AbsoluteSize" Value="w:150 h:20" />					
+				<Property Name="Text" Value="OK" />
+			</Window>
+	
+		</Window>
+
+	</Window>
+	
+</GUILayout>

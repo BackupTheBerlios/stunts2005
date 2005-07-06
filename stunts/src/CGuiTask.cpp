@@ -1,12 +1,12 @@
-/* CVS $Id: CGuiTask.cpp,v 1.13 2005/07/05 23:17:40 psyborg Exp $ */
+/* CVS $Id: CGuiTask.cpp,v 1.14 2005/07/06 14:41:14 psyborg Exp $ */
 
 /** @file
  *  Main GUI task and manager for Stunts 2005.
  *
  *  @author  Markus Thiele, Art Tevs
  *
- *  @version CVS $Revision: 1.13 $
- *  @date    CVS $Date: 2005/07/05 23:17:40 $
+ *  @version CVS $Revision: 1.14 $
+ *  @date    CVS $Date: 2005/07/06 14:41:14 $
  */
 
 
@@ -21,6 +21,7 @@ using std::string;
 
 #include "GameApplication.hpp"
 #include "LevelManager.hpp"
+#include <boost/lexical_cast.hpp>
 
 namespace stunts
 {
@@ -222,19 +223,34 @@ namespace stunts
 
 		// activate the last current page
 		selectPage(mCurrent->PageName());
+
+		// Go into pausing mode
+		// check whenever we are in the InGame Menu
+		if ((int)nrSettings.get("game_mode") != CLevelManager::NOT_STARTED){
+			
+			nrSettings.get("game_mode") = boost::lexical_cast<std::string>(CLevelManager::PAUSE);
+		}
+
 	}
 
 	/** Hides the Gui */
 	void CGuiTask::hideGUI(){
-		mActive = false;
-		CEGUI::MouseCursor::getSingleton().hide();
-
-		// now go through all elemnts and deactivate them
-		map<std::string, CGuiPage*>::iterator it = mPages.begin();
-		while (it != mPages.end())
-		{
-			it->second->pageDeactivate();
-			it ++;
+		// Go into running mode
+		// check whenever we are in the InGame Menu
+		if ((int)nrSettings.get("game_mode") != CLevelManager::NOT_STARTED){
+			
+			mActive = false;
+			CEGUI::MouseCursor::getSingleton().hide();
+	
+			// now go through all elemnts and deactivate them
+			map<std::string, CGuiPage*>::iterator it = mPages.begin();
+			while (it != mPages.end())
+			{
+				it->second->pageDeactivate();
+				it ++;
+			}
+		
+			nrSettings.get("game_mode") = boost::lexical_cast<std::string>(CLevelManager::PLAYING);
 		}
 		
 	}
@@ -316,7 +332,24 @@ namespace stunts
 				CEGUI::PushButton::EventClicked, 
 				CEGUI::Event::Subscriber(&CGuiTask::handleUnload, this));
 
-		
+				
+		//----------------------------------------------------------
+		wmgr.getWindow((CEGUI::utf8*)"InGame/Quit")
+			->subscribeEvent(
+				CEGUI::PushButton::EventClicked, 
+				CEGUI::Event::Subscriber(&CGuiTask::handleQuit, this));
+
+        wmgr.getWindow((CEGUI::utf8*)"InGame/Start")
+			->subscribeEvent(
+				CEGUI::PushButton::EventClicked, 
+				CEGUI::Event::Subscriber(&CGuiTask::handleStart, this));
+
+        wmgr.getWindow((CEGUI::utf8*)"InGame/Unload")
+			->subscribeEvent(
+				CEGUI::PushButton::EventClicked, 
+				CEGUI::Event::Subscriber(&CGuiTask::handleUnload, this));
+
+				
 		//----------------------------------------------------------
         wmgr.getWindow((CEGUI::utf8*)"Main/Level")
 			->subscribeEvent(
@@ -328,6 +361,16 @@ namespace stunts
 				CEGUI::PushButton::EventClicked, 
 				CEGUI::Event::Subscriber(&CGuiTask::handleLevelOK, this));
 
+		//----------------------------------------------------------
+        wmgr.getWindow((CEGUI::utf8*)"InGame/Level")
+			->subscribeEvent(
+				CEGUI::PushButton::EventClicked, 
+				CEGUI::Event::Subscriber(&CGuiTask::handleLevel, this));
+        
+		wmgr.getWindow((CEGUI::utf8*)"InGame/Level/OK")
+			->subscribeEvent(
+				CEGUI::PushButton::EventClicked, 
+				CEGUI::Event::Subscriber(&CGuiTask::handleLevelOK, this));
         
 		//----------------------------------------------------------
 		wmgr.getWindow((CEGUI::utf8*)"Main/Option")
@@ -350,6 +393,29 @@ namespace stunts
 				CEGUI::Checkbox::EventCheckStateChanged,
 				CEGUI::Event::Subscriber(&CGuiTask::handleOptionChange, this));
 
+		
+		//----------------------------------------------------------
+		wmgr.getWindow((CEGUI::utf8*)"InGame/Option")
+			->subscribeEvent(
+				CEGUI::PushButton::EventClicked, 
+				CEGUI::Event::Subscriber(&CGuiTask::handleOption, this));
+		
+        wmgr.getWindow((CEGUI::utf8*)"InGame/Option/OK")
+			->subscribeEvent(
+				CEGUI::PushButton::EventClicked, 
+				CEGUI::Event::Subscriber(&CGuiTask::handleOptionOK, this));
+
+        wmgr.getWindow((CEGUI::utf8*)"InGame/Option/UseShadows")
+			->subscribeEvent(
+				CEGUI::Checkbox::EventCheckStateChanged,
+				CEGUI::Event::Subscriber(&CGuiTask::handleOptionChange, this));
+		
+        wmgr.getWindow((CEGUI::utf8*)"InGame/Option/UseShadowsInWater")
+			->subscribeEvent(
+				CEGUI::Checkbox::EventCheckStateChanged,
+				CEGUI::Event::Subscriber(&CGuiTask::handleOptionChange, this));
+
+				
 		// load all screenshot images into the vector
 		std::vector<CLevelManager::LevelData>& levels = CLevelManager::GetSingleton().getAllLevelData();
 		for (unsigned int i=0; i < levels.size(); i++){
@@ -376,8 +442,21 @@ namespace stunts
 			}
 		}
 		
+		// setup all list where level informations are
+		setupLevelList("Main/Level/LevelList");
+		setupLevelList("InGame/Level/LevelList");
+
+		return NR_OK;
+	}
+	
+	/** Setup all a all list containing level informations **/
+	void CGuiTask::setupLevelList(const char* levelListName)
+	{
+		
+		CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
+
 		// add all levels we can load
-		CEGUI::Listbox* mList = static_cast<CEGUI::Listbox*>(wmgr.getWindow((CEGUI::utf8*)"Main/Level/LevelList"));
+		CEGUI::Listbox* mList = static_cast<CEGUI::Listbox*>(wmgr.getWindow((CEGUI::utf8*)levelListName));
 		if (mList)
 		{
 			std::vector<CLevelManager::LevelData>& list = CLevelManager::GetSingleton().getAllLevelData();
@@ -399,11 +478,9 @@ namespace stunts
 			CEGUI::EventArgs temp;
 			handleLevelSelected(temp);
 		}
-		
-				
-		return NR_OK;
+
 	}
-	
+
 	
 	/** Actions performed in every frame when GUI is active.
 	*  This method activates the currently selected GUI page if the GUI manager
@@ -455,66 +532,104 @@ namespace stunts
 		return true;
 	}
 
-
+	/** Starting the game **/
 	bool CGuiTask::handleStart(const CEGUI::EventArgs& e)
 	{
-		nrSettings.get("load_level") = std::string("1");
-		hideGUI();
 		
+		// Go into mode to playing
+		nrSettings.get("game_mode") = boost::lexical_cast<std::string>(CLevelManager::PLAYING);
+
+		nrSettings.get("load_level") = std::string("1");
+		
+		selectPage("InGame");
+		hideGUI();
+
 		return true;
 	}
 
+	/** unload the level **/
 	bool CGuiTask::handleUnload(const CEGUI::EventArgs& e)
 	{
 		CLevelManager::GetSingleton().unload();
-				
-		return true;
-	}
 
-	bool CGuiTask::handleLevel(const CEGUI::EventArgs& e)
-	{
-		selectPage("MainLevel");
-		
-		return true;
-	}
-	
-	bool CGuiTask::handleLevelOK(const CEGUI::EventArgs& e)
-	{
-		CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
-		CEGUI::Listbox* mList = static_cast<CEGUI::Listbox*>(wmgr.getWindow((CEGUI::utf8*)"Main/Level/LevelList"));
-		if (mList)
-		{
-			nrSettings.set("level_file", std::string(mList->getFirstSelectedItem()->getText().c_str()));		
-		}
+		// Go into pusing mode
+		nrSettings.get("game_mode") = boost::lexical_cast<std::string>(CLevelManager::NOT_STARTED);
 
 		selectPage("Main");
 		
 		return true;
 	}
-	
-	
-	bool CGuiTask::handleLevelSelected(const CEGUI::EventArgs& e)
-	{
 
+	/** go into menu, where we can choose the level **/
+	bool CGuiTask::handleLevel(const CEGUI::EventArgs& e)
+	{
+		// check whenever we are in the InGame Menu
+		if ((int)nrSettings.get("game_mode") == CLevelManager::PAUSE){
+			selectPage("InGameLevel");
+		}else{
+			selectPage("MainLevel");
+		}
 		
+		return true;
+	}
+
+	/** Ok level was chosen **/
+	bool CGuiTask::handleLevelOK(const CEGUI::EventArgs& e)
+	{
 		CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
 		CEGUI::Listbox* mList = static_cast<CEGUI::Listbox*>(wmgr.getWindow((CEGUI::utf8*)"Main/Level/LevelList"));
+
 		if (mList)
 		{
-			CEGUI::ListboxItem* item = mList->getFirstSelectedItem();
+			nrSettings.set("level_file", std::string(mList->getFirstSelectedItem()->getText().c_str()));		
+		}
+
+		// check whenever we are in the InGame Menu
+		if ((int)nrSettings.get("game_mode") == CLevelManager::PAUSE){
+			selectPage("InGame");
+		}else{
+			selectPage("Main");
+		}
+	
+		return true;
+	}
+
+	
+	/** We have one level selected, so change all neded tool informations **/	
+	bool CGuiTask::handleLevelSelected(const CEGUI::EventArgs& e)
+	{
+		
+		CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
+		
+		CEGUI::Listbox* mList = static_cast<CEGUI::Listbox*>(wmgr.getWindow((CEGUI::utf8*)"Main/Level/LevelList"));
+		CEGUI::Listbox* mInGameList = static_cast<CEGUI::Listbox*>(wmgr.getWindow((CEGUI::utf8*)"InGame/Level/LevelList"));
+		
+		if (mList && mInGameList)
+		{
+			CEGUI::ListboxItem* item = NULL;//
+			if ((int)nrSettings.get("game_mode") == CLevelManager::NOT_STARTED){
+				item = mList->getFirstSelectedItem();
+			}else{
+				item = mInGameList->getFirstSelectedItem();
+			}
+			
 			if (item){
 				CLevelManager::LevelData* data = CLevelManager::GetSingleton().getLevelData(std::string(item->getText().c_str()));
+				
 				if (data){
 					CEGUI::Window* win = wmgr.getWindow((CEGUI::utf8*)"Menu/Level/LevelDescr");
-					if (win){
+					CEGUI::Window* winingame = wmgr.getWindow((CEGUI::utf8*)"InGame/Level/LevelDescr");
+					if (win && winingame){
 						char	descr[1024];
 						sprintf(descr, "Author: %s\n\nDate: %s", data->author.c_str(), data->datestr.c_str());
 						win->setText(descr);
+						winingame->setText(descr);
 					}
 					
 					CEGUI::StaticImage* img = static_cast<CEGUI::StaticImage*>(wmgr.getWindow((CEGUI::utf8*)"Menu/Level/LevelScreenshot"));
+					CEGUI::StaticImage* imgingame = static_cast<CEGUI::StaticImage*>(wmgr.getWindow((CEGUI::utf8*)"InGame/Level/LevelScreenshot"));
 					
-					if (img){
+					if (img && imgingame){
 						if (data->screenshots.size()){
 							// create the name of the screenshot
 							CEGUI::String scrName (data->screenshots[0]->getName().c_str());
@@ -524,12 +639,14 @@ namespace stunts
 								CEGUI::Imageset* set= CEGUI::ImagesetManager::getSingleton().getImageset(scrName);
 								if (set){
 									img->setImage(&set->getImage(scrNameImage));							
+									imgingame->setImage(&set->getImage(scrNameImage));							
 								}
 							}catch(...){
 								nrLog.Log(NR_LOG_APP, "CGuiTask: Cannot set screenshot %s", scrName.c_str());
 							}
 						}else{
 							img->setImage(NULL);
+							imgingame->setImage(NULL);
 						}
 					}
 				}
@@ -540,6 +657,8 @@ namespace stunts
 		
 		return true;
 	}
+
+#if 0
 
 	/** Call this to change the current screenshot to the next one**/
 	bool CGuiTask::handleLevelChangeScreenshot(const CEGUI::EventArgs& e)
@@ -589,11 +708,16 @@ namespace stunts
 		*/
 		return true;
 	}
-
+#endif
 
 	bool CGuiTask::handleOption(const CEGUI::EventArgs& e)
 	{
-		selectPage("MainOption");
+		// check whenever we are in the InGame Menu
+		if ((int)nrSettings.get("game_mode") == CLevelManager::PAUSE){
+			selectPage("InGameOption");
+		}else{
+			selectPage("MainOption");
+		}
 		
 		return true;
 	}
@@ -601,8 +725,13 @@ namespace stunts
 	bool CGuiTask::handleOptionOK(const CEGUI::EventArgs& e)
 	{
 
-		selectPage("Main");
-		
+		// check whenever we are in the InGame Menu
+		if ((int)nrSettings.get("game_mode") == CLevelManager::PAUSE){
+			selectPage("InGame");
+		}else{
+			selectPage("Main");
+		}
+	
 		return true;
 	}
 
@@ -616,6 +745,17 @@ namespace stunts
 		CEGUI::Checkbox* mUseShadows = static_cast<CEGUI::Checkbox*>(wmgr.getWindow((CEGUI::utf8*)"Main/Option/UseShadows"));
 		CEGUI::Checkbox* mUseShadowsInWater = static_cast<CEGUI::Checkbox*>(wmgr.getWindow((CEGUI::utf8*)"Main/Option/UseShadowsInWater"));
 
+		CEGUI::Checkbox* mInGameUseShadows = static_cast<CEGUI::Checkbox*>(wmgr.getWindow((CEGUI::utf8*)"InGame/Option/UseShadows"));
+		CEGUI::Checkbox* mInGameUseShadowsInWater = static_cast<CEGUI::Checkbox*>(wmgr.getWindow((CEGUI::utf8*)"InGame/Option/UseShadowsInWater"));
+
+		if ((int)nrSettings.get("game_mode") == CLevelManager::NOT_STARTED){
+			mInGameUseShadows->setSelected(mUseShadows->isSelected());
+			mInGameUseShadowsInWater->setSelected(mUseShadowsInWater->isSelected());
+		}else{
+			mUseShadows->setSelected(mInGameUseShadows->isSelected());
+			mUseShadowsInWater->setSelected(mInGameUseShadowsInWater->isSelected());
+		}
+		
 		// check the state of the checkboxes
 		if (mUseShadows->isSelected()){
 			nrSettings.get("use_shadows") = std::string("1");

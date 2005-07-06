@@ -33,6 +33,22 @@ Stunts/Gui/MainLevel
 	}
 }
 
+// This is our level choosing menu
+Stunts/Gui/InGameLevel
+{
+	zorder 500
+	
+//	container Panel(Stunts/Gui/MainLevel/Background)
+//	{	
+//		top 0
+//		left 0
+//		width 1.0
+//		height 1.0
+//		material Stunts/Gui/GuiLevelBg
+//	}
+}
+
+
 // This is our option menu
 Stunts/Gui/MainOption
 {
@@ -47,6 +63,39 @@ Stunts/Gui/MainOption
 		material Stunts/Gui/GuiBackground
 	}
 }
+
+
+// This is our option menu (In Game)
+Stunts/Gui/InGameOption
+{
+	zorder 500
+	
+//	container Panel(Stunts/Gui/MainOption/Background)
+//	{	
+//		top 0
+//		left 0
+//		width 1.0
+//		height 1.0
+//		material Stunts/Gui/GuiBackground
+//	}
+}
+
+
+// This is our main menu (In Game)
+Stunts/Gui/InGame
+{
+	zorder 500
+	
+//	container Panel(Stunts/Gui/MainOption/Background)
+//	{	
+//		top 0
+//		left 0
+//		width 1.0
+//		height 1.0
+//		material Stunts/Gui/GuiBackground
+//	}
+}
+
 
 
 // A silly example of how you would do a 3D cockpit

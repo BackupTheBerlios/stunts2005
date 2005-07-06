@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<GUILayout>
+	<Window Type="DefaultGUISheet" Name="InGame_Level">
+		<Window Type="DefaultWindow" Name="InGame_Level_Win">
+			<Property Name="Position" Value="x:0.05 y:0.15" />
+			<Property Name="Size" Value="w:0.95 h:0.9" />
+			<Property Name="Alpha" Value="0.600000" />
+			<Property Name="Text" Value="Stunts 2005" />
+		
+			
+			<!-- OK button which choose the level from the list -->
+			<Window Type="TaharezLook/Button" Name="InGame/Level/OK">
+				<Property Name="AbsolutePosition" Value="x:75 y:300" />
+				<Property Name="AbsoluteSize" Value="w:150 h:20" />					
+				<Property Name="Text" Value="OK" />
+			</Window>
+
+			<!-- List showing all available levels -->			
+			<Window Type="TaharezLook/Listbox" Name="InGame/Level/LevelList">
+				<Property Name="AbsolutePosition" Value="x:0.0 y:0.0" />
+				<Property Name="AbsoluteSize" Value="w:300.0 h:250.0" />
+			</Window>
+        
+        	<!-- Box containing information about the level -->
+        	<Window Type="TaharezLook/StaticText" Name="InGame/Level/LevelDescr">
+        		<Property Name="AbsolutePosition" Value="x:400.0 y:0.0" />
+        		<Property Name="AbsoluteSize" Value="w:200.0 h:100.0" />
+        	</Window>
+        	    
+        	<!-- Here we can see the screenshots, about the level -->
+        	<Window Type="TaharezLook/StaticImage" Name="InGame/Level/LevelScreenshot">
+        		<Property Name="AbsolutePosition" Value="x:350.0 y:125.0" />
+        		<Property Name="AbsoluteSize" Value="w:300.0 h:225.0" />
+        		<Property Name="Text" Value="Click on the screenshot image to change to next one if such one exists" />
+        	</Window>
+
+        	<!-- Some information about screenshots -->
+        	<!--<Window Type="TaharezLook/StaticText" Name="Menu/Level/ToolTip">
+        		<Property Name="AbsolutePosition" Value="x:25.0 y:455.0" />
+        		<Property Name="AbsoluteSize" Value="w:650.0 h:30.0" />
+				<Property Name="HorzFormatting" Value="WordWrapCentred" />
+				<Property Name="Text" Value="Here you can choose the track you want to drive on" />
+        	</Window>-->
+			
+		</Window>
+
+		<Window Type="TaharezLook/StaticText" Name="InGame_Level_LogoText">
+			<Property Name="Alpha" Value="0.500000" />
+			<Property Name="RelativeRect" Value="l:0.035000 t:0.030000 r:0.961251 b:0.090000" />
+			<Property Name="Text" Value="Stunts2005 powered by Ogre3D, nrEngine, CEGUI, FMod, ODE, Tinyxml" />
+		</Window>
+		
+	</Window>
+</GUILayout>
