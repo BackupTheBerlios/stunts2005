@@ -1,4 +1,4 @@
-material Material #52/Material_#28
+material Tennis/filet
 {
     technique
     {
@@ -16,7 +16,7 @@ material Material #52/Material_#28
     }
 }
 
-material Material #52/Material_#25
+material Tennis/tcurt
 {
     technique
     {
@@ -34,7 +34,7 @@ material Material #52/Material_#25
     }
 }
 
-material Material_#54
+material Tennis/bmetal
 {
     technique
     {

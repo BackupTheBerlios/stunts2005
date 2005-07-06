@@ -37,3 +37,20 @@ material Tree/Bark
     }
 }
 
+material Tree/cactus
+{
+    technique
+    {
+        pass
+        {
+            ambient 0.0 0.0 0.0
+            diffuse 0.784314 0.784314 0.784314
+            specular 0.0 0.0 0.0 500.0
+            emissive 0.0 0.0 0.0
+            texture_unit
+            {
+                texture cactus.jpg 
+            }
+        }
+    }
+}

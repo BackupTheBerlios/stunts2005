@@ -124,3 +124,17 @@ material Street/waypoint
 		}
 	}
 }
+
+material Street/lamp
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture bmetal.jpg 
+			}
+		}
+	}
+}
