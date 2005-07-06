@@ -687,7 +687,7 @@
 			<!-- / -->
 		</object>
 		<object type="base">
-			<!-- streetlight -->
+			<!-- house -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
@@ -698,10 +698,10 @@
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="1" />	
 			<geometry>
-				<file>streetlight.mesh</file>
+				<file>house.mesh</file>
 			</geometry>
 			<waypoints>
-				<file>streetlight_waypoints.xml</file>
+				<file>house_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>
@@ -839,7 +839,7 @@
 			<!-- / -->
 		</object>
 		<object type="base">
-			<!-- streetlight -->
+			<!-- house -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
@@ -850,10 +850,10 @@
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="1" />	
 			<geometry>
-				<file>streetlight.mesh</file>
+				<file>house.mesh</file>
 			</geometry>
 			<waypoints>
-				<file>streetlight_waypoints.xml</file>
+				<file>house_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>
@@ -896,7 +896,7 @@
 			<!-- / -->
 		</object>
 		<object type="base">
-			<!-- streetlight -->
+			<!-- house -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
@@ -907,10 +907,10 @@
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="1" />	
 			<geometry>
-				<file>streetlight.mesh</file>
+				<file>house.mesh</file>
 			</geometry>
 			<waypoints>
-				<file>streetlight_waypoints.xml</file>
+				<file>house_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>
@@ -972,7 +972,7 @@
 			<!-- / -->
 		</object>
 		<object type="base">
-			<!-- streetlight -->
+			<!-- house -->
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
@@ -983,10 +983,10 @@
 			<stretch x="1.0" y="1.0" z="1.0" />
 			<shadow cast="1" />	
 			<geometry>
-				<file>streetlight.mesh</file>
+				<file>house.mesh</file>
 			</geometry>
 			<waypoints>
-				<file>streetlight_waypoints.xml</file>
+				<file>house_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>

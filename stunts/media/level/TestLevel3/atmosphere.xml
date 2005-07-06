@@ -9,8 +9,11 @@
 	<!-- Define lights. You can define more than one light, but this will decrease performance -->
 	<lights>
 		<!-- Defines a light with y type "directional". Other values are "point", "spot" -->
-		<light type="spot">
+		<light type="directional">
 			<name>Sun</name>
+
+			<!-- Shadow properties -->
+			<shadow cause="1" />
 
 			<!-- Direction and position of this light -->
 			<direction x="1.14" y="-0.22" z="-0.97" />
@@ -19,9 +22,6 @@
 			<!-- Colors components -->
 			<diffuse r="0.88" g="0.82" b="0.76" />
 			<specular r="0.09" g="0.09" b="0.04" />
-
-			<!-- Shadow properties -->
-			<shadow cause="0" />
 
 			<!--
 				Lights normally get fainter the further they are away.
@@ -46,6 +46,8 @@
 			<billboard material="Effects/Sun" width="10000.0" height="10000.0"/>
 
 		</light>
+
+
 	</lights>
 
 	<lensflare>
