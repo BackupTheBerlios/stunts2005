@@ -1,0 +1,38 @@
+<!-- this is a level -->
+<level>
+
+	<physics gravity="9.80665" CFM="10e-5" ERP="0.8" CCV="1.0"/>
+
+	<terrain>
+		<import root="terrain" file="terrain.xml" />
+	</terrain>
+
+	<objects>
+		<object type="car">
+			<name>HumanPlayerCar</name>
+			<import file="../../cars/jeep.xml" />
+			<control name="Human" />
+
+			<posX unit="gridUnits">10</posX>
+			<posY type="bottom">0</posY>
+			<posZ unit="gridUnits">13</posZ>
+		</object>
+
+		<object type="car">
+			<name>AICar</name>
+			<import file="../../cars/subaru.xml" />
+			<control name="AICar" />
+
+			<posX unit="gridUnits">13</posX>
+			<posY type="bottom">0</posY>
+			<posZ unit="gridUnits">10</posZ>
+		</object>
+
+		<!-- this imports all track objects -->
+		<import root="track" file="track.xml" />
+	</objects>
+
+	<atmosphere>
+		<import root="atmosphere" file="atmosphere.xml" />
+	</atmosphere>
+</level>

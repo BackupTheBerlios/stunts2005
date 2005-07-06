@@ -1,0 +1,22 @@
+
+<!-- this is a terrain -->
+<terrain>
+	<!--
+		Ausdehnung vom Terrain in Metern. Muss das gleiche sein, wie in terrain.cfg
+		Die Angabe ist wichtig, um die Units nach Meter konvertieren zu können.
+	-->
+	<size widthX="1500.0" widthZ="1500.0" />
+	<physics friction="18.0"/>
+
+	<fence>
+		<geometry>
+			<file>terrainFence.mesh</file>
+		</geometry>
+	</fence>
+
+	<water>
+		<beginBelow>0.0</beginBelow>
+	</water>
+
+	<config>terrain.cfg</config>
+</terrain>
