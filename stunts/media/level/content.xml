@@ -19,23 +19,6 @@
 	</level>
 
 
-        <level>
-                <!-- Name of the level and a path containing all level data. Path is relative
-                        to this file -->
-                <name name="The New Level" path="NewLevel" />
-
-                <!-- Name of the author and a string containing creating date -->
-                <author name="Elowar" datestr="Mi, 06 Jul, 23:23" />
-
-                <!-- Thumbnails bzw. screenshots showing the level.
-                        count is number of thumbnails
-                        file file name of the thumbnail containing %i which will be
-                        replaced by the thumbnail number according to the count. Count
-                        is started by 0. File path is relative to Level Path defined above -->
-                <thumbnail count="3" file="screenshot_%i.png" />
-
-        </level>
-
 
 	<level>
 		<name name="Test" path="TestLevel2" />

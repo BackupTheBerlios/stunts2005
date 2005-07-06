@@ -82,9 +82,9 @@ namespace stunts {
 		// show the logo
 		//showIntro();
 
-		// show intro from nrEngine		
+		// show intro from nrEngine
 		//shownrEngineIntro();
-		
+
 		return NR_OK;
 	}
 
@@ -98,7 +98,7 @@ namespace stunts {
 		// create the timer interface
 		mTimer.reset (new nrCTimer(nrCClock::GetSingleton()));
 		nrCClock::GetSingleton().addObserver(mTimer);
-		
+
 		// OK
 		return NR_OK;
 	}
@@ -178,7 +178,8 @@ namespace stunts {
 	bool COgreTask::configure()
 	{
 
-		bool ok = mRoot->restoreConfig();
+		//bool ok = mRoot->restoreConfig();
+		bool ok = mRoot->showConfigDialog();
 
 		//attention: plugins.cfg must be in the root folder or
 		//	a segfault will occur!
@@ -283,11 +284,11 @@ namespace stunts {
 			// now get the material for the logo
 			MaterialPtr mat = MaterialManager::getSingleton().getByName("Ogre/IntroMaterial");
 			TextureUnitState* state = NULL;
-	
+
 			if (mat.get() != NULL){
 				state = mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
 			}
-			
+
 			// create a timer
 			Timer* timer = PlatformManager::getSingleton().createTimer();
 			if (timer && state)
@@ -296,11 +297,11 @@ namespace stunts {
 				unsigned long stopTime = timer->getMilliseconds() + 700;
 				unsigned long startTime = timer->getMilliseconds();
 
-				// Fade IN				
+				// Fade IN
 				while (timer->getMilliseconds() < stopTime)
 				{
 					float value = float(timer->getMilliseconds() - startTime) / float(stopTime - startTime);
-					
+
 					state->setAlphaOperation(LBX_MODULATE,LBS_TEXTURE,LBS_MANUAL, 1.0, value);
 					mRoot->renderOneFrame();
 				}
@@ -318,20 +319,20 @@ namespace stunts {
 				while (timer->getMilliseconds() < stopTime)
 				{
 					float value = float(timer->getMilliseconds() - startTime) / float(stopTime - startTime);
-					
+
 					state->setAlphaOperation(LBX_MODULATE,LBS_TEXTURE,LBS_MANUAL, 1.0, 1.0f - value);
 					mRoot->renderOneFrame();
 				}
-				
+
 				// destroy the timer
 				PlatformManager::getSingleton().destroyTimer(timer);
-				
+
 			}
 			// now cleanup data
 			OverlayManager::getSingleton().destroy(ov);
-			
+
 		}
-		
+
 	}
 
 
@@ -351,11 +352,11 @@ namespace stunts {
 			// now get the material for the logo
 			MaterialPtr mat = MaterialManager::getSingleton().getByName("nrEngine/IntroMaterial");
 			TextureUnitState* state = NULL;
-	
+
 			if (mat.get() != NULL){
 				state = mat->getTechnique(0)->getPass(0)->getTextureUnitState(0);
 			}
-			
+
 			// create a timer
 			Timer* timer = PlatformManager::getSingleton().createTimer();
 			if (timer && state)
@@ -363,11 +364,11 @@ namespace stunts {
 				// now hold on for some time
 				unsigned long stopTime = timer->getMilliseconds() + 1000;
 				unsigned long startTime = timer->getMilliseconds();
-				
+
 				while (timer->getMilliseconds() < stopTime)
 				{
 					float value = float(timer->getMilliseconds() - startTime) / float(stopTime - startTime);
-					
+
 					state->setAlphaOperation(LBX_MODULATE,LBS_TEXTURE,LBS_MANUAL, 1.0, value);
 					mRoot->renderOneFrame();
 				}
@@ -376,16 +377,16 @@ namespace stunts {
 				{
 					mRoot->renderOneFrame();
 				}
-								
+
 				// destroy the timer
 				PlatformManager::getSingleton().destroyTimer(timer);
-				
+
 			}
 			// now cleanup data
 			OverlayManager::getSingleton().destroy(ov);
-			
+
 		}
-		
+
 	}
 
 }
