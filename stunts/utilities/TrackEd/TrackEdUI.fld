@@ -7,8 +7,8 @@ class CTrackEdUI {open
   Function {CTrackEdUI()} {open
   } {
     Fl_Window mainWindow {
-      label {Stunts2005 TrackEd (alpha)} open
-      xywh {419 265 794 600}
+      label {Stunts2005 TrackEd} open selected
+      xywh {319 293 794 600}
       code0 {\#include <FL/Fl_PNG_Image.h>}
       code1 {\#include "Images.h"}
       code2 {\#include "Terrain.h"} visible
@@ -21,7 +21,7 @@ class CTrackEdUI {open
         } {
           Fl_Group {} {
             label Road open
-            xywh {5 25 215 430}
+            xywh {5 25 219 430}
           } {
             Fl_Button corner_big {
               label {corner big}
@@ -104,7 +104,7 @@ Selected->image( o->image() );
 Selected->tooltip( o->tooltip() );
 
 Selected->redraw();}
-              xywh {140 106 49 49} align 144
+              xywh {145 61 49 49} align 144
               code0 {o->image( img["corner_small_nw"] );}
               code1 {o->tooltip( "corner_small_nw" );}
               code2 {o->label( NULL );}
@@ -126,7 +126,7 @@ Selected->image( o->image() );
 Selected->tooltip( o->tooltip() );
 
 Selected->redraw();}
-              xywh {145 201 49 49} align 144
+              xywh {145 181 49 49} align 144
               code0 {o->image( img["straight_line_h"] );}
               code1 {o->tooltip( "straight_line_h" );}
               code2 {o->label( NULL );}
@@ -136,7 +136,7 @@ Selected->redraw();}
               callback {Selected->tooltip( o->tooltip() );
 Selected->image( o->image() );
 Selected->redraw();}
-              tooltip empty xywh {35 203 47 47} align 16
+              tooltip empty xywh {35 181 49 49} align 16
               code0 {o->image( img["empty"] );}
               code1 {o->tooltip( "empty" );}
               code2 {o->label( NULL );}
@@ -170,7 +170,7 @@ Selected->image( o->image() );
 Selected->tooltip( o->tooltip() );
 
 Selected->redraw();}
-              xywh {90 201 49 49} align 144
+              xywh {90 181 49 49} align 144
               code0 {o->image( img["start_goal_h"] );}
               code1 {o->tooltip( "start_goal_h" );}
               code2 {o->label( NULL );}
@@ -213,7 +213,7 @@ Selected->image( o->image() );
 Selected->tooltip( o->tooltip() );
 
 Selected->redraw();}
-              xywh {35 301 49 49} align 144
+              xywh {25 331 49 49} align 144
               code0 {o->image( img["tube_in_h"] );}
               code1 {o->tooltip( "tube_in_h" );}
               code2 {o->label( NULL );}
@@ -235,7 +235,7 @@ Selected->image( o->image() );
 Selected->tooltip( o->tooltip() );
 
 Selected->redraw();}
-              xywh {90 301 49 49} align 144
+              xywh {80 331 49 49} align 144
               code0 {o->image( img["tube_h"] );}
               code1 {o->tooltip( "tube_h" );}
               code2 {o->label( NULL );}
@@ -257,7 +257,7 @@ Selected->image( o->image() );
 Selected->tooltip( o->tooltip() );
 
 Selected->redraw();}
-              xywh {145 301 49 49} align 144
+              xywh {25 386 49 49} align 144
               code0 {o->image( img["tube_with_wall_h"] );}
               code1 {o->tooltip( "tube_with_wall_h" );}
               code2 {o->label( NULL );}
@@ -300,9 +300,9 @@ Selected->image( o->image() );
 Selected->tooltip( o->tooltip() );
 
 Selected->redraw();}
-              xywh {60 356 49 49} align 144
-              code0 {o->image( img["tunnel_in_h"] );}
-              code1 {o->tooltip( "tunnel_in_h" );}
+              xywh {150 331 49 49} align 144
+              code0 {o->image( img["tunnel_out_v"] );}
+              code1 {o->tooltip( "tunnel_out_v" );}
               code2 {o->label( NULL );}
             }
             Fl_Button tunnel {
@@ -322,9 +322,117 @@ Selected->image( o->image() );
 Selected->tooltip( o->tooltip() );
 
 Selected->redraw();}
-              xywh {115 356 49 49} align 144
-              code0 {o->image( img["tunnel_h"] );}
-              code1 {o->tooltip( "tunnel_h" );}
+              xywh {150 386 49 49} align 144
+              code0 {o->image( img["tunnel_v"] );}
+              code1 {o->tooltip( "tunnel_v" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button y_split {
+              label {y split}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "y_sn" ) {
+		o->tooltip( "y_we" );
+		o->image( img["y_we"] );
+	} else if( o->tooltip() == "y_we" ) {
+		o->tooltip( "y_ns" );
+		o->image( img["y_ns"] );
+	} else if( o->tooltip() == "y_ns" ) {
+		o->tooltip( "y_ew" );
+		o->image( img["y_ew"] );
+	} else if( o->tooltip() == "y_ew" ) {
+		o->tooltip( "y_sn" );
+		o->image( img["y_sn"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "y_sn" ) {
+		o->tooltip( "y_ew" );
+		o->image( img["y_ew"] );
+	} else if( o->tooltip() == "y_ew" ) {
+		o->tooltip( "y_ns" );
+		o->image( img["y_ns"] );
+	} else if( o->tooltip() == "y_ns" ) {
+		o->tooltip( "y_we" );
+		o->image( img["y_we"] );
+	} else if( o->tooltip() == "y_we" ) {
+		o->tooltip( "y_sn" );
+		o->image( img["y_sn"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {60 256 49 49} align 144
+              code0 {o->image( img["y_sn"] );}
+              code1 {o->tooltip( "y_sn" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button y_split_b {
+              label {y split B}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "y_b_sn" ) {
+		o->tooltip( "y_b_we" );
+		o->image( img["y_b_we"] );
+	} else if( o->tooltip() == "y_b_we" ) {
+		o->tooltip( "y_b_ns" );
+		o->image( img["y_b_ns"] );
+	} else if( o->tooltip() == "y_b_ns" ) {
+		o->tooltip( "y_b_ew" );
+		o->image( img["y_b_ew"] );
+	} else if( o->tooltip() == "y_b_ew" ) {
+		o->tooltip( "y_b_sn" );
+		o->image( img["y_b_sn"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "y_b_sn" ) {
+		o->tooltip( "y_b_ew" );
+		o->image( img["y_b_ew"] );
+	} else if( o->tooltip() == "y_b_ew" ) {
+		o->tooltip( "y_b_ns" );
+		o->image( img["y_b_ns"] );
+	} else if( o->tooltip() == "y_b_ns" ) {
+		o->tooltip( "y_b_we" );
+		o->image( img["y_b_we"] );
+	} else if( o->tooltip() == "y_b_we" ) {
+		o->tooltip( "y_b_sn" );
+		o->image( img["y_b_sn"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {115 256 49 49} align 144
+              code0 {o->image( img["y_b_sn"] );}
+              code1 {o->tooltip( "y_b_sn" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button screw {
+              label screw
+              callback {if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "screw_h" ) {
+		o->tooltip( "screw_v" );
+		o->image( img["screw_v"] );
+	} else if( o->tooltip() == "screw_v" ) {
+		o->tooltip( "screw_h" );
+		o->image( img["screw_h"] );
+	} 
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {80 386 49 49} align 144
+              code0 {o->image( img["screw_h"] );}
+              code1 {o->tooltip( "screw_h" );}
               code2 {o->label( NULL );}
             }
           }
@@ -678,9 +786,403 @@ Selected->redraw();}
             }
           }
           Fl_Group {} {
-            label Stunt open
-            xywh {5 25 215 430} hide
-          } {}
+            label Other open
+            xywh {5 25 219 430} hide
+          } {
+            Fl_Button jump {
+              label jump
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "jump_sn" ) {
+		o->tooltip( "jump_we" );
+		o->image( img["jump_we"] );
+	} else if( o->tooltip() == "jump_we" ) {
+		o->tooltip( "jump_ns" );
+		o->image( img["jump_ns"] );
+	} else if( o->tooltip() == "jump_ns" ) {
+		o->tooltip( "jump_ew" );
+		o->image( img["jump_ew"] );
+	} else if( o->tooltip() == "jump_ew" ) {
+		o->tooltip( "jump_sn" );
+		o->image( img["jump_sn"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "jump_sn" ) {
+		o->tooltip( "jump_ew" );
+		o->image( img["jump_ew"] );
+	} else if( o->tooltip() == "jump_ew" ) {
+		o->tooltip( "jump_ns" );
+		o->image( img["jump_ns"] );
+	} else if( o->tooltip() == "jump_ns" ) {
+		o->tooltip( "jump_we" );
+		o->image( img["jump_we"] );
+	} else if( o->tooltip() == "jump_we" ) {
+		o->tooltip( "jump_sn" );
+		o->image( img["jump_sn"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {55 66 49 49} align 144
+              code0 {o->image( img["jump_sn"] );}
+              code1 {o->tooltip( "jump_sn" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button loop {
+              label loop
+              callback {if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "loop_h" ) {
+		o->tooltip( "loop_v" );
+		o->image( img["loop_v"] );
+	} else if( o->tooltip() == "loop_v" ) {
+		o->tooltip( "loop_h" );
+		o->image( img["loop_h"] );
+	} 
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {115 66 49 49} align 144
+              code0 {o->image( img["loop_v"] );}
+              code1 {o->tooltip( "loop_v" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button cactus {
+              label cactus
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "cactus_n" ) {
+		o->tooltip( "cactus_e" );
+		o->image( img["cactus_e"] );
+	} else if( o->tooltip() == "cactus_e" ) {
+		o->tooltip( "cactus_s" );
+		o->image( img["cactus_s"] );
+	} else if( o->tooltip() == "cactus_s" ) {
+		o->tooltip( "cactus_w" );
+		o->image( img["cactus_w"] );
+	} else if( o->tooltip() == "cactus_w" ) {
+		o->tooltip( "cactus_n" );
+		o->image( img["cactus_n"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "cactus_n" ) {
+		o->tooltip( "cactus_w" );
+		o->image( img["cactus_w"] );
+	} else if( o->tooltip() == "cactus_w" ) {
+		o->tooltip( "cactus_s" );
+		o->image( img["cactus_s"] );
+	} else if( o->tooltip() == "cactus_s" ) {
+		o->tooltip( "cactus_e" );
+		o->image( img["cactus_e"] );
+	} else if( o->tooltip() == "cactus_e" ) {
+		o->tooltip( "cactus_n" );
+		o->image( img["cactus_n"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {30 146 49 49} align 144
+              code0 {o->image( img["cactus_n"] );}
+              code1 {o->tooltip( "cactus_n" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button mill {
+              label mill
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "mill_n" ) {
+		o->tooltip( "mill_e" );
+		o->image( img["mill_e"] );
+	} else if( o->tooltip() == "mill_e" ) {
+		o->tooltip( "mill_s" );
+		o->image( img["mill_s"] );
+	} else if( o->tooltip() == "mill_s" ) {
+		o->tooltip( "mill_w" );
+		o->image( img["mill_w"] );
+	} else if( o->tooltip() == "mill_w" ) {
+		o->tooltip( "mill_n" );
+		o->image( img["mill_n"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "mill_n" ) {
+		o->tooltip( "mill_w" );
+		o->image( img["mill_w"] );
+	} else if( o->tooltip() == "mill_w" ) {
+		o->tooltip( "mill_s" );
+		o->image( img["mill_s"] );
+	} else if( o->tooltip() == "mill_s" ) {
+		o->tooltip( "mill_e" );
+		o->image( img["mill_e"] );
+	} else if( o->tooltip() == "mill_e" ) {
+		o->tooltip( "mill_n" );
+		o->image( img["mill_n"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {140 146 49 49} align 144
+              code0 {o->image( img["mill_n"] );}
+              code1 {o->tooltip( "mill_n" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button tree {
+              label tree
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "tree_n" ) {
+		o->tooltip( "tree_e" );
+		o->image( img["tree_e"] );
+	} else if( o->tooltip() == "tree_e" ) {
+		o->tooltip( "tree_s" );
+		o->image( img["tree_s"] );
+	} else if( o->tooltip() == "tree_s" ) {
+		o->tooltip( "tree_w" );
+		o->image( img["tree_w"] );
+	} else if( o->tooltip() == "tree_w" ) {
+		o->tooltip( "tree_n" );
+		o->image( img["tree_n"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tree_n" ) {
+		o->tooltip( "tree_w" );
+		o->image( img["tree_w"] );
+	} else if( o->tooltip() == "tree_w" ) {
+		o->tooltip( "tree_s" );
+		o->image( img["tree_s"] );
+	} else if( o->tooltip() == "tree_s" ) {
+		o->tooltip( "tree_e" );
+		o->image( img["tree_e"] );
+	} else if( o->tooltip() == "tree_e" ) {
+		o->tooltip( "tree_n" );
+		o->image( img["tree_n"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {85 146 49 49} align 144
+              code0 {o->image( img["tree_n"] );}
+              code1 {o->tooltip( "tree_n" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button tennis_big {
+              label {tennis big}
+              callback {if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "tennis_big_v" ) {
+		o->tooltip( "tennis_big_h" );
+		o->image( img["tennis_big_h"] );
+	} else if( o->tooltip() == "tennis_big_h" ) {
+		o->tooltip( "tennis_big_v" );
+		o->image( img["tennis_big_v"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {65 336 94 94} align 144
+              code0 {o->image( img["tennis_big_h"] );}
+              code1 {o->tooltip( "tennis_big_h" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button streetlight {
+              label {street light}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "streetlight_n" ) {
+		o->tooltip( "streetlight_e" );
+		o->image( img["streetlight_e"] );
+	} else if( o->tooltip() == "streetlight_e" ) {
+		o->tooltip( "streetlight_s" );
+		o->image( img["streetlight_s"] );
+	} else if( o->tooltip() == "streetlight_s" ) {
+		o->tooltip( "streetlight_w" );
+		o->image( img["streetlight_w"] );
+	} else if( o->tooltip() == "streetlight_w" ) {
+		o->tooltip( "streetlight_n" );
+		o->image( img["streetlight_n"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "streetlight_n" ) {
+		o->tooltip( "streetlight_w" );
+		o->image( img["streetlight_w"] );
+	} else if( o->tooltip() == "streetlight_w" ) {
+		o->tooltip( "streetlight_s" );
+		o->image( img["streetlight_s"] );
+	} else if( o->tooltip() == "streetlight_s" ) {
+		o->tooltip( "streetlight_e" );
+		o->image( img["streetlight_e"] );
+	} else if( o->tooltip() == "streetlight_e" ) {
+		o->tooltip( "streetlight_n" );
+		o->image( img["streetlight_n"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {85 256 49 49} align 144
+              code0 {o->image( img["streetlight_n"] );}
+              code1 {o->tooltip( "streetlight_n" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button house {
+              label house
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "house_n" ) {
+		o->tooltip( "house_e" );
+		o->image( img["house_e"] );
+	} else if( o->tooltip() == "house_e" ) {
+		o->tooltip( "house_s" );
+		o->image( img["house_s"] );
+	} else if( o->tooltip() == "house_s" ) {
+		o->tooltip( "house_w" );
+		o->image( img["house_w"] );
+	} else if( o->tooltip() == "house_w" ) {
+		o->tooltip( "house_n" );
+		o->image( img["house_n"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "house_n" ) {
+		o->tooltip( "house_w" );
+		o->image( img["house_w"] );
+	} else if( o->tooltip() == "house_w" ) {
+		o->tooltip( "house_s" );
+		o->image( img["house_s"] );
+	} else if( o->tooltip() == "house_s" ) {
+		o->tooltip( "house_e" );
+		o->image( img["house_e"] );
+	} else if( o->tooltip() == "house_e" ) {
+		o->tooltip( "house_n" );
+		o->image( img["house_n"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {110 201 49 49} align 144
+              code0 {o->image( img["house_n"] );}
+              code1 {o->tooltip( "house_n" );}
+              code2 {o->label( NULL );}
+            }
+            Fl_Button skyscraper {
+              label {sky scraper}
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "skyscraper_n" ) {
+		o->tooltip( "skyscraper_e" );
+		o->image( img["skyscraper_e"] );
+	} else if( o->tooltip() == "skyscraper_e" ) {
+		o->tooltip( "skyscraper_s" );
+		o->image( img["skyscraper_s"] );
+	} else if( o->tooltip() == "skyscraper_s" ) {
+		o->tooltip( "skyscraper_w" );
+		o->image( img["skyscraper_w"] );
+	} else if( o->tooltip() == "skyscraper_w" ) {
+		o->tooltip( "skyscraper_n" );
+		o->image( img["skyscraper_n"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "skyscraper_n" ) {
+		o->tooltip( "skyscraper_w" );
+		o->image( img["skyscraper_w"] );
+	} else if( o->tooltip() == "skyscraper_w" ) {
+		o->tooltip( "skyscraper_s" );
+		o->image( img["skyscraper_s"] );
+	} else if( o->tooltip() == "skyscraper_s" ) {
+		o->tooltip( "skyscraper_e" );
+		o->image( img["skyscraper_e"] );
+	} else if( o->tooltip() == "skyscraper_e" ) {
+		o->tooltip( "skyscraper_n" );
+		o->image( img["skyscraper_n"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {55 201 49 49} align 144
+              code0 {o->image( img["skyscraper_n"] );}
+              code1 {o->tooltip( "skyscraper_n" );}
+              code2 {o->label( NULL );}
+            }
+          }
+          Fl_Group {} {
+            label {...} open
+            xywh {5 25 219 430} labelcolor 30 hide
+          } {
+            Fl_Button snake {
+              label snake
+              callback {if( Selected->image() == o->image() && Fl::event_button() == FL_LEFT_MOUSE ) {
+	if( o->tooltip() == "snake_big_sn" ) {
+		o->tooltip( "snake_big_we" );
+		o->image( img["snake_big_we"] );
+	} else if( o->tooltip() == "snake_big_we" ) {
+		o->tooltip( "snake_big_ns" );
+		o->image( img["snake_big_ns"] );
+	} else if( o->tooltip() == "snake_big_ns" ) {
+		o->tooltip( "snake_big_ew" );
+		o->image( img["snake_big_ew"] );
+	} else if( o->tooltip() == "snake_big_ew" ) {
+		o->tooltip( "snake_big_sn" );
+		o->image( img["snake_big_sn"] );
+	}
+	o->redraw();
+} else if( Selected->image() == o->image() ) {
+	if( o->tooltip() == "snake_big_sn" ) {
+		o->tooltip( "snake_big_ew" );
+		o->image( img["snake_big_ew"] );
+	} else if( o->tooltip() == "snake_big_ew" ) {
+		o->tooltip( "snake_big_ns" );
+		o->image( img["snake_big_ns"] );
+	} else if( o->tooltip() == "snake_big_ns" ) {
+		o->tooltip( "snake_big_we" );
+		o->image( img["snake_big_we"] );
+	} else if( o->tooltip() == "snake_big_we" ) {
+		o->tooltip( "snake_big_sn" );
+		o->image( img["snake_big_sn"] );
+	}
+	o->redraw();
+}
+
+Selected->image( o->image() );
+Selected->tooltip( o->tooltip() );
+
+Selected->redraw();}
+              xywh {65 71 94 94} align 144
+              code0 {o->image( img["snake_big_we"] );}
+              code1 {o->tooltip( "snake_big_we" );}
+              code2 {o->label( NULL );}
+            }
+          }
         }
         Fl_Group {} {open
           xywh {215 0 580 30}
@@ -759,7 +1261,7 @@ Track->add( TrackIcons );
 Track->redraw();} {}
     Fl_Window newTrack {
       label {New track...} open
-      xywh {631 453 201 311} modal visible
+      xywh {396 498 201 311} modal visible
     } {
       Fl_Group {} {open
         xywh {10 5 185 265} box PLASTIC_UP_BOX
@@ -777,7 +1279,7 @@ Track->redraw();} {}
         Fl_Input nter {
           label {Terrain:}
           xywh {70 235 115 25}
-          code0 {o->value( "terrain3" );}
+          code0 {o->value( "terrain5" );}
         }
         Fl_Browser selterrain {
           label {Available Terrains:}
@@ -831,7 +1333,7 @@ Track->add( TrackIcons );
 Track->redraw();
 
 newTrack->hide();
-mainGroup->activate();} selected
+mainGroup->activate();}
         xywh {130 275 65 30} box PLASTIC_UP_BOX down_box PLASTIC_DOWN_BOX
       }
       Fl_Button {} {
@@ -847,7 +1349,7 @@ for( i = ters.begin(); i != ters.end(); i++ ) {
 }} {}
     Fl_Window saveTrack {
       label {Save track...} open
-      xywh {-32000 -32000 510 192} hide modal
+      xywh {4 23 510 192} modal visible
     } {
       Fl_Tabs {} {open
         xywh {5 5 500 185} box PLASTIC_UP_BOX
@@ -888,6 +1390,7 @@ if( out != NULL ) {
           Fl_Input saveInternal {
             label {Target filename:}
             xywh {15 60 480 25} align 5
+            code0 {o->value( "mytrack.ted" );}
           }
         }
         Fl_Group {} {
@@ -934,13 +1437,14 @@ if( out != NULL ) {
           Fl_Input saveStunts {
             label {Target XML filename:}
             xywh {15 60 480 25} align 5
+            code0 {o->value( "mytrack.xml" );}
           }
         }
       }
     }
     Fl_Window loadTrack {
       label {Load track...} open
-      xywh {170 434 510 192} modal visible
+      xywh {-32000 -32000 510 192} hide modal
     } {
       Fl_Tabs {} {open
         xywh {5 5 500 183} box PLASTIC_UP_BOX
@@ -1017,6 +1521,7 @@ if( in != NULL ) {
           Fl_Input loadInternal {
             label {Source filename:}
             xywh {15 60 480 25} align 5
+            code0 {o->value( "mytrack.ted" );}
           }
         }
         Fl_Group {} {
@@ -1045,11 +1550,11 @@ if( id.find("_big_",0) < id.size() ) {
 	int h = TrackData[0].size();
 
 	int i0, i1, i2, i3;
-	if( id.substr( id.size() - 3 ) == "_nw" ) {
-		i0 = i;
-		i1 = i + TrackData[0].size();
-		i2 = i + 1;
-		i3 = i + TrackData[0].size() + 1;
+	if( id.substr( id.size() - 3 ) == "_se" ) {
+		i0 = i - TrackData[0].size() - 1;
+		i1 = i - 1;
+		i2 = i - TrackData[0].size();
+		i3 = i;
 	} else if( id.substr( id.size() - 3 ) == "_ne" ) {
 		i0 = i - TrackData[0].size();
 		i1 = i;
@@ -1061,10 +1566,10 @@ if( id.find("_big_",0) < id.size() ) {
 		i2 = i;
 		i3 = i + TrackData[0].size();
 	} else {
-		i0 = i - TrackData[0].size() - 1;
-		i1 = i - 1;
-		i2 = i - TrackData[0].size();
-		i3 = i;
+		i0 = i;
+		i1 = i + TrackData[0].size();
+		i2 = i + 1;
+		i3 = i + TrackData[0].size() + 1;
 	}
 
 	// make sure it fits in x direction

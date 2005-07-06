@@ -80,6 +80,21 @@ private:
   inline void cb_tunnel_i(Fl_Button*, void*);
   static void cb_tunnel(Fl_Button*, void*);
 public:
+  Fl_Button *y_split;
+private:
+  inline void cb_y_split_i(Fl_Button*, void*);
+  static void cb_y_split(Fl_Button*, void*);
+public:
+  Fl_Button *y_split_b;
+private:
+  inline void cb_y_split_b_i(Fl_Button*, void*);
+  static void cb_y_split_b(Fl_Button*, void*);
+public:
+  Fl_Button *screw;
+private:
+  inline void cb_screw_i(Fl_Button*, void*);
+  static void cb_screw(Fl_Button*, void*);
+public:
   Fl_Button *corner_bridge_big;
 private:
   inline void cb_corner_bridge_big_i(Fl_Button*, void*);
@@ -119,6 +134,56 @@ public:
 private:
   inline void cb_crossover_i(Fl_Button*, void*);
   static void cb_crossover(Fl_Button*, void*);
+public:
+  Fl_Button *jump;
+private:
+  inline void cb_jump_i(Fl_Button*, void*);
+  static void cb_jump(Fl_Button*, void*);
+public:
+  Fl_Button *loop;
+private:
+  inline void cb_loop_i(Fl_Button*, void*);
+  static void cb_loop(Fl_Button*, void*);
+public:
+  Fl_Button *cactus;
+private:
+  inline void cb_cactus_i(Fl_Button*, void*);
+  static void cb_cactus(Fl_Button*, void*);
+public:
+  Fl_Button *mill;
+private:
+  inline void cb_mill_i(Fl_Button*, void*);
+  static void cb_mill(Fl_Button*, void*);
+public:
+  Fl_Button *tree;
+private:
+  inline void cb_tree_i(Fl_Button*, void*);
+  static void cb_tree(Fl_Button*, void*);
+public:
+  Fl_Button *tennis_big;
+private:
+  inline void cb_tennis_big_i(Fl_Button*, void*);
+  static void cb_tennis_big(Fl_Button*, void*);
+public:
+  Fl_Button *streetlight;
+private:
+  inline void cb_streetlight_i(Fl_Button*, void*);
+  static void cb_streetlight(Fl_Button*, void*);
+public:
+  Fl_Button *house;
+private:
+  inline void cb_house_i(Fl_Button*, void*);
+  static void cb_house(Fl_Button*, void*);
+public:
+  Fl_Button *skyscraper;
+private:
+  inline void cb_skyscraper_i(Fl_Button*, void*);
+  static void cb_skyscraper(Fl_Button*, void*);
+public:
+  Fl_Button *snake;
+private:
+  inline void cb_snake_i(Fl_Button*, void*);
+  static void cb_snake(Fl_Button*, void*);
   inline void cb_Load_i(Fl_Button*, void*);
   static void cb_Load(Fl_Button*, void*);
   inline void cb_Save_i(Fl_Button*, void*);
