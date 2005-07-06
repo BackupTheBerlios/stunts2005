@@ -1,6 +1,6 @@
 <mesh>
 	<submeshes>
-		<submesh material = "Street/sand" usesharedvertices="false" use32bitindexes="false">
+		<submesh material = "Street/teer" usesharedvertices="false" use32bitindexes="false">
 			<faces count="88">
 				<face v1="0" v2="1" v3="2" />
 				<face v1="0" v2="3" v3="1" />
