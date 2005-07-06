@@ -15,7 +15,7 @@ material Stunts/Gui/GuiBackground
 
 			texture_unit
 			{
-				texture main_menu_bg.jpg
+				texture retro.jpg
 				//colour_op_ex blend_manual src_current src_texture 1.0 0.9
 			}
 		}
