@@ -1,5 +1,5 @@
-#ifndef CSound_h
-#define CSound_h
+#ifndef CSOUND_HPP_
+#define CSOUND_HPP_
 /*******************************
 *  $Revision: 
 *  $Date: 
@@ -16,7 +16,8 @@
 #else
     #include "./External/FMOD/inc/wincompat.h"
 #endif
-#include "CSoundSystem.hpp"
+//#include "CSoundSystem.hpp"
+
 
 
 using namespace std;
@@ -24,27 +25,35 @@ using namespace std;
 class CSound {
   
  private:
-    string name;
+  /*  string name;
     bool isPlaying;
     bool isPause;
     bool isLoop;
     int volume;
-    float speed;    
+    int speed;    
     FSOUND_SAMPLE* CSoundSample;
     FMUSIC_MODULE* CMusicMod;
     int channel,channelNumber;
-
+   */
  public:
-    CSound(string name,bool isLoop,int volume);
+    
+
     //~CSound();
-    void start();
-    void stop();
-    void pause();
-    void unpause();
-    void setVolume(int volume);
-    int getVolume();
-    void setSpeed(float speed);
-    float getSpeed();
+    virtual void start() = 0;
+    virtual void updateSound(int rpm,int Gear,int Speed,float position[3]) = 0;
+    virtual void stop() = 0;
+    virtual void pause() = 0;
+    virtual void unpause() = 0;
+    virtual void next() = 0;
+    virtual void back() = 0;
+    virtual bool isplaying() = 0;
+    virtual void setVolume(int Volume) = 0;
+    
+    /*virtual void setVolume(int volume);
+    virtual int getVolume();
+    virtual void setSpeed(int speed);
+    virtual int getSpeed();
+   */
    
 };
 

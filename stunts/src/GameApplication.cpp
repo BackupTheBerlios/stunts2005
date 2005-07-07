@@ -25,6 +25,7 @@
 
 #include "GameApplication.hpp"
 #include "LevelManager.hpp"
+#indlude "CSoundSystem.hpp"
 
 #include "OgreTimer.hpp"
 #include "CGuiTask.h"
@@ -45,6 +46,7 @@ namespace stunts
 		CGuiTask::Release();
 		CLevelManager::Release();
 		COgreTask::Release();
+		CSoundSystem::Release();
 
 		// kill all tasks if there are any
 		nrKernel.KillAllTasks();
@@ -101,6 +103,11 @@ namespace stunts
 		CLevelManager::Instantiate();
 		CLevelManager::GetSingleton().loadLevelDescriptions("../media/level/content.xml");
 		CLevelManager::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_LOW);
+
+
+		// Create SoundSystem
+		CSoundSystem::Instantiate();
+		CSoundSystem::GetSingleton().AddToKernel(nrKernel, NR_PRIORITY_HIGH);
 
 
 		// add GUI task
