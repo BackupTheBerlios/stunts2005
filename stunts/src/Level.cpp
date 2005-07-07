@@ -73,8 +73,8 @@ namespace stunts
 	CLevel::~CLevel()
 	{
 		// cleanup HUD
-		if (mHUD)
-			Ogre::OverlayManager::getSingleton().destroy(mHUD);
+		//if (mHUD)
+		//	Ogre::OverlayManager::getSingleton().destroy(mHUD);
 
 		// delete the input
 		mUserInput.reset();

@@ -11,8 +11,6 @@ stunts_SOURCES = \
 	stunts.cpp \
 	UserInput.cpp \
 	OgreTask.cpp \
-	CSound.cpp \
-	CSoundSystem.cpp \
 	Level.cpp \
 	Terrain.cpp \
 	BaseObject.cpp \
@@ -42,10 +40,10 @@ stunts_SOURCES = \
 	CNeuralNetwork.cpp \
 	CNeurode.cpp \
 	LevelManager.cpp \
-	External/tinyxml/tinyxml.cpp\
-	External/tinyxml/tinystr.cpp\
-	External/tinyxml/tinyxmlerror.cpp\
-	External/tinyxml/tinyxmlparser.cpp
+	tinyxml.cpp\
+	tinystr.cpp\
+	tinyxmlerror.cpp\
+	tinyxmlparser.cpp
 
 #	ObjectInstantiator.cpp
 	

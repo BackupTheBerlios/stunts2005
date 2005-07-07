@@ -178,8 +178,8 @@ namespace stunts {
 	bool COgreTask::configure()
 	{
 
-		//bool ok = mRoot->restoreConfig();
-		bool ok = mRoot->showConfigDialog();
+		bool ok = mRoot->restoreConfig();
+		//bool ok = mRoot->showConfigDialog();
 
 		//attention: plugins.cfg must be in the root folder or
 		//	a segfault will occur!
