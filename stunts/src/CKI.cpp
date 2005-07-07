@@ -178,44 +178,49 @@ namespace stunts
 		{
 
 			waypointTime += delaySeconds;
-			
+
 			if(debug_ki)  std::cout << "\nwaypoint " << waypoint->getVector() << std::endl;
-			
-			
-			if( waypoint->getNext() != NULL )
+
+
+			if(( waypoint->getNext() != NULL )
+				&& ( waypointc->getNext()->getNext() != NULL )
+				&& ( waypoint->getNext()->getNext()->getNext() != NULL )
+				&& ( waypoint->getNext()->getNext()->getNext()->getNext() != NULL )
+				&& ( waypoint->getNext()->getNext()->getNext()->getNext()->getNext() != NULL )
+				&& ( waypoint->getNext()->getNext()->getNext()->getNext()->getNext()->getNext() != NULL ))
 			{
 				//std::cout << "\nspeed  \n" <<controlObject->getSpeed();
-				
+
 				//falls du zu lange brauchst deinen Punkt zu finden
 				if(controlObject->getSpeed() < 1.f)
 				{
 					stayTime += delaySeconds;
-					
+
 					if(stayTime > 2.f)
 					{
-						
+
 						Ogre::Vector3 _position = waypoint->getVector();
-						
+
 						Quaternion* direction = new Quaternion( 0.0f , -1.0f , 0.0f , .0f );
-						
-			
+
+
 						//controlObject->respawn(_position, direction);
 						controlObject->respawn(_position, NULL);
-						
-						
+
+
 						Ogre::Vector3 dir = ( waypoint->getNext()->getVector() - waypoint->getVector() );
 						dir.normalise();
-						
+
 						waypoint = waypoint->getNext();
 						computeDirection();
-						
+
 						Quaternion d = Quaternion( 0 , 0 , -msteerAngle , 0 );
 					//	Quaternion d = Quaternion( 0 , 1 , 0 , msteerAngle );
 					//	Quaternion e = controlObject->ODEVehicle()->getBody()->getOrientation();
 						controlObject->ODEVehicle()->getBody()->setOrientation(d);
-						
+
 						std::cout << "Car was respawnt \n";
-						
+
 						waypointTime = 0.f;
 						stayTime = 0.f;
 						return;
@@ -231,15 +236,15 @@ namespace stunts
 				{
 
 					waypoint = waypoint->getNext();
-					
+
 					//std::cout << "abs(steer) \n" << abs(steer) << "\n";
-					
+
 					waypointTime = 0.f;
 					return;
 				}
 				*/
 				float height = waypoint->getVector()[1] - controlObject->Position()[1];
-			
+
 				float w_dis = ( waypoint->getVector() - waypoint->getNext()->getVector() ).length();
 
 				float dis_1 = ( waypoint->getVector() - controlObject->Position() ).length();
@@ -252,7 +257,7 @@ namespace stunts
 				{
 					waypoint = waypoint->getNext();
 					//std::cout << "abs(height) \n" << abs(height) << "\n";
-					
+
 					waypointTime = 0.f;
 					return;
 				}
@@ -456,7 +461,7 @@ namespace stunts
 				//steer [0..1]  speed [-1..0[
 				brake = 0.f;//( net->isHighSteer() * ( 1.f + net->isHighSpeed() ) );
 				acc = ( net->isHighSteer() * ( -1.f * net->isHighSpeed() ) );
-				
+
 				if(debug_ki)  std::cout << "accellerate (safe)" << ( net->isHighSteer() * ( -1.f * net->isHighSpeed() ) ) << std::endl;
 			}
 		}
@@ -467,8 +472,8 @@ namespace stunts
 				//steer ]-1..0[  speed [0..1[
 				acc = (1.f +  (-1.f * (net->isHighSpeed())) );
 				brake = 0.f;
-				
-				
+
+
 				if(debug_ki)  std::cout << "accellerate (danger) " << (1.f +  -1.f * (net->isHighSpeed()) ) << std::endl;
 			}
 			else
@@ -477,26 +482,26 @@ namespace stunts
 				acc = ( net->isHighSteer() * net->isHighSpeed());
 				brake = 0.f;
 
-				
+
 				if(debug_ki)  std::cout << "accellerate (turbo) " << ( net->isHighSteer() * net->isHighSpeed() ) << std::endl;
 			}
 		}
 	}
-	
+
 	/*
 	void CKI::lowrider(float delaySeconds)
 	{
 		l_time += delaySeconds;
-		
+
 		const Ogre::Vector3 w0 = controlObject->ODEVehicle()->getWheel(0)->getPosition();
 		const Ogre::Vector3 w1 = controlObject->ODEVehicle()->getWheel(1)->getPosition();
 		const Ogre::Vector3 w2 = controlObject->ODEVehicle()->getWheel(2)->getPosition();
 		const Ogre::Vector3 w3 = controlObject->ODEVehicle()->getWheel(3)->getPosition();
-		
+
 		//const float t = 0.000001f * sin(l_time * 0.000001f);
-		
+
 		const Ogre::Vector3* wn1 = new Vector3(w1[0], w1[1] , w1[2]);
-		
+
 		controlObject->ODEVehicle()->getWheel(1)->setPosition(w0);
 		controlObject->ODEVehicle()->getWheel(1)->setPosition(*wn1);
 		controlObject->ODEVehicle()->getWheel(1)->setPosition(w2);
