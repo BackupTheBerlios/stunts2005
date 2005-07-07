@@ -1,9 +1,10 @@
 <!-- Here we store information about all levels, that can be found here -->
 <levels>
 
-	<level>
 		<!-- Name of the level and a path containing all level data. Path is relative
 			to this file -->
+	<level>
+
 		<name name="The Default Level" path="DefaultLevel" />
 
 		<!-- Name of the author and a string containing creating date -->
@@ -18,6 +19,23 @@
 
 	</level>
 
+	<level>
+		<name name="Track3" path="track3" />
+		<author name="elowar" datestr="Mi, 06 Jul, 03:27" />
+		<thumbnail count="0" file="thumb_%i.png" />
+	</level>
+
+	<level>
+		<name name="Track2" path="track2" />
+		<author name="elowar" datestr="Mi, 06 Jul, 03:27" />
+		<thumbnail count="0" file="thumb_%i.png" />
+	</level>
+
+	<level>
+		<name name="Track1" path="track1" />
+		<author name="elowar" datestr="Mi, 06 Jul, 03:27" />
+		<thumbnail count="0" file="thumb_%i.png" />
+	</level>
 
 
 	<level>
@@ -32,26 +50,5 @@
 		<author name="elowar" datestr="Mi, 06 Jul, 03:27" />
 		<thumbnail count="0" file="thumb_%i.png" />
 	</level>
-
-
-	<level>
-		<name name="Track1" path="track1" />
-		<author name="elowar" datestr="Mi, 06 Jul, 03:27" />
-		<thumbnail count="0" file="thumb_%i.png" />
-	</level>
-
-	<level>
-		<name name="Track2" path="track2" />
-		<author name="elowar" datestr="Mi, 06 Jul, 03:27" />
-		<thumbnail count="0" file="thumb_%i.png" />
-	</level>
-
-	<level>
-		<name name="Track3" path="track3" />
-		<author name="elowar" datestr="Mi, 06 Jul, 03:27" />
-		<thumbnail count="0" file="thumb_%i.png" />
-	</level>
-
-
 
 </levels>

@@ -13,9 +13,9 @@
 			<import file="../../cars/jeep.xml" />
 			<control name="Human" />
 
-			<posX unit="gridUnits">10</posX>
-			<posY type="bottom">0</posY>
-			<posZ unit="gridUnits">13</posZ>
+			<posX unit="gridUnits">3.5</posX>
+			<posY type="bottom">0.2</posY>
+			<posZ unit="gridUnits">5</posZ>
 		</object>
 
 		<object type="car">
@@ -23,9 +23,9 @@
 			<import file="../../cars/subaru.xml" />
 			<control name="AICar" />
 
-			<posX unit="gridUnits">13</posX>
-			<posY type="bottom">0</posY>
-			<posZ unit="gridUnits">10</posZ>
+			<posX unit="gridUnits">3.6</posX>
+			<posY type="bottom">0.2</posY>
+			<posZ unit="gridUnits">5</posZ>
 		</object>
 
 		<!-- this imports all track objects -->

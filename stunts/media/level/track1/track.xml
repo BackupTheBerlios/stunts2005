@@ -7,88 +7,12 @@
 			<friction>0.9</friction>
 			<mass relX="0" relY="0" relZ="0" value="inf" />
 			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">4</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">1</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">20</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">1</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="1" />
-			<posX unit="gridUnits">2</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">2</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
 			<posX unit="gridUnits">15</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">2</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">19</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">2</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tree.mesh</file>
 			</geometry>
@@ -107,7 +31,7 @@
 			<posZ unit="gridUnits">3</posZ>
 			<proportion axis="z" size="0.76" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>corner_small.mesh</file>
 			</geometry>
@@ -126,7 +50,7 @@
 			<posZ unit="gridUnits">3</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -145,7 +69,7 @@
 			<posZ unit="gridUnits">3</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -164,7 +88,7 @@
 			<posZ unit="gridUnits">3</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -183,7 +107,7 @@
 			<posZ unit="gridUnits">3</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>y.mesh</file>
 			</geometry>
@@ -202,7 +126,7 @@
 			<posZ unit="gridUnits">3</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tube_in.mesh</file>
 			</geometry>
@@ -221,7 +145,7 @@
 			<posZ unit="gridUnits">3</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tube.mesh</file>
 			</geometry>
@@ -240,7 +164,7 @@
 			<posZ unit="gridUnits">3</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>screw.mesh</file>
 			</geometry>
@@ -259,7 +183,7 @@
 			<posZ unit="gridUnits">3</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tube.mesh</file>
 			</geometry>
@@ -278,7 +202,7 @@
 			<posZ unit="gridUnits">3</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tube.mesh</file>
 			</geometry>
@@ -297,7 +221,7 @@
 			<posZ unit="gridUnits">3</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tube_with_wall.mesh</file>
 			</geometry>
@@ -316,7 +240,7 @@
 			<posZ unit="gridUnits">3</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tube.mesh</file>
 			</geometry>
@@ -335,7 +259,7 @@
 			<posZ unit="gridUnits">3</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tube_out.mesh</file>
 			</geometry>
@@ -354,31 +278,12 @@
 			<posZ unit="gridUnits">3.5</posZ>
 			<proportion axis="z" size="1.77" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>corner_big.mesh</file>
 			</geometry>
 			<waypoints>
 				<file>corner_big_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">23</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">3</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>
@@ -392,7 +297,7 @@
 			<posZ unit="gridUnits">4</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>start_goal.mesh</file>
 			</geometry>
@@ -411,7 +316,7 @@
 			<posZ unit="gridUnits">4</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -430,7 +335,7 @@
 			<posZ unit="gridUnits">4</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tree.mesh</file>
 			</geometry>
@@ -449,7 +354,7 @@
 			<posZ unit="gridUnits">5</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>streetlight.mesh</file>
 			</geometry>
@@ -468,7 +373,7 @@
 			<posZ unit="gridUnits">5</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>streetlight.mesh</file>
 			</geometry>
@@ -487,7 +392,7 @@
 			<posZ unit="gridUnits">4</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tree.mesh</file>
 			</geometry>
@@ -506,7 +411,7 @@
 			<posZ unit="gridUnits">5</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>skyscraper.mesh</file>
 			</geometry>
@@ -525,7 +430,7 @@
 			<posZ unit="gridUnits">5</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -544,7 +449,7 @@
 			<posZ unit="gridUnits">5</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tree.mesh</file>
 			</geometry>
@@ -563,31 +468,12 @@
 			<posZ unit="gridUnits">5.5</posZ>
 			<proportion axis="z" size="1.77" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>corner_big.mesh</file>
 			</geometry>
 			<waypoints>
 				<file>corner_big_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">7</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">5</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>
@@ -599,9 +485,9 @@
 			<posX unit="gridUnits">9</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">5</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
+			<proportion axis="z" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>house.mesh</file>
 			</geometry>
@@ -618,9 +504,9 @@
 			<posX unit="gridUnits">13</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">5</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
+			<proportion axis="z" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>house.mesh</file>
 			</geometry>
@@ -639,7 +525,7 @@
 			<posZ unit="gridUnits">5</posZ>
 			<proportion axis="z" size="0.76" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>corner_small.mesh</file>
 			</geometry>
@@ -658,7 +544,7 @@
 			<posZ unit="gridUnits">5</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>y2.mesh</file>
 			</geometry>
@@ -677,7 +563,7 @@
 			<posZ unit="gridUnits">5</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -696,7 +582,7 @@
 			<posZ unit="gridUnits">5</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -715,7 +601,7 @@
 			<posZ unit="gridUnits">5</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -734,7 +620,7 @@
 			<posZ unit="gridUnits">5</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -753,7 +639,7 @@
 			<posZ unit="gridUnits">5</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -772,7 +658,7 @@
 			<posZ unit="gridUnits">5</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -791,7 +677,7 @@
 			<posZ unit="gridUnits">5.5</posZ>
 			<proportion axis="z" size="1.77" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>corner_big.mesh</file>
 			</geometry>
@@ -810,31 +696,12 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
 			<waypoints>
 				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">4</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">6</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>
@@ -848,7 +715,7 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -867,7 +734,7 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -886,7 +753,7 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>jump.mesh</file>
 			</geometry>
@@ -905,7 +772,7 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -924,7 +791,7 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>jump.mesh</file>
 			</geometry>
@@ -943,7 +810,7 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -962,7 +829,7 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -981,7 +848,7 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1000,7 +867,7 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1019,7 +886,7 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>y.mesh</file>
 			</geometry>
@@ -1038,7 +905,7 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1057,7 +924,7 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>drive-up_bridge.mesh</file>
 			</geometry>
@@ -1076,7 +943,7 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>straight_line_bridge.mesh</file>
 			</geometry>
@@ -1095,7 +962,7 @@
 			<posZ unit="gridUnits">6.5</posZ>
 			<proportion axis="z" size="1.77" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>corner_bridge_big.mesh</file>
 			</geometry>
@@ -1114,7 +981,7 @@
 			<posZ unit="gridUnits">7</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>skyscraper.mesh</file>
 			</geometry>
@@ -1133,7 +1000,7 @@
 			<posZ unit="gridUnits">7</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>loop.mesh</file>
 			</geometry>
@@ -1150,9 +1017,9 @@
 			<posX unit="gridUnits">7</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">7</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
+			<proportion axis="z" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>house.mesh</file>
 			</geometry>
@@ -1171,7 +1038,7 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>streetlight.mesh</file>
 			</geometry>
@@ -1188,9 +1055,9 @@
 			<posX unit="gridUnits">11</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">7</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
+			<proportion axis="z" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>house.mesh</file>
 			</geometry>
@@ -1209,7 +1076,7 @@
 			<posZ unit="gridUnits">6</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>streetlight.mesh</file>
 			</geometry>
@@ -1226,9 +1093,9 @@
 			<posX unit="gridUnits">15</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">7</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
+			<proportion axis="z" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>house.mesh</file>
 			</geometry>
@@ -1245,9 +1112,9 @@
 			<posX unit="gridUnits">19</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">7</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
+			<proportion axis="z" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>house.mesh</file>
 			</geometry>
@@ -1264,9 +1131,9 @@
 			<posX unit="gridUnits">22</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">7</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
+			<proportion axis="z" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>house.mesh</file>
 			</geometry>
@@ -1285,7 +1152,7 @@
 			<posZ unit="gridUnits">7.5</posZ>
 			<proportion axis="z" size="1.77" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>corner_big.mesh</file>
 			</geometry>
@@ -1304,7 +1171,7 @@
 			<posZ unit="gridUnits">7</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>mill.mesh</file>
 			</geometry>
@@ -1323,7 +1190,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1342,7 +1209,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="0.76" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>corner_small.mesh</file>
 			</geometry>
@@ -1361,7 +1228,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1380,7 +1247,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>jump.mesh</file>
 			</geometry>
@@ -1399,7 +1266,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1418,7 +1285,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1437,7 +1304,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1456,7 +1323,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>jump.mesh</file>
 			</geometry>
@@ -1475,7 +1342,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1494,7 +1361,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1513,7 +1380,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1532,7 +1399,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1551,7 +1418,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1570,7 +1437,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>y.mesh</file>
 			</geometry>
@@ -1589,7 +1456,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1608,7 +1475,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>loop.mesh</file>
 			</geometry>
@@ -1627,7 +1494,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1646,7 +1513,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1665,7 +1532,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>crossover.mesh</file>
 			</geometry>
@@ -1684,7 +1551,7 @@
 			<posZ unit="gridUnits">8</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1703,7 +1570,7 @@
 			<posZ unit="gridUnits">9</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>skyscraper.mesh</file>
 			</geometry>
@@ -1722,7 +1589,7 @@
 			<posZ unit="gridUnits">9.5</posZ>
 			<proportion axis="z" size="1.77" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>corner_big.mesh</file>
 			</geometry>
@@ -1741,7 +1608,7 @@
 			<posZ unit="gridUnits">9</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tree.mesh</file>
 			</geometry>
@@ -1760,31 +1627,12 @@
 			<posZ unit="gridUnits">9</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
 			<waypoints>
 				<file>straight_line_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">6</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">9</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
 			</waypoints>
 			<!-- / -->
 		</object>
@@ -1798,7 +1646,7 @@
 			<posZ unit="gridUnits">9.5</posZ>
 			<proportion axis="z" size="1.77" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>corner_big.mesh</file>
 			</geometry>
@@ -1817,7 +1665,7 @@
 			<posZ unit="gridUnits">9</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tree.mesh</file>
 			</geometry>
@@ -1836,7 +1684,7 @@
 			<posZ unit="gridUnits">9</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>straight_line_bridge.mesh</file>
 			</geometry>
@@ -1855,7 +1703,7 @@
 			<posZ unit="gridUnits">10</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1874,7 +1722,7 @@
 			<posZ unit="gridUnits">10</posZ>
 			<proportion axis="z" size="0.76" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>corner_small.mesh</file>
 			</geometry>
@@ -1893,7 +1741,7 @@
 			<posZ unit="gridUnits">10</posZ>
 			<proportion axis="z" size="0.76" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>corner_small.mesh</file>
 			</geometry>
@@ -1910,9 +1758,9 @@
 			<posX unit="gridUnits">20</posX>
 			<posY type="bottom">0.2</posY>
 			<posZ unit="gridUnits">10</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
+			<proportion axis="z" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>house.mesh</file>
 			</geometry>
@@ -1931,7 +1779,7 @@
 			<posZ unit="gridUnits">10</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>drive-up_bridge.mesh</file>
 			</geometry>
@@ -1950,7 +1798,7 @@
 			<posZ unit="gridUnits">11</posZ>
 			<proportion axis="z" size="0.76" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>corner_small.mesh</file>
 			</geometry>
@@ -1969,7 +1817,7 @@
 			<posZ unit="gridUnits">11</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -1988,7 +1836,7 @@
 			<posZ unit="gridUnits">11</posZ>
 			<proportion axis="z" size="1.005" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>straight_line.mesh</file>
 			</geometry>
@@ -2007,7 +1855,7 @@
 			<posZ unit="gridUnits">11</posZ>
 			<proportion axis="z" size="0.76" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="0" />	
+			<shadow cast="0" />
 			<geometry>
 				<file>corner_small.mesh</file>
 			</geometry>
@@ -2026,7 +1874,7 @@
 			<posZ unit="gridUnits">11</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>mill.mesh</file>
 			</geometry>
@@ -2045,7 +1893,7 @@
 			<posZ unit="gridUnits">11</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>mill.mesh</file>
 			</geometry>
@@ -2064,26 +1912,7 @@
 			<posZ unit="gridUnits">12</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">27</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">13</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tree.mesh</file>
 			</geometry>
@@ -2102,7 +1931,7 @@
 			<posZ unit="gridUnits">14</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>mill.mesh</file>
 			</geometry>
@@ -2121,7 +1950,7 @@
 			<posZ unit="gridUnits">14</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>mill.mesh</file>
 			</geometry>
@@ -2140,7 +1969,7 @@
 			<posZ unit="gridUnits">15</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>mill.mesh</file>
 			</geometry>
@@ -2159,7 +1988,7 @@
 			<posZ unit="gridUnits">15</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>mill.mesh</file>
 			</geometry>
@@ -2178,7 +2007,7 @@
 			<posZ unit="gridUnits">15</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>mill.mesh</file>
 			</geometry>
@@ -2186,25 +2015,6 @@
 				<file>mill_waypoints.xml</file>
 			</waypoints>
 			<animation type="rotation" meshfile="fluegel.mesh" axis="z" speed="1" posX="0" posY="829" posZ="287.71" stretch="0.9"/>
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">27</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">15</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
 		</object>
 		<object type="base">
 			<!-- mill -->
@@ -2216,7 +2026,7 @@
 			<posZ unit="gridUnits">16</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>mill.mesh</file>
 			</geometry>
@@ -2235,7 +2045,7 @@
 			<posZ unit="gridUnits">16</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tree.mesh</file>
 			</geometry>
@@ -2254,26 +2064,7 @@
 			<posZ unit="gridUnits">16</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">8</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">16</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tree.mesh</file>
 			</geometry>
@@ -2292,7 +2083,7 @@
 			<posZ unit="gridUnits">16</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tree.mesh</file>
 			</geometry>
@@ -2311,7 +2102,7 @@
 			<posZ unit="gridUnits">16</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tree.mesh</file>
 			</geometry>
@@ -2330,311 +2121,7 @@
 			<posZ unit="gridUnits">16</posZ>
 			<proportion axis="y" size="1" units="gridUnits" />
 			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">28</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">16</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">11</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">17</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">14</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">17</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">16</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">17</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">23</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">17</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">25</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">17</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">2</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">18</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">4</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">18</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">7</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">18</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="0" />
-			<posX unit="gridUnits">9</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">18</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">18</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">18</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">20</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">18</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="2" />
-			<posX unit="gridUnits">22</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">18</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">18</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">19</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">23</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">19</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
-			<geometry>
-				<file>tree.mesh</file>
-			</geometry>
-			<waypoints>
-				<file>tree_waypoints.xml</file>
-			</waypoints>
-			<!-- / -->
-		</object>
-		<object type="base">
-			<!-- tree -->
-			<friction>0.9</friction>
-			<mass relX="0" relY="0" relZ="0" value="inf" />
-			<rotate x="0" y="1" z="0" unit="quarters" value="3" />
-			<posX unit="gridUnits">13</posX>
-			<posY type="bottom">0.2</posY>
-			<posZ unit="gridUnits">20</posZ>
-			<proportion axis="y" size="1" units="gridUnits" />
-			<stretch x="1.0" y="1.0" z="1.0" />
-			<shadow cast="1" />	
+			<shadow cast="1" />
 			<geometry>
 				<file>tree.mesh</file>
 			</geometry>
