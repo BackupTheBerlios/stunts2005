@@ -183,7 +183,7 @@ namespace stunts
 
 
 			if(( waypoint->getNext() != NULL )
-				&& ( waypointc->getNext()->getNext() != NULL )
+				&& ( waypoint->getNext()->getNext() != NULL )
 				&& ( waypoint->getNext()->getNext()->getNext() != NULL )
 				&& ( waypoint->getNext()->getNext()->getNext()->getNext() != NULL )
 				&& ( waypoint->getNext()->getNext()->getNext()->getNext()->getNext() != NULL )
