@@ -20,7 +20,7 @@
 
 		<object type="car">
 			<name>AICar</name>
-			<import file="../../cars/jeep.xml" />
+			<import file="../../cars/subaru.xml" />
 			<control name="AICar" />
 
 			<posX unit="gridUnits">13</posX>

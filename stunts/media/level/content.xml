@@ -31,7 +31,27 @@
 		<name name="AllObjects" path="TestLevel3" />
 		<author name="elowar" datestr="Mi, 06 Jul, 03:27" />
 		<thumbnail count="0" file="thumb_%i.png" />
-
 	</level>
+
+
+	<level>
+		<name name="Track1" path="track1" />
+		<author name="elowar" datestr="Mi, 06 Jul, 03:27" />
+		<thumbnail count="0" file="thumb_%i.png" />
+	</level>
+
+	<level>
+		<name name="Track2" path="track2" />
+		<author name="elowar" datestr="Mi, 06 Jul, 03:27" />
+		<thumbnail count="0" file="thumb_%i.png" />
+	</level>
+
+	<level>
+		<name name="Track3" path="track3" />
+		<author name="elowar" datestr="Mi, 06 Jul, 03:27" />
+		<thumbnail count="0" file="thumb_%i.png" />
+	</level>
+
+
 
 </levels>
